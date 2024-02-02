@@ -1,0 +1,15 @@
+.spettacolo-main{
+  background-color:lightblue;
+}
+
+#spettacolo-image{
+  float: left;
+}
+
+.spettacolo-hd{
+  color:white;
+}
+
+.spettacolo-info{
+  color:red;
+}
