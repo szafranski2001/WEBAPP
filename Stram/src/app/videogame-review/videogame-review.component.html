@@ -1,0 +1,11 @@
+<div class="reviewList">
+<section class="review" *ngFor="let review of reviewList">
+    <figure class="review-figure">
+        <img src="assets/images/user.png">
+        <figcaption>{{review.username}}</figcaption>
+    </figure>
+    <span>{{review.title}} {{review.rating}}</span>
+    <p>{{review.comment}}</p> 
+    <span>{{review.likes}}</span>
+</section>
+</div>

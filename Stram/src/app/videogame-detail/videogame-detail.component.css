@@ -1,0 +1,24 @@
+
+.videogame-main{
+    background-color:lightblue;
+    margin-left: 0;
+    height: 100;
+}
+
+.videogame-detail-figure{
+    margin-left: 5px;
+}
+
+.videogame-detail-figure > img{
+    height: 160px;
+    float: left;
+}
+
+.videogame-hd{
+    color:white;
+}
+
+.videogame-info{
+    color:red;
+    text-align: left;
+}

@@ -1,0 +1,19 @@
+.review{
+    margin-top: 10px;
+    background-color: beige;
+    margin-bottom: 10px;
+}
+
+.review-figure{
+    margin-left: 5px;
+}
+
+.review img{
+    width: 50px;
+    float: left;
+}
+
+.reviewList{
+    clear: left;
+    margin-bottom: 100px;
+}

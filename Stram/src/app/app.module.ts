@@ -8,8 +8,9 @@ import { FooterComponent } from './footer/footer.component';
 import { GuidelinesComponent } from './guidelines/guidelines.component';
 import { HeaderComponent } from './header/header.component';
 import { ProfileComponent } from './profile/profile.component';
-import { VideogameComponent } from './videogames/videogame.component';
+import { VideogameComponent } from './videogame/videogame.component';
 import { VideogameDetailComponent } from './videogame-detail/videogame-detail.component';
+import { VideogameReviewsComponent } from './videogame-review/videogame-review.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { VideogameDetailComponent } from './videogame-detail/videogame-detail.co
     HeaderComponent,
     ProfileComponent,
     VideogameComponent,
-    VideogameDetailComponent
+    VideogameDetailComponent,
+    VideogameReviewsComponent
   ],
   imports: [
     BrowserModule,

@@ -7,23 +7,22 @@ import { Injectable } from '@angular/core';
 
 export class VideogameDataService {
   
-  id: number;
-  titolo: string;
+  selectedVideogame: videogame;
 
   constructor(){ }
 
   getData(id: number){
     let videogame: videogame={
-      id: 1,
-      titolo:'BDO',
-      genere: genere.MMORPG,
+      id: 0,
+      titolo:'Minecraft',
+      genere: genere.Sandbox,
       durata: 15,
-      anno:2020,
-      casaP:'Test',
-      descrizione:'gioco MMORPG ',
+      anno:2009,
+      casaP:'Mojang',
+      descrizione:'gioco Sandbox ',
       valutazione:4
     }
-
+    this.selectedVideogame=videogame;
     if(videogame.id == id)
       return videogame;
 
@@ -38,6 +37,7 @@ export class VideogameDataService {
         descrizione:'gioco MMORPG ',
         valutazione:4
       }
+      this.selectedVideogame=videogame;
       return videogame;
     }
   }
