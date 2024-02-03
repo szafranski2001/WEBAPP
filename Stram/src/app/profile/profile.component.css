@@ -39,6 +39,32 @@ input[type="text"]:focus {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
+input[type="email"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  font-size: 16px;
+}
+
+input[type="email"]:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+input[type="password"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  font-size: 16px;
+}
+
+input[type="password"]:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
 input[type="submit"] {
   padding: 10px 20px;
   font-size: 16px;
