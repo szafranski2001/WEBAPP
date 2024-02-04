@@ -8,9 +8,9 @@ import { FooterComponent } from './footer/footer.component';
 import { GuidelinesComponent } from './guidelines/guidelines.component';
 import { HeaderComponent } from './header/header.component';
 import { ProfileComponent } from './profile/profile.component';
-import { VideogameComponent } from './videogame/videogame.component';
 import { VideogameDetailComponent } from './videogame-detail/videogame-detail.component';
 import { VideogameReviewsComponent } from './videogame-review/videogame-review.component';
+import { VideogameToolbarComponent } from './videogame-toolbar/videogame-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +19,9 @@ import { VideogameReviewsComponent } from './videogame-review/videogame-review.c
     GuidelinesComponent,
     HeaderComponent,
     ProfileComponent,
-    VideogameComponent,
     VideogameDetailComponent,
-    VideogameReviewsComponent
+    VideogameReviewsComponent,
+    VideogameToolbarComponent
   ],
   imports: [
     BrowserModule,

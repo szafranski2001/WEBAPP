@@ -2,7 +2,8 @@
 .videogame-main{
     background-color:lightblue;
     margin-left: 0;
-    height: 100;
+    inline-size: 93%;
+    display: inline-block;
 }
 
 .videogame-detail-figure{

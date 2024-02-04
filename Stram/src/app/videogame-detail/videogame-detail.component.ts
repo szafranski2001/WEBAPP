@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { videogame,genere } from '../model/Videogame';
+import { videogame } from '../model/Videogame';
 import { VideogameDataService } from '../services/videogame-data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-videogame-detail',
@@ -8,12 +9,15 @@ import { VideogameDataService } from '../services/videogame-data.service';
   styleUrl: './videogame-detail.component.css'
 })
 export class VideogameDetailComponent implements OnInit {
+
   @Input() videogameId:number;
   
   videogame: videogame;
 
-  constructor(private videogameData: VideogameDataService) {}
+  constructor(private videogameData: VideogameDataService, private route : ActivatedRoute) {}
+
   ngOnInit(): void {
+    this.videogameId=parseInt(this.route.snapshot.paramMap.get('id')!);
     this.videogame=this.videogameData.getData(this.videogameId);
   }
 
