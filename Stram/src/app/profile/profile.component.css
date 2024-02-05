@@ -12,13 +12,14 @@
 }
 
 .changeFields{
+  position: absolute;
+  right: 250px;
   margin-top: 20px;
-  position: fixed;
-  margin-left: 700px;
 }
 
 .logout{
   margin-top: 100px;
+  margin-bottom: 50px;
   text-align: center;
 }
 

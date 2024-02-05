@@ -2,6 +2,7 @@ header {
   background-color: #333;
   color: #fff;
   padding: 10px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,6 +23,7 @@ input[type="text"] {
   border-radius: 20px;
   outline: none;
   font-size: 16px;
+  margin-right: 15px;
 }
 
 input[type="text"]:focus {
