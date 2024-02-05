@@ -11,6 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { VideogameDetailComponent } from './videogame-detail/videogame-detail.component';
 import { VideogameReviewsComponent } from './videogame-review/videogame-review.component';
 import { VideogameToolbarComponent } from './videogame-toolbar/videogame-toolbar.component';
+import { VideogameListsComponent } from './videogame-lists/videogame-lists.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { VideogameToolbarComponent } from './videogame-toolbar/videogame-toolbar
     ProfileComponent,
     VideogameDetailComponent,
     VideogameReviewsComponent,
-    VideogameToolbarComponent
+    VideogameToolbarComponent,
+    VideogameListsComponent
   ],
   imports: [
     BrowserModule,

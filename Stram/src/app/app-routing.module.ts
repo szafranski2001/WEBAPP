@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { GuidelinesComponent } from './guidelines/guidelines.component';
 import { VideogameDetailComponent } from './videogame-detail/videogame-detail.component';
+import { VideogameListsComponent} from "./videogame-lists/videogame-lists.component";
 
 const routes: Routes = [
   {path:'profile', component:ProfileComponent},
   {path:'guidelines', component:GuidelinesComponent},
   {path:'videogame/:id', component:VideogameDetailComponent},
+  {path: 'videogame-lists', component: VideogameListsComponent}
 ];
 
 @NgModule({
