@@ -1,17 +1,13 @@
 
 .videogame-main{
     background-color:lightblue;
-    margin-left: 0;
-    inline-size: 93%;
-    display: inline-block;
-}
-
-.videogame-detail-figure{
-    margin-left: 5px;
+    width: 83%;
+    margin-left:10%;
+    float: left; 
 }
 
 .videogame-detail-figure > img{
-    height: 160px;
+    height: 20em;
     float: left;
 }
 
@@ -19,7 +15,11 @@
     color:white;
 }
 
-.videogame-info{
-    color:red;
-    text-align: left;
+.videogame-description{
+    clear:left;
+    text-align: center;
+}
+
+.Stella, .Rating{
+    display: inline;
 }

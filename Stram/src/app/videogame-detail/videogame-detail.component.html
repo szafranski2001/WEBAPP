@@ -2,9 +2,21 @@
     <figure class="videogame-detail-figure">
       <img id="videogame-image" src="assets/images/videogames/{{videogame.id}}.png">
     </figure>
+    <span class="genere">{{videogame.genere}}</span>
     <h1 class="title">{{videogame.titolo}}</h1>
     <h2 class="videogame-hd">{{videogame.casaP}}</h2>
-    <span class="genere">{{videogame.genere}}</span>
+
+    <div class="Rating" *ngFor="let star of [0,1,2,3,4]">
+      <ng-template *ngIf="star < videogame.valutazione; then StellaPiena else StellaVuota"></ng-template>
+        <ng-template #StellaPiena>
+          <img class="Stella" alt="StellaPiena">
+  
+        </ng-template>
+        <ng-template #StellaVuota>
+          <img class="Stella" alt="StellaVuota">
+        </ng-template>
+    </div>
+
     <div class="videogame-info">
       <span class="videogame-hd">Durata:</span>
       {{videogame.durata}}
@@ -13,12 +25,14 @@
       {{videogame.anno}}
     </div>
     <br>
-    <div class="videogame-info">
-      <span class="videogame-hd">Descrizione:</span>
-      {{videogame.descrizione}}
-    </div>
   </article>
 
   <app-videogame-toolbar [videogameData]="videogame"></app-videogame-toolbar>
+
+  <div class="videogame-description">
+    <span class="videogame-hd">Descrizione:</span>
+    {{videogame.descrizione}}
+  </div>
+
   <app-videogame-reviews [videogameId]="videogameId"></app-videogame-reviews>
   
