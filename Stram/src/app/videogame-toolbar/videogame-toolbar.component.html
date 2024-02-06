@@ -1,8 +1,17 @@
 <aside class="videogame-toolbar" *ngIf="isLoggedIn">
-    <div *ngIf="CurrentUserTipologia == tipologiaUser.Utente ">
-      stocazzo
-    </div>
-    <div *ngIf="CurrentUserTipologia == tipologiaUser.Admin ">
-    </div>
-  </aside>
+  <button class="tlb-btn">
+    <img src="" alt="Fav">
+  </button>
+  <button class="tlb-btn">
+    <img src="" alt="Wish">
+  </button>
+    <ng-template *ngIf="CurrentUserTipologia == tipologiaUser.Admin">
+      <button class="tlb-btn">
+        <img src="" alt="Edit button">
+      </button>
+      <button>
+        <img src="" alt="Delete button">
+      </button>
+    </ng-template> 
+</aside>
 

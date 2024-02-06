@@ -1,10 +1,10 @@
 
 <div class="Rating" *ngFor="let star of [0,1,2,3,4]">
-    <ng-template *ngIf="star < valutazione; then StellaPiena else StellaVuota"></ng-template>
-      <ng-template #StellaPiena>
-        <img class="Stella" src="assets/images/rating/starFull.png" alt="StellaPiena">
-      </ng-template>
-      <ng-template #StellaVuota>
-        <img class="Stella" src="assets/images/rating/starEmpty.png" alt="StellaVuota">
-      </ng-template>
-  </div>
+  <ng-template *ngIf="star < valutazione; then StellaPiena else StellaVuota"></ng-template>
+    <ng-template #StellaPiena>
+      <img class="Stella" src="assets/images/rating/starFull.png" alt="StellaPiena">
+    </ng-template>
+    <ng-template #StellaVuota>
+      <img class="Stella" src="assets/images/rating/starEmpty.png" alt="StellaVuota">
+    </ng-template>
+</div>

@@ -1,5 +1,5 @@
-aside{
+.videogame-toolbar{
     color:red;
-    float: right;
     background-color: antiquewhite;
+    display: inline;
 }

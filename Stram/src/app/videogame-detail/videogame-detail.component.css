@@ -18,4 +18,10 @@
 .videogame-description{
     clear:left;
     text-align: center;
+    word-wrap: break-word;
+}
+
+.genere{
+    background-color:aquamarine;
+    border-radius: 5px;
 }
