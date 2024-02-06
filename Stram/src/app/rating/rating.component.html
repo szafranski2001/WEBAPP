@@ -1,0 +1,10 @@
+
+<div class="Rating" *ngFor="let star of [0,1,2,3,4]">
+    <ng-template *ngIf="star < valutazione; then StellaPiena else StellaVuota"></ng-template>
+      <ng-template #StellaPiena>
+        <img class="Stella" alt="StellaPiena">
+      </ng-template>
+      <ng-template #StellaVuota>
+        <img class="Stella" alt="StellaVuota">
+      </ng-template>
+  </div>

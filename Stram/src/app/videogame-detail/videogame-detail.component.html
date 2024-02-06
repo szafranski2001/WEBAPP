@@ -6,16 +6,7 @@
     <h1 class="title">{{videogame.titolo}}</h1>
     <h2 class="videogame-hd">{{videogame.casaP}}</h2>
 
-    <div class="Rating" *ngFor="let star of [0,1,2,3,4]">
-      <ng-template *ngIf="star < videogame.valutazione; then StellaPiena else StellaVuota"></ng-template>
-        <ng-template #StellaPiena>
-          <img class="Stella" alt="StellaPiena">
-  
-        </ng-template>
-        <ng-template #StellaVuota>
-          <img class="Stella" alt="StellaVuota">
-        </ng-template>
-    </div>
+    <app-rating [valutazione]="videogame.valutazione"></app-rating>
 
     <div class="videogame-info">
       <span class="videogame-hd">Durata:</span>
@@ -25,7 +16,8 @@
       {{videogame.anno}}
     </div>
     <br>
-  </article>
+    
+</article>
 
   <app-videogame-toolbar [videogameData]="videogame"></app-videogame-toolbar>
 

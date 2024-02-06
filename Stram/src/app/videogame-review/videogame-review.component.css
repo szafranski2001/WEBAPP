@@ -8,9 +8,15 @@
     margin-left: 5px;
 }
 
-.review img{
+.review-figure > img{
     width: 50px;
     float: left;
+}
+
+.icon-figure{
+    width: 80px;
+    padding-left: 0;
+    margin-left: 20px;
 }
 
 .review-list{

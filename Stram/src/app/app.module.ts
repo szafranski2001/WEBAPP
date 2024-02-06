@@ -12,6 +12,7 @@ import { VideogameDetailComponent } from './videogame-detail/videogame-detail.co
 import { VideogameReviewsComponent } from './videogame-review/videogame-review.component';
 import { VideogameToolbarComponent } from './videogame-toolbar/videogame-toolbar.component';
 import { VideogameListsComponent } from './videogame-lists/videogame-lists.component';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { VideogameListsComponent } from './videogame-lists/videogame-lists.compo
     VideogameDetailComponent,
     VideogameReviewsComponent,
     VideogameToolbarComponent,
-    VideogameListsComponent
+    VideogameListsComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,

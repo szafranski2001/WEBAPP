@@ -1,27 +1,22 @@
-import { Component,Input } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { review } from '../model/Review';
+import { VideogameReviewsService } from '../services/videogame-reviews.service';
 
 @Component({
   selector: 'app-videogame-reviews',
   templateUrl: './videogame-review.component.html',
   styleUrl: './videogame-review.component.css'
 })
-export class VideogameReviewsComponent {
+export class VideogameReviewsComponent implements OnInit {
   
   @Input() videogameId: number;
 
-  reviewList: review[]=[
-    {idVideogame: 0,title:'Titolo', username:'stocazzo', comment:'bel videogioco', rating:5, likes:104},
-    {idVideogame: 0,title:'Daje roma', username:'aridaje', comment:'nice game', rating:5, likes:104},
-    {idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:5, likes:104},
-    {idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:5, likes:104},
-    {idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:5, likes:104}
-  ];
+  ReviewList : review[];
 
-  //constructor(private reviewService : ReviewListService) {}
+  constructor(private reviewService : VideogameReviewsService) {}
 
-  getReviewList(videogameId :number){
-    //fare la query solo se non si hanno dati già in cache
-    return this.reviewList;
+  ngOnInit(): void {
+    this.ReviewList=this.reviewService.getReviewListByVideogameId(this.videogameId);
   }
+
 }

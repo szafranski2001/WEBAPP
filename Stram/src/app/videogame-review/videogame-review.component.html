@@ -1,11 +1,15 @@
 <div class="review-list">
-<section class="review" *ngFor="let review of reviewList">
+<section class="review" *ngFor="let review of ReviewList">
     <figure class="review-figure">
         <img src="assets/images/user.png">
         <figcaption>{{review.username}}</figcaption>
     </figure>
-    <span>{{review.title}} {{review.rating}}</span>
-    <p>{{review.comment}}</p> 
-    <span>{{review.likes}}</span>
+    <span> {{review.title}} </span>
+    <app-rating [valutazione]="review.rating"></app-rating>
+    <p>{{review.comment}}</p>
+    <figure class="icon-figure">
+        <img src="" alt="like-icon">
+        <figcaption>{{review.likes}}</figcaption>
+    </figure>
 </section>
 </div>
