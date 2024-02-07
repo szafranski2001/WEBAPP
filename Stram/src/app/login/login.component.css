@@ -9,4 +9,9 @@
   height: 25px;
   width: 20vw;
   background-color: var(--systemGray4);
+  border-radius: 5px;
+}
+.label{
+  color:#2f97ca;
+  font: poppins;
 }
