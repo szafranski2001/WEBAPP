@@ -1,0 +1,31 @@
+<div class="main-container">
+
+  <br>
+
+  <h1>Top 3 Giochi</h1>
+  <div class="top-games round8">
+      <div class="game-item" *ngFor="let game of topGames">
+          <img [src]="game.imgUrl" alt="{{ game.name }}">
+      </div>
+  </div>
+
+  <br>
+  <br>
+
+  <h1>Giochi</h1>
+  <div class="container-games round8">
+      <div class="prev pointer round50">&lt;</div>
+          <div class="game-list-slider">
+              <div class="game-item pointer round8" *ngFor="let game of games">
+                  <img class="round8" [src]="game.imgUrl" alt="{{ game.name }}">
+                  <div class="game-details">
+                      <h3>{{ game.name }}</h3>
+                      <p>{{ game.rate }}/5 </p>
+                  </div>
+            </div>
+          </div>
+      <div class="next pointer round50">&gt;</div>
+  </div>
+
+</div>
+
