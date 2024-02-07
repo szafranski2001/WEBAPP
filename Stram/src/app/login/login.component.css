@@ -1,0 +1,12 @@
+.main-container{
+  display: grid;
+  place-items: center;
+
+}
+#password, #username {
+  outline: 3px solid #2f97ca;
+  outline-offset: 3px;
+  height: 25px;
+  width: 20vw;
+  background-color: var(--systemGray4);
+}

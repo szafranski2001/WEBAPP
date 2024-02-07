@@ -14,6 +14,7 @@ import { VideogameToolbarComponent } from './videogame-toolbar/videogame-toolbar
 import { VideogameListsComponent } from './videogame-lists/videogame-lists.component';
 import { RatingComponent } from './rating/rating.component';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HomeComponent } from './home/home.component';
     VideogameToolbarComponent,
     VideogameListsComponent,
     RatingComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
