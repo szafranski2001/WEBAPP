@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  --systemGray6: rgb(28, 28, 30);
+  --systemGray5: rgb(44, 44, 46);
+  --systemGray4: rgb(58, 58, 60);
+  --systemGray3: rgb(72, 72, 74);
+  --systemGray2: rgb(99, 99, 102);
+  --systemGray:  rgb(142, 142, 147);
+
+  --header-color: #333;
+  --text-color: #a0a0a0;
+  color: #fff;
+}
+
+.round8  { border-radius: 8px; }
+.round10 { border-radius: 10px; }
+.round12 { border-radius: 12px; }
+.round50 { border-radius: 50%; }
+
+.pointer { cursor: pointer; }
+.not-allowed { cursor: not-allowed; }
+
+html {
+  background-color: var(--systemGray6);
+  color: var(--text-color);
+}
+

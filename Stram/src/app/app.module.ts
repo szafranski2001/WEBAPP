@@ -13,6 +13,7 @@ import { VideogameReviewsComponent } from './videogame-review/videogame-review.c
 import { VideogameToolbarComponent } from './videogame-toolbar/videogame-toolbar.component';
 import { VideogameListsComponent } from './videogame-lists/videogame-lists.component';
 import { RatingComponent } from './rating/rating.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { RatingComponent } from './rating/rating.component';
     VideogameReviewsComponent,
     VideogameToolbarComponent,
     VideogameListsComponent,
-    RatingComponent
+    RatingComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
