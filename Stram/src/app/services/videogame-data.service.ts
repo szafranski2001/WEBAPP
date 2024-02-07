@@ -19,7 +19,7 @@ export class VideogameDataService {
       durata: 15,
       anno:2009,
       casaP:'Mojang',
-      descrizione:'gioco Sandbox ',
+      descrizione:'ddddddddddddddddgggggggggggggaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ',
       valutazione:4
     }
     this.selectedVideogame=videogame;

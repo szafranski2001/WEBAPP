@@ -1,27 +1,50 @@
-
-.videogame-main{
-    background-color:lightblue;
-    width: 83%;
-    margin-left:10%;
-    float: left; 
+.main-container{
+    max-width: 80%;
+    margin:0 auto;
 }
 
-.videogame-detail-figure > img{
-    height: 20em;
-    float: left;
+.videogame-article{
+    width: 100%;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('/assets/images/videogames/0.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    border-radius: 5px;
+}
+
+.videogame-detail-figure{
+    margin: 5px;
+    max-width: 250px;
+}
+
+.videogame-detail-figure img{
+    width: 100%;
+    height: 100%;
+}
+
+.videogame-details{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding-left: 10px;
+    padding-top: 5px;
 }
 
 .videogame-hd{
-    color:white;
-}
-
-.videogame-description{
-    clear:left;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: block;
     text-align: center;
-    word-wrap: break-word;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 0;
 }
 
-.genere{
-    background-color:aquamarine;
+.description-data{
+    background-color: rgba(0, 0, 0, 0.3);
+    overflow-wrap: break-word;
     border-radius: 5px;
+    padding: 10px;
 }

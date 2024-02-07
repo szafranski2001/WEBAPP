@@ -1,30 +1,31 @@
-<article class="videogame-main">
-    <figure class="videogame-detail-figure">
-      <img id="videogame-image" src="assets/images/videogames/{{videogame.id}}.png">
-    </figure>
-    <span class="genere">{{videogame.genere}}</span>
-    <h1 class="title">{{videogame.titolo}}</h1>
-    <h2 class="videogame-hd">{{videogame.casaP}}</h2>
+<div class="main-container">
 
-    <app-rating [valutazione]="videogame.valutazione"></app-rating>
+  <article class="videogame-article">
 
-    <div class="videogame-info">
-      <span class="videogame-hd">Durata:</span>
-      {{videogame.durata}}
+      <figure class="videogame-detail-figure">
+        <img src="assets/images/videogames/{{videogame.id}}.png">
+      </figure>
 
-      <span class="videogame-hd">Anno:</span>
-      {{videogame.anno}}
-    </div>
-    <br>
-    
-</article>
+      <section class="videogame-details">
 
-  <app-videogame-toolbar [videogameData]="videogame"></app-videogame-toolbar>
+        <span id="genre">{{videogame.genere}}</span>
+        <h1>{{videogame.titolo}}</h1>
+        <h2>{{videogame.casaP}}</h2>
+        <app-rating [valutazione]="videogame.valutazione"></app-rating>
+        <p>Durata: <span class="detail-data">{{videogame.durata}} </span></p>
+        <p>Anno: <span class="detail-data">{{videogame.anno}}</span></p>
 
-  <div class="videogame-description">
+      </section>
+
+    <app-videogame-toolbar [videogameData]="videogame"></app-videogame-toolbar>
+
+  </article>
+
+  <section class="videogame-description">
     <span class="videogame-hd">Descrizione:</span>
-    {{videogame.descrizione}}
-  </div>
+    <p class="description-data">{{videogame.descrizione}}</p>
+  </section>
 
   <app-videogame-reviews [videogameId]="videogameId"></app-videogame-reviews>
-  
+
+</div>
