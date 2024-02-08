@@ -13,6 +13,7 @@
     background-repeat: no-repeat;
     background-size:cover;
     border-radius: 5px;
+    border: 2px solid var(--systemGray5);
 }
 
 .videogame-detail-figure{
@@ -33,8 +34,19 @@
     padding-top: 5px;
 }
 
+.videogame-description{
+    border: 2px solid var(--systemGray5);
+    padding: 4px;
+    border-radius: 5px;
+}
+
 .videogame-hd{
-    background-color: rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+}
+
+.description-title{
+    font-weight:bold;
+    background-color: rgba(0, 0, 0, 0.2);
     display: block;
     text-align: center;
     border-radius: 5px;
@@ -43,8 +55,14 @@
 }
 
 .description-data{
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.2);
     overflow-wrap: break-word;
     border-radius: 5px;
     padding: 10px;
+    margin: 5px 0 0 0;
+}
+
+#genere{
+    padding: 3px;
+    border-radius: 4px;
 }

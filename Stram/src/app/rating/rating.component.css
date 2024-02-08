@@ -1,8 +1,9 @@
 .Rating{
-    display: inline;
+    display: flex;
+    flex-direction: row;
 }
 
 .Stella{
-    width: 20px;
-    padding-left: 5px ;
+    width: 25px;
+    max-width: 100%; 
 }

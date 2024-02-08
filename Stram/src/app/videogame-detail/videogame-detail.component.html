@@ -1,28 +1,28 @@
 <div class="main-container">
 
   <article class="videogame-article">
-
+      <!--Image videogame-->
       <figure class="videogame-detail-figure">
         <img src="assets/images/videogames/{{videogame.id}}.png">
       </figure>
 
       <section class="videogame-details">
-
-        <span id="genre">{{videogame.genere}}</span>
+        <!--Info videogame-->
+        <p class="videogame-hd"><span id="genere" [ngStyle]="{'background-color': getGenereColor()}">{{videogame.genere}}</span></p>
         <h1>{{videogame.titolo}}</h1>
         <h2>{{videogame.casaP}}</h2>
         <app-rating [valutazione]="videogame.valutazione"></app-rating>
-        <p>Durata: <span class="detail-data">{{videogame.durata}} </span></p>
-        <p>Anno: <span class="detail-data">{{videogame.anno}}</span></p>
+        <p class="videogame-hd">Durata: <span class="detail-data">{{videogame.durata}} </span></p>
+        <p class="videogame-hd">Anno: <span class="detail-data">{{videogame.anno}}</span></p>
 
       </section>
 
     <app-videogame-toolbar [videogameData]="videogame"></app-videogame-toolbar>
 
   </article>
-
+  <!--Description videogame-->
   <section class="videogame-description">
-    <span class="videogame-hd">Descrizione:</span>
+    <span class="description-title">Descrizione</span>
     <p class="description-data">{{videogame.descrizione}}</p>
   </section>
 

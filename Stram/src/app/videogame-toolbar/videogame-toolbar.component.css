@@ -5,3 +5,7 @@
     flex-direction: column;
     margin: 10px 10px 0 0;
 }
+
+.videogame-toolbar .tlb-btn{
+    margin-bottom: 8px;
+}

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { videogame } from '../model/Videogame';
+import { genere, videogame } from '../model/Videogame';
 import { VideogameDataService } from '../services/videogame-data.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -21,5 +21,19 @@ export class VideogameDetailComponent implements OnInit {
     this.videogame=this.videogameData.getData(this.videogameId);
   }
 
+  getGenereColor(){
+    switch (this.videogame.genere){
+      case genere.FPS:
+        return 'var(--fps-color)';
+      case genere.MOBA:
+        return 'var(--moba-color)';
+      case genere.Sandbox:
+        return 'var(--sandbox-color)';
+      case genere.MMORPG:
+        return 'var(--mmorpg-color)';
+      default:
+        return 'var(--systemGray)';
+    }
+  }
 
 }

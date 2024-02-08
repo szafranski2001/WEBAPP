@@ -11,6 +11,12 @@
   --header-color: #333;
   --text-color: #a0a0a0;
   color: #fff;
+
+  /*category colors */
+  --sandbox-color: rgba(10, 240, 170,0.4);
+  --fps-color: rgba(255,0,0,0.4);
+  --moba-color: rgba(0,0,255,0.4);
+  --mmorpg-color: rgba(250, 197, 5, 0.4);
 }
 
 .round8  { border-radius: 8px; }
