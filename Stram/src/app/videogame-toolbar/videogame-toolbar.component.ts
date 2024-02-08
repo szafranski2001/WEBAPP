@@ -13,7 +13,7 @@ export class VideogameToolbarComponent{
 
   tipologiaUser = tipologiaUser;
   isLoggedIn: boolean = true;
-  CurrentUserTipologia : tipologiaUser | null = tipologiaUser.Utente;
+  CurrentUserTipologia = tipologiaUser.Admin;
 
   constructor(){ }
 }

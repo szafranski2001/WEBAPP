@@ -1,6 +1,6 @@
 <div class="main-container">
 
-  <article class="videogame-article" [ngStyle]="{'background-image':'url('+ videogameImageURL +')'}">
+  <article class="videogame-article" [ngStyle]="{'background-image':'linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('+ videogameImageURL +')'}">
       <!--Image videogame-->
       <figure class="videogame-detail-figure">
         <img src="assets/images/videogames/{{videogame.id}}.png">
@@ -12,19 +12,16 @@
         <h1>{{videogame.titolo}}</h1>
         <h2>{{videogame.casaP}}</h2>
         <app-rating [valutazione]="videogame.valutazione"></app-rating>
-        <p class="videogame-hd">Durata: 
-          <span class="detail-data">
-            <ng-template *ngIf="videogame.durata > 0;then ifBlock else elseblock"></ng-template>
-            <ng-template #ifBlock>
-              {{videogame.durata}} h
+        <p class="videogame-hd">Durata:
+          <ng-template *ngIf="videogame.durata > 0;then ifblock else elseblock"></ng-template>
+            <ng-template #ifblock>
+              <span class="detail-data">{{videogame.durata}} h</span>
             </ng-template>
             <ng-template #elseblock>
-              Illimitata
+              <span class="detail-data"> Illimitata </span>
             </ng-template>
-          </span>
         </p>
         <p class="videogame-hd">Anno: <span class="detail-data">{{videogame.anno}}</span></p>
-
       </section>
 
     <app-videogame-toolbar [videogameData]="videogame"></app-videogame-toolbar>
@@ -39,3 +36,7 @@
   <app-videogame-reviews [videogameId]="videogameId"></app-videogame-reviews>
 
 </div>
+
+
+<!--Eventualmente aggiungere un pulsante sticky che ti riporta al top della pagina 
+  cosi se ci sono molte recensioni non si fa fatica e forse e dico FORSE anche uno per l'inverso-->
