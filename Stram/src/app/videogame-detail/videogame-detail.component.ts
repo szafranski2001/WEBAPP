@@ -10,15 +10,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class VideogameDetailComponent implements OnInit {
 
-  @Input() videogameId:number;
+  videogameId:number;
   
   videogame: videogame;
+  videogameImageURL = '/assets/images/videogames/';
 
   constructor(private videogameData: VideogameDataService, private route : ActivatedRoute) {}
 
   ngOnInit(): void {
     this.videogameId=parseInt(this.route.snapshot.paramMap.get('id')!);
     this.videogame=this.videogameData.getData(this.videogameId);
+    this.videogameImageURL= this.videogameImageURL+this.videogameId+".png";
   }
 
   getGenereColor(){

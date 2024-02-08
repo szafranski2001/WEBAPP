@@ -16,7 +16,7 @@ export class VideogameDataService {
       id: 0,
       titolo:'Minecraft',
       genere: genere.Sandbox,
-      durata: 15,
+      durata: 0,
       anno:2009,
       casaP:'Mojang',
       descrizione:'ddddddddddddddddgggggggggggggaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ',

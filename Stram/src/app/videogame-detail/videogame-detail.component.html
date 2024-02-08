@@ -1,6 +1,6 @@
 <div class="main-container">
 
-  <article class="videogame-article">
+  <article class="videogame-article" [ngStyle]="{'background-image':'url('+ videogameImageURL +')'}">
       <!--Image videogame-->
       <figure class="videogame-detail-figure">
         <img src="assets/images/videogames/{{videogame.id}}.png">
@@ -12,7 +12,17 @@
         <h1>{{videogame.titolo}}</h1>
         <h2>{{videogame.casaP}}</h2>
         <app-rating [valutazione]="videogame.valutazione"></app-rating>
-        <p class="videogame-hd">Durata: <span class="detail-data">{{videogame.durata}} </span></p>
+        <p class="videogame-hd">Durata: 
+          <span class="detail-data">
+            <ng-template *ngIf="videogame.durata > 0;then ifBlock else elseblock"></ng-template>
+            <ng-template #ifBlock>
+              {{videogame.durata}} h
+            </ng-template>
+            <ng-template #elseblock>
+              Illimitata
+            </ng-template>
+          </span>
+        </p>
         <p class="videogame-hd">Anno: <span class="detail-data">{{videogame.anno}}</span></p>
 
       </section>
