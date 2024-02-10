@@ -6,6 +6,7 @@ import { VideogameDetailComponent } from './videogame-detail/videogame-detail.co
 import { VideogameListsComponent} from "./videogame-lists/videogame-lists.component";
 import {HomeComponent} from "./home/home.component";
 import {LoginComponent} from "./login/login.component";
+import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -13,7 +14,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'guidelines', component:GuidelinesComponent},
   {path: 'videogame/:id', component:VideogameDetailComponent},
-  {path: 'videogame-lists', component: VideogameListsComponent}
+  {path: 'videogame-lists', component: VideogameListsComponent},
+  {path: '404', component: NotfoundComponent},
+  {path: '**', redirectTo: '/404'}
 ];
 
 @NgModule({

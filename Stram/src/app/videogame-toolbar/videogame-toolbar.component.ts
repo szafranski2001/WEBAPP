@@ -1,6 +1,7 @@
-import { Component,Input, OnInit } from '@angular/core';
-import { tipologiaUser} from '../model/TipologiaUtente';
-import { videogame } from '../model/Videogame';
+import { Component,OnInit } from '@angular/core';
+import { tipologiaUser } from '../model/TipologiaUtente';
+import { VideogameDataService } from '../services/videogame-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-videogame-toolbar',
@@ -9,17 +10,18 @@ import { videogame } from '../model/Videogame';
 })
 export class VideogameToolbarComponent{
 
-  @Input() videogameData : videogame;
+  editButton : string='edit';
 
+  //da modificare quando avremo il service per il currentUser
   tipologiaUser = tipologiaUser;
   isLoggedIn: boolean = true;
   CurrentUserTipologia = tipologiaUser.Admin;
 
-  constructor(){ 
+  constructor(private ManagerService : VideogameDataService,private router : Router){ 
     //getCurrentUser
   }
 
-  AddRemovePressed(event : Event){
+  AddRemoveListPressed(event : Event){
     //If CurrentUser != null
       let IconId=(<HTMLButtonElement>event.currentTarget).firstElementChild!.id;
       let element=document.getElementById(IconId);
@@ -33,5 +35,26 @@ export class VideogameToolbarComponent{
         element!.style.setProperty('font-variation-settings',"'FILL' 0,'wght' 500, 'GRAD' 0, 'opsz' 48");
         //AddToList
       }
+  }
+
+  RemoveVideogame(){
+    //Chiamata a service per rimozione videogame e redirect della pagina
+    if(confirm("Sei sicuro di voler cancellare "+this.ManagerService.selectedVideogame.titolo+" dal catalogo?\n Una volta rimosso non sarà più recuperabile. ")){
+      this.ManagerService.RemoveVideogame();
+      alert(this.ManagerService.selectedVideogame.titolo+" è stato rimosso con successo! \n Verrai rendirizzato verso la homepage.")
+      this.router.navigate(['/']);
+    }
+    //Un po bruttino ma al momento voglio concetrarmi sul resto della webapp anche perchè senno dovrei creare dei component apposta
+  }
+
+  EditVideogame(){
+    if(this.ManagerService.isEditable){
+      this.ManagerService.EditVideogame();
+      this.editButton="edit";
+    }
+    else
+      this.editButton="done_outline";
+
+    this.ManagerService.isEditable=!this.ManagerService.isEditable;
   }
 }

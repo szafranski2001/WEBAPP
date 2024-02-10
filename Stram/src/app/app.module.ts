@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatIconRegistry } from '@angular/material/icon';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     VideogameListsComponent,
     RatingComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,

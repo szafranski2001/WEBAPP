@@ -1,17 +1,17 @@
 <aside class="videogame-toolbar" *ngIf="isLoggedIn">
   <div class="tlb-itms">
-    <button class="tlb-btn" (click)="AddRemovePressed($event)">
+    <button class="tlb-btn" (click)="AddRemoveListPressed($event)">
       <mat-icon id="favorite">favorite</mat-icon>
     </button>
-    <button class="tlb-btn" (click)="AddRemovePressed($event)">
+    <button class="tlb-btn" (click)="AddRemoveListPressed($event)">
       <mat-icon id="wishlist">shopping_bag</mat-icon>
     </button>
   </div>
   <div class="tlb-itms" *ngIf="CurrentUserTipologia == tipologiaUser.Admin">
-    <button class="tlb-btn">
-      <mat-icon>edit</mat-icon>
+    <button class="tlb-btn" (click)="EditVideogame()">
+      <mat-icon>{{editButton}}</mat-icon>
     </button>
-    <button class="tlb-btn">
+    <button class="tlb-btn" (click)="RemoveVideogame()">
       <mat-icon>delete</mat-icon>
     </button>
   </div> 

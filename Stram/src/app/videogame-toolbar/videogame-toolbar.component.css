@@ -15,7 +15,16 @@
     padding:0;
     border-radius: 50%;
     background-color: rgba(99,99,102,0.6);
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px var(--systemGray2) solid;
 }
+
+.videogame-toolbar .tlb-btn:hover{
+    background-color: rgba(132, 132, 135, 0.6);
+}
+
+
 
 .material-symbols-outlined {
   font-variation-settings:
@@ -23,4 +32,12 @@
   'wght' 400,
   'GRAD' 0,
   'opsz' 24
+}
+
+#favorite{
+    color:red;
+}
+
+#wishlist{
+    color:gold;
 }

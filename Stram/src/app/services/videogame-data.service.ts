@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 export class VideogameDataService {
   
   selectedVideogame: videogame;
+  isEditable=false;
 
   constructor(){ }
 
@@ -41,4 +42,8 @@ export class VideogameDataService {
       return videogame;
     }
   }
+
+  RemoveVideogame(){}
+  AddVideogame(){}
+  EditVideogame(){}
 }
