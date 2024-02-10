@@ -9,8 +9,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './videogame-detail.component.css'
 })
 export class VideogameDetailComponent implements OnInit {
-
-  videogameId:number;
   
   videogame: videogame;
   videogameImageURL = '/assets/images/videogames/';
@@ -18,9 +16,8 @@ export class VideogameDetailComponent implements OnInit {
   constructor(private videogameData: VideogameDataService, private route : ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.videogameId=parseInt(this.route.snapshot.paramMap.get('id')!);
-    this.videogame=this.videogameData.getData(this.videogameId);
-    this.videogameImageURL= this.videogameImageURL+this.videogameId+".png";
+    this.videogame=this.videogameData.getData(parseInt(this.route.snapshot.paramMap.get('id')!));
+    this.videogameImageURL= this.videogameImageURL+this.videogame.id+".png";
   }
 
   getGenereColor(){
