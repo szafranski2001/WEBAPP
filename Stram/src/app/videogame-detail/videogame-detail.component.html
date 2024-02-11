@@ -9,28 +9,29 @@
       <section class="videogame-details">
         <!--Info videogame-->
         <p class="videogame-hd"><span id="genere" [ngStyle]="{'background-color': getGenereColor()}">{{videogame.genere}}</span></p>
-        <h1>{{videogame.titolo}}</h1>
-        <h2>{{videogame.casaP}}</h2>
+        <h1 [contentEditable]="isEditable">{{videogame.titolo}}</h1>
+        <h2 [contentEditable]="isEditable">{{videogame.casaP}}</h2>
         <app-rating [valutazione]="videogame.valutazione"></app-rating>
         <p class="videogame-hd">Durata:
           <ng-template *ngIf="videogame.durata > 0;then ifblock else elseblock"></ng-template>
             <ng-template #ifblock>
-              <span class="detail-data">{{videogame.durata}} h</span>
+              <span class="detail-data" [contentEditable]="isEditable">{{videogame.durata}} h</span>
             </ng-template>
             <ng-template #elseblock>
-              <span class="detail-data"> Illimitata </span>
+              <span class="detail-data" [contentEditable]="isEditable" > Illimitata </span>
             </ng-template>
         </p>
-        <p class="videogame-hd">Anno: <span class="detail-data">{{videogame.anno}}</span></p>
+        <p class="videogame-hd">Anno: <span class="detail-data" [contentEditable]="isEditable">{{videogame.anno}}</span></p>
       </section>
 
-    <app-videogame-toolbar></app-videogame-toolbar>
+    <!--Toolbar videogame-->
+    <app-videogame-toolbar (EditableInfo)="SetEditable($event)"></app-videogame-toolbar>
 
   </article>
   <!--Description videogame-->
   <section class="videogame-description">
     <span class="description-title">Descrizione</span>
-    <p class="description-data">{{videogame.descrizione}}</p>
+    <p class="description-data" [contentEditable]="isEditable">{{videogame.descrizione}}</p>
   </section>
 
   <app-videogame-reviews [videogameId]="videogame.id"></app-videogame-reviews>

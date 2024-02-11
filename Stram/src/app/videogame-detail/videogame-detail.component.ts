@@ -12,12 +12,18 @@ export class VideogameDetailComponent implements OnInit {
   
   videogame: videogame;
   videogameImageURL = '/assets/images/videogames/';
+  isEditable=false;
 
   constructor(private videogameData: VideogameDataService, private route : ActivatedRoute) {}
 
   ngOnInit(): void {
     this.videogame=this.videogameData.getData(parseInt(this.route.snapshot.paramMap.get('id')!));
     this.videogameImageURL= this.videogameImageURL+this.videogame.id+".png";
+  }
+
+  SetEditable(value : boolean){
+    this.isEditable=value;
+    console.log(this.isEditable);
   }
 
   getGenereColor(){

@@ -1,3 +1,3 @@
 export enum tipologiaUser{
-    Utente,Admin
+    Utente,Admin,null
 }

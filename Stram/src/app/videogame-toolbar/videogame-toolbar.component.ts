@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,EventEmitter,OnInit,Output } from '@angular/core';
 import { tipologiaUser } from '../model/TipologiaUtente';
 import { VideogameDataService } from '../services/videogame-data.service';
 import { Router } from '@angular/router';
@@ -11,10 +11,12 @@ import { Router } from '@angular/router';
 export class VideogameToolbarComponent{
 
   editButton : string='edit';
+  isEditable = false;
+
+  @Output() EditableInfo = new EventEmitter<boolean>()
 
   //da modificare quando avremo il service per il currentUser
   tipologiaUser = tipologiaUser;
-  isLoggedIn: boolean = true;
   CurrentUserTipologia = tipologiaUser.Admin;
 
   constructor(private ManagerService : VideogameDataService,private router : Router){ 
@@ -48,13 +50,14 @@ export class VideogameToolbarComponent{
   }
 
   EditVideogame(){
-    if(this.ManagerService.isEditable){
+    if(this.isEditable){
       this.ManagerService.EditVideogame();
       this.editButton="edit";
     }
     else
       this.editButton="done_outline";
 
-    this.ManagerService.isEditable=!this.ManagerService.isEditable;
+    this.isEditable=!this.isEditable;
+    this.EditableInfo.emit(this.isEditable);
   }
 }

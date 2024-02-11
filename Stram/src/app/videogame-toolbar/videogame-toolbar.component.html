@@ -1,4 +1,4 @@
-<aside class="videogame-toolbar" *ngIf="isLoggedIn">
+<aside class="videogame-toolbar" *ngIf="CurrentUserTipologia != tipologiaUser.null">
   <div class="tlb-itms">
     <button class="tlb-btn" (click)="AddRemoveListPressed($event)">
       <mat-icon id="favorite">favorite</mat-icon>

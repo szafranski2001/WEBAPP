@@ -8,7 +8,6 @@ import { Injectable } from '@angular/core';
 export class VideogameDataService {
   
   selectedVideogame: videogame;
-  isEditable=false;
 
   constructor(){ }
 
