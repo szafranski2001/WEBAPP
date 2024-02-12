@@ -1,0 +1,16 @@
+<aside class="review-toolbar" *ngIf="CurrentUserTipologia != tipologiaUser.null">
+    <div class="tlb-itms">
+      <button class="tlb-btn" title="Mi piace" (click)="LikeReview($event)">
+        <mat-icon id="like">thumb_up</mat-icon>
+      </button>
+      <button class="tlb-btn" title="segnala recensione" (click)="ReportReview()">
+        <mat-icon id="report">report</mat-icon>
+    </button>
+    </div>
+    <div class="tlb-itms" *ngIf="CurrentUserTipologia == tipologiaUser.Admin">
+      <button class="tlb-btn" title="Rimuovi la recensione" (click)="DeleteReview()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div> 
+  </aside>
+  

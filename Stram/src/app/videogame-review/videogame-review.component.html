@@ -1,15 +1,16 @@
 <div class="review-list">
-<section class="review" *ngFor="let review of ReviewList">
-    <figure class="review-figure">
-        <img src="assets/images/user.png">
-        <figcaption>{{review.username}}</figcaption>
-    </figure>
-    <span> {{review.title}} </span>
-    <app-rating [valutazione]="review.rating"></app-rating>
-    <p>{{review.comment}}</p>
-    <figure class="icon-figure">
-        <img class="like-icon" src="assets/images/review/like.png" alt="like-icon">
-        <figcaption>{{review.likes}}</figcaption>
-    </figure>
-</section>
+ <section class="review" *ngFor="let review of ReviewList">
+    <div class="review-hd"> 
+        <figure class="review-figure">
+            <img src="assets/images/user.png">
+        </figure>
+        <span class="username">{{review.username}}</span>
+    </div>
+    <div class="review-bd">
+        <h1>{{review.title}}</h1>
+        <app-rating [valutazione]="review.rating"></app-rating>
+        <p class="description">{{review.comment}}</p>
+    </div>
+    <app-review-toolbar [review_id]="review.username" (RemovedInfo)="IsRemoved($event)"></app-review-toolbar>
+ </section>
 </div>

@@ -1,13 +1,13 @@
-.videogame-toolbar{
+.review-toolbar{
     margin: 10px 10px 0 0;
 }
 
-.videogame-toolbar .tlb-itms{
+.review-toolbar .tlb-itms{
     display: flex;
     flex-direction: column;
 }
 
-.videogame-toolbar .tlb-btn{
+.review-toolbar .tlb-btn{
     width: 50px;
     height: 50px;
     margin-bottom: 8px;
@@ -19,22 +19,14 @@
     border: 2px var(--systemGray2) solid;
 }
 
-.videogame-toolbar .tlb-btn:hover{
+.review-toolbar .tlb-btn:hover{
     background-color: rgba(132, 132, 135, 0.6);
 }
 
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
-}
-
-#favorite{
-    color:red;
-}
-
-#wishlist{
-    color:gold;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
 }

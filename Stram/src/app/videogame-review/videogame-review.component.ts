@@ -1,4 +1,4 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component,Input, OnInit, Output } from '@angular/core';
 import { review } from '../model/Review';
 import { VideogameReviewsService } from '../services/videogame-reviews.service';
 
@@ -10,6 +10,7 @@ import { VideogameReviewsService } from '../services/videogame-reviews.service';
 export class VideogameReviewsComponent implements OnInit {
   
   @Input() videogameId: number;
+  Removed=false;
 
   ReviewList : review[];
 
@@ -19,4 +20,7 @@ export class VideogameReviewsComponent implements OnInit {
     this.ReviewList=this.reviewService.getReviewListByVideogameId(this.videogameId);
   }
 
+  IsRemoved(value : boolean){
+    this.Removed=value;
+  }
 }

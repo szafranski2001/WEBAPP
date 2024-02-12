@@ -20,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatIconRegistry } from '@angular/material/icon';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { ReviewToolbarComponent } from './review-toolbar/review-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
     RatingComponent,
     HomeComponent,
     LoginComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    ReviewToolbarComponent
   ],
   imports: [
     BrowserModule,

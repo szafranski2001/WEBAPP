@@ -14,7 +14,7 @@ export class VideogameDataService {
   getData(id: number){
     let videogame: videogame={
       id: 0,
-      titolo:'Minecraft',
+      titolo:'Minecraft safasgag ag ag ag ag asg asg ag a gsdsd sh sh s hsh sf',
       genere: genere.Sandbox,
       durata: 0,
       anno:2009,
