@@ -33,6 +33,7 @@ input[type="text"] {
   border-radius: 20px;
   outline: none;
   font-size: 16px;
+  color: black;
 }
 
 input[type="text"]:focus {
@@ -46,6 +47,7 @@ input[type="email"] {
   border-radius: 20px;
   outline: none;
   font-size: 16px;
+  color: black;
 }
 
 input[type="email"]:focus {
@@ -59,6 +61,7 @@ input[type="password"] {
   border-radius: 20px;
   outline: none;
   font-size: 16px;
+  color: black;
 }
 
 input[type="password"]:focus {
