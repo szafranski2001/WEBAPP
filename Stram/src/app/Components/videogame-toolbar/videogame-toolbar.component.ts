@@ -1,6 +1,6 @@
-import { Component,EventEmitter,OnInit,Output } from '@angular/core';
+import { Component,ElementRef, ViewChild } from '@angular/core';
 import { tipologiaUser } from '../model/TipologiaUtente';
-import { VideogameDataService } from '../services/videogame-data.service';
+import { VideogameDataService } from '../../services/videogame-data.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,12 +8,13 @@ import { Router } from '@angular/router';
   templateUrl: './videogame-toolbar.component.html',
   styleUrl: './videogame-toolbar.component.css'
 })
-export class VideogameToolbarComponent{
+export class VideogameToolbarComponent {
 
   editButton : string='edit';
-  isEditable = false;
 
-  @Output() EditableInfo = new EventEmitter<boolean>()
+  //Da prendere dal DB tramite il service all'init
+    isFavorite=false;
+    isWished=false;
 
   //da modificare quando avremo il service per il currentUser
   tipologiaUser = tipologiaUser;
@@ -23,20 +24,24 @@ export class VideogameToolbarComponent{
     //getCurrentUser
   }
 
-  AddRemoveListPressed(event : Event){
-    //If CurrentUser != null
-      let IconId=(<HTMLButtonElement>event.currentTarget).firstElementChild!.id;
-      let element=document.getElementById(IconId);
-      let elementProperty=window.getComputedStyle(element!).getPropertyValue('font-variation-settings').substring(7,8);
-      
-      if(Number(elementProperty) == 0){
-        element!.style.setProperty('font-variation-settings',"'FILL' 1,'wght' 700, 'GRAD' 0, 'opsz' 48");
-        //RemoveFromList
-      }
-      else{
-        element!.style.setProperty('font-variation-settings',"'FILL' 0,'wght' 500, 'GRAD' 0, 'opsz' 48");
-        //AddToList
-      }
+  AddFavoriteListPressed(){
+    this.isFavorite=!this.isFavorite;
+    if(this.isFavorite)
+      console.log("AddToList");
+      //AddToList
+    else
+      console.log("RemoveFromList");
+      //RemoveFromList
+  }
+  
+  AddWishListPressed(){
+    this.isWished=!this.isWished;
+    if(this.isWished)
+      console.log("AddToList");
+      //AddToList
+    else
+      console.log("RemoveFromList");
+      //RemoveFromList
   }
 
   RemoveVideogame(){
@@ -50,14 +55,14 @@ export class VideogameToolbarComponent{
   }
 
   EditVideogame(){
-    if(this.isEditable){
+    if(this.ManagerService.isEditMode()){
       this.ManagerService.EditVideogame();
       this.editButton="edit";
     }
     else
       this.editButton="done_outline";
 
-    this.isEditable=!this.isEditable;
-    this.EditableInfo.emit(this.isEditable);
+    this.ManagerService.toggleEditMode();
   }
+
 }

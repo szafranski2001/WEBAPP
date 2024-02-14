@@ -1,4 +1,4 @@
-import { videogame,genere } from '../model/Videogame';
+import { videogame,genere } from '../Components/model/Videogame';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -8,8 +8,17 @@ import { Injectable } from '@angular/core';
 export class VideogameDataService {
   
   selectedVideogame: videogame;
+  isEditable = false;
 
   constructor(){ }
+
+  isEditMode(){
+    return this.isEditable;
+  }
+
+  toggleEditMode(){
+    this.isEditable=!this.isEditable;
+  }
 
   getData(id: number){
     let videogame: videogame={
@@ -45,4 +54,7 @@ export class VideogameDataService {
   RemoveVideogame(){}
   AddVideogame(){}
   EditVideogame(){}
+
+
+
 }

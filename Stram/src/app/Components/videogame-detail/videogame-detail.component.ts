@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { genere, videogame } from '../model/Videogame';
-import { VideogameDataService } from '../services/videogame-data.service';
+import { VideogameDataService } from '../../services/videogame-data.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,7 +12,6 @@ export class VideogameDetailComponent implements OnInit {
   
   videogame: videogame;
   videogameImageURL = '/assets/images/videogames/';
-  isEditable=false;
 
   constructor(private videogameData: VideogameDataService, private route : ActivatedRoute) {}
 
@@ -21,9 +20,8 @@ export class VideogameDetailComponent implements OnInit {
     this.videogameImageURL= this.videogameImageURL+this.videogame.id+".png";
   }
 
-  SetEditable(value : boolean){
-    this.isEditable=value;
-    console.log(this.isEditable);
+  getEditMode(){
+    return this.videogameData.isEditMode();
   }
 
   getGenereColor(){

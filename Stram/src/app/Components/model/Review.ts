@@ -1,4 +1,5 @@
 export interface review{
+    reviewId:number,
     idVideogame: number,
     title: string,
     username: string,

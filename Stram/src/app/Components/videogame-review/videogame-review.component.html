@@ -11,6 +11,6 @@
         <app-rating [valutazione]="review.rating"></app-rating>
         <p class="description">{{review.comment}}</p>
     </div>
-    <app-review-toolbar [review_id]="review.username" (RemovedInfo)="IsRemoved($event)"></app-review-toolbar>
+    <app-review-toolbar [reviewId]="review.reviewId"></app-review-toolbar>
  </section>
 </div>
