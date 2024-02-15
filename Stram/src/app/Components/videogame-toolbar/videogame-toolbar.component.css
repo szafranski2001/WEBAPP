@@ -22,11 +22,3 @@
 .videogame-toolbar .tlb-btn:hover{
     background-color: rgba(132, 132, 135, 0.6);
 }
-
-#favorite{
-    color:red;
-}
-
-#wishlist{
-    color:gold;
-}

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -15,12 +16,12 @@ import { VideogameListsComponent } from './Components/videogame-lists/videogame-
 import { RatingComponent } from './Components/rating/rating.component';
 import { HomeComponent } from './Components/home/home.component';
 import { LoginComponent } from './Components/login/login.component';
+import { NotfoundComponent } from './Components/notfound/notfound.component';
+import { ReviewToolbarComponent } from './Components/review-toolbar/review-toolbar.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatIconRegistry } from '@angular/material/icon';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { NotfoundComponent } from './Components/notfound/notfound.component';
-import { ReviewToolbarComponent } from './Components/review-toolbar/review-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ReviewToolbarComponent } from './Components/review-toolbar/review-toolb
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule
   ],
   providers: [
     provideAnimationsAsync()

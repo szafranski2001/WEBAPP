@@ -1,6 +1,6 @@
 <div class="main-container">
 
-  <article class="videogame-article" [ngStyle]="{'background-image':'linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url('+ videogameImageURL +')'}">
+  <article class="videogame-article" [ngStyle]="{'background-image':'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url('+ videogameImageURL +')'}">
       <!--Image videogame-->
       <figure class="videogame-detail-figure">
         <img src="assets/images/videogames/{{videogame.id}}.png">
@@ -8,7 +8,13 @@
 
       <section class="videogame-details">
         <!--Info videogame-->
-        <p class="highlighted-text"><span id="genere" [ngStyle]="{'background-color': getGenereColor()}">{{videogame.genere}}</span></p>
+        
+        <p *ngIf="!getEditMode()"><span class="genere highlighted-text" [ngStyle]="{'background-color': getGenereColor()}">{{videogame.genere}}</span></p>
+        <p *ngIf="getEditMode()">
+          <select [(ngModel)]="videogame.genere" name="genereSelect" class="genere highlighted-text" [ngStyle]="{'background-color': getGenereColor()}">
+            <option *ngFor="let genere of Genre">{{genere}}</option>
+          </select>
+        </p>
         <h1 class="highlighted-text" [contentEditable]="getEditMode()">{{videogame.titolo}}</h1>
         <h2 class="highlighted-text" [contentEditable]="getEditMode()">{{videogame.casaP}}</h2>
         <app-rating [valutazione]="videogame.valutazione"></app-rating>

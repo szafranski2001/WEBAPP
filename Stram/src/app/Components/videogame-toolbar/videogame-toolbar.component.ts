@@ -1,4 +1,4 @@
-import { Component,ElementRef, ViewChild } from '@angular/core';
+import { Component,ElementRef, OnInit, ViewChild } from '@angular/core';
 import { tipologiaUser } from '../model/TipologiaUtente';
 import { VideogameDataService } from '../../services/videogame-data.service';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './videogame-toolbar.component.html',
   styleUrl: './videogame-toolbar.component.css'
 })
-export class VideogameToolbarComponent {
+export class VideogameToolbarComponent implements OnInit {
 
   editButton : string='edit';
 
@@ -20,7 +20,9 @@ export class VideogameToolbarComponent {
   tipologiaUser = tipologiaUser;
   CurrentUserTipologia = tipologiaUser.Admin;
 
-  constructor(private ManagerService : VideogameDataService,private router : Router){ 
+  constructor(private ManagerService : VideogameDataService,private router : Router){ }
+
+  ngOnInit(): void {
     //getCurrentUser
   }
 
@@ -59,9 +61,10 @@ export class VideogameToolbarComponent {
       this.ManagerService.EditVideogame();
       this.editButton="edit";
     }
-    else
+    else {
       this.editButton="done_outline";
-
+    }
+    
     this.ManagerService.toggleEditMode();
   }
 

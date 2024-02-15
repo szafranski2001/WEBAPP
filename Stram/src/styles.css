@@ -12,11 +12,14 @@
   --text-color: #a0a0a0;
   color: #fff;
 
-  /*category colors */
+  /*category colors 
+  keep same naming conventions : --genre-color */
   --sandbox-color: rgba(10, 240, 170,0.4);
   --fps-color: rgba(255,0,0,0.4);
   --moba-color: rgba(0,0,255,0.4);
   --mmorpg-color: rgba(250, 197, 5, 0.4);
+
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .round8  { border-radius: 8px; }
@@ -52,10 +55,25 @@
   vertical-align:text-bottom;
 }
 
-html {
+.red-icon{
+  color:rgb(220, 2, 2);
+}
+
+.like-blue-icon{
+  color:rgb(18, 126, 233);
+}
+
+.wish-gold-icon{
+  color:rgb(255,215,0);
+}
+
+html{
+  height: 100%;
   background-color: var(--systemGray6);
   color: var(--text-color);
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body{ 
+  height: 100%;
+  margin: 0;
+}
