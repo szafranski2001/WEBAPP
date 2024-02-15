@@ -4,13 +4,17 @@
         <figure class="review-figure">
             <img src="assets/images/user.png">
         </figure>
-        <span class="username">{{review.username}}</span>
+        <span class="hd-data">{{review.username}}</span>
+        <p class="hd-data">
+            <span class="highlighted-text">{{review.likes}} </span>
+            <mat-icon class="icon-cnt">thumb_up</mat-icon>
+        </p>
     </div>
     <div class="review-bd">
-        <h1>{{review.title}}</h1>
+        <h1 class="highlighted-text" id="title">{{review.title}}</h1>
         <app-rating [valutazione]="review.rating"></app-rating>
         <p class="description">{{review.comment}}</p>
     </div>
-    <app-review-toolbar [reviewId]="review.reviewId"></app-review-toolbar>
+    <app-review-toolbar [review]="review"></app-review-toolbar>
  </section>
 </div>

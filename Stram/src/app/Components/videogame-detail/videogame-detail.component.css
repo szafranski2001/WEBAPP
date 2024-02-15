@@ -36,16 +36,13 @@
     flex-grow: 1;
     padding-left: 10px;
     padding-top: 5px;
+    margin-right: 20px;
 }
 
 .videogame-description{
-    border: 2px solid var(--systemGray5);
+    border: 5px var(--systemGray5) double;
     padding: 4px;
     border-radius: 5px;
-}
-
-.videogame-hd{
-    font-weight: bold;
 }
 
 .description-title{

@@ -1,5 +1,8 @@
 .review-toolbar{
-    margin: 10px 10px 0 0;
+    margin: 0 10px 0 0;
+    border: 5px var(--systemGray5) double;
+    border-radius: 5px;
+    padding: 8px;
 }
 
 .review-toolbar .tlb-itms{

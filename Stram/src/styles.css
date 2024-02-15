@@ -36,12 +36,20 @@
   'opsz' 24
 }
 
+.highlighted-text{
+  font-weight: bold;
+}
+
 .icon-fill{
   font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 48;
 }
 
 .icon-outline{
   font-variation-settings: 'FILL' 0,'wght' 500, 'GRAD' 0, 'opsz' 48;
+}
+
+.icon-cnt{
+  vertical-align:text-bottom;
 }
 
 html {

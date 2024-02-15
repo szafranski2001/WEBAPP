@@ -8,11 +8,11 @@
 
       <section class="videogame-details">
         <!--Info videogame-->
-        <p class="videogame-hd"><span id="genere" [ngStyle]="{'background-color': getGenereColor()}">{{videogame.genere}}</span></p>
-        <h1 [contentEditable]="getEditMode()">{{videogame.titolo}}</h1>
-        <h2 [contentEditable]="getEditMode()">{{videogame.casaP}}</h2>
+        <p class="highlighted-text"><span id="genere" [ngStyle]="{'background-color': getGenereColor()}">{{videogame.genere}}</span></p>
+        <h1 class="highlighted-text" [contentEditable]="getEditMode()">{{videogame.titolo}}</h1>
+        <h2 class="highlighted-text" [contentEditable]="getEditMode()">{{videogame.casaP}}</h2>
         <app-rating [valutazione]="videogame.valutazione"></app-rating>
-        <p class="videogame-hd">Durata:
+        <p class="highlighted-text">Durata:
           <ng-template *ngIf="videogame.durata > 0;then ifblock else elseblock"></ng-template>
             <ng-template #ifblock>
               <span class="detail-data" [contentEditable]="getEditMode()">{{videogame.durata}} h</span>
@@ -21,7 +21,7 @@
               <span class="detail-data" [contentEditable]="getEditMode()"> Illimitata </span>
             </ng-template>
         </p>
-        <p class="videogame-hd">Anno: <span class="detail-data" [contentEditable]="getEditMode()">{{videogame.anno}}</span></p>
+        <p class="highlighted-text">Anno: <span class="detail-data" [contentEditable]="getEditMode()">{{videogame.anno}}</span></p>
       </section>
 
     <!--Toolbar videogame-->
