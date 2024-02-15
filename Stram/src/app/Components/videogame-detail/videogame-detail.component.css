@@ -91,3 +91,9 @@ h2{
 .detail-data{
     color:red;
 }
+
+.fixed{
+    position: fixed;
+    bottom: 15px;
+    right: 30px;
+}

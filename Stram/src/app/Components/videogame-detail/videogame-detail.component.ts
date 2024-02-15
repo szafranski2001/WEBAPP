@@ -29,4 +29,7 @@ export class VideogameDetailComponent implements OnInit {
     return 'var(--'+this.videogame.genere.toLowerCase()+'-color)';
   }
 
+  ToTheTopPressed(){
+    window.scrollTo({top:0,behavior:'smooth'})
+  }
 }

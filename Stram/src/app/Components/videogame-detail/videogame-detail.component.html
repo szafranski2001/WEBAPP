@@ -41,9 +41,8 @@
   </section>
 
   <app-videogame-reviews [videogameId]="videogame.id"></app-videogame-reviews>
-
 </div>
 
-
-<!--Eventualmente aggiungere un pulsante sticky che ti riporta al top della pagina 
-  cosi se ci sono molte recensioni non si fa fatica e forse e dico FORSE anche uno per l'inverso-->
+<button class="round50-btn fixed" title="Torna all'inizio" (click)="ToTheTopPressed()">
+  <mat-icon>keyboard_arrow_up</mat-icon>
+</button>

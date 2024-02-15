@@ -1,14 +1,14 @@
 <aside class="review-toolbar" *ngIf="CurrentUserTipologia != tipologiaUser.null">
     <div class="tlb-itms">
-      <button class="tlb-btn" title="Mi piace" (click)="LikeReview()">
+      <button class="round50-btn" title="Mi piace" (click)="LikeReview()">
         <mat-icon class="like-blue-icon" [ngClass]="isLiked ? 'icon-fill' :'icon-outline'">thumb_up</mat-icon>
       </button>
-      <button class="tlb-btn" title="segnala recensione" (click)="ReportReview()">
+      <button class="round50-btn" title="segnala recensione" (click)="ReportReview()">
         <mat-icon class="red-icon" [ngClass]="isReported ? 'icon-fill' :'icon-outline'">report</mat-icon>
     </button>
     </div>
     <div class="tlb-itms" *ngIf="CurrentUserTipologia == tipologiaUser.Admin">
-      <button class="tlb-btn" title="Rimuovi la recensione" (click)="DeleteReview()">
+      <button class="round50-btn" title="Rimuovi la recensione" (click)="DeleteReview()">
         <mat-icon>delete</mat-icon>
       </button>
     </div> 
