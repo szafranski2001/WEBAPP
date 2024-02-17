@@ -1,4 +1,5 @@
 <div class="review-list">
+    <h1 class="highlighted-text">Recensioni</h1>
  <section class="review" *ngFor="let review of ReviewList">
     <div class="review-hd"> 
         <figure class="review-figure">
@@ -15,6 +16,6 @@
         <app-rating [valutazione]="review.rating"></app-rating>
         <p class="description">{{review.comment}}</p>
     </div>
-    <app-review-toolbar [review]="review"></app-review-toolbar>
+    <app-review-toolbar class="toolbar" [review]="review"></app-review-toolbar>
  </section>
 </div>

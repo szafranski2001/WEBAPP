@@ -4,7 +4,7 @@
 }
 
 .videogame-article{
-    margin: 10px 0;
+    margin: 20px 0;
     display: flex;
     flex-direction: row;
     background-position: center;
@@ -22,6 +22,7 @@
 }
 
 .videogame-detail-figure img{
+    min-width: 80%;
     width: 100%;
     height: 100%;
     border-radius: 5px;
@@ -42,11 +43,12 @@
     border: 5px var(--systemGray5) double;
     padding: 4px;
     border-radius: 5px;
+    margin-bottom: 40px;
 }
 
 .description-title{
     font-weight:bold;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--background-header-color);
     display: block;
     text-align: center;
     border-radius: 5px;
@@ -55,7 +57,7 @@
 }
 
 .description-data{
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--background-header-color);
     overflow-wrap: break-word;
     border-radius: 5px;
     padding: 10px;
@@ -71,7 +73,7 @@
 
 .genere option{
     font-weight: bold;
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--background-header-color);
 }
 
 .genere:focus-visible{
@@ -92,8 +94,32 @@ h2{
     color:red;
 }
 
+.yt-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color:rgb(215, 5, 5);
+    border:2px rgb(250, 5, 5) solid;
+    margin-bottom: 15px;
+}
+
+.yt-btn mat-icon{
+    padding-bottom:2px ;
+}
+
+.yt-btn:hover{
+    background-color: rgba(240, 5, 5) ;
+}
+
 .fixed{
+    background-color: rgba(99,99,102,0.6);
+    border: 2px var(--systemGray2) solid;
     position: fixed;
     bottom: 15px;
     right: 30px;
+}
+
+.fixed:hover{
+    background-color: rgba(132, 132, 135, 0.6);
 }

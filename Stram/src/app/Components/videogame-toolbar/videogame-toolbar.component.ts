@@ -1,4 +1,4 @@
-import { Component,ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component,EventEmitter, OnInit, Output } from '@angular/core';
 import { tipologiaUser } from '../model/TipologiaUtente';
 import { VideogameDataService } from '../../services/videogame-data.service';
 import { Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class VideogameToolbarComponent implements OnInit {
 
   editButton : string='edit';
+  @Output() UpdateData = new EventEmitter<void>();
 
   //Da prendere dal DB tramite il service all'init
     isFavorite=false;
@@ -24,6 +25,7 @@ export class VideogameToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     //getCurrentUser
+    //Controllo se fa parte della wishlist e favorite list e impostazione variabili
   }
 
   AddFavoriteListPressed(){
@@ -57,15 +59,17 @@ export class VideogameToolbarComponent implements OnInit {
   }
 
   EditVideogame(){
+
+    this.ManagerService.toggleEditMode();
+
     if(this.ManagerService.isEditMode()){
-      this.ManagerService.EditVideogame();
-      this.editButton="edit";
-    }
-    else {
       this.editButton="done_outline";
     }
-    
-    this.ManagerService.toggleEditMode();
+    else {
+      this.editButton="edit";
+      this.UpdateData.emit();
+      this.ManagerService.EditVideogame();
+    }
   }
 
 }

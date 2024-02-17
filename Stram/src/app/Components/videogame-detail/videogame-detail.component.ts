@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { ChangeDetectorRef,NgZone, Component,ElementRef,OnInit, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
 import { genere, videogame } from '../model/Videogame';
 import { VideogameDataService } from '../../services/videogame-data.service';
 import { ActivatedRoute } from '@angular/router';
@@ -8,13 +8,13 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './videogame-detail.component.html',
   styleUrl: './videogame-detail.component.css'
 })
-export class VideogameDetailComponent implements OnInit {
+export class VideogameDetailComponent implements OnInit{
   
   videogame: videogame;
   videogameImageURL = '/assets/images/videogames/';
   Genre=Object.values(genere);
 
-  constructor(private videogameData: VideogameDataService, private route : ActivatedRoute) {}
+  constructor(private videogameData: VideogameDataService, private route : ActivatedRoute,private cdr: ChangeDetectorRef,private ngZone : NgZone) {}
 
   ngOnInit(): void {
     this.videogame=this.videogameData.getData(parseInt(this.route.snapshot.paramMap.get('id')!));
@@ -30,6 +30,11 @@ export class VideogameDetailComponent implements OnInit {
   }
 
   ToTheTopPressed(){
-    window.scrollTo({top:0,behavior:'smooth'})
+    window.scrollTo({top:0,behavior:'smooth'});
   }
+
+  HandleUpdateData(){
+    this.videogameData.UpdateData();
+  }
+
 }

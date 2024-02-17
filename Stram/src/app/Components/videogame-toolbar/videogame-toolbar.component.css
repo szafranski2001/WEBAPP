@@ -1,8 +1,19 @@
 .videogame-toolbar{
-    margin: 10px 10px 0 0;
+    padding: 8px;
+    margin: 8px 8px 0 0;
+    overflow: hidden;
 }
 
 .videogame-toolbar .tlb-itms{
     display: flex;
     flex-direction: column;
+}
+
+.tlb-itms .tlb-btn{
+    background-color: rgba(99,99,102,0.6); /*same as the comment below*/
+    border: 2px var(--systemGray2) solid;
+}
+
+.tlb-itms .tlb-btn:hover{
+    background-color: rgba(132, 132, 135, 0.6); /*using rgba(var(--systemGray1), 0.6); doesn't seem to work*/
 }

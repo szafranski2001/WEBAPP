@@ -1,48 +1,54 @@
 <div class="main-container">
+  
+  <article class="videogame-article" [ngStyle]="{'background-image':'linear-gradient(rgba(0, 0, 0, 0.5),rgba(28, 28, 30, 1)),url('+ videogameImageURL +')'}">
+    <!--Image videogame-->
+    <figure class="videogame-detail-figure">
+      <img src="assets/images/videogames/{{videogame.id}}.png">
+    </figure>
 
-  <article class="videogame-article" [ngStyle]="{'background-image':'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url('+ videogameImageURL +')'}">
-      <!--Image videogame-->
-      <figure class="videogame-detail-figure">
-        <img src="assets/images/videogames/{{videogame.id}}.png">
-      </figure>
+    <section class="videogame-details">
+      <!--Info videogame-->
+      
+      <p *ngIf="!getEditMode()"><span class="genere highlighted-text" [ngStyle]="{'background-color': getGenereColor()}">{{videogame.genere}}</span></p>
+      <p *ngIf="getEditMode()">
+        <select *ngIf="getEditMode()" [(ngModel)]="videogame.genere" name="genereSelect" class="genere highlighted-text" [ngStyle]="{'background-color': getGenereColor()}">
+          <option *ngFor="let genere of Genre">{{genere}}</option>
+        </select>
+      </p>
 
-      <section class="videogame-details">
-        <!--Info videogame-->
-        
-        <p *ngIf="!getEditMode()"><span class="genere highlighted-text" [ngStyle]="{'background-color': getGenereColor()}">{{videogame.genere}}</span></p>
-        <p *ngIf="getEditMode()">
-          <select [(ngModel)]="videogame.genere" name="genereSelect" class="genere highlighted-text" [ngStyle]="{'background-color': getGenereColor()}">
-            <option *ngFor="let genere of Genre">{{genere}}</option>
-          </select>
-        </p>
-        <h1 class="highlighted-text" [contentEditable]="getEditMode()">{{videogame.titolo}}</h1>
-        <h2 class="highlighted-text" [contentEditable]="getEditMode()">{{videogame.casaP}}</h2>
-        <app-rating [valutazione]="videogame.valutazione"></app-rating>
-        <p class="highlighted-text">Durata:
-          <ng-template *ngIf="videogame.durata > 0;then ifblock else elseblock"></ng-template>
-            <ng-template #ifblock>
-              <span class="detail-data" [contentEditable]="getEditMode()">{{videogame.durata}} h</span>
-            </ng-template>
-            <ng-template #elseblock>
-              <span class="detail-data" [contentEditable]="getEditMode()"> Illimitata </span>
-            </ng-template>
-        </p>
-        <p class="highlighted-text">Anno: <span class="detail-data" [contentEditable]="getEditMode()">{{videogame.anno}}</span></p>
-      </section>
+      <h1 #titolo class="highlighted-text data-element" [contentEditable]="getEditMode()" (keydown.enter)="titolo.blur()">{{videogame.titolo}}</h1>
+      <h2 #casaP class="highlighted-text data-element" [contentEditable]="getEditMode()" (keydown.enter)="casaP.blur()">{{videogame.casaP}}</h2>
+
+      <app-rating [valutazione]="videogame.valutazione"></app-rating>
+
+      <p class="highlighted-text">Durata:
+        <span class="detail-data data-element" *ngIf="!getEditMode()">{{ videogame.durata > 0 ? (videogame.durata + ' h') : 'Indefinita' }}</span>
+        <span #durata class="detail-data data-element" *ngIf="getEditMode()" contentEditable (keydown.enter)="durata.blur()">{{videogame.durata}}</span><span class="detail-data" *ngIf="getEditMode()"> h </span>
+      </p>
+      
+      <p class="highlighted-text">Anno: 
+        <span class="detail-data data-element" *ngIf="!getEditMode()">{{ videogame.anno < 9999 ? videogame.anno : 'Sconosciuto' }}</span>
+        <span #anno class="detail-data data-element" *ngIf="getEditMode()" contentEditable (keydown.enter)="anno.blur()">{{videogame.anno}}</span>
+      </p>
+      
+        <a [href]="videogame.trailer" target="_blank" class="round50-btn yt-btn" title="vai al trailer">
+          <mat-icon>play_circle</mat-icon>
+        </a>
+    </section>
 
     <!--Toolbar videogame-->
-    <app-videogame-toolbar></app-videogame-toolbar>
+    <app-videogame-toolbar class="toolbar"  (UpdateData)="HandleUpdateData()"></app-videogame-toolbar>
 
   </article>
   <!--Description videogame-->
   <section class="videogame-description">
     <span class="description-title">Descrizione</span>
-    <p class="description-data" [contentEditable]="getEditMode()">{{videogame.descrizione}}</p>
+    <p #descrizione class="description-data data-element" [contentEditable]="getEditMode()" (keydown.enter)="descrizione.blur()">{{videogame.descrizione}}</p>
   </section>
 
   <app-videogame-reviews [videogameId]="videogame.id"></app-videogame-reviews>
 </div>
-
+<!--Fixed button for scrolling up-->
 <button class="round50-btn fixed" title="Torna all'inizio" (click)="ToTheTopPressed()">
   <mat-icon>keyboard_arrow_up</mat-icon>
 </button>

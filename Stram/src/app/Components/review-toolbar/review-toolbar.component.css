@@ -3,9 +3,20 @@
     border: 5px var(--systemGray5) double;
     border-radius: 5px;
     padding: 8px;
+    overflow: hidden;
+    
 }
 
 .review-toolbar .tlb-itms{
     display: flex;
     flex-direction: column;
+}
+
+.tlb-itms .tlb-btn{
+    background-color: rgba(99,99,102,0.6);
+    border: 2px var(--systemGray2) solid;
+}
+
+.tlb-itms .tlb-btn:hover{
+    background-color: rgba(132, 132, 135, 0.6);
 }

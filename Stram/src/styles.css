@@ -6,10 +6,12 @@
   --systemGray4: rgb(58, 58, 60);
   --systemGray3: rgb(72, 72, 74);
   --systemGray2: rgb(99, 99, 102);
+  --systemGray1: rgba(132, 132, 135);
   --systemGray:  rgb(142, 142, 147);
 
   --header-color: #333;
   --text-color: #a0a0a0;
+  --background-header-color:rgba(0,0,0,0.2);
   color: #fff;
 
   /*category colors 
@@ -43,6 +45,10 @@
   font-weight: bold;
 }
 
+.toolbar{
+  overflow: hidden;
+}
+
 .icon-fill{
   font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 48;
 }
@@ -73,20 +79,20 @@
   margin-bottom: 8px;
   padding:0;
   border-radius: 50%;
-  background-color: rgba(99,99,102,0.6);
   transition: background-color 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border: 2px var(--systemGray2) solid;
+  box-shadow: 0 4px 8px var(--background-header-color);
+  
 }
 
 .round50-btn:hover{
-  background-color: rgba(132, 132, 135, 0.6);
+  transform: scale(1.1);
 }
 
 html{
   height: 100%;
   background-color: var(--systemGray6);
   color: var(--text-color);
+  overflow-x: hidden;
 }
 
 body{ 

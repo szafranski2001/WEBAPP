@@ -10,5 +10,6 @@ export interface videogame{
     anno:number,
     casaP:string,
     descrizione:string,
-    valutazione:number
+    valutazione:number,
+    trailer: string
 }
