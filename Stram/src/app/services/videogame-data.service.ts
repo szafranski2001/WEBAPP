@@ -38,7 +38,7 @@ export class VideogameDataService {
 
     else{
       let videogame: videogame={
-        id: 1,
+        id: 3,
         titolo:'Sto cazzo',
         genere: genere.MMORPG,
         durata: 15,

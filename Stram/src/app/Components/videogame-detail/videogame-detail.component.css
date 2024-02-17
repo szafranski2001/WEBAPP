@@ -19,10 +19,10 @@
     margin: 5px;
     margin-top: 2px;
     max-width: 250px;
+    max-height: 400px;
 }
 
 .videogame-detail-figure img{
-    min-width: 80%;
     width: 100%;
     height: 100%;
     border-radius: 5px;
@@ -80,18 +80,33 @@
     outline: none;
 }
 
-h1{
+.videogame-details h1{
     font-size: 36px;
     margin: 10px 0 20px 0;
 }
 
-h2{
+.videogame-details h2{
     font-size: 20px;
     margin: 0 0 16px 0;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.videogame-details h1:focus, .videogame-details h2:focus, .detail-data:focus{
+    outline: none;
 }
 
 .detail-data{
-    color:red;
+    display: inline-block;
+    max-width: 100px;
+    color:rgba(255, 228, 196);
+}
+
+.spacer {
+    background-color: hsla(0,0%,100%,.15);
+    height: 20px;
+    margin: 0 10px;
+    width: 2px;
 }
 
 .yt-btn{
@@ -112,6 +127,13 @@ h2{
     background-color: rgba(240, 5, 5) ;
 }
 
+.videogame-data{
+    display: flex;
+    flex-direction: row ;
+    align-items: center;
+    overflow: hidden;
+}
+
 .fixed{
     background-color: rgba(99,99,102,0.6);
     border: 2px var(--systemGray2) solid;
@@ -122,4 +144,23 @@ h2{
 
 .fixed:hover{
     background-color: rgba(132, 132, 135, 0.6);
+}
+
+.row-rating{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.trailer-VdData{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.flexG{
+    flex-grow: 1;
 }

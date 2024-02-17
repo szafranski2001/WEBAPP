@@ -8,32 +8,45 @@
 
     <section class="videogame-details">
       <!--Info videogame-->
-      
-      <p *ngIf="!getEditMode()"><span class="genere highlighted-text" [ngStyle]="{'background-color': getGenereColor()}">{{videogame.genere}}</span></p>
-      <p *ngIf="getEditMode()">
-        <select *ngIf="getEditMode()" [(ngModel)]="videogame.genere" name="genereSelect" class="genere highlighted-text" [ngStyle]="{'background-color': getGenereColor()}">
-          <option *ngFor="let genere of Genre">{{genere}}</option>
-        </select>
-      </p>
+      <div class="row-rating">
+        <p *ngIf="!getEditMode()" class="flexG"><span class="genere highlighted-text" [ngStyle]="{'background-color': getGenereColor()}">{{videogame.genere}}</span></p>
+        <p *ngIf="getEditMode()" class="flexG">
+          <select *ngIf="getEditMode()" [(ngModel)]="videogame.genere" name="genereSelect" class="genere highlighted-text" [ngStyle]="{'background-color': getGenereColor()}">
+            <option *ngFor="let genere of Genre">{{genere}}</option>
+          </select>
+        </p>
+        <app-rating [valutazione]="videogame.valutazione"></app-rating>
+      </div>
 
       <h1 #titolo class="highlighted-text data-element" [contentEditable]="getEditMode()" (keydown.enter)="titolo.blur()">{{videogame.titolo}}</h1>
       <h2 #casaP class="highlighted-text data-element" [contentEditable]="getEditMode()" (keydown.enter)="casaP.blur()">{{videogame.casaP}}</h2>
-
-      <app-rating [valutazione]="videogame.valutazione"></app-rating>
-
-      <p class="highlighted-text">Durata:
-        <span class="detail-data data-element" *ngIf="!getEditMode()">{{ videogame.durata > 0 ? (videogame.durata + ' h') : 'Indefinita' }}</span>
-        <span #durata class="detail-data data-element" *ngIf="getEditMode()" contentEditable (keydown.enter)="durata.blur()">{{videogame.durata}}</span><span class="detail-data" *ngIf="getEditMode()"> h </span>
-      </p>
       
-      <p class="highlighted-text">Anno: 
-        <span class="detail-data data-element" *ngIf="!getEditMode()">{{ videogame.anno < 9999 ? videogame.anno : 'Sconosciuto' }}</span>
-        <span #anno class="detail-data data-element" *ngIf="getEditMode()" contentEditable (keydown.enter)="anno.blur()">{{videogame.anno}}</span>
-      </p>
-      
-        <a [href]="videogame.trailer" target="_blank" class="round50-btn yt-btn" title="vai al trailer">
-          <mat-icon>play_circle</mat-icon>
-        </a>
+      <div class="trailer-VdData">
+        <div class="flexG">
+          <a [href]="videogame.trailer" target="_blank" class="round50-btn yt-btn" title="vai al trailer">
+            <mat-icon>play_circle</mat-icon>
+          </a>
+        </div>
+        
+        <div class="videogame-data">
+
+          <p> 
+            <span class="highlighted-text">Durata: </span>
+            <span class="detail-data data-element" *ngIf="!getEditMode()">{{ videogame.durata > 0 ? (videogame.durata + ' h') : 'Indefinita' }}</span>
+            <span #durata class="detail-data data-element" *ngIf="getEditMode()" contentEditable (keydown.enter)="durata.blur()">{{videogame.durata}} </span>
+          </p>
+
+          <div class="spacer"></div>
+          
+            <p>
+              <span class="highlighted-text">Anno: </span> 
+              <span class="detail-data data-element" *ngIf="!getEditMode()">{{ videogame.anno < 9999 ? videogame.anno : 'Sconosciuto' }}</span>
+              <span #anno class="detail-data data-element" *ngIf="getEditMode()" contentEditable (keydown.enter)="anno.blur()">{{videogame.anno}}</span>
+            </p>
+            
+          </div>
+        </div>
+
     </section>
 
     <!--Toolbar videogame-->
