@@ -32,6 +32,15 @@
 .pointer { cursor: pointer; }
 .not-allowed { cursor: not-allowed; }
 
+.Rating{
+  display: flex;
+  flex-direction: row;
+}
+
+.Star{
+  transform: scale(1.1);
+  margin-right: 5px;
+}
 
 .material-symbols-outlined {
   font-variation-settings:

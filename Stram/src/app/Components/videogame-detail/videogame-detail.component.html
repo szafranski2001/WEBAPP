@@ -59,6 +59,8 @@
     <p #descrizione class="description-data data-element" [contentEditable]="getEditMode()" (keydown.enter)="descrizione.blur()">{{videogame.descrizione}}</p>
   </section>
 
+  <app-add-rating></app-add-rating>
+
   <app-videogame-reviews [videogameId]="videogame.id"></app-videogame-reviews>
 </div>
 <!--Fixed button for scrolling up-->

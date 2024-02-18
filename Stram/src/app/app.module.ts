@@ -21,7 +21,9 @@ import { ReviewToolbarComponent } from './Components/review-toolbar/review-toolb
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatIconRegistry } from '@angular/material/icon';
+import { HttpClientModule } from "@angular/common/http";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AddRatingComponent } from './Components/add-rating/add-rating.component';
 
 @NgModule({
   declarations: [
@@ -38,13 +40,15 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     HomeComponent,
     LoginComponent,
     NotfoundComponent,
-    ReviewToolbarComponent
+    ReviewToolbarComponent,
+    AddRatingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     provideAnimationsAsync()
