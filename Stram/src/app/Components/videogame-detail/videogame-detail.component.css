@@ -43,7 +43,7 @@
     border: 5px var(--systemGray5) double;
     padding: 4px;
     border-radius: 5px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .description-title{
@@ -93,7 +93,8 @@
 }
 
 .videogame-details h1:focus, .videogame-details h2:focus, .detail-data:focus{
-    outline: none;
+    outline: 2px var(--systemGray2) solid;
+    border-radius: 5px;
 }
 
 .detail-data{
@@ -103,7 +104,7 @@
 }
 
 .spacer {
-    background-color: hsla(0,0%,100%,.15);
+    background-color:var(--spacer-color);
     height: 20px;
     margin: 0 10px;
     width: 2px;
@@ -135,15 +136,9 @@
 }
 
 .fixed{
-    background-color: rgba(99,99,102,0.6);
-    border: 2px var(--systemGray2) solid;
     position: fixed;
     bottom: 15px;
     right: 30px;
-}
-
-.fixed:hover{
-    background-color: rgba(132, 132, 135, 0.6);
 }
 
 .row-rating{

@@ -23,7 +23,7 @@
       
       <div class="trailer-VdData">
         <div class="flexG">
-          <a [href]="videogame.trailer" target="_blank" class="round50-btn yt-btn" title="vai al trailer">
+          <a [href]="videogame.trailer" target="_blank" class="round50 default-btn px50 yt-btn" title="vai al trailer">
             <mat-icon>play_circle</mat-icon>
           </a>
         </div>
@@ -58,12 +58,16 @@
     <span class="description-title">Descrizione</span>
     <p #descrizione class="description-data data-element" [contentEditable]="getEditMode()" (keydown.enter)="descrizione.blur()">{{videogame.descrizione}}</p>
   </section>
-
-  <app-add-rating></app-add-rating>
+  
+  <div *ngIf="UserLogged()">
+    <h1>Aggiungi una recensione </h1>
+    <hr>
+    <app-add-review></app-add-review>
+  </div>
 
   <app-videogame-reviews [videogameId]="videogame.id"></app-videogame-reviews>
 </div>
 <!--Fixed button for scrolling up-->
-<button class="round50-btn fixed" title="Torna all'inizio" (click)="ToTheTopPressed()">
+<button class="round50 default-btn btn-gray px50 fixed" title="Torna all'inizio" (click)="ToTheTopPressed()">
   <mat-icon>keyboard_arrow_up</mat-icon>
 </button>

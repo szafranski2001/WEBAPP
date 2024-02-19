@@ -1,9 +1,10 @@
 <div class="review-list">
     <h1 class="highlighted-text">Recensioni</h1>
- <section class="review" *ngFor="let review of ReviewList">
+    <hr>
+ <section class="review" *ngFor="let review of ReviewList let i=index">
     <div class="review-hd"> 
         <figure class="review-figure">
-            <img src="assets/images/user.png">
+            <img src="assets/images/user/avatar-{{i%6}}.svg">
         </figure>
         <span class="hd-data">{{review.username}}</span>
         <p class="hd-data">

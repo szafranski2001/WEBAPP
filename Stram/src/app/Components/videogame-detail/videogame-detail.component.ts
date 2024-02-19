@@ -14,7 +14,7 @@ export class VideogameDetailComponent implements OnInit{
   videogameImageURL = '/assets/images/videogames/';
   Genre=Object.values(genere);
 
-  constructor(private videogameData: VideogameDataService, private route : ActivatedRoute,private cdr: ChangeDetectorRef,private ngZone : NgZone) {}
+  constructor(private videogameData: VideogameDataService, private route : ActivatedRoute) {}
 
   ngOnInit(): void {
     this.videogame=this.videogameData.getData(parseInt(this.route.snapshot.paramMap.get('id')!));
@@ -35,6 +35,11 @@ export class VideogameDetailComponent implements OnInit{
 
   HandleUpdateData(){
     this.videogameData.UpdateData();
+  }
+
+  UserLogged(){
+    //prendere il return del UserLogged dal service di login
+    return true;
   }
 
 }

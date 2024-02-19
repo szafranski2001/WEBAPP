@@ -1,17 +1,17 @@
 <aside class="videogame-toolbar" *ngIf="CurrentUserTipologia != tipologiaUser.null">
   <div class="tlb-itms">
-    <button class="round50-btn tlb-btn" title="Aggiungi/Rimuovi dalla lista dei preferiti" (click)="AddFavoriteListPressed()">
+    <button class="round50 default-btn btn-gray px50 " title="Aggiungi/Rimuovi dalla lista dei preferiti" (click)="AddFavoriteListPressed()">
       <mat-icon class="icon-cnt red-icon" [ngClass]="isFavorite ? 'icon-fill' : 'icon-outline'" >favorite</mat-icon>
     </button>
-    <button class="round50-btn tlb-btn" (click)="AddWishListPressed()">
+    <button class="round50 default-btn btn-gray px50" (click)="AddWishListPressed()">
       <mat-icon class="wish-gold-icon" title="Aggiungi/Rimuovi dalla lista dei desideri" [ngClass]="isWished ? 'icon-fill' : 'icon-outline'" >shopping_bag</mat-icon>
     </button>
   </div>
   <div class="tlb-itms" *ngIf="CurrentUserTipologia == tipologiaUser.Admin">
-    <button class="round50-btn tlb-btn" title="Modifica videogioco" (click)="EditVideogame()">
+    <button class="round50 default-btn btn-gray px50" title="Modifica videogioco" (click)="EditVideogame()">
       <mat-icon>{{editButton}}</mat-icon>
     </button>
-    <button class="round50-btn tlb-btn" title="Cancella videogioco" (click)="RemoveVideogame()">
+    <button class="round50 default-btn btn-gray px50" title="Cancella videogioco" (click)="RemoveVideogame()">
       <mat-icon>delete</mat-icon>
     </button>
   </div> 

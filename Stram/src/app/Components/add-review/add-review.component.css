@@ -1,0 +1,83 @@
+
+.add-review{
+    background-color: var(--background-header-color);
+    margin: 25px 0 50px 0;
+    border-radius: 5px;
+    border: 5px var(--systemGray5) double;
+    padding: 15px;
+}
+
+.review-figure{
+    width: 70px;
+    margin: 8px 0 0 0;
+}
+
+.review-figure img{
+    width: 100%;
+}
+
+.username{
+    width: 100%;
+    max-height: 60%;
+    overflow:hidden;
+    text-align: center;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.title{
+    padding: 5px 5px 0 5px;
+}
+
+.review-upper{
+    display: flex;
+    flex-direction: row;
+}
+
+.rating{
+    margin-left: 6px;
+    flex-grow:1;
+}
+
+.lower-review{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.input-data{
+    background-color: var(--systemGray4);
+    border: 2px var(--systemGray2) solid;
+    flex-grow: 1;
+    padding: 8px;
+    resize:none;
+    overflow-x: hidden;
+    margin: 10px 5px 15px 5px;
+}
+
+.input-data:focus{
+    outline: 2px var(--systemGray3) solid;
+}
+
+.submit-btn{
+    align-self: flex-end;
+    margin:0 5px 5px 0;
+    width: 40%;
+    height: 40px;
+    font-size: 16px;
+    background-color: rgb(0, 69, 172);
+    border: transparent;
+}
+
+.submit-btn:hover{
+    background-color:rgb(24, 112, 244);
+}
+
+.submit-btn:active:not([disabled]) {
+    transform: translateY(2px);
+}

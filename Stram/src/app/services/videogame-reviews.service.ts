@@ -13,6 +13,18 @@ export class VideogameReviewsService {
     {id:1,idVideogame: 0,title:'Daje roma', username:'supercalisdfghjkloiuytrewqasdf', comment:'nice game', rating:4, likes:104},
     {id:2,idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:3, likes:104},
     {id:3,idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:2, likes:104},
+    {id:2,idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:3, likes:104},
+    {id:3,idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:2, likes:104},
+    {id:2,idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:3, likes:104},
+    {id:3,idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:2, likes:104},
+    {id:2,idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:3, likes:104},
+    {id:3,idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:2, likes:104},
+    {id:2,idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:3, likes:104},
+    {id:3,idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:2, likes:104},
+    {id:2,idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:3, likes:104},
+    {id:3,idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:2, likes:104},
+    {id:2,idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:3, likes:104},
+    {id:3,idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:2, likes:104},
     {id:4,idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:1, likes:104}
   ];
 

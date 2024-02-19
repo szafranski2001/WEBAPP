@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -18,12 +19,12 @@ import { HomeComponent } from './Components/home/home.component';
 import { LoginComponent } from './Components/login/login.component';
 import { NotfoundComponent } from './Components/notfound/notfound.component';
 import { ReviewToolbarComponent } from './Components/review-toolbar/review-toolbar.component';
+import { AddRatingComponent } from './Components/add-rating/add-rating.component';
+import { AddReviewComponent } from './Components/add-review/add-review.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatIconRegistry } from '@angular/material/icon';
-import { HttpClientModule } from "@angular/common/http";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { AddRatingComponent } from './Components/add-rating/add-rating.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AddRatingComponent } from './Components/add-rating/add-rating.component
     LoginComponent,
     NotfoundComponent,
     ReviewToolbarComponent,
-    AddRatingComponent
+    AddRatingComponent,
+    AddReviewComponent
   ],
   imports: [
     BrowserModule,
