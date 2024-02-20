@@ -12,9 +12,8 @@ import { GeneralTasksService } from '../../services/general-tasks.service';
 export class VideogameReviewsComponent implements OnInit {
   
   @Input() videogameId : number;
+  
   ReviewList : review[];
-  randomAvatarsImages : number[];
-  UserImage : number;
 
   constructor(private reviewService : VideogameReviewsService,private videogameDataService : VideogameDataService, private generalTasks : GeneralTasksService) {}
 

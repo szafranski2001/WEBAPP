@@ -18,7 +18,7 @@ export class VideogameDetailComponent implements OnInit{
   constructor(private videogameData: VideogameDataService, private route : ActivatedRoute, private generalTasks : GeneralTasksService) {}
 
   ngOnInit(): void {
-    this.videogame=this.videogameData.getData(parseInt(this.route.snapshot.paramMap.get('id')!));
+    this.videogame=this.videogameData.GetVideogameDetails(parseInt(this.route.snapshot.paramMap.get('id')!));
     this.videogameImageURL= this.videogameImageURL+this.videogame.id+".png"; //da cambiare non appena riesco a prendere i dati dal backend
   }
 
@@ -38,10 +38,10 @@ export class VideogameDetailComponent implements OnInit{
     let dataElements=document.getElementsByClassName("data-element");
     
     let titolo=String((dataElements[0] as HTMLElement).innerText);
-    this.videogame.titolo=this.generalTasks.formatData(titolo,400);
+    this.videogame.titolo=this.generalTasks.formatData(titolo,50);
 
     let casaP=String((dataElements[1] as HTMLElement).innerText);
-    this.videogame.casaP=this.generalTasks.formatData(casaP,400);
+    this.videogame.casaP=this.generalTasks.formatData(casaP,64);
 
     let durata=Number((dataElements[2] as HTMLElement).innerText);
     (Number.isNaN(durata) || durata > 9999 || durata <= 0 ) ? this.videogame.durata = 0 : this.videogame.durata=durata;

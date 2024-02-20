@@ -24,6 +24,7 @@
     width: 8%;
     min-width: 80px;
     align-items: center;
+    align-self: flex-start;
     margin-right: 10px;
     border: 5px var(--systemGray5) double;
     border-radius: 5px;

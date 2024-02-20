@@ -21,7 +21,7 @@ export class VideogameToolbarComponent implements OnInit {
   tipologiaUser = tipologiaUser;
   CurrentUserTipologia = tipologiaUser.Admin;
 
-  constructor(private ManagerService : VideogameDataService,private router : Router){ }
+  constructor(private VideogameManagerService : VideogameDataService,private router : Router){ }
 
   ngOnInit(): void {
     //getCurrentUser
@@ -50,9 +50,9 @@ export class VideogameToolbarComponent implements OnInit {
 
   RemoveVideogame(){
     //Chiamata a service per rimozione videogame e redirect della pagina
-    if(confirm("Sei sicuro di voler cancellare "+this.ManagerService.selectedVideogame.titolo+" dal catalogo?\n Una volta rimosso non sarà più recuperabile. ")){
-      this.ManagerService.RemoveVideogame();
-      alert(this.ManagerService.selectedVideogame.titolo+" è stato rimosso con successo! \n Verrai rendirizzato verso la homepage.")
+    if(confirm("Sei sicuro di voler cancellare "+this.VideogameManagerService.selectedVideogame.titolo+" dal catalogo?\n Una volta rimosso non sarà più recuperabile. ")){
+      this.VideogameManagerService.RemoveVideogameData();
+      alert(this.VideogameManagerService.selectedVideogame.titolo+" è stato rimosso con successo! \n Verrai rendirizzato verso la homepage.")
       this.router.navigate(['/']);
     }
     //Un po bruttino ma al momento voglio concetrarmi sul resto della webapp anche perchè senno dovrei creare dei component apposta
@@ -60,15 +60,15 @@ export class VideogameToolbarComponent implements OnInit {
 
   EditVideogame(){
 
-    this.ManagerService.toggleEditMode();
+    this.VideogameManagerService.toggleEditMode();
 
-    if(this.ManagerService.isEditMode()){
+    if(this.VideogameManagerService.isEditMode()){
       this.editButton="done_outline";
     }
     else {
       this.editButton="edit";
       this.UpdateData.emit();
-      this.ManagerService.EditVideogame();
+      this.VideogameManagerService.EditVideogameDetails();
     }
   }
 

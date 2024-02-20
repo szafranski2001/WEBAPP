@@ -20,8 +20,8 @@ export class ReviewToolbarComponent{
 
   //DA CAMBIARE CON IL SERVICE NON VOGLIO STO SCHIFO DENTRO OGNI COMPONENT A CUI SERVE SAPERE LA TIPOLOGIA USER
   tipologiaUser = tipologiaUser;
-  CurrentUserTipologia = tipologiaUser.Utente;
-  User = "CR8";
+  CurrentUserTipologia = 1;
+  User = "stocazzo";
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -29,27 +29,18 @@ export class ReviewToolbarComponent{
 
   DeleteReview(){
     if(confirm("Sei sicuro di voler rimuovere questa recensione? \n Una volta eliminata non sarà più recuperabile.")){
-      this.ReviewService.DeleteReview(this.review.id);
+      this.ReviewService.DeleteReviewData(this.ReviewService.SearchUserReview());
       alert("Recensione eliminata con successo!")
     }
   }
 
   ReportReview(){
     this.isReported=!this.isReported;
-    //stessa roba del like sotto ma con il report
+    this.isReported ? this.ReviewService.AddReportToReview(this.review) : this.ReviewService.RemoveReportToReview(this.review);
   }
 
   LikeReview(){
     this.isLiked=!this.isLiked;
-
-    if(this.isLiked){
-      this.review.likes++;
-      console.log("chiama il service per inserire una tupla dove si mette che il currentUser ha messo like a questa review");
-    }
-    else{
-      this.review.likes--;
-      console.log("chiama il service per cancellare il like che era stato impostato dal currentUser");
-    }
-
+    this.isLiked ? this.ReviewService.AddLikeToReview(this.review) : this.ReviewService.RemoveLikeToReview(this.review);
   }
 }

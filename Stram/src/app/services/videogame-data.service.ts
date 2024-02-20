@@ -20,7 +20,7 @@ export class VideogameDataService {
     this.isEditable=!this.isEditable;
   }
 
-  getData(id: number){
+  GetVideogameDetails(id: number){
     let videogame: videogame={
       id: 0,
       titolo:'Minecraft safasgag ag ag ag ag asg asg ag a gsdsd sh sh s hsh sf',
@@ -53,10 +53,16 @@ export class VideogameDataService {
     }
   }
 
-  RemoveVideogame(){}
-  AddVideogame(){}
-  EditVideogame(){
-    console.log(this.selectedVideogame);
+  RemoveVideogameData(){
+    //alert db to remove videogame
+  }
+
+  AddVideogameData(){
+    //send videogame to db
+  }
+
+  EditVideogameDetails(){
+    //send data edited to db
   }
 
 
