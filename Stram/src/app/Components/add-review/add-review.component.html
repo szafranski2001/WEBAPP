@@ -4,9 +4,9 @@
             <figure class="review-figure">
                 <img src="assets/images/user/avatar-{{this.UserImage}}.svg">
             </figure>
-            <textarea class="input-data round5 highlighted-text font20" rows="2" name="title" type="text" placeholder="Titolo..." ngModel required></textarea>
+            <textarea #title class="input-data round5 highlighted-text font20" maxlength="200" rows="2" name="title" type="text" placeholder="Titolo..." ngModel required (keydown.enter)="title.blur()"></textarea>
         </div>    
-        <textarea class="input-data round5 font20" type="text" rows="6" name="description" placeholder="Inserisci una descrizione..." ngModel></textarea>
+        <textarea #description class="input-data round5 font20" type="text" maxlength="3000" rows="6" name="description" placeholder="Inserisci una descrizione..." ngModel (keydown.enter)="description.blur()"></textarea>
         
         <div class="review-lower">
             <app-add-rating class="rating" [Rating]="currentRating"></app-add-rating>

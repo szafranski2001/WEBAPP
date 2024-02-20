@@ -18,8 +18,10 @@
         <app-rating [valutazione]="videogame.valutazione"></app-rating>
       </div>
 
-      <h1 #titolo class="highlighted-text font36 data-element" [contentEditable]="getEditMode()" (keydown.enter)="titolo.blur()">{{videogame.titolo}}</h1>
-      <h2 #casaP class="highlighted-text font20 data-element" [contentEditable]="getEditMode()" (keydown.enter)="casaP.blur()">{{videogame.casaP}}</h2>
+      <h1 class="highlighted-text font36 data-element" *ngIf="!getEditMode()">{{videogame.titolo}}</h1>
+      <h1 #titolo class="highlighted-text font36 data-element" *ngIf="getEditMode()" contentEditable (keydown.enter)="titolo.blur()">{{videogame.titolo}}</h1>
+      <h2 class="highlighted-text font20 data-element" *ngIf="!getEditMode()">{{videogame.casaP}}</h2>
+      <h2 #casaP class="highlighted-text font20 data-element" *ngIf="getEditMode()" contenteditable (keydown.enter)="casaP.blur()">{{videogame.casaP}}</h2>
       
       <div class="trailer-VdData">
         <div class="flexG">

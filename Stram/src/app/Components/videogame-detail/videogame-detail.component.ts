@@ -1,4 +1,4 @@
-import { ChangeDetectorRef,NgZone, Component,ElementRef,OnInit, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { genere, videogame } from '../model/Videogame';
 import { VideogameDataService } from '../../services/videogame-data.service';
 import { ActivatedRoute } from '@angular/router';
@@ -38,10 +38,10 @@ export class VideogameDetailComponent implements OnInit{
     let dataElements=document.getElementsByClassName("data-element");
     
     let titolo=String((dataElements[0] as HTMLElement).innerText);
-    this.videogame.titolo=this.generalTasks.formatData(titolo,50);
+    this.videogame.titolo=this.generalTasks.formatData(titolo,400);
 
     let casaP=String((dataElements[1] as HTMLElement).innerText);
-    this.videogame.casaP=this.generalTasks.formatData(casaP,64);
+    this.videogame.casaP=this.generalTasks.formatData(casaP,400);
 
     let durata=Number((dataElements[2] as HTMLElement).innerText);
     (Number.isNaN(durata) || durata > 9999 || durata <= 0 ) ? this.videogame.durata = 0 : this.videogame.durata=durata;
@@ -50,8 +50,7 @@ export class VideogameDetailComponent implements OnInit{
     (Number.isNaN(anno) || anno > 9999 || anno <= 1950 ) ? this.videogame.anno= 9999 : this.videogame.anno=anno;
 
     let descrizione=String((dataElements[4] as HTMLElement).innerText);
-    this.videogame.descrizione=this.generalTasks.formatData(descrizione,1024);
-
+    this.videogame.descrizione=this.generalTasks.formatData(descrizione,3000);
   }
 
   UserLogged(){
