@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Form } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { GeneralTasksService } from '../../services/general-tasks.service';
+import { review } from '../model/Review';
 
 @Component({
   selector: 'app-add-review',
@@ -9,7 +10,8 @@ import { GeneralTasksService } from '../../services/general-tasks.service';
 })
 export class AddReviewComponent implements OnInit {
 
-  currentRating : number = 1;
+  numberOfStars=5;
+  currentRating = {value : 1, stars : Array.from({length : this.numberOfStars}, (_,i) => i < 1 ? 'starFull' : 'starEmpty')};
   UserImage : number;
 
   constructor(private generalTasks : GeneralTasksService) {}
@@ -18,8 +20,15 @@ export class AddReviewComponent implements OnInit {
     this.UserImage=this.generalTasks.getRandomValue(6);
   }
 
-  SubmitReview(form : Form){
-    console.log(form);
+  ResetForm(form : NgForm){
+    form.resetForm();
+    this.currentRating={value : 1, stars: Array.from({length : this.numberOfStars}, (_,i) => i < 1 ? 'starFull' : 'starEmpty')};
   }
+
+  SubmitReview(form : NgForm){
+    //Prendi dati, crei review e invia a ReviewList e poi backEnd
+    this.ResetForm(form);
+  }
+
 
 }

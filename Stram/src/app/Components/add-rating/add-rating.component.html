@@ -1,6 +1,6 @@
 <section class="Rating">
     <div class="Star" *ngFor="let star of [1,2,3,4,5]; let i = index"
-     (mouseenter)="HoverStars(star)" (mouseleave)="HoverStars(currentRating)" (click)="Rate(star)">
-        <mat-icon [svgIcon]="Stars[i]"></mat-icon>
+     (mouseenter)="DinamicUpdateStars(star)" (mouseleave)="DinamicUpdateStars(Rating.value)" (click)="Rate(star)">
+        <mat-icon [svgIcon]="Rating.stars[i]"></mat-icon>
     </div>
 </section>

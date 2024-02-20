@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-add-rating',
@@ -7,17 +7,15 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class AddRatingComponent{
 
-  currentRating : number = 1;
-  Stars : string[]=['starFull','starEmpty','starEmpty','starEmpty','starEmpty'];
-  
+  @Input() Rating : {value : number, stars : Array<string>};
 
-  HoverStars(rating : number) {
+  DinamicUpdateStars(rating : number) {
     for(let i=0; i<5; i++)
-      i < rating ? this.Stars[i]='starFull' : this.Stars[i]='starEmpty';
+      i < rating ? this.Rating.stars[i]='starFull' : this.Rating.stars[i]='starEmpty';
   }
 
-  Rate(rating : number){
-    this.currentRating=rating;
+  Rate(value : number){
+    this.Rating.value=value;
   }
 
 }
