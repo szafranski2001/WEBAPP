@@ -164,5 +164,6 @@ body{
 .body-wrap-without-footer {
   padding-bottom: 15vh;
   background-color: var(--systemGray6);
+  min-height: 85vh;
 }
 
