@@ -2,6 +2,7 @@ import { ChangeDetectorRef,NgZone, Component,ElementRef,OnInit, ViewChild, OnCha
 import { genere, videogame } from '../model/Videogame';
 import { VideogameDataService } from '../../services/videogame-data.service';
 import { ActivatedRoute } from '@angular/router';
+import { GeneralTasksService } from '../../services/general-tasks.service';
 
 @Component({
   selector: 'app-videogame-detail',
@@ -14,11 +15,11 @@ export class VideogameDetailComponent implements OnInit{
   videogameImageURL = '/assets/images/videogames/';
   Genre=Object.values(genere);
 
-  constructor(private videogameData: VideogameDataService, private route : ActivatedRoute) {}
+  constructor(private videogameData: VideogameDataService, private route : ActivatedRoute, private generalTasks : GeneralTasksService) {}
 
   ngOnInit(): void {
     this.videogame=this.videogameData.getData(parseInt(this.route.snapshot.paramMap.get('id')!));
-    this.videogameImageURL= this.videogameImageURL+this.videogame.id+".png";
+    this.videogameImageURL= this.videogameImageURL+this.videogame.id+".png"; //da cambiare non appena riesco a prendere i dati dal backend
   }
 
   getEditMode(){
@@ -34,7 +35,23 @@ export class VideogameDetailComponent implements OnInit{
   }
 
   HandleUpdateData(){
-    this.videogameData.UpdateData();
+    let dataElements=document.getElementsByClassName("data-element");
+    
+    let titolo=String((dataElements[0] as HTMLElement).innerText);
+    this.videogame.titolo=this.generalTasks.formatData(titolo,50);
+
+    let casaP=String((dataElements[1] as HTMLElement).innerText);
+    this.videogame.casaP=this.generalTasks.formatData(casaP,64);
+
+    let durata=Number((dataElements[2] as HTMLElement).innerText);
+    (Number.isNaN(durata) || durata > 9999 || durata <= 0 ) ? this.videogame.durata = 0 : this.videogame.durata=durata;
+
+    let anno=Number((dataElements[3] as HTMLElement).innerText);
+    (Number.isNaN(anno) || anno > 9999 || anno <= 1950 ) ? this.videogame.anno= 9999 : this.videogame.anno=anno;
+
+    let descrizione=String((dataElements[4] as HTMLElement).innerText);
+    this.videogame.descrizione=this.generalTasks.formatData(descrizione,1024);
+
   }
 
   UserLogged(){

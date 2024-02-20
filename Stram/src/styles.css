@@ -35,12 +35,15 @@
 .round12 { border-radius: 12px; }
 .round20 { border-radius: 20px; } 
 
-.round50 { border-radius: 50%; }
+.round { border-radius: 100%; }
 
 .font12 { font-size: 12px;}
 .font16 { font-size: 16px;}
 .font20 { font-size: 20px;}
 .font24 { font-size: 24px;}
+.font28 { font-size: 28px;}
+.font32 { font-size: 32px;}
+.font36 {font-size: 36px;}
  
 .pointer { cursor: pointer; }
 .not-allowed { cursor: not-allowed; }
@@ -80,7 +83,7 @@
   font-variation-settings: 'FILL' 0,'wght' 500, 'GRAD' 0, 'opsz' 48;
 }
 
-.icon-cnt{
+.icon-centered{
   vertical-align:text-bottom;
 }
 
@@ -122,7 +125,7 @@ hr{
   background-color: rgba(132, 132, 135, 0.6);
 }
 
-.round50.default-btn:hover{
+.round.default-btn:hover{
   transform: scale(1.1);
 }
 

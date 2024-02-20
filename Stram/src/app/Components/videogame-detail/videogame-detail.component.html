@@ -18,12 +18,12 @@
         <app-rating [valutazione]="videogame.valutazione"></app-rating>
       </div>
 
-      <h1 #titolo class="highlighted-text data-element" [contentEditable]="getEditMode()" (keydown.enter)="titolo.blur()">{{videogame.titolo}}</h1>
-      <h2 #casaP class="highlighted-text data-element" [contentEditable]="getEditMode()" (keydown.enter)="casaP.blur()">{{videogame.casaP}}</h2>
+      <h1 #titolo class="highlighted-text font36 data-element" [contentEditable]="getEditMode()" (keydown.enter)="titolo.blur()">{{videogame.titolo}}</h1>
+      <h2 #casaP class="highlighted-text font20 data-element" [contentEditable]="getEditMode()" (keydown.enter)="casaP.blur()">{{videogame.casaP}}</h2>
       
       <div class="trailer-VdData">
         <div class="flexG">
-          <a [href]="videogame.trailer" target="_blank" class="round50 default-btn px50 yt-btn" title="vai al trailer">
+          <a [href]="videogame.trailer" target="_blank" class="round default-btn px50 yt-btn" title="vai al trailer">
             <mat-icon>play_circle</mat-icon>
           </a>
         </div>
@@ -68,6 +68,6 @@
   <app-videogame-reviews [videogameId]="videogame.id"></app-videogame-reviews>
 </div>
 <!--Fixed button for scrolling up-->
-<button class="round50 default-btn btn-gray px50 fixed" title="Torna all'inizio" (click)="ToTheTopPressed()">
+<button class="round default-btn btn-gray px50 fixed" title="Torna all'inizio" (click)="ToTheTopPressed()">
   <mat-icon>keyboard_arrow_up</mat-icon>
 </button>

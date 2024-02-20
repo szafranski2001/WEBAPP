@@ -1,18 +1,16 @@
 <section class="add-review">
     <form  class="form" #addReview="ngForm" (ngSubmit)="SubmitReview(addReview)">
         <div class="review-upper">
-            <div class="user-data"> 
-                <figure class="review-figure">
-                    <img src="assets/images/user/avatar-{{this.UserImage}}.svg">
-                </figure>
-            </div>
+            <figure class="review-figure">
+                <img src="assets/images/user/avatar-{{this.UserImage}}.svg">
+            </figure>
             <textarea class="input-data round5 highlighted-text font20" rows="2" name="title" type="text" placeholder="Titolo..." ngModel required></textarea>
         </div>    
         <textarea class="input-data round5 font20" type="text" rows="6" name="description" placeholder="Inserisci una descrizione..." ngModel></textarea>
         
-        <div class="lower-review">
-            <app-add-rating #Rating class="rating" [Rating]="currentRating"></app-add-rating>
-            <button class="round20 default-btn highlighted-text submit-btn" type="submit" *ngIf="addReview.valid"> Invia </button>
+        <div class="review-lower">
+            <app-add-rating class="rating" [Rating]="currentRating"></app-add-rating>
+            <button class="round20 default-btn font16 highlighted-text submit-btn" type="submit" *ngIf="addReview.valid"> Invia </button>
         </div>
     </form>
 </section>

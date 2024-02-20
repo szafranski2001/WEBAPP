@@ -10,4 +10,8 @@ export class GeneralTasksService {
   getRandomValue(value : number){
     return Math.floor(Math.random() * value);
   }
+
+  formatData( value : string, maxlength : number){
+    return value.length > maxlength ? value.slice(0,maxlength) : value;
+  }
 }

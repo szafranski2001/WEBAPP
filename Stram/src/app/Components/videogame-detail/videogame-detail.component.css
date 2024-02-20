@@ -81,12 +81,10 @@
 }
 
 .videogame-details h1{
-    font-size: 36px;
     margin: 10px 0 20px 0;
 }
 
 .videogame-details h2{
-    font-size: 20px;
     margin: 0 0 16px 0;
     flex-grow: 1;
     align-items: center;

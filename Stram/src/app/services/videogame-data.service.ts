@@ -53,21 +53,6 @@ export class VideogameDataService {
     }
   }
 
-  UpdateData(){
-    let dataElements=document.getElementsByClassName("data-element");
-    
-    this.selectedVideogame.titolo=String((dataElements[0] as HTMLElement).innerText);
-    this.selectedVideogame.casaP=String((dataElements[1] as HTMLElement).innerText);
-
-    let durata=Number((dataElements[2] as HTMLElement).innerText);
-    (Number.isNaN(durata) || durata <= 0 ) ? this.selectedVideogame.durata = 0 : this.selectedVideogame.durata=durata;
-
-    let anno=Number((dataElements[3] as HTMLElement).innerText);
-    (Number.isNaN(anno) || anno > 9999 || anno <= 1950 ) ? this.selectedVideogame.anno= 9999 : this.selectedVideogame.anno=anno;
-
-    this.selectedVideogame.descrizione=String((dataElements[4] as HTMLElement).innerText);
-  }
-
   RemoveVideogame(){}
   AddVideogame(){}
   EditVideogame(){
