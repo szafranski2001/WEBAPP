@@ -14,7 +14,7 @@
   --background-header-color:rgba(0,0,0,0.2);
   color: #fff;
 
-  /*category colors 
+  /*category colors
   keep same naming conventions : --genre-color */
   --sandbox-color: rgba(10, 240, 170,0.4);
   --fps-color: rgba(255,0,0,0.4);
@@ -33,7 +33,7 @@
 .round8  { border-radius: 8px; }
 .round10 { border-radius: 10px; }
 .round12 { border-radius: 12px; }
-.round20 { border-radius: 20px; } 
+.round20 { border-radius: 20px; }
 
 .round { border-radius: 100%; }
 
@@ -44,7 +44,7 @@
 .font28 { font-size: 28px;}
 .font32 { font-size: 32px;}
 .font36 {font-size: 36px;}
- 
+
 .pointer { cursor: pointer; }
 .not-allowed { cursor: not-allowed; }
 
@@ -134,26 +134,35 @@ hr{
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--systemGray3); 
+  background: var(--systemGray3);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 4px var(--systemGray3); 
+  box-shadow: inset 0 0 4px var(--systemGray3);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--systemGray2); 
+  background: var(--systemGray2);
 }
 
 html{
   height: 100%;
-  background-color: var(--systemGray6);
   color: var(--text-color);
   overflow-x: hidden;
 }
 
-body{ 
-  height: 100%;
+body{
   margin: 0;
 }
+
+.body-wrap {
+  position: relative;
+  min-height: 100vh;
+}
+
+.body-wrap-without-footer {
+  padding-bottom: 15vh;
+  background-color: var(--systemGray6);
+}
+
