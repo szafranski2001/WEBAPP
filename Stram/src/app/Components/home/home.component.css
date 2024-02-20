@@ -40,7 +40,7 @@ h1 {
 .game-list-slider .game-item {
   display: inline-block;
   justify-content: space-evenly;
-  margin-right: 10px; /* Spazio tra le immagini */
+  margin-right: 10px;
   position: relative;
 }
 
@@ -63,6 +63,13 @@ h1 {
   border-radius: 0 0 0 8px;
 }
 
+.game-item:hover {
+  .game-details {
+    display: none;
+  }
+
+}
+
 .game-list-slider .game-details h3 {
   margin: 0;
   font-size: 14px;
@@ -71,6 +78,7 @@ h1 {
 .game-list-slider .game-details p {
   margin: 5px 0 0;
 }
+
 
 
 
@@ -106,13 +114,13 @@ h1 {
 }
 
 
-
-
 .game-list-slider::-webkit-scrollbar {
+  display: none;
   background-color: transparent;
 }
 
 .game-list-slider::-webkit-scrollbar-thumb {
+  display: none;
   border-radius: 8px;
   background-color: var(--systemGray2);
 }

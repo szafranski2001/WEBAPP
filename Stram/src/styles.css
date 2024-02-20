@@ -27,6 +27,10 @@
   --spacer-color: hsla(0,0%,100%,.15);
 
   font-family: Roboto, "Helvetica Neue", sans-serif;
+
+
+  --font-size-homepage-gameitem-gamename: 1.2rem;
+  --font-size-homepage-gameitem-rating: 1.3rem;
 }
 
 .round5  { border-radius: 5px;}
@@ -177,3 +181,13 @@ img {
   border-radius: 8px;
 }
 
+.material-symbols-rounded {
+  font-size: inherit;
+  vertical-align: center;
+}
+
+.material-symbols-rounded.starYellow {
+  color: var(--gold-color);
+  font-size: var(--font-size-homepage-gameitem-rating) ;
+  transform: translateY(+25%);
+}
