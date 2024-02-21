@@ -1,4 +1,4 @@
-import { Component,Input, OnInit, Output,EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { tipologiaUser } from '../model/TipologiaUtente';
 import { VideogameReviewsService } from '../../services/videogame-reviews.service';
 import { review } from '../model/Review';
@@ -9,14 +9,13 @@ import { review } from '../model/Review';
   templateUrl: './review-toolbar.component.html',
   styleUrl: './review-toolbar.component.css'
 })
-export class ReviewToolbarComponent{
+export class ReviewToolbarComponent implements OnInit{
 
   @Input() review:review;
+  @Input() reviewInfo : boolean[];
 
-  //Da far inserire il valore ricavato dal DB
-  isLiked=false;
-  isReported=false;
-  ///////////////////////////////////////////
+  isLiked:boolean;
+  isReported:boolean;
 
   //DA CAMBIARE CON IL SERVICE NON VOGLIO STO SCHIFO DENTRO OGNI COMPONENT A CUI SERVE SAPERE LA TIPOLOGIA USER
   tipologiaUser = tipologiaUser;
@@ -26,6 +25,11 @@ export class ReviewToolbarComponent{
 
 
   constructor(private ReviewService : VideogameReviewsService){}
+
+  ngOnInit(): void {
+    this.isLiked=this.reviewInfo[0];
+    this.isReported=this.reviewInfo[1];
+  }
 
   DeleteReview(){
     if(confirm("Sei sicuro di voler rimuovere questa recensione? \n Una volta eliminata non sarà più recuperabile.")){
