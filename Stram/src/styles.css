@@ -189,6 +189,4 @@ img {
 
 .material-symbols-rounded.starYellow {
   color: var(--gold-color);
-  font-size: var(--font-size-homepage-gameitem-rating) ;
-  transform: translateY(+25%);
 }

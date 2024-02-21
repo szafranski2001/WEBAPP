@@ -4,9 +4,20 @@
 
   <h1>Top 3 Giochi</h1>
   <div class="top-games round8">
+    <div class="game-list-slider">
       <div class="game-item" *ngFor="let game of topGames">
-          <img [src]="game.imgUrl" alt="{{ game.name }}">
+          <img class="pointer" [src]="game.imgUrl" alt="{{ game.name }}">
+
+          <div class="game-item-rating top-games-ratings pointer">
+            <p><span class="material-symbols-rounded starYellow align-v-bottom">star</span> {{ game.rate }}/5</p>
+          </div>
+
+          <div class="game-item-quick-favourite-button">
+            <span class="material-symbols-rounded pointer">favorite</span>
+          </div>
+
       </div>
+    </div>
   </div>
 
   <br>
@@ -14,16 +25,26 @@
 
   <h1>Giochi</h1>
   <div class="container-games round8">
-      <div class="prev pointer round">&lt;</div>
-          <div class="game-list-slider">
-              <div class="game-item pointer round8" *ngFor="let game of games">
-                  <img class="round8" [src]="game.imgUrl" alt="{{ game.name }}">
-                  <div class="game-details">
-                      <h3>{{ game.name }}</h3>
-                      <p> <span class="material-symbols-rounded starYellow align-v-bottom">star</span> {{ game.rate }}/5</p>
+      <div class="prev pointer round"><</div>
+
+      <div class="game-list-slider">
+          <div class="game-item round8" *ngFor="let game of games">
+
+                  <div class="wrap-game-item--img-Rating-favouriteBtn">
+                      <img class="pointer" [src]="game.imgUrl" alt="{{ game.name }}">
+
+                      <div class="game-item-rating pointer">
+                        <p><span class="material-symbols-rounded starYellow">star</span> {{ game.rate }}/5</p>
+                      </div>
+
+                      <div class="game-item-quick-favourite-button">
+                        <span class="material-symbols-rounded pointer">favorite</span>
+                      </div>
                   </div>
-            </div>
+
           </div>
+      </div>
+
       <div class="next pointer round">&gt;</div>
   </div>
 
