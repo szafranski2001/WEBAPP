@@ -41,7 +41,7 @@ export class AddReviewComponent implements OnInit {
       rating : this.currentRating.value,
       likes : 0
     }
-    //QUANDO GUARDI QUESTO METODO RICORDATI DI ANDARE A CAMBIARE GLI INPUT CON IL SERVICE CHRI
+    
     this.ReviewService.AddReviewData(review);
     this.ResetForm(form);
   }

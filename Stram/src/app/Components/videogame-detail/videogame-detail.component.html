@@ -61,6 +61,7 @@
     <p #descrizione class="description-data data-element" [contentEditable]="getEditMode()" (keydown.enter)="descrizione.blur()">{{videogame.descrizione}}</p>
   </section>
   
+  <!--Add review-->
   <div *ngIf="UserLogged()">
     <h1>Aggiungi una recensione </h1>
     <hr>

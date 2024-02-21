@@ -20,7 +20,7 @@ export class ReviewToolbarComponent{
 
   //DA CAMBIARE CON IL SERVICE NON VOGLIO STO SCHIFO DENTRO OGNI COMPONENT A CUI SERVE SAPERE LA TIPOLOGIA USER
   tipologiaUser = tipologiaUser;
-  CurrentUserTipologia = 1;
+  CurrentUserTipologia = 0;
   User = "stocazzo";
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

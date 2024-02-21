@@ -137,6 +137,7 @@
     position: fixed;
     bottom: 15px;
     right: 30px;
+    z-index: 9999;
 }
 
 .row-rating{
