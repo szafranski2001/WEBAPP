@@ -1,15 +1,15 @@
 package com.project.persistence;
 
-import com.project.persistence.dao.VideogiocoDAO;
-import com.project.persistence.dao.ListeDAO;
-import com.project.persistence.dao.RecensioneDAO;
-import com.project.persistence.dao.SegnalazioniDAO;
-import com.project.persistence.dao.UserDAO;
-import com.project.persistence.dao.jdbc.VideogiocoDAOJDBC;
-import com.project.persistence.dao.jdbc.ListeDAOJDBC;
-import com.project.persistence.dao.jdbc.RecensioneDAOJDBC;
-import com.project.persistence.dao.jdbc.SegnalazioniDAOJDBC;
-import com.project.persistence.dao.jdbc.UserDAOJDBC;
+import persistence.dao.VideogiocoDAO;
+import persistence.dao.ListeDAO;
+import persistence.dao.RecensioneDAO;
+import persistence.dao.SegnalazioniDAO;
+import persistence.dao.UserDAO;
+import persistence.dao.jdbc.VideogiocoDAOJDBC;
+import persistence.dao.jdbc.ListeDAOJDBC;
+import persistence.dao.jdbc.RecensioneDAOJDBC;
+import persistence.dao.jdbc.SegnalazioniDAOJDBC;
+import persistence.dao.jdbc.UserDAOJDBC;
 
 public class DBManager {
 

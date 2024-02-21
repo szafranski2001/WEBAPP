@@ -1,4 +1,4 @@
-package com.project.persistence.dao.jdbc;
+package persistence.dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.project.model.User;
 import com.project.persistence.DBSource;
-import com.project.persistence.dao.UserDAO;
+import persistence.dao.UserDAO;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 

@@ -1,4 +1,4 @@
-package com.project.persistence.dao.jdbc;
+package persistence.dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import com.project.model.CompletataSegnalazione;
 import com.project.model.InLavorazioneSegnalazione;
 import com.project.model.Segnalazioni;
 import com.project.persistence.DBSource;
-import com.project.persistence.dao.SegnalazioniDAO;
+import persistence.dao.SegnalazioniDAO;
 
 public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
 	DBSource dbSource;

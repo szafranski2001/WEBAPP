@@ -1,4 +1,4 @@
-package com.project.persistence.dao.jdbc;
+package persistence.dao.jdbc;
 
 import java.sql.Connection;
 
@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.project.model.Videogioco;
 import com.project.model.Liste;
-import com.project.persistence.dao.ListeDAO;
+import persistence.dao.ListeDAO;
 import com.project.persistence.DBSource;
 
 public class ListeDAOJDBC implements ListeDAO{

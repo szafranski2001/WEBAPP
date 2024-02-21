@@ -1,4 +1,4 @@
-package com.project.persistence.dao.jdbc;
+package persistence.dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import com.project.model.Likeato;
 import com.project.model.Recensione;
 
 import com.project.persistence.DBSource;
-import com.project.persistence.dao.RecensioneDAO;
+import persistence.dao.RecensioneDAO;
 
 public class RecensioneDAOJDBC implements RecensioneDAO{
 	DBSource dbSource;
