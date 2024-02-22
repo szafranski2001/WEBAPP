@@ -34,7 +34,7 @@ export class ReviewToolbarComponent implements OnInit{
   DeleteReview(){
     if(confirm("Sei sicuro di voler rimuovere questa recensione? \n Una volta eliminata non sarà più recuperabile.")){
       this.ReviewService.DeleteReviewData(this.ReviewService.SearchUserReview());
-      alert("Recensione eliminata con successo!")
+      alert("Recensione eliminata con successo!");
     }
   }
 

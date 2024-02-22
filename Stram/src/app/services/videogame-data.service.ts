@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { videogame,genere } from '../Components/model/Videogame';
 import { Injectable } from '@angular/core';
 
@@ -6,11 +7,12 @@ import { Injectable } from '@angular/core';
 })
 
 export class VideogameDataService {
-  
+
+  BackEndURL="http://localhost:8080";
   selectedVideogame: videogame;
   isEditable = false;
 
-  constructor(){ }
+  constructor(private http : HttpClient){ }
 
   isEditMode(){
     return this.isEditable;
@@ -57,11 +59,12 @@ export class VideogameDataService {
     //alert db to remove videogame
   }
 
-  AddVideogameData(){
+  AddVideogameData(videogame : videogame){
     //send videogame to db
   }
 
   EditVideogameDetails(){
+    this.http.post(this.BackEndURL+"/EditVideogame",this.selectedVideogame);
     //send data edited to db
   }
 

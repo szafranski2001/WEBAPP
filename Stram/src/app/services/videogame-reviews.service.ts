@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { review } from '../Components/model/Review';
+import { HttpClient } from '@angular/common/http';
+import { reviewLikeInfo, reviewReportInfo } from '../Components/model/ReviewInfo';
+import { ReportStatus } from '../Components/model/ReportStatus';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideogameReviewsService {
 
+  private BackEndURL="http://localhost:8080";
   //faccio una variabile user ma dovremmo prendere quello dal service UtenteManager
   User="stocazzo";
 
@@ -30,11 +34,13 @@ export class VideogameReviewsService {
     {idVideogame: 0,title:'sium', username:'CR8', comment:'gg', rating:1, likes:104}
   ];
 
-  constructor() {}
+  constructor(private http : HttpClient) {}
 
   SearchUserReview(){
     return this.reviewsList.findIndex((item) => item.username == this.User);
   }
+
+  // GET DATA
 
   getReviewListByVideogameId(id : number){
     //effettua qui la tua chiamata al back-end per la richiesta degli oggetti reviews
@@ -43,45 +49,52 @@ export class VideogameReviewsService {
 
   getReviewLikeInfo( videogameId : number){
     //effettua chiamata al back-end per prendere tutte i riferimenti a cui il nostro utente ha messo like
-    return [{mittente:"stocazzo",destinatario:"CR2", filmId: 0},
-            {mittente:"stocazzo",destinatario:"daje", filmId: 0},
-            {mittente:"stocazzo",destinatario:"sium", filmId: 0},
-            {mittente:"stocazzo",destinatario:"CR1", filmId: 1}];
+    return [{mittente:"stocazzo",destinatario:"CR2", videogameId: 0},
+            {mittente:"stocazzo",destinatario:"daje", videogameId: 0},
+            {mittente:"stocazzo",destinatario:"sium", videogameId: 0},
+            {mittente:"stocazzo",destinatario:"CR1", videogameId: 1}];
   }
 
   getReviewReportInfo( videogameId : number){
     //effettua chiamata al back-end per prendere tutte i riferimenti cui il nostro utente ha segnalato
-    return [{mittente:"stocazzo",destinatario:"CR4",filmId: 0, stato:"in corso"},
-            {mittente:"stocazzo",destinatario:"CR3",filmId: 0, stato:"conclusa"}];
+    return [{mittente:"stocazzo",destinatario:"CR4",videogameId: 0, stato: ReportStatus.open},
+            {mittente:"stocazzo",destinatario:"CR3",videogameId: 0, stato: ReportStatus.closed}];
   }
+
+
+  // PUT/PATCH DATA
 
   AddReviewData(review : review){
     this.reviewsList.unshift(review);
-    //chiamata al backEnd per aggiungere recensione al db
+    this.http.post(this.BackEndURL+"/getReviews",review);
   }
-
-  DeleteReviewData(index : number){
-    let review=this.reviewsList.splice(index,1);
-    //Chiamata al backEnd per la rimozione della recensione dal db
-  }
-
-  //Poi vediamo se è possibile unire questi 4 eventi in 2 
 
   AddLikeToReview(review : review){
     review.likes++;
-    //chiamata al backEnd per inserire aggiunta like nel db
+    let reviewInfo : reviewLikeInfo = {mittente:this.User,destinatario:review.username, videogameId: review.idVideogame};
+    this.http.post(this.BackEndURL+"/addLike",reviewInfo);
   }
+
+  AddReportToReview(review : review){
+    let reviewInfo : reviewReportInfo = {mittente : this.User, destinatario: review.username, videogameId: review.idVideogame,stato:ReportStatus.open};
+    this.http.post(this.BackEndURL+"/addReport",reviewInfo); 
+  }
+
+  //DELETE DATA
 
   RemoveLikeToReview(review : review){
     review.likes--;
     //chiamata al backEnd per rimuovere like nel db
   }
 
-  AddReportToReview(review : review){
-    //chiamata al backEnd per aggiungere segnalazione nel db
-  }
-  
+
   RemoveReportToReview(review : review){
     //chiamata al backEnd per rimuovere segnalazione nel db
+  }
+
+  
+  DeleteReviewData(index : number){
+    let review=this.reviewsList.splice(index,1);
+    //Chiamata al backEnd per la rimozione della recensione dal db
   }
 }

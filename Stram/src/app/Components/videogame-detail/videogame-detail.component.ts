@@ -36,6 +36,7 @@ export class VideogameDetailComponent implements OnInit{
 
   HandleUpdateData(){
     let dataElements=document.getElementsByClassName("data-element");
+    //Si formattano i dati per validare gli input dell'utente
     
     let titolo=String((dataElements[0] as HTMLElement).innerText);
     this.videogame.titolo=this.generalTasks.formatData(titolo,50);
