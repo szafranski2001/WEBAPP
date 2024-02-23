@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 
 export class VideogameDataService {
 
-  BackEndURL="http://localhost:8080";
+  BackEndURL="http://localhost:8080/api";
   selectedVideogame: videogame;
   isEditable = false;
 
@@ -56,10 +56,12 @@ export class VideogameDataService {
   }
 
   RemoveVideogameData(){
+    this.http.delete(this.BackEndURL+"/DeleteVideogameData");
     //alert db to remove videogame
   }
 
   AddVideogameData(videogame : videogame){
+    this.http.post(this.BackEndURL+"/AddVideogameData",videogame);
     //send videogame to db
   }
 
