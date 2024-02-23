@@ -1,5 +1,5 @@
 .main-container {
-  width: 90vw;
+  width: 95%;
   margin: 0 auto;
 }
 
@@ -19,43 +19,43 @@ h1 {
   margin-bottom: 20px;
 
   padding: 15px 20px;
-  background-color: var(--systemGray4);
+  /*background-color: var(--systemGray4);*/
 }
 
 
 
-.game-item img {
+.container-games {
   position: relative;
-  width: 100%;
-  max-width: 275px;
-  height: auto;
-  display: block;
+  /*background-color: var(--systemGray4);*/
 }
-
-
 
 
 .game-list-slider {
   overflow-x: scroll;
   white-space: nowrap;
-
-  padding: 2vh 2vw;
+  display: flex;
+  gap: 10px;
+  padding: 2vh 0;
 }
+
 
 
 .game-item {
   display: inline-block;
-  justify-content: space-evenly;
-  margin-right: 10px;
   position: relative;
+
+  justify-content: space-evenly;
 }
 
 .game-item img {
-  width: 225px;
-  height: 325px;
-  object-fit: cover;
+  aspect-ratio: 10/16;
+  width: clamp(150px, 12vw, 350px);
+
   display: block;
+  object-fit: cover;
 }
+
+
 
 .game-item-rating {
   position: absolute;
@@ -64,7 +64,6 @@ h1 {
   background-color: rgba(0, 0, 0, 0.7);
 
   color: #fff;
-  font-size: 12px;
 
   height: fit-content;
   width: fit-content;
@@ -72,22 +71,21 @@ h1 {
   border-radius: 0 8px 0 8px;
 
   p, .material-symbols-rounded {
-    position: relative;
     display: flex;
-
     align-items: center;
-    justify-content: flex-end;
-
-    font-size: 25px;
-    alignment-baseline: center;
-
     margin: 0;
-
-
   }
 
   p {
-    padding: 5px 5px;
+    justify-content: flex-end;
+    font-size: 20px;
+    padding: 5px;
+  }
+
+  .material-symbols-rounded {
+    justify-content: center;
+    alignment-baseline: center;
+    font-size: 30px;
   }
 }
 
@@ -97,60 +95,53 @@ h1 {
 }
 
 
-.game-item-title {
-  display: flex;
-  margin: 0;
-  height: 3.2vh;
-  font-size: 2rem;
-  justify-content: center;
-}
 
 
 
 
 
 /* Freccia slider */
-.prev,
-.next {
+.prev, .next {
   position: absolute;
-
   top: 50%;
   transform: translateY(-50%);
-  cursor: pointer;
-  width: fit-content;
-  height: fit-content;
-  background-color: rgba(0, 0, 0, 0.7);
+
+  /*background-color: rgba(0, 0, 0, 0.7);*/
+  font-size: 45px;
   color: #fff;
-  padding: 5px 10px;
+
   z-index: 30;
+
 }
 
+
 .prev {
-  left: -15px;
-  transform: translateX(-100%);
+  left: 0;
+  transform: translateX(-50%);
+}
+
+prev > .material-symbols-rounded {
+
 }
 
 .next {
-  right: -15px;
-  transform: translateX(100%);
+  right: 0;
+  transform: translateX(50%);
+  .material-symbols-rounded {
+
+  }
 }
 
 
-.container-games {
-  position: relative;
-  padding: 10px;
-  background-color: var(--systemGray4);
-}
+
+
 
 ::-webkit-scrollbar {
   display: none;
-  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   display: none;
-  border-radius: 8px;
-  background-color: var(--systemGray2);
 }
 
 
@@ -163,6 +154,8 @@ h1 {
 
 
 .game-item:hover {
+  animation: anim-pulse 0.25s linear 0.1s 1 forwards;
+
   .game-item-quick-favourite-button {
     display: flex;
     position: absolute;
@@ -173,19 +166,13 @@ h1 {
     height: fit-content;
     width: fit-content;
 
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.8);
     z-index: 10;
 
     align-items: center;
     justify-content: center;
 
-    border: clamp(3px, 0.3vw, 5px) solid var(--systemGray2);
-    border-radius: 50%;
-
     /* solo per il pulsante del like quando si mette il puntatore sul gioco */
     .material-symbols-rounded {
-      transform: translateY(6%);
       padding: 5px;
 
       font-size: 3rem;
@@ -193,11 +180,80 @@ h1 {
     }
 
     .material-symbols-rounded:hover {
-                                    /* todo  aggiungere animazione */
+      animation: anim-pulse 0.8s linear 0.5s infinite forwards;
       color: red;                   /* todo  aggiustare la tonalità di rosso, che questa è brutta */
     }
   }
-
-
 }
 
+
+
+.btn-style {
+  background-color: rgba(99,99,102,0.75);
+  border: 2px var(--systemGray2) solid;
+
+  border-radius: 50%;
+
+  animation: btn-anim-start 0.3s linear 0ms 1 forwards ;
+  box-shadow: 0 4px 8px var(--background-header-color);
+}
+
+.btn-style:hover {
+  background-color: rgba(132, 132, 135, 0.6);
+  animation: btn-anim-hover 0.2s linear 0.1s 1 both;
+}
+
+.btn-style:active {
+  animation: btn-anim-active 0.35s linear 0.1s 1 both;
+}
+
+
+
+@keyframes anim-pulse {
+  0%, 100% {
+    transform: scale(100%);
+  }
+  50% {
+    transform: scale(110%);
+  }
+}
+
+
+
+
+@keyframes btn-anim-start {
+  from {
+    transform: scale(0%)
+  }
+  to {
+    transform: scale(75%);
+  }
+}
+
+@keyframes btn-anim-hover {
+  from {
+    transform: scale(75%);
+  }
+  to {
+    transform: scale(100%);
+  }
+}
+
+@keyframes btn-anim-active {
+  from {
+    transform: scale(100%);
+  }
+  to {
+    transform: scale(125%);
+  }
+}
+
+@keyframes icon-fill-red {
+  from {
+
+  }
+  to {
+
+  }
+
+}

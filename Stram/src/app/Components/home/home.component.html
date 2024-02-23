@@ -9,11 +9,11 @@
           <img class="pointer" [src]="game.imgUrl" alt="{{ game.name }}">
 
           <div class="game-item-rating top-games-ratings pointer">
-            <p><span class="material-symbols-rounded starYellow align-v-bottom">star</span> {{ game.rate }}/5</p>
+            <p><span class="material-symbols-rounded starYellow">star</span> {{ game.rate }}/5</p>
           </div>
 
           <div class="game-item-quick-favourite-button">
-            <span class="material-symbols-rounded pointer">favorite</span>
+            <span class="material-symbols-rounded btn-style pointer">favorite</span>
           </div>
 
       </div>
@@ -25,7 +25,10 @@
 
   <h1>Giochi</h1>
   <div class="container-games round8">
-      <div class="prev pointer round"><</div>
+
+      <div class="prev">
+        <span class="material-symbols-rounded btn-style pointer">arrow_back_ios</span>
+      </div>
 
       <div class="game-list-slider">
           <div class="game-item round8" *ngFor="let game of games">
@@ -38,14 +41,17 @@
                       </div>
 
                       <div class="game-item-quick-favourite-button">
-                        <span class="material-symbols-rounded pointer">favorite</span>
+                        <span class="material-symbols-rounded pointer btn-style">favorite</span>
                       </div>
                   </div>
 
           </div>
       </div>
 
-      <div class="next pointer round">&gt;</div>
+    <div class="next">
+      <span class="material-symbols-rounded btn-style pointer">arrow_forward_ios</span>
+    </div>
+
   </div>
 
 </div>
