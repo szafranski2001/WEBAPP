@@ -15,6 +15,7 @@ export class AddReviewComponent implements OnInit {
   numberOfStars=5;
   currentRating = {value : 1, stars : Array.from({length : this.numberOfStars}, (_,i) => i < 1 ? 'starFull' : 'starEmpty')};
   UserImage : number;
+  User="stocazzo";
 
   constructor(private generalTasks : GeneralTasksService, private ReviewService : VideogameReviewsService, private VideogameManagerService : VideogameDataService) {}
 
@@ -28,7 +29,7 @@ export class AddReviewComponent implements OnInit {
   }
 
   SearchForReview(){
-    return this.ReviewService.SearchUserReview() > -1 ? true : false;
+    return this.ReviewService.SearchUserReview(this.User) > -1 ? true : false;
   }
 
   SubmitReview(form : NgForm){
@@ -43,6 +44,7 @@ export class AddReviewComponent implements OnInit {
     }
     
     this.ReviewService.AddReviewData(review);
+    this.VideogameManagerService.UpdateRating();
     this.ResetForm(form);
   }
 

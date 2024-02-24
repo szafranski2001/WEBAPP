@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { videogame,genere } from '../Components/model/Videogame';
 import { Injectable } from '@angular/core';
+import { VideogameReviewsService } from './videogame-reviews.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class VideogameDataService {
   selectedVideogame: videogame;
   isEditable = false;
 
-  constructor(private http : HttpClient){ }
+  constructor(private http : HttpClient, private ReviewService : VideogameReviewsService){ }
 
   isEditMode(){
     return this.isEditable;
@@ -53,6 +54,10 @@ export class VideogameDataService {
       this.selectedVideogame=videogame;
       return videogame;
     }
+  }
+
+  UpdateRating(){
+    this.selectedVideogame.valutazione=this.ReviewService.getNewAverageRating();
   }
 
   RemoveVideogameData(){

@@ -3,6 +3,7 @@ import { review } from '../Components/model/Review';
 import { HttpClient } from '@angular/common/http';
 import { reviewLikeInfo, reviewReportInfo } from '../Components/model/ReviewInfo';
 import { ReportStatus } from '../Components/model/ReportStatus';
+import { VideogameDataService } from './videogame-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -36,8 +37,14 @@ export class VideogameReviewsService {
 
   constructor(private http : HttpClient) {}
 
-  SearchUserReview(){
-    return this.reviewsList.findIndex((item) => item.username == this.User);
+  SearchUserReview( reviewUser : string){
+    return this.reviewsList.findIndex((item) => item.username == reviewUser);
+  }
+
+  getNewAverageRating() : number{
+    let sum=0;
+    this.reviewsList.forEach((item ) => {sum+=item.rating;});
+    return sum/this.reviewsList.length;
   }
 
   // GET DATA

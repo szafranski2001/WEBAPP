@@ -2,6 +2,7 @@ import { Component,Input, OnInit } from '@angular/core';
 import { tipologiaUser } from '../model/TipologiaUtente';
 import { VideogameReviewsService } from '../../services/videogame-reviews.service';
 import { review } from '../model/Review';
+import { VideogameDataService } from '../../services/videogame-data.service';
 
 
 @Component({
@@ -19,12 +20,12 @@ export class ReviewToolbarComponent implements OnInit{
 
   //DA CAMBIARE CON IL SERVICE NON VOGLIO STO SCHIFO DENTRO OGNI COMPONENT A CUI SERVE SAPERE LA TIPOLOGIA USER
   tipologiaUser = tipologiaUser;
-  CurrentUserTipologia = 0;
+  CurrentUserTipologia = 1;
   User = "stocazzo";
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-  constructor(private ReviewService : VideogameReviewsService){}
+  constructor(private ReviewService : VideogameReviewsService, private  VideogameManagerService : VideogameDataService){}
 
   ngOnInit(): void {
     this.isLiked=this.reviewInfo[0];
@@ -33,7 +34,8 @@ export class ReviewToolbarComponent implements OnInit{
 
   DeleteReview(){
     if(confirm("Sei sicuro di voler rimuovere questa recensione? \n Una volta eliminata non sarà più recuperabile.")){
-      this.ReviewService.DeleteReviewData(this.ReviewService.SearchUserReview());
+      this.ReviewService.DeleteReviewData(this.ReviewService.SearchUserReview(this.review.username));
+      this.VideogameManagerService.UpdateRating();
       alert("Recensione eliminata con successo!");
     }
   }
