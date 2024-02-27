@@ -19,20 +19,20 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 	}
 
 	@Override
-	public void save(String titolo, String descrizione, String genere, int durata, int anno, String img, String trailer) { //salvo nel DB un nuovo videogiocoo
+	public void save(Videogioco videogioco) { //salvo nel DB un nuovo videogiocoo
 		Connection conn;
 		try {
 			conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db ed eseguo la query sottostante
 			String query = "INSERT INTO public.videogiochi (titolo, descrizione, genere, durata, anno, valutazione, img, trailer) values(?,?,?,?,?,?,?,?);";
 			PreparedStatement st = conn.prepareStatement(query);
-			st.setString(1, titolo);
-			st.setString(2, descrizione);
-			st.setString(3, genere);
-			st.setInt(4, durata);
-			st.setInt(5, anno);
+			st.setString(1, videogioco.getTitolo());
+			st.setString(2, videogioco.getDescrizione());
+			st.setString(3, videogioco.getGenere());
+			st.setInt(4, videogioco.getDurata());
+			st.setInt(5, videogioco.getAnno());
 			st.setInt(6, 0);
-			st.setString(7, img);
-			st.setString(8, trailer);
+			st.setString(7, videogioco.getImg());
+			st.setString(8, videogioco.getTrailer());
 			st.executeUpdate(); //eseguo query
 			//chiudo tutte le varie connessioni
 			st.close();
@@ -111,42 +111,42 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 	}
 
 	 @Override
-	    public void delete(int idVideogioco) { //elimino un videogiocoo dal catalogo dei videogiocoo
+	    public void delete(Videogioco videogioco) { //elimino un videogiocoo dal catalogo dei videogiocoo
 
 	        try {
 	            Connection con = dbSource.getConnection();//utilizzo la connessione singleton con il db ed eseguo la query sottostante
 	            // ELIMINO TUTTI I LIKES
 	            String query = "DELETE FROM recensioni_likes WHERE  videogiocoo = ?";
 	            PreparedStatement st = con.prepareStatement(query);
-	            st.setInt(1, idVideogioco);
+	            st.setInt(1, videogioco.getId());
 	            st.executeUpdate();
 	            st.close();
 
 	            // ELIMINO TUTTE LE SEGNALAZIONI
 	            query = "DELETE FROM segnalazioni WHERE videogiocoo = ?";
 	            st = con.prepareStatement(query);
-	            st.setInt(1, idVideogioco);
+	            st.setInt(1, videogioco.getId());
 	            st.executeUpdate();
 	            st.close();
 
 	            // ELIMINO LE RECENSIONI
 	            query = "DELETE FROM recensioni WHERE videogiocoo = ?";
 	            st = con.prepareStatement(query);
-	            st.setInt(1, idVideogioco);
+	            st.setInt(1, videogioco.getId());
 	            st.executeUpdate();
 	            st.close();
 
 	            //ELIMINO I FILM NELLE LISTE
 	            query = "delete from videogiocooinliste WHERE videogiocoo = ? ";
 	            st = con.prepareStatement(query);
-	            st.setInt(1, idVideogioco);
+	            st.setInt(1, videogioco.getId());
 	            st.executeUpdate();
 	            st.close();
 
 	            //ELIMINO IL FILM
 	            query = "delete from videogiochi WHERE id = ?";
 	            st = con.prepareStatement(query);
-	            st.setInt(1, idVideogioco);
+	            st.setInt(1, videogioco.getId());
 	            st.executeUpdate();
 	        	//chiudo tutte le varie connessioni
 	            st.close();
@@ -158,13 +158,13 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 	}
 
 	@Override
-	public List<Videogioco> findByName(String titolo) { //??
+	public List<Videogioco> findByName(Videogioco videogioco) { //??
 		List<Videogioco> videogiochi = new ArrayList <Videogioco>();
 		try {
 			Connection con = dbSource.getConnection();//utilizzo la connessione singleton con il db ed eseguo la query sottostante
 			String query = "select id from videogiochi where titolo=? group by id;";
 			PreparedStatement st = con.prepareStatement(query);
-			st.setString(1, titolo);
+			st.setString(1, videogioco.getTitolo());
 			ResultSet rs = st.executeQuery(); //eseguo query
 			while (rs.next()) {
 				Videogioco videogiocoo = findByPrimaryKey(rs.getInt("id"));
@@ -205,8 +205,8 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 		}
 		return videogiochi; //restituisco la lista
 	}
-
-	public boolean existsVideogioco(int id) { //controllo se un videogiocoo esiste nel DB
+	@Override
+	public boolean existsVideogioco(Videogioco videogioco) { //controllo se un videogiocoo esiste nel DB
 		Connection con=null;
 		PreparedStatement st=null;
 		ResultSet rs=null;
@@ -215,7 +215,7 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 			 con = dbSource.getConnection();//utilizzo la connessione singleton con il db ed eseguo la query sottostante
 			String query = "select * from videogiochi where id=?";
 			st = con.prepareStatement(query);
-			st.setInt(1, id);
+			st.setInt(1, videogioco.getId());
 			rs = st.executeQuery();//eseguo query
 			return rs.next(); //rs.next() ci da true se abbiamo almeno un elemento, false altrimenti
 			
@@ -240,6 +240,7 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
         }
 
 	}
+	@Override
 	public boolean updateVideogioco(Videogioco oldF, Videogioco newF) { //aggiorno i dati di un videogiocoo esistente e resituisco true se la modifica è avvenuta con successo
 		Connection conn = null;
 		try {
@@ -264,12 +265,13 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 		} 
 	}
 	
-	public String findTitoloById(int idVideogioco) { //restituisco il titolo del videogiocoo in base al suo id
+	@Override
+	public String findTitoloById(int videogioco) { { //restituisco il titolo del videogiocoo in base al suo id
         try {
             Connection conn = dbSource.getConnection();//utilizzo la connessione singleton con il db ed eseguo la query sottostante
             String query = "SELECT titolo FROM videogiochi WHERE id=?";
             PreparedStatement st = conn.prepareStatement(query);
-            st.setInt(1, idVideogioco); 
+            st.setInt(1, videogioco); 
             ResultSet rs = st.executeQuery(); //eseguo query
             String titolo = null;
             if (rs.next()) {
@@ -283,7 +285,8 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null; //altrimenti null
+        return null; 
+	}//altrimenti null
     }
 
 	@Override
@@ -307,5 +310,6 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
         }
         return 0; //altrimenti restituisco 0
 	}
+
 
 }

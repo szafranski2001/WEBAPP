@@ -2,6 +2,8 @@ package it.unical.studenti.strambackend.persistence.dao.jdbc;
 
 import it.unical.studenti.strambackend.persistence.Model.Likeato;
 import it.unical.studenti.strambackend.persistence.Model.Recensione;
+import it.unical.studenti.strambackend.persistence.Model.User;
+import it.unical.studenti.strambackend.persistence.Model.Videogioco;
 import it.unical.studenti.strambackend.persistence.DBSource;
 import it.unical.studenti.strambackend.persistence.dao.RecensioneDAO;
 
@@ -21,16 +23,16 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 	}
 	
 	@Override
-	public void save(int videogioco, String username, Integer voto, String commento) { //salvo una nuova recensione associata ad un user ed un videogioco
+	public void save(Recensione recensione) { //salvo una nuova recensione associata ad un user ed un videogioco
 		Connection conn;
 		try {
 			conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db
 			String query = "INSERT INTO public.recensioni (videogioco, username, voto, commento) values(?,?,?,?);";
 			PreparedStatement st = conn.prepareStatement(query);
-			st.setInt(1, videogioco);
-			st.setString(2, username);
-			st.setInt(3, voto);
-			st.setString(4, commento);
+			st.setInt(1, recensione.getVideogioco());
+			st.setString(2, recensione.getUsername());
+			st.setInt(3, recensione.getVoto());
+			st.setString(4, recensione.getCommento());
 			st.executeUpdate(); //eseguo query
 			//chiudo tutte le varie connessioni
 			st.close();
@@ -43,14 +45,14 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 	}
 
 	@Override
-	public Recensione findByPrimaryKey(String username, int videogioco) { //cerco nel db una recensione scritta da un utente in uno specifico videogioco
+	public Recensione findByPrimaryKey(User user, Videogioco videogioco) { //cerco nel db una recensione scritta da un utente in uno specifico videogioco
 		Recensione recensione = null;
 		try {
 			Connection conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db
 			String query = "select * from recensioni where username=? and videogioco=?";
 			PreparedStatement st = conn.prepareStatement(query);
-			st.setString(1, username);
-			st.setInt(2, videogioco);
+			st.setString(1, user.getUsername());
+			st.setInt(2, videogioco.getId());
 			
 			ResultSet rs = st.executeQuery();
 			if (rs.next()) { //rs.next() ci da true se abbiamo almeno un elemento, false altrimenti
@@ -68,7 +70,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 	}
 
 	@Override
-	public List<Recensione> findAll(String username) { //cerco tutte le recensioni scritte in un determinato videogioco e restituisco una lista di oggetti "recensione"
+	public List<Recensione> findAll() { //cerco tutte le recensioni scritte in un determinato videogioco e restituisco una lista di oggetti "recensione"
 		List<Recensione> recensioni = new ArrayList<Recensione>();
 		try {
 			Connection con = dbSource.getConnection(); //utilizzo la connessione singleton con il db
@@ -104,7 +106,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 	}
 
 	@Override
-	public void delete(String username, int videogioco) { //elimino una recensiosione da un videogioco
+	public void delete(User user, Videogioco videogioco) { //elimino una recensiosione da un videogioco
 	    Connection con = null;
 	    try {
 	        con = this.dbSource.getConnection(); //utilizzo la connessione singleton con il db
@@ -112,24 +114,24 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 	        // ELIMINO TUTTI I LIKES
 	        String query = "DELETE FROM recensioni_likes WHERE usernamedestinatario = ? AND videogioco = ?";
 	        PreparedStatement st = con.prepareStatement(query);
-	        st.setString(1, username);
-	        st.setInt(2, videogioco);
+	        st.setString(1, user.getUsername());
+	        st.setInt(2, videogioco.getId());
 	        st.executeUpdate();
 	        st.close();
 
 	        // ELIMINO TUTTE LE SEGNALAZIONI
 	        query = "DELETE FROM segnalazioni WHERE destinatario = ? AND videogioco = ?";
 	        st = con.prepareStatement(query);
-	        st.setString(1, username);
-	        st.setInt(2, videogioco);
+	        st.setString(1, user.getUsername());
+	        st.setInt(2, videogioco.getId());
 	        st.executeUpdate();
 	        st.close();
 
 	        // ELIMINO LA RECENSIONE
 	        query = "DELETE FROM recensioni WHERE username = ? AND videogioco = ?";
 	        st = con.prepareStatement(query);
-	        st.setString(1, username);
-	        st.setInt(2, videogioco);
+	        st.setString(1, user.getUsername());
+	        st.setInt(2, videogioco.getId());
 	        st.executeUpdate();
 	      //chiudo tutte le varie connessioni
 	        st.close();
@@ -141,7 +143,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 
 
 	@Override
-	public boolean existsRecensione(String username, int videogioco) { //controllo se una recensione ad un videogioco fatta da un utete esiste
+	public boolean existsRecensione(User user, Videogioco videogioco) { //controllo se una recensione ad un videogioco fatta da un utete esiste
 			Connection conn = null;
 			PreparedStatement st= null;
 			ResultSet rs=null;
@@ -149,8 +151,8 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 			conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db
 			String query = "select * from recensioni where username=? and videogioco=?";
 			st = conn.prepareStatement(query);
-			st.setString(1, username);
-			st.setInt(2, videogioco);
+			st.setString(1, user.getUsername());
+			st.setInt(2, videogioco.getId());
 			rs = st.executeQuery();
 			return rs.next(); //rs.next() ci da true se abbiamo almeno un elemento, false altrimenti
 		} catch (SQLException e) {
@@ -200,13 +202,13 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 	}
 
 	@Override
-	public List<Recensione> findByVideogioco(int videogioco, String username) { //cerco le recensioni di un determinato videogioco e restituisco una lista di oggetti "recensione"
+	public List<Recensione> findByVideogioco(User user, Videogioco videogioco) { //cerco le recensioni di un determinato videogioco e restituisco una lista di oggetti "recensione"
 		List<Recensione> recensioni = new ArrayList<Recensione>();
 		try {
 			Connection con = dbSource.getConnection(); //utilizzo la connessione singleton con il db
 			String query = "select * from recensioni where videogioco=?";
 			PreparedStatement st = con.prepareStatement(query);
-			st.setInt(1,videogioco);
+			st.setInt(1,videogioco.getId());
 			ResultSet rs = st.executeQuery(); //eseguo query
 			while (rs.next()) {
 				Recensione recensione = new Recensione(rs.getString("username"),rs.getString("commento"),rs.getInt("voto"),rs.getInt("videogioco"), rs.getInt("likes"));
@@ -225,7 +227,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 		{
 			//ordino la lista di oggetti recensioni in modo da avere prima quelle con più likes
 			Collections.sort(recensioni, (r1, r2) -> Integer.compare(r2.getLikes(), r1.getLikes())); //
-			Recensione recensioneSpecificata = trovaRecensioneSpecificata(recensioni,username);
+			Recensione recensioneSpecificata = trovaRecensioneSpecificata(recensioni,user.getUsername());
 			//se l'utente ha scritto una recensione in quel videogioco verrà messa in cima
 			if (recensioneSpecificata != null) {
 		        recensioni.remove(recensioneSpecificata);
@@ -283,13 +285,13 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 
 
 	@Override
-	public List<Likeato> findLikes(String user) { //controllo tutti i like messi da uno specifico utente e restituisco una lista di oggetti "likeati"
+	public List<Likeato> findLikes(User user) { //controllo tutti i like messi da uno specifico utente e restituisco una lista di oggetti "likeati"
 		List<Likeato> likeati = new ArrayList<Likeato>();
 		try {
 			Connection con = dbSource.getConnection(); //utilizzo la connessione singleton con il db
 			String query = "select * from recensioni_likes where usernameMittente=?";
 			PreparedStatement st = con.prepareStatement(query);
-			st.setString(1,user);
+			st.setString(1,user.getUsername());
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				Likeato like = new Likeato(rs.getString("usernameMittente"),rs.getInt("videogioco"),rs.getString("usernameDestinatario"));		// creo l'oggetto likeato

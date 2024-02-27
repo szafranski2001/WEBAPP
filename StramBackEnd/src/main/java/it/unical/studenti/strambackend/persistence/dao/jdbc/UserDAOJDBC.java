@@ -105,7 +105,7 @@ public class UserDAOJDBC implements UserDAO {
 	}
 	
 	@Override
-	public boolean save(String username, String password, String nome, String cognome, String email, String tipo, String domanda, String risposta) { //salvo nel DB un nuovo user
+	public boolean save(User user) { //salvo nel DB un nuovo user
 		Connection conn;
 
 		try {
@@ -113,14 +113,14 @@ public class UserDAOJDBC implements UserDAO {
 
 			String query = "INSERT INTO public.users (username, password, nome, cognome, email, tipo, domanda, risposta) VALUES(?,?,?,?,?,?,?,?);";
 			PreparedStatement st = conn.prepareStatement(query);
-			st.setString(1, username);
-			st.setString(2, BCrypt.hashpw(password, BCrypt.gensalt(12))); //crittografo la password	
-			st.setString(3, nome);
-			st.setString(4, cognome);
-			st.setString(5, email);
+			st.setString(1, user.getUsername());
+			st.setString(2, BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12))); //crittografo la password	
+			st.setString(3, user.getNome());
+			st.setString(4, user.getCognome());
+			st.setString(5, user.getEmail());
 			st.setInt(6, 0);
-			st.setString(7, domanda);
-			st.setString(8, BCrypt.hashpw(risposta, BCrypt.gensalt(12)));//crittografo la risposta di sicurezza
+			st.setString(7, user.getDomanda());
+			st.setString(8, BCrypt.hashpw(user.getRisposta(), BCrypt.gensalt(12)));//crittografo la risposta di sicurezza
 
 			st.executeUpdate(); //eseguo la query per salvare nel db l'user appena creato
 			//chiudo tutte le varie connessioni
@@ -136,40 +136,7 @@ public class UserDAOJDBC implements UserDAO {
 		return true; //in caso di riuscita restituisco true
 	}
 
-	@Override
-	public boolean existsUsername(String username) { //controllo se nel DB è presente un username
-		Connection conn=null;
-		PreparedStatement st = null;
-		ResultSet rs = null;
-		try {
-			conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db ed eseguo la query sottostante
-			String query = "select users.username from users where username=?";
-			st = conn.prepareStatement(query);
-			st.setString(1, username);
-			rs = st.executeQuery();
-			return rs.next(); //rs.next() ci da true se abbiamo almeno un elemento, false altrimenti
-		
-			} catch (SQLException e) {
-			e.printStackTrace();
-			return false;// In caso di eccezione, ritorno false
-			
-		}finally { //chiudo tutte le varie connessioni
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (st != null) {
-                    st.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
 
-	}
 	
 	@Override
 	public boolean update(User old, User newu) { //aggiorno i dati relativi ad un user
