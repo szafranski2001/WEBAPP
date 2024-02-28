@@ -5,14 +5,14 @@
   <h1>Top 3 Giochi</h1>
   <div class="top-games round8">
     <div class="game-list-slider">
-      <div class="game-item" *ngFor="let game of topGames">
+      <div class="game-item" *ngFor="let game of this.home.topGames">
           <img class="pointer" [src]="game.imgUrl" alt="{{ game.name }}" routerLink="/videogame/{{game.id}}}">
 
           <div class="game-item-rating top-games-ratings pointer">
             <p><span class="material-symbols-rounded starYellow">star</span> {{ game.rate }}/5</p>
           </div>
 
-          <div class="game-item-quick-favourite-button" (click)="clickBtnFavouriteGame(game)">
+          <div class="game-item-quick-favourite-button" (click)="clickBtnFavoriteGame(game)">
             <span class="material-symbols-rounded btn-style pointer" [ngClass]="game.isFavourite && isLogged ? 'icon-fill' : 'icon-outline'">favorite</span>
           </div>
 
@@ -31,7 +31,7 @@
       </div>
 
       <div class="game-list-slider">
-          <div class="game-item round8" *ngFor="let game of games">
+          <div class="game-item round8" *ngFor="let game of this.home.games">
 
                   <div class="wrap-game-item--img-Rating-favouriteBtn">
                       <img class="pointer" [src]="game.imgUrl" alt="{{ game.name }}">
@@ -40,7 +40,7 @@
                         <p><span class="material-symbols-rounded starYellow">star</span> {{ game.rate }}/5</p>
                       </div>
 
-                      <div class="game-item-quick-favourite-button" (click)="clickBtnFavouriteGame(game)">
+                      <div class="game-item-quick-favourite-button" (click)="clickBtnFavoriteGame(game)">
                         <span class="material-symbols-rounded pointer btn-style" [ngClass]="game.isFavourite && isLogged  ? 'icon-fill' : 'icon-outline'">favorite</span>
                       </div>
                   </div>
