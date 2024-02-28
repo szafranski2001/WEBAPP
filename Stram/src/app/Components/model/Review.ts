@@ -1,8 +1,8 @@
 export interface review{
-    idVideogame: number,
-    title: string,
+    videogioco: number,
     username: string,
-    comment: string,
-    rating: number,
-    likes: number
+    voto: number,
+    commento: string,
+    likes: number,
+    titolo: string
 }

@@ -50,9 +50,9 @@ export class VideogameToolbarComponent implements OnInit {
   }
 
   RemoveVideogame(){
-    if(confirm("Sei sicuro di voler cancellare "+this.VideogameManagerService.selectedVideogame.titolo+" dal catalogo?\n Una volta rimosso non sarà più recuperabile. ")){
+    if(confirm("Sei sicuro di voler cancellare "+this.VideogameManagerService.getVideogameTitle()+" dal catalogo?\n Una volta rimosso non sarà più recuperabile. ")){
       this.VideogameManagerService.RemoveVideogameData();
-      alert(this.VideogameManagerService.selectedVideogame.titolo+" è stato rimosso con successo! \n Verrai rendirizzato verso la homepage.")
+      alert(this.VideogameManagerService.getVideogameTitle()+" è stato rimosso con successo! \n Verrai rendirizzato verso la homepage.")
       this.router.navigate(['/']);
     }
   }

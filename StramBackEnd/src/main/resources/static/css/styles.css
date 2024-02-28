@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
+
 * {
   --systemGray6: rgb(28, 28, 30);
   --systemGray5: rgb(44, 44, 46);
@@ -99,7 +102,7 @@
 }
 
 .icon-centered{
-  vertical-align:text-bottom;
+  vertical-align: middle;
 }
 
 .red-icon{
@@ -115,8 +118,8 @@
 }
 
 .px50{
-  width: 50px;
-  height: 50px;
+  width: 4vw;
+  height: 4vw;
 }
 
 .default-btn{
@@ -129,7 +132,6 @@
 hr{
   border: 2px var(--spacer-color) solid;
 }
-
 
 .btn-gray{
   background-color: rgba(99,99,102,0.6);
@@ -170,7 +172,7 @@ html{
 
 body{
   margin: 0;
-  padding-bottom: 15vh;
+  padding-bottom: 9vh;
   background-color: var(--systemGray6);
   min-height: 85vh;
   position: relative;

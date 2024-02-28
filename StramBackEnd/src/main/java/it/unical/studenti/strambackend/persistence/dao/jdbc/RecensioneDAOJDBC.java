@@ -27,12 +27,13 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 		Connection conn;
 		try {
 			conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db
-			String query = "INSERT INTO public.recensioni (videogioco, username, voto, commento) values(?,?,?,?);";
+			String query = "INSERT INTO public.recensioni (videogioco, username, voto, commento,titolo) values(?,?,?,?,?);";
 			PreparedStatement st = conn.prepareStatement(query);
 			st.setInt(1, recensione.getVideogioco());
 			st.setString(2, recensione.getUsername());
 			st.setInt(3, recensione.getVoto());
 			st.setString(4, recensione.getCommento());
+			st.setString(5,recensione.getTitolo());
 			st.executeUpdate(); //eseguo query
 			//chiudo tutte le varie connessioni
 			st.close();

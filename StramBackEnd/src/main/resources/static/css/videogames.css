@@ -7,25 +7,41 @@
 .grid-container{
     display: grid;
     grid-template-columns: 22% 22% 22% 22%;
+    grid-auto-rows: 25vw;
     justify-content: center;
-    gap: 30px;
+    gap: 3vw;
 }
 
 .videogame-figure{
+    position: relative;
     background-color: var(--background-header-color);
     margin: 0;
     width: 100%;
     text-align: center;
+    height: 100%;
+}
+.videogame-figure:hover{
+    transform: scale(1.05);
 }
 
 .videogame-figure img{
-    margin-top: 2px;
+    border: 2px solid var(--systemGray3);
     width: 98%;
+    height: 100%;
 }
 
-.videogame-figure figcaption{
-    font-size: 1.8vw;
-    margin: 15px 5px;
-    overflow-wrap: break-word ;
-    text-overflow: ellipsis;
+.material-symbols-outlined.mdsize{
+    font-size: 2vw;
+}
+
+#fv-btn{
+    position: absolute;
+    bottom: 2%;
+    right: 5%;
+}
+
+#wl-btn{
+    position: absolute;
+    bottom: 20%;
+    right: 5%;
 }

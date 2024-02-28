@@ -22,6 +22,14 @@ export class VideogameDataService {
   toggleEditMode(){
     this.isEditable=!this.isEditable;
   }
+  
+  getVideogameId(){
+    return this.selectedVideogame.id;
+  }
+
+  getVideogameTitle(){
+    return this.selectedVideogame.titolo;
+  }
 
   GetVideogameDetails(id: number){
     let videogame: videogame={
@@ -41,7 +49,7 @@ export class VideogameDataService {
 
     else{
       let videogame: videogame={
-        id: 3,
+        id: 2,
         titolo:'Sto cazzo',
         genere: genere.MMORPG,
         durata: 15,
@@ -57,7 +65,7 @@ export class VideogameDataService {
   }
 
   UpdateRating(){
-    this.selectedVideogame.valutazione=this.ReviewService.getNewAverageRating();
+    this.selectedVideogame.valutazione=this.ReviewService.getNewAverageVoto();
   }
 
   RemoveVideogameData(){

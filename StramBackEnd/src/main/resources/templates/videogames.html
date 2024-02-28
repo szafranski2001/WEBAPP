@@ -12,10 +12,17 @@
     <div class="main-container">
         <h1 class="title">Catalogo Videogiochi</h1>
         <div class="grid-container ">
-            <figure class="videogame-figure round8" th:each="videogame : ${videogames_list}">
-                <img th:src="${videogame.img}" th:alt="${videogame.titolo}">
-                <figcaption class="highlighted-text font20" th:text="${videogame.titolo}"></figcaption>
-            </figure>
+            <div class="videogame-data" th:each="videogame : ${videogames_list}">
+                <figure class="videogame-figure round8">
+                    <button id="fv-btn" class="default-btn round btn-gray px50">
+                        <span class="material-symbols-outlined mdsize">favorite</span>
+                    </button>
+                    <button id="wl-btn" class="default-btn round btn-gray px50">
+                        <span class="material-symbols-outlined mdsize">shopping_bag</span>
+                    </button>
+                    <img style="background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(28, 28, 30, 1));" th:src="${videogame.img}" th:alt="${videogame.titolo}">
+                </figure>
+            </div>
         </div>
     </div>
 

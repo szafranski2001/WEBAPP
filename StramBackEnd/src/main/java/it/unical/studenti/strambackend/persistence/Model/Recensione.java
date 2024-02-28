@@ -7,6 +7,8 @@ public class Recensione {
 	private Integer voto;
 	private int videogioco;
 	private Integer likes;
+
+	private String titolo;
 	
 	public Recensione() {}
 	
@@ -59,5 +61,9 @@ public class Recensione {
 	public void setCommento(String commento) {
 		this.commento = commento;
 	}
+
+	public String getTitolo(){ return titolo;}
+
+	public void setTitolo(String titolo){ this.titolo=titolo; }
 
 }

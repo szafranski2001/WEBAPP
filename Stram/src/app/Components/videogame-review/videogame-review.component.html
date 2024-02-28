@@ -13,9 +13,9 @@
         </p>
     </div>
     <div class="review-bd">
-        <h1 class="highlighted-text" id="title">{{review.title}}</h1>
-        <app-rating [valutazione]="review.rating"></app-rating>
-        <p class="description">{{review.comment}}</p>
+        <h1 class="highlighted-text" id="title">{{review.titolo}}</h1>
+        <app-rating [valutazione]="review.voto"></app-rating>
+        <p class="description">{{review.commento}}</p>
     </div>
     <app-review-toolbar class="toolbar" [reviewInfo]="getSingleReviewInfo(review)" [review]="review"></app-review-toolbar>
  </section>

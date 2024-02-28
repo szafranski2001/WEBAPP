@@ -14,13 +14,13 @@ public class VideogameController {
 
     @PostMapping("/api/AddVideogameData")
     public String AddVideogame(@RequestBody Videogioco videogame){
-        DBManager.getInstance().VideogiocoDAO().save(videogame.getTitolo(),videogame.getDescrizione(),videogame.getGenere(), videogame.getDurata(),videogame.getAnno(),videogame.getImg(),videogame.getTrailer());
-        return "Videogame Added";
+        DBManager.getInstance().VideogiocoDAO().save(videogame);
+        return "OK";
     }
 
     @DeleteMapping("/api/DeleteVideogameData")
     public String DeleteVideogame(@RequestBody Videogioco videogioco){
-        DBManager.getInstance().VideogiocoDAO().save(videogioco.getTitolo(),videogioco.getDescrizione(),videogioco.getGenere(),videogioco.getDurata(),videogioco.getAnno(),videogioco.getImg(),videogioco.getTrailer());
+        DBManager.getInstance().VideogiocoDAO().save(videogioco);
         return "Videogame Deleted";
     }
 

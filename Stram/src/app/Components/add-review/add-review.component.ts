@@ -15,7 +15,7 @@ export class AddReviewComponent implements OnInit {
   numberOfStars=5;
   currentRating = {value : 1, stars : Array.from({length : this.numberOfStars}, (_,i) => i < 1 ? 'starFull' : 'starEmpty')};
   UserImage : number;
-  User="stocazzo";
+  User="izaxiu";
 
   constructor(private generalTasks : GeneralTasksService, private ReviewService : VideogameReviewsService, private VideogameManagerService : VideogameDataService) {}
 
@@ -35,17 +35,24 @@ export class AddReviewComponent implements OnInit {
   SubmitReview(form : NgForm){
     //Prendi dati, crei review e invia a ReviewList e poi backEnd
     let review : review = 
-    { idVideogame : this.VideogameManagerService.selectedVideogame.id, 
-      title : form.value['title'],
-      username : 'stocazzo',//da cambiare con il valore del currentUser
-      comment : form.value['description'],
-      rating : this.currentRating.value,
-      likes : 0
+    { videogioco : this.VideogameManagerService.getVideogameId(), 
+      username : this.User,//da cambiare con il valore del currentUser
+      voto : this.currentRating.value,
+      commento : form.value['description'],
+      likes : 0,
+      titolo : form.value['title']
     }
     
-    this.ReviewService.AddReviewData(review);
-    this.VideogameManagerService.UpdateRating();
-    this.ResetForm(form);
+    this.ReviewService.AddReviewData(review).subscribe((added) => {
+      this.ResetForm(form);
+      if(added){
+        this.ReviewService.AddReviewList(review);
+        this.VideogameManagerService.UpdateRating();
+      }
+      else{
+        alert("Non è stato possibile aggiungere la tua recensione");
+      }
+    })
   }
 
 
