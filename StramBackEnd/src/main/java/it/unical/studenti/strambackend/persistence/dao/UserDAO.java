@@ -5,11 +5,10 @@ import java.util.List;
 import it.unical.studenti.strambackend.persistence.Model.User;
 
 public interface UserDAO {
-	public boolean existsUser(String username); //CONTROLLO SE UN USER ESISTE
-	public boolean checkPassword(String username, String password); //CONTROLLO SE LA PASSWORD INSERITA È CORRETTA
+	public boolean existsUser(String user); //CONTROLLO SE UN USER ESISTE
+	public boolean checkPassword(String user, String password); //CONTROLLO SE LA PASSWORD INSERITA È CORRETTA
 	public User findByPrimaryKey(String username); //RESTITUISCO L'OGGETTO USER IN BASE AL SUO USERNAME
-	public boolean save(String username, String password, String nome, String cognome, String email, String tipo, String domanda, String risposta); // SALVO UN NUOVO USER NEL DB
-	public boolean existsUsername(String username);// CONTROLLO SE UN USERNAME ESISTE
+	public boolean save(User user); // SALVO UN NUOVO USER NEL DB
 	public boolean existsUserEmail(String email); //CONTROLLO SE UN'EMAIL ESISTE
 	public void setPassword(String username, String password); // AGGIORNO LA PASSWORD DI UN UTENTE
 	public boolean update(User old, User newu); //AGIGORNO I DATI RELATIVI AD UN UTENTE

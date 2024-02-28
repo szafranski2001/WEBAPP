@@ -44,7 +44,7 @@ public class Segnalazioni {
 	}
 	
 	public String getTitoloVideogioco() {
-        String titolo = DBManager.getInstance().VideogiocoDAO().findTitoloById(getIdVideogioco());
+        String titolo = DBManager.getInstance().VideogiocoDAO().findTitoloById(this.idVideogioco);
         return titolo;
     }
 	

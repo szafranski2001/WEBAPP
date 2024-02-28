@@ -33,7 +33,7 @@ public class User {
 	    this.watchlist = new Liste("watchlist", this.username);
 		this.preferiti.setList(DBManager.getInstance().listeDAO().OpenList(this.preferiti));
 		this.watchlist.setList(DBManager.getInstance().listeDAO().OpenList(this.watchlist));
-		this.likes= DBManager.getInstance().recensioneDAO().findLikes(username);
+		this.likes= DBManager.getInstance().recensioneDAO().findLikes(this);
 		
 	}
 	public List <Likeato> getLikes()
