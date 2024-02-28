@@ -6,7 +6,7 @@
   <div class="top-games round8">
     <div class="game-list-slider">
       <div class="game-item" *ngFor="let game of topGames">
-          <img class="pointer" [src]="game.imgUrl" alt="{{ game.name }}">
+          <img class="pointer" [src]="game.imgUrl" alt="{{ game.name }}" routerLink="/videogame/{{game.id}}}">
 
           <div class="game-item-rating top-games-ratings pointer">
             <p><span class="material-symbols-rounded starYellow">star</span> {{ game.rate }}/5</p>
