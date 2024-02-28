@@ -12,9 +12,9 @@ import {HomeService} from "../../services/home.service";
 })
 export class HomeComponent {
 
-    constructor(private home: HomeService) {}
+    constructor(protected home: HomeService) {}
 
-
+    isLogged = true;
 
     clickBtnFavoriteGame(game: SingleGameInfo) {
       let result: ResultStatusOnly
