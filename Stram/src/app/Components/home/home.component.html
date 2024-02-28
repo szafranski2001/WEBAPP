@@ -12,8 +12,8 @@
             <p><span class="material-symbols-rounded starYellow">star</span> {{ game.rate }}/5</p>
           </div>
 
-          <div class="game-item-quick-favourite-button">
-            <span class="material-symbols-rounded btn-style pointer">favorite</span>
+          <div class="game-item-quick-favourite-button" (click)="clickBtnFavouriteGame(game)">
+            <span class="material-symbols-rounded btn-style pointer" [ngClass]="game.isFavourite && isLogged ? 'icon-fill' : 'icon-outline'">favorite</span>
           </div>
 
       </div>
@@ -40,8 +40,8 @@
                         <p><span class="material-symbols-rounded starYellow">star</span> {{ game.rate }}/5</p>
                       </div>
 
-                      <div class="game-item-quick-favourite-button">
-                        <span class="material-symbols-rounded pointer btn-style">favorite</span>
+                      <div class="game-item-quick-favourite-button" (click)="clickBtnFavouriteGame(game)">
+                        <span class="material-symbols-rounded pointer btn-style" [ngClass]="game.isFavourite && isLogged  ? 'icon-fill' : 'icon-outline'">favorite</span>
                       </div>
                   </div>
 

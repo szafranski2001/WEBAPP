@@ -6,4 +6,5 @@ export interface SingleGameInfo {
   name: string;     //Minecraft
   imgUrl: string;   //localhost:server/name.png
   rate: number;     //3 (su 5)
+  isFavourite: boolean;
 }

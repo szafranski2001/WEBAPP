@@ -187,8 +187,8 @@ prev > .material-symbols-rounded {
 
 
 .btn-style {
-  background-color: rgba(99,99,102,0.75);
-  border: 2px var(--systemGray2) solid;
+  background-color: rgba(99,99,102,0.9);
+  border: 1.5px var(--systemGray2) solid;
 
   border-radius: 50%;
 
@@ -197,7 +197,7 @@ prev > .material-symbols-rounded {
 }
 
 .btn-style:hover {
-  background-color: rgba(132, 132, 135, 0.6);
+  background-color: rgba(132, 132, 135, 0.9);
   animation: btn-anim-hover 0.2s linear 0.1s 1 both;
 }
 
