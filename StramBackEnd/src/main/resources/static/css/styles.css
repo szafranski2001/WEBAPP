@@ -109,10 +109,6 @@
   color:rgb(220, 2, 2);
 }
 
-.like-blue-icon{
-  color:rgb(18, 126, 233);
-}
-
 .wish-gold-icon{
   color:rgb(255,215,0);
 }
@@ -181,13 +177,4 @@ body{
 
 img {
   border-radius: 8px;
-}
-
-.material-symbols-rounded {
-  font-size: inherit;
-  vertical-align: center;
-}
-
-.material-symbols-rounded.starYellow {
-  color: var(--gold-color);
 }

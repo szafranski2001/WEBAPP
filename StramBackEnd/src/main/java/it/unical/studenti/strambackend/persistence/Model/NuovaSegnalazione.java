@@ -4,7 +4,6 @@ public class NuovaSegnalazione extends StateSegnalazioni {
 
 	NuovaSegnalazione(Segnalazioni segnalazione) {
 		super(segnalazione);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

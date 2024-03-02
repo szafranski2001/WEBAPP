@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { review } from '../Components/model/Review';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { reviewLikeInfo, reviewReportInfo } from '../Components/model/ReviewInfo';
 import { ReportStatus } from '../Components/model/ReportStatus';
+import { catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -46,11 +47,15 @@ export class VideogameReviewsService {
     return sum/this.reviewsList.length;
   }
 
-  AddReviewList(review : review){
+  AddToReviewList(review : review){
     this.reviewsList.unshift(review);
   }
 
-  // GET DATA
+  DeleteFromReviewList(index : number){
+     return this.reviewsList.splice(index,1);
+  }
+
+  /////Http Methods calls
 
   getReviewListByVideogameId(id : number){
     //effettua qui la tua chiamata al back-end per la richiesta degli oggetti reviews
@@ -71,38 +76,31 @@ export class VideogameReviewsService {
             {mittente:"stocazzo",destinatario:"CR3",videogameId: 0, stato: ReportStatus.closed}];
   }
 
-
-  // PUT/PATCH DATA
-
-  AddReviewData(review : review){
-    return this.http.post<boolean>(this.BackEndURL+"/AddReview",review);
-  }
-
-  AddLikeToReview(review : review){
-    let reviewInfo : reviewLikeInfo = {mittente:this.User,destinatario:review.username, videogameId: review.videogioco};
-    this.http.post(this.BackEndURL+"/addLike",reviewInfo);
-  }
-
   AddReportToReview(review : review){
     let reviewInfo : reviewReportInfo = {mittente : this.User, destinatario: review.username, videogameId: review.videogioco,stato:ReportStatus.open};
     this.http.post<string>(this.BackEndURL+"/addReport",reviewInfo); 
   }
 
-  //DELETE DATA
-
-  RemoveLikeToReview(review : review){
-    review.likes--;
-    //chiamata al backEnd per rimuovere like nel db
-  }
-
-
   RemoveReportToReview(review : review){
     //chiamata al backEnd per rimuovere segnalazione nel db
   }
 
+  ///////
   
-  DeleteReviewData(index : number){
-    let review=this.reviewsList.splice(index,1);
-    //Chiamata al backEnd per la rimozione della recensione dal db
+  ManageLikeToReview(review : review, state : boolean){
+    let reviewInfo : reviewLikeInfo = {mittente:this.User,destinatario:review.username, videogameId: review.videogioco};
+    const options={ body : reviewInfo};
+
+    return state ? this.http.post(this.BackEndURL+"/AddLike",options) : this.http.delete(this.BackEndURL+"/RemoveLike",options);
   }
+
+  AddReviewData(review : review){
+    return this.http.post(this.BackEndURL+"/AddReview",review);
+  }
+
+  DeleteReviewData(review : review){
+    const options={ body : review };
+    return this.http.delete(this.BackEndURL+"/DeleteReview",options);
+  }
+
 }

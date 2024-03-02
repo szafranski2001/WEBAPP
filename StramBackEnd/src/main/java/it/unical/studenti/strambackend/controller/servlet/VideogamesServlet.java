@@ -1,6 +1,5 @@
 package it.unical.studenti.strambackend.controller.servlet;
 
-import it.unical.studenti.strambackend.persistence.DBManager;
 import it.unical.studenti.strambackend.persistence.Model.Videogioco;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

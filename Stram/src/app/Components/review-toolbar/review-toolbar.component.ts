@@ -3,6 +3,7 @@ import { tipologiaUser } from '../model/TipologiaUtente';
 import { VideogameReviewsService } from '../../services/videogame-reviews.service';
 import { review } from '../model/Review';
 import { VideogameDataService } from '../../services/videogame-data.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -34,9 +35,17 @@ export class ReviewToolbarComponent implements OnInit{
 
   DeleteReview(){
     if(confirm("Sei sicuro di voler rimuovere questa recensione? \n Una volta eliminata non sarà più recuperabile.")){
-      this.ReviewService.DeleteReviewData(this.ReviewService.SearchUserReview(this.review.username));
-      this.VideogameManagerService.UpdateRating();
-      alert("Recensione eliminata con successo!");
+      let revIndex=this.ReviewService.SearchUserReview(this.review.username);
+      this.ReviewService.DeleteReviewData(this.review).subscribe({
+        next: () => {
+          this.ReviewService.DeleteFromReviewList(revIndex);
+          this.VideogameManagerService.UpdateRating();
+          alert("Recensione eliminata con successo!");
+        },
+        error: (error : HttpErrorResponse) => {
+          alert(error.error);
+        }
+      });
     }
   }
 
@@ -46,7 +55,25 @@ export class ReviewToolbarComponent implements OnInit{
   }
 
   LikeReview(){
-    this.isLiked=!this.isLiked;
-    this.isLiked ? this.ReviewService.AddLikeToReview(this.review) : this.ReviewService.RemoveLikeToReview(this.review);
+    this.isLiked ? 
+      this.ReviewService.ManageLikeToReview(this.review,this.isLiked).subscribe({
+        next: () => {
+          this.review.likes++;
+          this.isLiked=!this.isLiked;
+        },
+        error: (error : HttpErrorResponse) => {
+          alert(error.error);
+        }
+      })
+      : 
+      this.ReviewService.ManageLikeToReview(this.review,this.isLiked).subscribe({
+        next: () => {
+          this.review.likes--;
+          this.isLiked=!this.isLiked;
+        },
+        error: (error : HttpErrorResponse) => {
+          alert(error.error);
+        }
+      })
   }
 }

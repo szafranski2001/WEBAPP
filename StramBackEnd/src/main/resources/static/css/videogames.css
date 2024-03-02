@@ -34,13 +34,13 @@
     font-size: 2vw;
 }
 
-#fv-btn{
+.fv-btn{
     position: absolute;
     bottom: 2%;
     right: 5%;
 }
 
-#wl-btn{
+.wl-btn{
     position: absolute;
     bottom: 20%;
     right: 5%;

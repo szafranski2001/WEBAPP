@@ -4,6 +4,8 @@ import { GeneralTasksService } from '../../services/general-tasks.service';
 import { VideogameReviewsService } from '../../services/videogame-reviews.service';
 import { review } from '../model/Review';
 import { VideogameDataService } from '../../services/videogame-data.service';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { finalize, tap } from 'rxjs';
 
 @Component({
   selector: 'app-add-review',
@@ -43,16 +45,17 @@ export class AddReviewComponent implements OnInit {
       titolo : form.value['title']
     }
     
-    this.ReviewService.AddReviewData(review).subscribe((added) => {
-      this.ResetForm(form);
-      if(added){
-        this.ReviewService.AddReviewList(review);
+    this.ReviewService.AddReviewData(review).subscribe({
+      next: () => {
+        this.ReviewService.AddToReviewList(review);
         this.VideogameManagerService.UpdateRating();
+      },
+      error: (error : HttpErrorResponse) => {
+        alert(error.error);
       }
-      else{
-        alert("Non è stato possibile aggiungere la tua recensione");
-      }
-    })
+    });
+
+    this.ResetForm(form);
   }
 
 

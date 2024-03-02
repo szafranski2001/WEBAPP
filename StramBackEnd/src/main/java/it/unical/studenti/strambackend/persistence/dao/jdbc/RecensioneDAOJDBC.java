@@ -6,6 +6,7 @@ import it.unical.studenti.strambackend.persistence.Model.User;
 import it.unical.studenti.strambackend.persistence.Model.Videogioco;
 import it.unical.studenti.strambackend.persistence.DBSource;
 import it.unical.studenti.strambackend.persistence.dao.RecensioneDAO;
+import it.unical.studenti.strambackend.persistence.exceptions.DatabaseException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +24,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 	}
 	
 	@Override
-	public void save(Recensione recensione) { //salvo una nuova recensione associata ad un user ed un videogioco
+	public void save(Recensione recensione) throws DatabaseException { //salvo una nuova recensione associata ad un user ed un videogioco
 		Connection conn;
 		try {
 			conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db
@@ -38,11 +39,12 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 			//chiudo tutte le varie connessioni
 			st.close();
 			conn.close();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new DatabaseException("Errore durante il salvataggio della recensione.");
 		}
-		
+
 	}
 
 	@Override
@@ -88,7 +90,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		
+
 		}
 		//ordino la lista di oggetti recensioni in modo da avere prima quelle con più likes
 		Collections.sort(recensioni, (r1, r2) -> Integer.compare(r2.getLikes(), r1.getLikes()));
@@ -107,7 +109,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 	}
 
 	@Override
-	public void delete(User user, Videogioco videogioco) { //elimino una recensiosione da un videogioco
+	public void delete(Recensione recensione) throws DatabaseException{ //elimino una recensione da un videogioco
 	    Connection con = null;
 	    try {
 	        con = this.dbSource.getConnection(); //utilizzo la connessione singleton con il db
@@ -115,30 +117,30 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 	        // ELIMINO TUTTI I LIKES
 	        String query = "DELETE FROM recensioni_likes WHERE usernamedestinatario = ? AND videogioco = ?";
 	        PreparedStatement st = con.prepareStatement(query);
-	        st.setString(1, user.getUsername());
-	        st.setInt(2, videogioco.getId());
+	        st.setString(1, recensione.getUsername());
+	        st.setInt(2, recensione.getVideogioco());
 	        st.executeUpdate();
 	        st.close();
 
 	        // ELIMINO TUTTE LE SEGNALAZIONI
 	        query = "DELETE FROM segnalazioni WHERE destinatario = ? AND videogioco = ?";
 	        st = con.prepareStatement(query);
-	        st.setString(1, user.getUsername());
-	        st.setInt(2, videogioco.getId());
+	        st.setString(1, recensione.getUsername());
+	        st.setInt(2, recensione.getVideogioco());
 	        st.executeUpdate();
 	        st.close();
 
 	        // ELIMINO LA RECENSIONE
 	        query = "DELETE FROM recensioni WHERE username = ? AND videogioco = ?";
 	        st = con.prepareStatement(query);
-	        st.setString(1, user.getUsername());
-	        st.setInt(2, videogioco.getId());
+	        st.setString(1, recensione.getUsername());
+	        st.setInt(2, recensione.getVideogioco());
 	        st.executeUpdate();
 	      //chiudo tutte le varie connessioni
 	        st.close();
 	        con.close();
 	    } catch (SQLException e) {
-	        throw new RuntimeException(e.getMessage());
+			throw new DatabaseException("Errore durante la cancellazione della recensione.");
 	    }
 	}
 
@@ -238,52 +240,40 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 		}
 		return recensioni;
 	}
-	
+
 	@Override
-	public void addOrRemoveLike(Likeato liked, int change) { //aggiungo o rimuovo il like da una recensione
+	public void addOrRemoveLike(Likeato liked, int value) throws DatabaseException { //aggiungo o rimuovo il like da una recensione
 
-	    try {
-	        Connection conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db
-	        String query = "select likes from recensioni where username=? and videogioco=?";
-	        PreparedStatement st = conn.prepareStatement(query);
-	        st.setString(1, liked.getUsernameDestinatario());
-	        st.setInt(2, liked.getIdVideogioco());
-	        ResultSet rs = st.executeQuery(); //eseguo la query
-	        int likes = 0;
-	        if (rs.next()) {
-	            likes = rs.getInt("likes");
-	        } //prendo il numero di likes che ha una recensione
-	        rs.close();	 
-	        likes += change; //aggiungo la differenza
-	        st.close();
-	        query = "update recensioni SET likes = ? WHERE username=? and videogioco=?"; //aggiorno la quantità di likes
-	        st = conn.prepareStatement(query);
-	        st.setInt(1, likes);
-	        st.setString(2, liked.getUsernameDestinatario());
-	        st.setInt(3, liked.getIdVideogioco());
-	        st.executeUpdate();
-	        st.close();
+		try {
+			Connection conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db
+			String query = "update recensioni SET likes = likes+? WHERE username=? and videogioco=?";
+			PreparedStatement st = conn.prepareStatement(query);//aggiorno la quantità di likes
+			st.setInt(1, value);
+			st.setString(2, liked.getUsernameDestinatario());
+			st.setInt(3, liked.getIdVideogioco());
+			st.executeUpdate();
+			st.close();
 
-	        if (change == 1) { //controllo se la funzione è stata richiamata per aggiungere o togliere il like
-	            query = "insert into recensioni_likes (usernameMittente, videogioco, usernameDestinatario) values (?,?,?)"; // se aggiungo inserico il like nella tabella recensioni_likes
-	        } else {
-	            query = "DELETE FROM recensioni_likes WHERE usernameMittente = ? and  videogioco =? and usernameDestinatario=?"; // altrimenti rimuovo il like dalla tabella 
-	        }
-	        st = conn.prepareStatement(query);
-	        st.setString(1, liked.getUsernameMittente());
-	        st.setInt(2, liked.getIdVideogioco());
-	        st.setString(3, liked.getUsernameDestinatario());
-	        st.executeUpdate(); //eseguo la query
+			String InsertOrDeleteQuery;
+			if (value == 1) //controllo se la funzione è stata richiamata per aggiungere o togliere il like
+				InsertOrDeleteQuery = "insert into recensioni_likes (usernameMittente, videogioco, usernameDestinatario) values (?,?,?)"; // se aggiungo inserico il like nella tabella recensioni_likes
+			else
+				InsertOrDeleteQuery = "DELETE FROM recensioni_likes WHERE usernameMittente = ? and  videogioco =? and usernameDestinatario=?"; // altrimenti rimuovo il like dalla tabella
+
+			PreparedStatement InsertOrDeleteSt=conn.prepareStatement(InsertOrDeleteQuery);
+			InsertOrDeleteSt.setString(1, liked.getUsernameMittente());
+			InsertOrDeleteSt.setInt(2, liked.getIdVideogioco());
+			InsertOrDeleteSt.setString(3, liked.getUsernameDestinatario());
+			InsertOrDeleteSt.executeUpdate(); //eseguo la query
 
 			//chiudo tutte le varie connessioni
-	        st.close();
-	        conn.close();
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-
+			st.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DatabaseException("Errore durante l'aggiunta/rimozione del like.");
+		}
 	}
-
 
 	@Override
 	public List<Likeato> findLikes(User user) { //controllo tutti i like messi da uno specifico utente e restituisco una lista di oggetti "likeati"
