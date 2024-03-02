@@ -7,10 +7,12 @@ import { VideogameListsComponent} from "./Components/videogame-lists/videogame-l
 import {HomeComponent} from "./Components/home/home.component";
 import {LoginComponent} from "./Components/login/login.component";
 import { NotfoundComponent } from './Components/notfound/notfound.component';
+import {SignupComponent} from "./Components/signup/signup.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'profile', component:ProfileComponent},
+  {path: 'signup', component: SignupComponent},
   {path: 'login', component: LoginComponent},
   {path: 'guidelines', component:GuidelinesComponent},
   {path: 'videogame/:id', component:VideogameDetailComponent},

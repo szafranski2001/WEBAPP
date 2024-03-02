@@ -3,7 +3,7 @@
   place-items: center;
 
 }
-#password, #username {
+.input {
   outline: 3px solid #2f97ca;
   outline-offset: 3px;
   height: 25px;

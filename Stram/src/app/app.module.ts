@@ -25,6 +25,7 @@ import { AddReviewComponent } from './Components/add-review/add-review.component
 import { MatIconModule } from '@angular/material/icon';
 import { MatIconRegistry } from '@angular/material/icon';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { SignupComponent } from './Components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     NotfoundComponent,
     ReviewToolbarComponent,
     AddRatingComponent,
-    AddReviewComponent
+    AddReviewComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
