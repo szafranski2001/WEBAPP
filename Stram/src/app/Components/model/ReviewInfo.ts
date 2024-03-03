@@ -1,4 +1,4 @@
-import { ReportStatus } from "./ReportStatus"
+import { StateSegnalazioni } from "./ReportStatus"
 
 export interface reviewLikeInfo{
     usernameMittente: string,
@@ -7,8 +7,8 @@ export interface reviewLikeInfo{
 }
 
 export interface reviewReportInfo{
+    stato : StateSegnalazioni,
     mittente: string,
     destinatario: string,
-    videogioco : number,
-    stato : ReportStatus
+    idVideogioco : number,
 }

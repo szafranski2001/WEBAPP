@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { review } from '../Components/model/Review';
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { reviewLikeInfo, reviewReportInfo } from '../Components/model/ReviewInfo';
-import { ReportStatus } from '../Components/model/ReportStatus';
-import { catchError, throwError } from 'rxjs';
+import { StateSegnalazioni } from '../Components/model/ReportStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -72,21 +71,18 @@ export class VideogameReviewsService {
 
   getReviewReportInfo( videogameId : number){
     //effettua chiamata al back-end per prendere tutte i riferimenti cui il nostro utente ha segnalato
-    return [{mittente:"stocazzo",destinatario:"CR4",videogioco: 0, stato: ReportStatus.open},
-            {mittente:"stocazzo",destinatario:"CR3",videogioco: 0, stato: ReportStatus.closed}];
+    return [{mittente:"stocazzo",destinatario:"CR4",idVideogioco: 0, stato: StateSegnalazioni.open},
+            {mittente:"stocazzo",destinatario:"CR3",idVideogioco: 0, stato: StateSegnalazioni.closed}];
   }
 
 
   ///////
 
-  AddReportToReview(review : review){
-    let reviewInfo : reviewReportInfo = {mittente : this.User, destinatario: review.username, videogioco: review.videogioco,stato:ReportStatus.open};
-    return this.http.post<string>(this.BackEndURL+"/addReport",reviewInfo); 
-  }
+  ManageReportToReview(review : review, state : boolean){
+    let reviewInfo : reviewReportInfo = {mittente : this.User, destinatario: review.username, idVideogioco: review.videogioco,stato:StateSegnalazioni.open};
+    const options={ body : reviewInfo };
 
-
-  RemoveReportToReview(review : review){
-    //chiamata al backEnd per rimuovere segnalazione nel db
+    return state ?  this.http.post(this.BackEndURL+"/AddReport",reviewInfo) : this.http.delete(this.BackEndURL+"RemoveReport",options);
   }
   
   ManageLikeToReview(review : review, state : boolean){

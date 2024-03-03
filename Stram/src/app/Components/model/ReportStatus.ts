@@ -1,3 +1,3 @@
-export enum ReportStatus{
-    open,in_progress,closed,
+export enum StateSegnalazioni{
+    open="Aperta",in_progress="In corso",closed="Chiusa",
 }

@@ -9,7 +9,6 @@ public class NuovaSegnalazione extends StateSegnalazioni {
 	@Override
 	public String statoSegnalazione() {
 		return "NUOVA SEGNALAZIONE";
-		
 	}
 	
 

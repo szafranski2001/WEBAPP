@@ -50,18 +50,24 @@ export class ReviewToolbarComponent implements OnInit{
   }
 
   ReportReview(){
-    this.isReported=!this.isReported;
-    this.isReported ? 
-      this.ReviewService.AddReportToReview(this.review).subscribe({
+    !this.isReported ? 
+      this.ReviewService.ManageReportToReview(this.review,true).subscribe({
         next: () => {
-
+          this.isReported=!this.isReported;
         },
-        error: () => {
-
+        error: (error : HttpErrorResponse) => {
+          alert(error.error);
         }
       })
       : 
-      this.ReviewService.RemoveReportToReview(this.review);
+      this.ReviewService.ManageReportToReview(this.review,false).subscribe({
+        next: () => {
+          this.isReported=!this.isReported;
+        },
+        error: (error : HttpErrorResponse) => {
+          alert(error.error);
+        }
+      });
   }
 
   LikeReview(){

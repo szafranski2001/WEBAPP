@@ -1,34 +1,32 @@
 package it.unical.studenti.strambackend.persistence.Model;
 
-import it.unical.studenti.strambackend.persistence.DBManager;
-
 public class Segnalazioni {
-	private StateSegnalazioni state;
+	private StateSegnalazioni stato;
 	private String mittente;
 	private String destinatario;
 	private int idVideogioco;
 	
 	public Segnalazioni() {
-		this.state=new NuovaSegnalazione(this);
+		this.stato=new NuovaSegnalazione(this);
 
 	}
 	public Segnalazioni(String mittente, String destinatario,int idVideogioco) {
 		this.mittente = mittente;
 		this.destinatario = destinatario;
 		this.idVideogioco = idVideogioco;
-		this.state = new NuovaSegnalazione(this);
+		this.stato = new NuovaSegnalazione(this);
 	}
 	
 	public void changeState(StateSegnalazioni state)
 	{
-		this.state=state;
+		this.stato=state;
 	}
 	public StateSegnalazioni getState() {
-		return state;
+		return stato;
 	}
 	
 	public void setState(StateSegnalazioni state) {
-		this.state = state;
+		this.stato = state;
 	}
 	
 	public String getMittente() {
@@ -43,13 +41,8 @@ public class Segnalazioni {
 		return idVideogioco;
 	}
 	
-	public String getTitoloVideogioco() {
-        String titolo = DBManager.getInstance().VideogiocoDAO().findTitoloById(this.idVideogioco);
-        return titolo;
-    }
-	
     public String getStato() {
-        return state.statoSegnalazione();
+        return stato.statoSegnalazione();
     }
 	
 }

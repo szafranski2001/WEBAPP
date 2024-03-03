@@ -3,6 +3,7 @@ package it.unical.studenti.strambackend.controller;
 import it.unical.studenti.strambackend.persistence.DBManager;
 import it.unical.studenti.strambackend.persistence.Model.Likeato;
 import it.unical.studenti.strambackend.persistence.Model.Recensione;
+import it.unical.studenti.strambackend.persistence.Model.Segnalazioni;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ public class ReviewController {
     public ResponseEntity<String> AddReview(@RequestBody Recensione review){
         try {
             DBManager.getInstance().recensioneDAO().save(review);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -47,6 +48,28 @@ public class ReviewController {
     public ResponseEntity<?> RemoveLikeFromReview(@RequestBody Likeato likeato){
         try{
             DBManager.getInstance().recensioneDAO().addOrRemoveLike(likeato,-1);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/api/AddReport")
+    public ResponseEntity<?> AddReportToReview(@RequestBody Segnalazioni segnalazione){
+        try{
+            DBManager.getInstance().segnalazioniDAO().CreateReport(new Segnalazioni());
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/api/RemoveReport")
+    public ResponseEntity<?> RemoveReportFromReview(@RequestBody Segnalazioni segnalazione){
+        try{
+            DBManager.getInstance().segnalazioniDAO().DeleteReport(segnalazione);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception e){

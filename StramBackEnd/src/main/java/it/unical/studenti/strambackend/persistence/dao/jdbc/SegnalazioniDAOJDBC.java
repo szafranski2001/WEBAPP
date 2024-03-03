@@ -22,7 +22,6 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
 		this.dbSource= dbSource;
 	}
 
-
 	@Override
 	public void CreateReport(Segnalazioni segnalazione) throws DatabaseException { //creo una nuova segnalazione fa parte di un utente
 		Connection conn;

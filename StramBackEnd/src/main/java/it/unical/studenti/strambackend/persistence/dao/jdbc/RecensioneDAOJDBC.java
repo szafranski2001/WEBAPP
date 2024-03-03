@@ -292,8 +292,8 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 			rs.close();
 			st.close();
 			con.close();
-			
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return likeati; //ritorno la lista likeati
