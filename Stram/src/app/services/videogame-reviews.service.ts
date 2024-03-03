@@ -64,34 +64,36 @@ export class VideogameReviewsService {
 
   getReviewLikeInfo( videogameId : number){
     //effettua chiamata al back-end per prendere tutte i riferimenti a cui il nostro utente ha messo like
-    return [{mittente:"stocazzo",destinatario:"CR2", videogameId: 0},
-            {mittente:"stocazzo",destinatario:"daje", videogameId: 0},
-            {mittente:"stocazzo",destinatario:"sium", videogameId: 0},
-            {mittente:"stocazzo",destinatario:"CR1", videogameId: 1}];
+    return [{usernameMittente:"stocazzo",usernameDestinatario:"CR2", idVideogioco: 0},
+            {usernameMittente:"stocazzo",usernameDestinatario:"daje", idVideogioco: 0},
+            {usernameMittente:"stocazzo",usernameDestinatario:"sium", idVideogioco: 0},
+            {usernameMittente:"stocazzo",usernameDestinatario:"CR1", idVideogioco: 1}];
   }
 
   getReviewReportInfo( videogameId : number){
     //effettua chiamata al back-end per prendere tutte i riferimenti cui il nostro utente ha segnalato
-    return [{mittente:"stocazzo",destinatario:"CR4",videogameId: 0, stato: ReportStatus.open},
-            {mittente:"stocazzo",destinatario:"CR3",videogameId: 0, stato: ReportStatus.closed}];
+    return [{mittente:"stocazzo",destinatario:"CR4",videogioco: 0, stato: ReportStatus.open},
+            {mittente:"stocazzo",destinatario:"CR3",videogioco: 0, stato: ReportStatus.closed}];
   }
 
+
+  ///////
+
   AddReportToReview(review : review){
-    let reviewInfo : reviewReportInfo = {mittente : this.User, destinatario: review.username, videogameId: review.videogioco,stato:ReportStatus.open};
-    this.http.post<string>(this.BackEndURL+"/addReport",reviewInfo); 
+    let reviewInfo : reviewReportInfo = {mittente : this.User, destinatario: review.username, videogioco: review.videogioco,stato:ReportStatus.open};
+    return this.http.post<string>(this.BackEndURL+"/addReport",reviewInfo); 
   }
+
 
   RemoveReportToReview(review : review){
     //chiamata al backEnd per rimuovere segnalazione nel db
   }
-
-  ///////
   
   ManageLikeToReview(review : review, state : boolean){
-    let reviewInfo : reviewLikeInfo = {mittente:this.User,destinatario:review.username, videogameId: review.videogioco};
+    let reviewInfo : reviewLikeInfo = {usernameMittente:this.User,usernameDestinatario:review.username, idVideogioco: review.videogioco};
     const options={ body : reviewInfo};
 
-    return state ? this.http.post(this.BackEndURL+"/AddLike",options) : this.http.delete(this.BackEndURL+"/RemoveLike",options);
+    return state ? this.http.post(this.BackEndURL+"/AddLike",reviewInfo) : this.http.delete(this.BackEndURL+"/RemoveLike",options);
   }
 
   AddReviewData(review : review){

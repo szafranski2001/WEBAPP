@@ -51,12 +51,22 @@ export class ReviewToolbarComponent implements OnInit{
 
   ReportReview(){
     this.isReported=!this.isReported;
-    this.isReported ? this.ReviewService.AddReportToReview(this.review) : this.ReviewService.RemoveReportToReview(this.review);
+    this.isReported ? 
+      this.ReviewService.AddReportToReview(this.review).subscribe({
+        next: () => {
+
+        },
+        error: () => {
+
+        }
+      })
+      : 
+      this.ReviewService.RemoveReportToReview(this.review);
   }
 
   LikeReview(){
-    this.isLiked ? 
-      this.ReviewService.ManageLikeToReview(this.review,this.isLiked).subscribe({
+    !this.isLiked ? 
+      this.ReviewService.ManageLikeToReview(this.review,true).subscribe({
         next: () => {
           this.review.likes++;
           this.isLiked=!this.isLiked;
@@ -66,7 +76,7 @@ export class ReviewToolbarComponent implements OnInit{
         }
       })
       : 
-      this.ReviewService.ManageLikeToReview(this.review,this.isLiked).subscribe({
+      this.ReviewService.ManageLikeToReview(this.review,false).subscribe({
         next: () => {
           this.review.likes--;
           this.isLiked=!this.isLiked;

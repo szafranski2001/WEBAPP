@@ -1,14 +1,14 @@
 import { ReportStatus } from "./ReportStatus"
 
 export interface reviewLikeInfo{
-    mittente: string,
-    destinatario: string,
-    videogameId : number
+    usernameMittente: string,
+    idVideogioco : number,
+    usernameDestinatario: string
 }
 
 export interface reviewReportInfo{
     mittente: string,
     destinatario: string,
-    videogameId : number,
+    videogioco : number,
     stato : ReportStatus
 }

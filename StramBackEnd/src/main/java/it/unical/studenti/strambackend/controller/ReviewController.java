@@ -46,7 +46,7 @@ public class ReviewController {
     @DeleteMapping("/api/RemoveLike")
     public ResponseEntity<?> RemoveLikeFromReview(@RequestBody Likeato likeato){
         try{
-            DBManager.getInstance().recensioneDAO().addOrRemoveLike(likeato,0);
+            DBManager.getInstance().recensioneDAO().addOrRemoveLike(likeato,-1);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception e){
