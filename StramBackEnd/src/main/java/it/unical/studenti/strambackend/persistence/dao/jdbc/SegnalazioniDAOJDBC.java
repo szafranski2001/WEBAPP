@@ -11,8 +11,10 @@ import java.util.List;
 import it.unical.studenti.strambackend.persistence.Model.CompletataSegnalazione;
 import it.unical.studenti.strambackend.persistence.Model.InLavorazioneSegnalazione;
 import it.unical.studenti.strambackend.persistence.Model.Segnalazioni;
+import it.unical.studenti.strambackend.persistence.Model.User;
 import it.unical.studenti.strambackend.persistence.DBSource;
 import it.unical.studenti.strambackend.persistence.dao.SegnalazioniDAO;
+import it.unical.studenti.strambackend.persistence.exceptions.DatabaseException;
 
 public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
 	DBSource dbSource;
@@ -22,11 +24,11 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
 
 
 	@Override
-	public void CreateReport(Segnalazioni segnalazione) { //creo una nuova segnalazione fa parte di un utente
+	public void CreateReport(Segnalazioni segnalazione) throws DatabaseException { //creo una nuova segnalazione fa parte di un utente
 		Connection conn;
 		try {
 			conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db ed eseguo la query sottostante
-			String query = "INSERT INTO public.segnalazioni (mittente, destinatario, film, stato) values(?,?,?,?);";
+			String query = "INSERT INTO public.segnalazioni (mittente, destinatario, videogioco, stato) values(?,?,?,?);";
 			PreparedStatement st = conn.prepareStatement(query);
 			st.setString(1, segnalazione.getMittente());
 			st.setString(2, segnalazione.getDestinatario());
@@ -39,16 +41,17 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new DatabaseException("Errore durante la creazione della segnalazione");
 		}
 		
 	}
 
 	@Override
-	public void DeleteReport(Segnalazioni segnalazione) { // elimino una segnalazione fatta da un utente
+	public void DeleteReport(Segnalazioni segnalazione) throws DatabaseException { // elimino una segnalazione fatta da un utente
 			Connection conn;
 		try {
 			conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db ed eseguo la query sottostante
-			String query = "delete from segnalazioni WHERE mittente=? and destinatario =? and film = ?";
+			String query = "delete from segnalazioni WHERE mittente=? and destinatario =? and videogioco = ?";
 			PreparedStatement st = conn.prepareStatement(query);
 			st.setString(1, segnalazione.getMittente());
 			st.setString(2, segnalazione.getDestinatario());
@@ -60,6 +63,7 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new DatabaseException("Errore durante la rimozione della segnalazione");
 		}
 	}
 
@@ -72,7 +76,7 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
 
         try {
         	conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db ed eseguo la query sottostante
-            String query = "SELECT * FROM segnalazioni WHERE mittente = ? AND destinatario = ? AND film = ?";
+            String query = "SELECT * FROM segnalazioni WHERE mittente = ? AND destinatario = ? AND videogioco = ?";
             st = conn.prepareStatement(query);
             st.setString(1, segnalazione.getMittente());
             st.setString(2, segnalazione.getDestinatario());
@@ -143,7 +147,7 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
 	}
 	
 	@Override
-    public void updateSegnalazione(Segnalazioni segnalazione) { //cambio lo stato della segnalazione
+    public void updateSegnalazione(Segnalazioni segnalazione) throws DatabaseException { //cambio lo stato della segnalazione
         Segnalazioni s = new Segnalazioni(); //creo un oggetto segnalazione così da avere i vari stati.
         
         if (segnalazione.getState().statoSegnalazione().equals(s.getState().statoSegnalazione())) //controllo se la segnalazione è NUOVA o VECCHIA (cioè che è stata già visualizzata da un admin ma non 
@@ -160,7 +164,7 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
 
         try {
             Connection conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db ed eseguo la query sottostante
-            String update = "update segnalazioni SET stato = ? WHERE mittente=? and destinatario =? and film =?";
+            String update = "update segnalazioni SET stato = ? WHERE mittente=? and destinatario =? and videogioco =?";
             PreparedStatement st = conn.prepareStatement(update);
             st.setString(1, s.getState().statoSegnalazione());
             st.setString(2, segnalazione.getMittente());
@@ -171,23 +175,25 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
           //chiudo tutte le varie connessioni
             st.close();
             conn.close();
-        } catch (SQLException e) {
-
+        } 
+		catch (SQLException e) {
             e.printStackTrace();
-			throw new DatabaseException("Errore durante aggiornamento segnalazioni");
+			throw new DatabaseException("Errore durante l'aggiornamento segnalazioni");
         }
+	}
+
 		@Override
-		public List<Segnalazioni> findSegnalazioniUser(User user,int id) { //controllo tutte le segnalazioni da uno specifico utente e restituisco una lista di oggetti "sengalazioni"
+		public List<Segnalazioni> findSegnalazioniUser(User user,int id) throws DatabaseException { //controllo tutte le segnalazioni da uno specifico utente e restituisco una lista di oggetti "sengalazioni"
 			List<Segnalazioni> segnalazioni = new ArrayList<>();
 			try {
 				Connection con = dbSource.getConnection(); //utilizzo la connessione singleton con il db
-				String query = "select * from segnalazioni where mittente=? and film=?";
+				String query = "select * from segnalazioni where mittente=? and videogioco=?";
 				PreparedStatement st = con.prepareStatement(query);
 				st.setString(1,user.getUsername());
 				st.setInt(2,id);
 				ResultSet rs = st.executeQuery();
 				while (rs.next()) {
-						segnalazione = new Segnalazioni(rs.getString("mittente"), rs.getString("destinatario"), rs.getInt("film"));
+						Segnalazioni segnalazione = new Segnalazioni(rs.getString("mittente"), rs.getString("destinatario"), rs.getInt("videogioco"));
 						segnalazioni.add(segnalazione);
 				}
 				//chiudo tutte le varie connessioni
@@ -202,6 +208,5 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
 			return segnalazioni; //ritorno la lista segnalazioni
 		}
 
-    } 
 }
 
