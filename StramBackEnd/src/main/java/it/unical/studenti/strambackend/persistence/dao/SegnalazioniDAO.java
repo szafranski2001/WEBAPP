@@ -10,5 +10,6 @@ public interface SegnalazioniDAO {
 	public boolean ExistReport(Segnalazioni segnalazione);// CONRTOLLO SE UNA SEGNALAZIONE ESISTE
 	public List <Segnalazioni> findAll(); // PRENDO TUTTE LE SEGNALAZIONI ATTIVE
 	public void updateSegnalazione(Segnalazioni segnalazione); //AGGIORNO LO STATO DI UNA SEGNALAZIONE
+	public List<Segnalazioni> findSegnalazioniUser(User user,int idfilm);
 
 }

@@ -174,8 +174,33 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
         } catch (SQLException e) {
 
             e.printStackTrace();
-            
+			throw new DatabaseException("Errore durante aggiornamento segnalazioni");
         }
+		@Override
+		public List<Segnalazioni> findSegnalazioniUser(User user,int id) { //controllo tutte le segnalazioni da uno specifico utente e restituisco una lista di oggetti "sengalazioni"
+			List<Segnalazioni> segnalazioni = new ArrayList<>();
+			try {
+				Connection con = dbSource.getConnection(); //utilizzo la connessione singleton con il db
+				String query = "select * from segnalazioni where mittente=? and film=?";
+				PreparedStatement st = con.prepareStatement(query);
+				st.setString(1,user.getUsername());
+				st.setInt(2,id);
+				ResultSet rs = st.executeQuery();
+				while (rs.next()) {
+						segnalazione = new Segnalazioni(rs.getString("mittente"), rs.getString("destinatario"), rs.getInt("film"));
+						segnalazioni.add(segnalazione);
+				}
+				//chiudo tutte le varie connessioni
+				rs.close();
+				st.close();
+				con.close();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DatabaseException("Errore durante ricerca segnalazioni utente");
+			}
+			return segnalazioni; //ritorno la lista segnalazioni
+		}
 
     } 
 }
