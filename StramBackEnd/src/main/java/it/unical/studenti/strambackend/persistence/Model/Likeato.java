@@ -1,27 +1,27 @@
 package it.unical.studenti.strambackend.persistence.Model;
 
 public class Likeato {
-	private String usernameMittente;
+	private String mittente;
+    private String destinatario;
     private int idVideogioco;
-    private String usernameDestinatario;
 
     
     public Likeato(String usernameMittente, int idVideogioco, String usernameDestinatario) {
-		this.usernameMittente = usernameMittente;
+		this.mittente = usernameMittente;
 		this.idVideogioco = idVideogioco;
-		this.usernameDestinatario = usernameDestinatario;
+		this.destinatario = usernameDestinatario;
 	}
 
-	public String getUsernameMittente() {
-        return usernameMittente;
+	public String getMittente() {
+        return mittente;
     }
 
     public int getIdVideogioco() {
         return idVideogioco;
     }
     
-	public String getUsernameDestinatario() {
-        return usernameDestinatario;
+	public String getDestinatario() {
+        return destinatario;
     }
 
 	@Override
@@ -31,6 +31,6 @@ public class Likeato {
 
         Likeato like = (Likeato) obj;
 
-        return usernameMittente.equals(like.usernameMittente) && idVideogioco == like.idVideogioco && usernameDestinatario.equals(like.usernameDestinatario);
+        return mittente.equals(like.mittente) && idVideogioco == like.idVideogioco && destinatario.equals(like.destinatario);
     }
 }

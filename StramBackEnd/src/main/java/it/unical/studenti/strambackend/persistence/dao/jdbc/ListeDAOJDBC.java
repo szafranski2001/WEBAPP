@@ -55,7 +55,7 @@ public class ListeDAOJDBC implements ListeDAO{
             ResultSet rs = st.executeQuery(); //eseguo query
             while (rs.next()) {
 				Videogioco videogioco = new Videogioco (rs.getInt("id"),rs.getString("titolo"),rs.getString("descrizione"),rs.getString("genere"),
-						rs.getInt("durata"),rs.getInt("anno"),rs.getInt("valutazione"),rs.getString("img"),rs.getString("trailer"));
+						rs.getInt("durata"),rs.getInt("anno"),rs.getInt("valutazione"),rs.getString("trailer"),rs.getString("casamadre"));
                 videogiochi.add(videogioco); //aggiungo i singoli videogioco alla lista
             }
           

@@ -4,8 +4,7 @@ import { GeneralTasksService } from '../../services/general-tasks.service';
 import { VideogameReviewsService } from '../../services/videogame-reviews.service';
 import { review } from '../model/Review';
 import { VideogameDataService } from '../../services/videogame-data.service';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { finalize, tap } from 'rxjs';
+import { HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-add-review',
@@ -18,6 +17,7 @@ export class AddReviewComponent implements OnInit {
   currentRating = {value : 1, stars : Array.from({length : this.numberOfStars}, (_,i) => i < 1 ? 'starFull' : 'starEmpty')};
   UserImage : number;
   User="izaxiu";
+  @Input() videogameId : number;
 
   constructor(private generalTasks : GeneralTasksService, private ReviewService : VideogameReviewsService, private VideogameManagerService : VideogameDataService) {}
 
@@ -37,7 +37,7 @@ export class AddReviewComponent implements OnInit {
   SubmitReview(form : NgForm){
     //Prendi dati, crei review e invia a ReviewList e poi backEnd
     let review : review = 
-    { videogioco : this.VideogameManagerService.getVideogameId(), 
+    { videogioco : this.videogameId, 
       username : this.User,//da cambiare con il valore del currentUser
       voto : this.currentRating.value,
       commento : form.value['description'],

@@ -90,6 +90,6 @@ export class ReviewToolbarComponent implements OnInit{
         error: (error : HttpErrorResponse) => {
           alert(error.error);
         }
-      })
+      });
   }
 }

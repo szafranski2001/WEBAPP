@@ -3,6 +3,7 @@ import { genere, videogame } from '../model/Videogame';
 import { VideogameDataService } from '../../services/videogame-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { GeneralTasksService } from '../../services/general-tasks.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-videogame-detail',
@@ -18,8 +19,18 @@ export class VideogameDetailComponent implements OnInit{
   constructor(private videogameData: VideogameDataService, private route : ActivatedRoute, private generalTasks : GeneralTasksService) {}
 
   ngOnInit(): void {
-    this.videogame=this.videogameData.GetVideogameDetails(parseInt(this.route.snapshot.paramMap.get('id')!));
-    this.videogameImageURL= this.videogameImageURL+this.videogame.id+".png"; //da cambiare non appena riesco a prendere i dati dal backend
+    let id=parseInt(this.route.snapshot.paramMap.get('id')!);
+    //this.videogameData.GetVideogameImage(id).subscribe( (response) => );
+    this.videogameData.GetVideogameDetails(id).subscribe({
+    next: (response) => {
+      this.videogame=response;
+      this.videogameData.SetSelectedVideogame(response);
+    },
+    error: () => {
+      alert("Errore durante il caricamento del gioco");
+    }
+
+    }); //da cambiare non appena riesco a prendere i dati dal backend
   }
 
   getEditMode(){

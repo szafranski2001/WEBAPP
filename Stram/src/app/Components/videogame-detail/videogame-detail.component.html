@@ -1,9 +1,11 @@
-<div class="main-container">
-  
+
+<h1  *ngIf="!videogame" class="highlighted-text font36 loadOrError-text">Caricamento del gioco in corso...</h1>
+
+<div *ngIf="videogame" class="main-container">
   <article class="videogame-article" [ngStyle]="{'background-image':'linear-gradient(rgba(0, 0, 0, 0.5),rgba(28, 28, 30, 1)),url('+ videogameImageURL +')'}">
     <!--Image videogame-->
     <figure class="videogame-detail-figure">
-      <img src="assets/images/videogames/{{videogame.id}}.png">
+      <img src="{{videogameImageURL}}">
     </figure>
 
     <section class="videogame-details">
@@ -52,7 +54,7 @@
     </section>
 
     <!--Toolbar videogame-->
-    <app-videogame-toolbar class="toolbar"  (UpdateData)="HandleUpdateData()"></app-videogame-toolbar>
+    <app-videogame-toolbar class="toolbar" (UpdateData)="HandleUpdateData()"></app-videogame-toolbar>
 
   </article>
   <!--Description videogame-->
@@ -65,7 +67,7 @@
   <div *ngIf="UserLogged()">
     <h1>Aggiungi una recensione </h1>
     <hr>
-    <app-add-review></app-add-review>
+    <app-add-review [videogameId]="videogame.id"></app-add-review>
   </div>
 
   <app-videogame-reviews [videogameId]="videogame.id"></app-videogame-reviews>

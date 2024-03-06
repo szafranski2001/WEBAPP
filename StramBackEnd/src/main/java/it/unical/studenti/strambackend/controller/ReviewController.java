@@ -8,12 +8,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin("http://localhost:4200")
 public class ReviewController {
 
-    @PostMapping(value = "/api/AddReview")
-    public ResponseEntity<String> AddReview(@RequestBody Recensione review){
+    @GetMapping("/api/GetReviews/{id}")
+    public ResponseEntity<List<Recensione>> GetReviews(@PathVariable int id){
+        try{
+            List<Recensione> reviews=DBManager.getInstance().recensioneDAO().findByVideogioco(null,id);
+            return new ResponseEntity<>(reviews,HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/api/AddReview")
+    public ResponseEntity<?> AddReview(@RequestBody Recensione review){
         try {
             DBManager.getInstance().recensioneDAO().save(review);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -58,7 +71,7 @@ public class ReviewController {
     @PostMapping("/api/AddReport")
     public ResponseEntity<?> AddReportToReview(@RequestBody Segnalazioni segnalazione){
         try{
-            DBManager.getInstance().segnalazioniDAO().CreateReport(new Segnalazioni());
+            DBManager.getInstance().segnalazioniDAO().CreateReport(segnalazione);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }
         catch (Exception e){
@@ -69,6 +82,7 @@ public class ReviewController {
     @DeleteMapping("/api/RemoveReport")
     public ResponseEntity<?> RemoveReportFromReview(@RequestBody Segnalazioni segnalazione){
         try{
+            System.out.println(segnalazione.getStato());
             DBManager.getInstance().segnalazioniDAO().DeleteReport(segnalazione);
             return new ResponseEntity<>(HttpStatus.OK);
         }
@@ -77,6 +91,6 @@ public class ReviewController {
         }
     }
 
-
+    //Mancano quelle chiamate dove serve prendere l'utente devo ancora capirei il modo migliore per farlo
 
 }

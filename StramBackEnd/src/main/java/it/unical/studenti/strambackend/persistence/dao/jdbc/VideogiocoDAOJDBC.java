@@ -23,7 +23,7 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 		Connection conn;
 		try {
 			conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db ed eseguo la query sottostante
-			String query = "INSERT INTO public.videogiochi (titolo, descrizione, genere, durata, anno, valutazione, img, trailer) values(?,?,?,?,?,?,?,?);";
+			String query = "INSERT INTO public.videogiochi (titolo, descrizione, genere, durata, anno, valutazione, trailer, casamadre) values(?,?,?,?,?,?,?,?);";
 			PreparedStatement st = conn.prepareStatement(query);
 			st.setString(1, videogioco.getTitolo());
 			st.setString(2, videogioco.getDescrizione());
@@ -31,8 +31,8 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 			st.setInt(4, videogioco.getDurata());
 			st.setInt(5, videogioco.getAnno());
 			st.setInt(6, 0);
-			st.setString(7, videogioco.getImg());
-			st.setString(8, videogioco.getTrailer());
+			st.setString(7, videogioco.getTrailer());
+			st.setString(8,videogioco.getCasaP()	);
 			st.executeUpdate(); //eseguo query
 			//chiudo tutte le varie connessioni
 			st.close();
@@ -52,16 +52,16 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 			PreparedStatement st = conn.prepareStatement(query);
 			st.setInt(1, idVideogioco);
 			ResultSet rs = st.executeQuery(); //eseguo query
-			Videogioco videogiocoo=null;
+			Videogioco videogioco=null;
 			if (rs.next()) { //creo l'oggetto videogiocoo 
-				 videogiocoo = new Videogioco (rs.getInt("id"),rs.getString("titolo"),rs.getString("descrizione"),rs.getString("genere"),
-				rs.getInt("durata"),rs.getInt("anno"),rs.getInt("valutazione"),rs.getString("img"),rs.getString("trailer"));
+				 videogioco = new Videogioco (rs.getInt("id"),rs.getString("titolo"),rs.getString("descrizione"),rs.getString("genere"),
+				rs.getInt("durata"),rs.getInt("anno"),rs.getInt("valutazione"),rs.getString("trailer"),rs.getString("casamadre"));
 				}
 			//chiudo tutte le varie connessioni
 			rs.close();
 			st.close();
 			conn.close();
-			return videogiocoo; //restituisco l'oggetto videogiocoo
+			return videogioco; //restituisco l'oggetto videogiocoo
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -79,7 +79,7 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 			ResultSet rs = st.executeQuery(); //eseguo query
 			while (rs.next()) {
 				Videogioco videogiocoo = new Videogioco (rs.getInt("id"),rs.getString("titolo"),rs.getString("descrizione"),rs.getString("genere"),
-				rs.getInt("durata"),rs.getInt("anno"),rs.getInt("valutazione"),rs.getString("img"),rs.getString("trailer")); //creo l'oggetto videogiocoo
+				rs.getInt("durata"),rs.getInt("anno"),rs.getInt("valutazione"),rs.getString("trailer"),rs.getString("casamadre")); //creo l'oggetto videogiocoo
 				videogiochi.add(videogiocoo);				// inserisco il videogiocoo nella lista di oggetti videogiocoo
 			}
 			//chiudo tutte le varie connessioni
@@ -193,7 +193,7 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 			ResultSet rs = st.executeQuery(); //eseguo query
 			while (rs.next()) { 
 				Videogioco videogiocoo = new Videogioco (rs.getInt("id"),rs.getString("titolo"),rs.getString("descrizione"),rs.getString("genere"),
-						rs.getInt("durata"),rs.getInt("anno"),rs.getInt("valutazione"),rs.getString("img"),rs.getString("trailer")); //creo un oggetto videogiocoo
+						rs.getInt("durata"),rs.getInt("anno"),rs.getInt("valutazione"),rs.getString("trailer"),rs.getString("casamadre")); //creo un oggetto videogiocoo
 				videogiochi.add(videogiocoo);	//aggiungo il videogiocoo alla lista di oggetti videogiocoo
 			}
 			//chiudo tutte le varie connessioni

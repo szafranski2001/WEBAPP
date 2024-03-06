@@ -59,7 +59,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 			
 			ResultSet rs = st.executeQuery();
 			if (rs.next()) { //rs.next() ci da true se abbiamo almeno un elemento, false altrimenti
-				recensione = new Recensione (rs.getString("username"),rs.getString("commento"),rs.getInt("voto"),rs.getInt("videogioco"),rs.getInt("likes"));
+				recensione = new Recensione (rs.getString("username"),rs.getString("titolo"),rs.getString("commento"),rs.getInt("voto"),rs.getInt("videogioco"),rs.getInt("likes"));
 				}
 			//chiudo tutte le varie connessioni
 			rs.close();
@@ -81,7 +81,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 			PreparedStatement st = con.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				Recensione recensione = new Recensione(rs.getString("username"),rs.getString("commento"),rs.getInt("voto"),rs.getInt("videogioco"), rs.getInt("likes"));
+				Recensione recensione = new Recensione(rs.getString("username"),rs.getString("titolo"),rs.getString("commento"),rs.getInt("voto"),rs.getInt("videogioco"), rs.getInt("likes"));
 				recensioni.add(recensione);				
 			}
 			//chiudo tutte le varie connessioni
@@ -204,17 +204,18 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 		
 	}
 
+	//Non si è sempre loggati
 	@Override
-	public List<Recensione> findByVideogioco(User user, Videogioco videogioco) { //cerco le recensioni di un determinato videogioco e restituisco una lista di oggetti "recensione"
+	public List<Recensione> findByVideogioco(User user, int idVideogioco) throws DatabaseException { //cerco le recensioni di un determinato videogioco e restituisco una lista di oggetti "recensione"
 		List<Recensione> recensioni = new ArrayList<Recensione>();
 		try {
 			Connection con = dbSource.getConnection(); //utilizzo la connessione singleton con il db
 			String query = "select * from recensioni where videogioco=?";
 			PreparedStatement st = con.prepareStatement(query);
-			st.setInt(1,videogioco.getId());
+			st.setInt(1,idVideogioco);
 			ResultSet rs = st.executeQuery(); //eseguo query
 			while (rs.next()) {
-				Recensione recensione = new Recensione(rs.getString("username"),rs.getString("commento"),rs.getInt("voto"),rs.getInt("videogioco"), rs.getInt("likes"));
+				Recensione recensione = new Recensione(rs.getString("username"),rs.getString("titolo"),rs.getString("commento"),rs.getInt("voto"),rs.getInt("videogioco"), rs.getInt("likes"));
 				recensioni.add(recensione);			//aggiungo la recensione alla lista di oggetti "recensione"	
 			}
 			rs.close();
@@ -222,11 +223,12 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new DatabaseException("Errore durante il caricamento delle recensioni");
 		}
 		//ordino la lista di oggetti recensioni in modo da avere prima quelle con più likes
 		Collections.sort(recensioni, (r1, r2) -> Integer.compare(r2.getLikes(), r1.getLikes())); //
 		//se l'utente ha scritto una recensione in quel videogioco verrà messa in cima
-		if (recensioni.size()>0)
+		if (recensioni.size()>0 && user!=null)
 		{
 			//ordino la lista di oggetti recensioni in modo da avere prima quelle con più likes
 			Collections.sort(recensioni, (r1, r2) -> Integer.compare(r2.getLikes(), r1.getLikes())); //
@@ -249,7 +251,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 			String query = "update recensioni SET likes = likes+? WHERE username=? and videogioco=?";
 			PreparedStatement st = conn.prepareStatement(query);//aggiorno la quantità di likes
 			st.setInt(1, value);
-			st.setString(2, liked.getUsernameDestinatario());
+			st.setString(2, liked.getDestinatario());
 			st.setInt(3, liked.getIdVideogioco());
 			st.executeUpdate();
 			st.close();
@@ -261,9 +263,9 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 				InsertOrDeleteQuery = "DELETE FROM recensioni_likes WHERE usernameMittente = ? and  videogioco =? and usernameDestinatario=?"; // altrimenti rimuovo il like dalla tabella
 
 			PreparedStatement InsertOrDeleteSt=conn.prepareStatement(InsertOrDeleteQuery);
-			InsertOrDeleteSt.setString(1, liked.getUsernameMittente());
+			InsertOrDeleteSt.setString(1, liked.getMittente());
 			InsertOrDeleteSt.setInt(2, liked.getIdVideogioco());
-			InsertOrDeleteSt.setString(3, liked.getUsernameDestinatario());
+			InsertOrDeleteSt.setString(3, liked.getDestinatario());
 			InsertOrDeleteSt.executeUpdate(); //eseguo la query
 
 			//chiudo tutte le varie connessioni

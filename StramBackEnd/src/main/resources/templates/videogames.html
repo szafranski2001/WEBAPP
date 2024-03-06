@@ -14,13 +14,14 @@
         <div class="grid-container ">
             <div class="videogame-data" th:each="videogame : ${videogames_list}">
                 <figure class="videogame-figure round8">
+                    <!--th:ref="@{http://localhost:4200/videogame/{id}(id=${videogame.id})}"-->
                     <button  class="fv-btn default-btn round btn-gray px50" data-videogame="${videogame.id}">
-                        <span th:class="isLiked " class="material-symbols-outlined mdsize red-icon">favorite</span>
+                        <span class="material-symbols-outlined mdsize red-icon">favorite</span>
                     </button>
                     <button class="wl-btn default-btn round btn-gray px50">
                         <span class="material-symbols-outlined mdsize wish-gold-icon">shopping_bag</span>
                     </button>
-                    <img style="background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(28, 28, 30, 1));" th:src="${videogame.img}" th:alt="${videogame.titolo}">
+                    <img style="background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(28, 28, 30, 1));" th:src="@{/images/videogames/{id}.png(id=${videogame.id})}" th:alt="${videogame.titolo}">
                 </figure>
             </div>
         </div>

@@ -53,3 +53,7 @@
 #title{
     margin: 12px 0 15px 0;
 }
+
+.like-centered{
+    vertical-align: text-bottom;
+}

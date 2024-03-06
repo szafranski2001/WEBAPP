@@ -1,14 +1,10 @@
-import { StateSegnalazioni } from "./ReportStatus"
 
-export interface reviewLikeInfo{
-    usernameMittente: string,
-    idVideogioco : number,
-    usernameDestinatario: string
+export enum TypeInfo{
+    like="/GetLikes",report="/GetReports"
 }
 
-export interface reviewReportInfo{
-    stato : StateSegnalazioni,
+export interface reviewInfo{
     mittente: string,
     destinatario: string,
-    idVideogioco : number,
+    idVideogioco : number
 }

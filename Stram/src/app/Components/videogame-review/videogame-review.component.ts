@@ -1,7 +1,7 @@
 import { Component,Input, OnInit } from '@angular/core';
 import { review } from '../model/Review';
 import { VideogameReviewsService } from '../../services/videogame-reviews.service';
-import { reviewLikeInfo, reviewReportInfo } from '../model/ReviewInfo';
+import { TypeInfo, reviewInfo } from '../model/ReviewInfo';
 
 @Component({
   selector: 'app-videogame-reviews',
@@ -17,19 +17,23 @@ export class VideogameReviewsComponent implements OnInit {
   User="stocazzo";
   
   ReviewList : review[];
-  ReviewLikeInfos : reviewLikeInfo[];
-  ReviewReportInfos : reviewReportInfo[];
+  ReviewLikeInfos : reviewInfo[];
+  ReviewReportInfos : reviewInfo[];
 
   constructor(private ReviewService : VideogameReviewsService) {}
 
   ngOnInit(): void {
-    this.ReviewList=this.ReviewService.getReviewListByVideogameId(this.videogameId);
-    this.ReviewLikeInfos=this.ReviewService.getReviewLikeInfo(this.videogameId);
-    this.ReviewReportInfos=this.ReviewService.getReviewReportInfo(this.videogameId);
+    this.ReviewService.getReviewListByVideogameId(this.videogameId).subscribe( response =>{
+      this.ReviewList=response;
+      this.ReviewService.setReviewList(response);
+    });
+    
+    this.ReviewLikeInfos=this.ReviewService.getReviewInfo(this.videogameId,TypeInfo.like);
+    this.ReviewReportInfos=this.ReviewService.getReviewInfo(this.videogameId,TypeInfo.report);
   }
 
   getSingleReviewInfo(review : review){
-    let likeInfo=this.ReviewLikeInfos.find( info => info.usernameMittente == this.User && info.usernameDestinatario == review.username) ? true : false;
+    let likeInfo=this.ReviewLikeInfos.find( info => info.mittente == this.User && info.destinatario == review.username) ? true : false;
     let reportInfo=this.ReviewReportInfos.find( info => info.mittente == this.User && info.destinatario == review.username) ? true : false;
     return [likeInfo,reportInfo];
   }

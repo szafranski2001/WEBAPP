@@ -13,9 +13,10 @@ public class Recensione {
 	public Recensione() {}
 	
 	
-	public Recensione(String username, String commento, Integer voto, int videogioco, Integer likes) {
+	public Recensione(String username,String titolo, String commento, Integer voto, int videogioco, Integer likes) {
 		super();
 		this.username = username;
+		this.titolo=titolo;
 		this.commento = commento;
 		this.voto = voto;
 		this.videogioco = videogioco;

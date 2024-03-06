@@ -14,7 +14,7 @@ public interface RecensioneDAO {
 	public void delete(Recensione recensione) throws DatabaseException; //ELIMINO UNA RECENSIONE SCRITTA DA UN UTENTE
 	public boolean existsRecensione(User user, Videogioco videogioco); //CONTROLLO SE UN UTENTE HA SCRITTO UNA RECENSIONE PER UN FILM
 	public Integer mediaVoti(int id); //CALCOLO LA MEDIA DELLA VALUTAZIONI
-	public List<Recensione> findByVideogioco(User user, Videogioco videogioco); //RESTITUISCO LA LISTA DI RECENSIONI  CHE SONO STATE SCRITTE PER UN FILM
+	public List<Recensione> findByVideogioco(User user, int idVideogioco) throws DatabaseException; //RESTITUISCO LA LISTA DI RECENSIONI  CHE SONO STATE SCRITTE PER UN FILM
 	public void addOrRemoveLike(Likeato likeato, int change) throws DatabaseException;//AGGIUNGO O RIMUOVO UN LIKE DA UNA RECENSIONE
 
 	public List<Likeato> findLikes(User user); //RESTITUISCO LA LISTA DI LIKE FATTI ALLE RECENSIONI DA UN UTENTE

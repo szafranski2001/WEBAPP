@@ -8,12 +8,13 @@ public class Videogioco {
 	private int durata;
 	private int anno;
 	private int valutazione;
-	private String img;
 	private String trailer;
+
+	private String casaP;
 	
 	public Videogioco() {}
 	
-	public Videogioco(int id, String titolo, String descrizione, String genere, int durata, int anno, int valutazione, String img, String trailer) {
+	public Videogioco(int id, String titolo, String descrizione, String genere, int durata, int anno, int valutazione,String trailer, String casaP) {
 		super();
 		this.id = id;
 		this.titolo = titolo;
@@ -22,23 +23,22 @@ public class Videogioco {
 		this.durata = durata;
 		this.anno = anno;
 		this.valutazione = valutazione;
-		this.img = img;
 		this.trailer = trailer;
+		this.casaP=casaP;
 		
 	}
 
-
+	public String getCasaP() {
+		return casaP;
+	}
+	public void setCasaP(String casaP) {
+		this.casaP = casaP;
+	}
 	public String getTrailer() {
 		return trailer;
 	}
 	public void setTrailer(String trailer) {
 		this.trailer = trailer;
-	}
-	public String getImg() {
-		return img;
-	}
-	public void setImg(String img) {
-		this.img = img;
 	}
 	public int getId() {
 		return id;
