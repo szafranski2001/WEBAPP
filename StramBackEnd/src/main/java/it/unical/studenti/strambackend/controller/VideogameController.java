@@ -14,19 +14,14 @@ public class VideogameController {
     public ResponseEntity<Videogioco> GetVideogame(@PathVariable int id){
         try {
             Videogioco videogame = DBManager.getInstance().VideogiocoDAO().findByPrimaryKey(id);
-            return new ResponseEntity<>(videogame, HttpStatus.OK);
+            return videogame!=null ?  new ResponseEntity<>(videogame, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         catch(Exception e){
-            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @GetMapping("/api/getVideogameImage/{id}")
-    public ResponseEntity<String> GetVideogameImage(@PathVariable int id){
-        return new ResponseEntity<>("http:",HttpStatus.OK);
-    }
-
-    @PostMapping("/api/AddVideogameData")
+    @PostMapping("/api/AddVideogame")
     public ResponseEntity<?> AddVideogame(@RequestBody Videogioco videogame){
         try{
             DBManager.getInstance().VideogiocoDAO().save(videogame);
@@ -37,10 +32,10 @@ public class VideogameController {
         }
     }
 
-    @DeleteMapping("/api/DeleteVideogameData")
-    public ResponseEntity<?> DeleteVideogame(@RequestBody Videogioco videogioco){
+    @DeleteMapping("/api/DeleteVideogame/{videogameId}")
+    public ResponseEntity<?> DeleteVideogame(@PathVariable int videogameId){
         try {
-            DBManager.getInstance().VideogiocoDAO().save(videogioco);
+            DBManager.getInstance().VideogiocoDAO().delete(videogameId);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception e){
@@ -48,10 +43,10 @@ public class VideogameController {
         }
     }
 
-    @PostMapping("/api/EditVideogameData")
-    public ResponseEntity<?> EditVideogame(@RequestBody Videogioco videogioco){
+    @PutMapping("/api/EditVideogame/{videogiocoId}")
+    public ResponseEntity<?> EditVideogame(@PathVariable int videogiocoId ,@RequestBody Videogioco videogioco){
         try {
-            DBManager.getInstance().VideogiocoDAO().update(videogioco);
+            DBManager.getInstance().VideogiocoDAO().updateVideogioco(videogioco,videogiocoId);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch(Exception e){

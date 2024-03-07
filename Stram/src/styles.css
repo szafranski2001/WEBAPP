@@ -157,13 +157,6 @@ hr{
   background: var(--systemGray2);
 }
 
-.loadOrError-text{
-  margin: 10px;
-  text-align: center;
-  vertical-align: baseline;
-  transition: opacity 0.5s ease-in-out;
-}
-
 html{
   height: 100%;
   color: var(--text-color);
@@ -196,4 +189,16 @@ img {
 
 .material-symbols-rounded.starYellow {
   color: var(--gold-color);
+}
+
+.loading-div{
+  margin-top: 250px; /*da provare a cambiare cercando di fargli prendere tutta la pagina*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align:middle;
+}
+
+.loading-div .mat-mdc-progress-spinner circle {
+  stroke: var(--systemGray2);
 }

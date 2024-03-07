@@ -37,8 +37,8 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 			//chiudo tutte le varie connessioni
 			st.close();
 			conn.close();
-			
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
@@ -111,42 +111,42 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 	}
 
 	 @Override
-	    public void delete(Videogioco videogioco) { //elimino un videogiocoo dal catalogo dei videogiocoo
+	    public void delete(int videogiocoId) { //elimino un videogiocoo dal catalogo dei videogiocoo
 
 	        try {
 	            Connection con = dbSource.getConnection();//utilizzo la connessione singleton con il db ed eseguo la query sottostante
 	            // ELIMINO TUTTI I LIKES
 	            String query = "DELETE FROM recensioni_likes WHERE  videogiocoo = ?";
 	            PreparedStatement st = con.prepareStatement(query);
-	            st.setInt(1, videogioco.getId());
+	            st.setInt(1, videogiocoId);
 	            st.executeUpdate();
 	            st.close();
 
 	            // ELIMINO TUTTE LE SEGNALAZIONI
 	            query = "DELETE FROM segnalazioni WHERE videogiocoo = ?";
 	            st = con.prepareStatement(query);
-	            st.setInt(1, videogioco.getId());
+	            st.setInt(1, videogiocoId);
 	            st.executeUpdate();
 	            st.close();
 
 	            // ELIMINO LE RECENSIONI
 	            query = "DELETE FROM recensioni WHERE videogiocoo = ?";
 	            st = con.prepareStatement(query);
-	            st.setInt(1, videogioco.getId());
+	            st.setInt(1, videogiocoId);
 	            st.executeUpdate();
 	            st.close();
 
 	            //ELIMINO I FILM NELLE LISTE
 	            query = "delete from videogiocooinliste WHERE videogiocoo = ? ";
 	            st = con.prepareStatement(query);
-	            st.setInt(1, videogioco.getId());
+	            st.setInt(1, videogiocoId);
 	            st.executeUpdate();
 	            st.close();
 
 	            //ELIMINO IL FILM
 	            query = "delete from videogiochi WHERE id = ?";
 	            st = con.prepareStatement(query);
-	            st.setInt(1, videogioco.getId());
+	            st.setInt(1, videogiocoId);
 	            st.executeUpdate();
 	        	//chiudo tutte le varie connessioni
 	            st.close();
@@ -241,19 +241,19 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 
 	}
 	@Override
-	public boolean updateVideogioco(Videogioco oldF, Videogioco newF) { //aggiorno i dati di un videogiocoo esistente e resituisco true se la modifica è avvenuta con successo
+	public boolean updateVideogioco(Videogioco videogioco, int videogiocoId) { //aggiorno i dati di un videogiocoo esistente e resituisco true se la modifica è avvenuta con successo
 		Connection conn = null;
 		try {
 			conn = this.dbSource.getConnection();//utilizzo la connessione singleton con il db ed eseguo la query sottostante
 			String query = "update videogiochi SET titolo = ?, descrizione = ?, genere = ?, durata = ?, anno = ? WHERE id=?";
 			PreparedStatement st = conn.prepareStatement(query);
 			
-			st.setString(1, newF.getTitolo());
-			st.setString(2, newF.getDescrizione());
-			st.setString(3, newF.getGenere());
-			st.setInt(4, newF.getDurata());
-			st.setInt(5, newF.getAnno());
-			st.setInt(6, oldF.getId());
+			st.setString(1, videogioco.getTitolo());
+			st.setString(2, videogioco.getDescrizione());
+			st.setString(3, videogioco.getGenere());
+			st.setInt(4, videogioco.getDurata());
+			st.setInt(5, videogioco.getAnno());
+			st.setInt(6, videogiocoId);
 			st.executeUpdate(); //eseguo query
 			//chiudo tutte le varie connessioni
 			st.close();

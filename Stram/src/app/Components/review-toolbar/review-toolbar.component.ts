@@ -4,6 +4,7 @@ import { VideogameReviewsService } from '../../services/videogame-reviews.servic
 import { review } from '../model/Review';
 import { VideogameDataService } from '../../services/videogame-data.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ConfirmReviewDeleteMessage, SuccessfulReviewDeleteMessage } from '../model/Message';
 
 
 @Component({
@@ -34,13 +35,13 @@ export class ReviewToolbarComponent implements OnInit{
   }
 
   DeleteReview(){
-    if(confirm("Sei sicuro di voler rimuovere questa recensione? \n Una volta eliminata non sarà più recuperabile.")){
+    if(confirm(ConfirmReviewDeleteMessage)){
       let revIndex=this.ReviewService.SearchUserReview(this.review.username);
       this.ReviewService.DeleteReviewData(this.review).subscribe({
         next: () => {
           this.ReviewService.DeleteFromReviewList(revIndex);
           this.VideogameManagerService.UpdateRating();
-          alert("Recensione eliminata con successo!");
+          alert(SuccessfulReviewDeleteMessage);
         },
         error: (error : HttpErrorResponse) => {
           alert(error.error);

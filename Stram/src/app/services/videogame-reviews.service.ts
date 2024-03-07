@@ -14,7 +14,7 @@ export class VideogameReviewsService {
   User="stocazzo";
 
   //questa lista poi andrà rimossa e si dovrà ritornare il contenuto del backend
-  private reviewsList: review[]=[];
+  private reviewsList: review[];
 
   constructor(private http : HttpClient) {}
 
@@ -51,6 +51,8 @@ export class VideogameReviewsService {
     return this.http.get<review[]>(this.BackEndURL+"/GetReviews/"+id);
   }
 
+  ///// 
+
   getReviewInfo( videogameId : number, type : TypeInfo){
     //effettua chiamata al back-end per prendere tutte i riferimenti cui il nostro utente ha segnalato
     /*return*/ this.http.get(this.BackEndURL+type+videogameId);
@@ -64,7 +66,7 @@ export class VideogameReviewsService {
     let reviewInfo : reviewInfo = { mittente : this.User, destinatario: review.username, idVideogioco: review.videogioco };
     const options={ body : reviewInfo };
 
-    return state ?  this.http.post(this.BackEndURL+"/AddReport",reviewInfo) : this.http.delete(this.BackEndURL+"/RemoveReport",options);
+    return state ? this.http.post(this.BackEndURL+"/AddReport",reviewInfo) : this.http.delete(this.BackEndURL+"/RemoveReport",options);
   }
   
   ManageLikeToReview(review : review, state : boolean){

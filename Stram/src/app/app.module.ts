@@ -24,6 +24,7 @@ import { AddReviewComponent } from './Components/add-review/add-review.component
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatIconRegistry } from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SignupComponent } from './Components/signup/signup.component';
 
@@ -52,6 +53,7 @@ import { SignupComponent } from './Components/signup/signup.component';
     AppRoutingModule,
     MatIconModule,
     FormsModule,
+    MatProgressSpinnerModule,
     HttpClientModule
   ],
   providers: [

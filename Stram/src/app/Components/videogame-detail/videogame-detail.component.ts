@@ -1,9 +1,9 @@
 import { Component,OnInit } from '@angular/core';
 import { genere, videogame } from '../model/Videogame';
 import { VideogameDataService } from '../../services/videogame-data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GeneralTasksService } from '../../services/general-tasks.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { NotFoundError } from '../model/Message';
 
 @Component({
   selector: 'app-videogame-detail',
@@ -13,26 +13,26 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class VideogameDetailComponent implements OnInit{
   
   videogame: videogame;
-  videogameImageURL = '/assets/images/videogames/';
   Genre=Object.values(genere);
 
-  constructor(private videogameData: VideogameDataService, private route : ActivatedRoute, private generalTasks : GeneralTasksService) {}
+  constructor(private videogameData: VideogameDataService, private route : ActivatedRoute, private generalTasks : GeneralTasksService, private router : Router) {}
 
   ngOnInit(): void {
     let id=parseInt(this.route.snapshot.paramMap.get('id')!);
-    //this.videogameData.GetVideogameImage(id).subscribe( (response) => );
+
     this.videogameData.GetVideogameDetails(id).subscribe({
     next: (response) => {
       this.videogame=response;
       this.videogameData.SetSelectedVideogame(response);
     },
     error: () => {
-      alert("Errore durante il caricamento del gioco");
+      this.router.navigate(["/"]); 
+      alert(NotFoundError);
     }
 
-    }); //da cambiare non appena riesco a prendere i dati dal backend
+    });
   }
-
+  
   getEditMode(){
     return this.videogameData.isEditMode();
   }

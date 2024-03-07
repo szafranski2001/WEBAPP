@@ -46,6 +46,13 @@ public class ReviewController {
         }
     }
 
+    //Fixare post User
+    @GetMapping("/api/GetLikes/{videogameId}")
+    public ResponseEntity<List<Likeato>> GetLikes(@PathVariable int videogameId){
+        List<Likeato> UserLikes=DBManager.getInstance().recensioneDAO().findLikes(null); //capire come prendere l'utente
+        return new ResponseEntity<>(UserLikes,HttpStatus.OK);
+    }
+
     @PostMapping("/api/AddLike")
     public ResponseEntity<?> AddLikeToReview(@RequestBody Likeato likeato){
         try{
@@ -68,6 +75,8 @@ public class ReviewController {
         }
     }
 
+    //@GetMapping("/api/GetReports")
+
     @PostMapping("/api/AddReport")
     public ResponseEntity<?> AddReportToReview(@RequestBody Segnalazioni segnalazione){
         try{
@@ -82,7 +91,6 @@ public class ReviewController {
     @DeleteMapping("/api/RemoveReport")
     public ResponseEntity<?> RemoveReportFromReview(@RequestBody Segnalazioni segnalazione){
         try{
-            System.out.println(segnalazione.getStato());
             DBManager.getInstance().segnalazioniDAO().DeleteReport(segnalazione);
             return new ResponseEntity<>(HttpStatus.OK);
         }

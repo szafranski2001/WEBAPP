@@ -1,6 +1,6 @@
 
 export enum TypeInfo{
-    like="/GetLikes",report="/GetReports"
+    like="/GetLikes/",report="/GetReports/"
 }
 
 export interface reviewInfo{
