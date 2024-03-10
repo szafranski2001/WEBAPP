@@ -52,11 +52,11 @@ public class DBManager {
 	public RecensioneDAO recensioneDAO() {
 		return new RecensioneDAOJDBC(dataSource);
 	}
-		public ListeDAO listeDAO()
+	public ListeDAO listeDAO()
 	{
 		return new ListeDAOJDBC(dataSource);
 	}
-		public SegnalazioniDAO segnalazioniDAO()
+	public SegnalazioniDAO segnalazioniDAO()
 	{
 		return new SegnalazioniDAOJDBC(dataSource);
 	}

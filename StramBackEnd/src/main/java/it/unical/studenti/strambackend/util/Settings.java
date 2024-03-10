@@ -1,0 +1,15 @@
+package it.unical.studenti.strambackend.util;
+
+public class Settings {
+
+    static public int MIN_VIDEOGAME_YEAR_OPTION = 1940;
+
+    public enum params {
+        USERTOKEN("userToken");
+
+
+        public final String label;
+        params(String label) { this.label = label; }
+    }
+
+}

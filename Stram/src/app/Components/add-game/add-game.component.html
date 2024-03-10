@@ -1,0 +1,55 @@
+<div class="main-container">
+
+
+    <div class="input-container">
+        <div class="input-container-wrapper">
+            <br>
+            <h1>Aggiungi Videogioco</h1>
+            <br>
+            <label style="display: none">
+              <p>ID: *</p>
+              <input name="id" type="text" [valueAsNumber]="newVideogame.id">
+            </label>
+            <label>
+              <p>Nome Videogioco: *</p>
+              <input name="title" type="text" [value]="newVideogame.titolo">
+            </label>
+            <label>
+              <p>Genere: *</p>
+              <select id="genere" [(ngModel)]="newVideogame.genere">
+                  <option *ngFor="let genere of genereOptions" [value]="genere">{{ genere }}</option>
+              </select>
+              <input [(ngModel)]="newVideogame.genere" *ngIf="false" name="genere" type="text">
+            </label>
+            <label>
+              <p>Durata: *</p>
+              <input name="mm" type="text" maxlength="3" [maxLength]="3" [valueAsNumber]="newVideogame.durata"> minute(s)
+            </label>
+            <label>
+              <p>Anno di uscita: *</p>
+              <select id="anno" [(ngModel)]="newVideogame.anno">
+                <option *ngFor="let anno of annoOptions" [value]="anno">{{ anno }}</option>
+              </select>
+            </label>
+            <label>
+              <p>Azienda Produttrice: *</p>
+              <input name="casaP" type="text">
+            </label>
+            <label>
+              <p>Descrizione Gioco: *</p>
+              <textarea name="descrizione"> </textarea>
+            </label>
+            <label>
+              <p> Trailer Gioco: *</p>
+              <input name="trailer" type="text">
+            </label>
+
+        </div>
+    </div>
+
+
+
+
+
+
+</div>

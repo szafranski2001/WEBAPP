@@ -27,6 +27,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SignupComponent } from './Components/signup/signup.component';
+import { AddGameComponent } from './Components/add-game/add-game.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { SignupComponent } from './Components/signup/signup.component';
     ReviewToolbarComponent,
     AddRatingComponent,
     AddReviewComponent,
-    SignupComponent
+    SignupComponent,
+    AddGameComponent
   ],
   imports: [
     BrowserModule,
