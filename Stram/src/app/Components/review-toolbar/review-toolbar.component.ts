@@ -1,10 +1,10 @@
 import { Component,Input, OnInit } from '@angular/core';
-import { tipologiaUser } from '../model/TipologiaUtente';
+import { tipologiaUser } from '../../model/TipologiaUtente';
 import { VideogameReviewsService } from '../../services/videogame-reviews.service';
-import { review } from '../model/Review';
+import { review } from '../../model/Review';
 import { VideogameDataService } from '../../services/videogame-data.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ConfirmReviewDeleteMessage, SuccessfulReviewDeleteMessage } from '../model/Message';
+import { ConfirmReviewDeleteMessage, SuccessfulReviewDeleteMessage } from '../../model/Message';
 
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component,Input, OnInit } from '@angular/core';
-import { review } from '../model/Review';
+import { review } from '../../model/Review';
 import { VideogameReviewsService } from '../../services/videogame-reviews.service';
-import { TypeInfo, reviewInfo } from '../model/ReviewInfo';
+import { TypeInfo, reviewInfo } from '../../model/ReviewInfo';
 
 @Component({
   selector: 'app-videogame-reviews',

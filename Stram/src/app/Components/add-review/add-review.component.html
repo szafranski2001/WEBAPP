@@ -6,7 +6,7 @@
             </figure>
             <textarea #title class="input-data round5 highlighted-text font20" maxlength="200" rows="2" name="title" type="text" placeholder="Titolo..." ngModel required (keydown.enter)="title.blur()"></textarea>
         </div>    
-        <textarea #description class="input-data round5 font20" type="text" maxlength="3000" rows="6" name="description" placeholder="Inserisci una descrizione..." ngModel (keydown.enter)="description.blur()"></textarea>
+        <textarea #description class="input-data round5 font20" type="text" maxlength="3000" rows="6" name="description" placeholder="Inserisci una descrizione..." ngModel></textarea>
         <div class="review-lower">
             <app-add-rating class="rating" [Rating]="currentRating"></app-add-rating>
             <span class="font14 error" *ngIf="SearchForReview() && addReview.valid">*Hai già inserito una recensione, cancellala prima di inserirne un'altra.</span>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {SingleGameInfo} from "../model/SingleGameInfo";
+import {SingleGameInfo} from "../../model/SingleGameInfo";
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {ResultStatusOnly} from "../model/ResultStatusOnly";
+import {ResultStatusOnly} from "../../model/ResultStatusOnly";
 import {HomeService} from "../../services/home.service";
 
 

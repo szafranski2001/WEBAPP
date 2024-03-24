@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { review } from '../Components/model/Review';
+import { review } from '../model/Review';
 import { HttpClient } from '@angular/common/http';
-import { TypeInfo, reviewInfo } from '../Components/model/ReviewInfo';
+import { TypeInfo, reviewInfo } from '../model/ReviewInfo';
 import { tap } from 'rxjs';
 
 @Injectable({

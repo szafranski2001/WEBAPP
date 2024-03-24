@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { videogame } from '../Components/model/Videogame';
+import { videogame } from '../model/Videogame';
 import { Injectable } from '@angular/core';
 import { VideogameReviewsService } from './videogame-reviews.service';
 

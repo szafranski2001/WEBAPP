@@ -12,6 +12,7 @@ export class GeneralTasksService {
   }
 
   formatData( value : string, maxlength : number){
-    return value.length > maxlength ? value.slice(0,maxlength) : value;
+    let string=value.trim();
+    return string.length > maxlength ? value.slice(0,maxlength) : value;
   }
 }

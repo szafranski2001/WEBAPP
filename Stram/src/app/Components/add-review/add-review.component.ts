@@ -2,7 +2,7 @@ import { Component, OnInit,Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { GeneralTasksService } from '../../services/general-tasks.service';
 import { VideogameReviewsService } from '../../services/videogame-reviews.service';
-import { review } from '../model/Review';
+import { review } from '../../model/Review';
 import { VideogameDataService } from '../../services/videogame-data.service';
 import { HttpErrorResponse} from '@angular/common/http';
 
@@ -42,7 +42,7 @@ export class AddReviewComponent implements OnInit {
       voto : this.currentRating.value,
       commento : form.value['description'],
       likes : 0,
-      titolo : form.value['title']
+      titolo : form.value['title'].trim()
     }
     
     this.ReviewService.AddReviewData(review).subscribe({

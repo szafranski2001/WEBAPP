@@ -1,6 +1,7 @@
 package it.unical.studenti.strambackend.controller;
 
 import it.unical.studenti.strambackend.persistence.DBManager;
+import it.unical.studenti.strambackend.persistence.ErrorMessage.VideogameMessageDB;
 import it.unical.studenti.strambackend.persistence.Model.Videogioco;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class VideogameController {
             return new ResponseEntity<>(HttpStatus.CREATED);
         }
         catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(VideogameMessageDB.ERROR_ADD_VIDEOGAME_MESSAGE, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -39,7 +40,7 @@ public class VideogameController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(VideogameMessageDB.ERROR_REMOVE_VIDEOGAME_MESSAGE,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -50,7 +51,7 @@ public class VideogameController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch(Exception e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(VideogameMessageDB.ERROR_EDIT_VIDEOGAME_MESSAGE,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

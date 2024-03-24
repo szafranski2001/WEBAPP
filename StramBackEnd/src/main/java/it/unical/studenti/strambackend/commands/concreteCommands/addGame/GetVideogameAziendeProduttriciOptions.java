@@ -12,11 +12,9 @@ import java.util.Set;
 
 public class GetVideogameAziendeProduttriciOptions extends Command {
 
-
     public GetVideogameAziendeProduttriciOptions(Map<String, String> allParams) {
         super(allParams);
     }
-
 
     @Override
     protected <T> ResponseEntity<T> logicCommand(Map<String, String> allParameters) {

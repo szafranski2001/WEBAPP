@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {SingleGameInfo} from "../Components/model/SingleGameInfo";
-import {ResultStatusOnly} from "../Components/model/ResultStatusOnly";
+import {SingleGameInfo} from "../model/SingleGameInfo";
+import {ResultStatusOnly} from "../model/ResultStatusOnly";
 
 @Injectable({
   providedIn: 'root'

@@ -1,9 +1,9 @@
 import { Component,OnInit } from '@angular/core';
-import { genere, videogame } from '../model/Videogame';
+import { genere, videogame } from '../../model/Videogame';
 import { VideogameDataService } from '../../services/videogame-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GeneralTasksService } from '../../services/general-tasks.service';
-import { NotFoundError } from '../model/Message';
+import { NotFoundError } from '../../model/Message';
 
 @Component({
   selector: 'app-videogame-detail',

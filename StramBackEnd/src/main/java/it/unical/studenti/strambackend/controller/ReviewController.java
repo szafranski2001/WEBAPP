@@ -1,6 +1,7 @@
 package it.unical.studenti.strambackend.controller;
 
 import it.unical.studenti.strambackend.persistence.DBManager;
+import it.unical.studenti.strambackend.persistence.ErrorMessage.ReviewMessageDB;
 import it.unical.studenti.strambackend.persistence.Model.Likeato;
 import it.unical.studenti.strambackend.persistence.Model.Recensione;
 import it.unical.studenti.strambackend.persistence.Model.Segnalazioni;
@@ -31,7 +32,7 @@ public class ReviewController {
             DBManager.getInstance().recensioneDAO().save(review);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(ReviewMessageDB.ERROR_ADD_REVIEW_MESSAGE, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -42,7 +43,7 @@ public class ReviewController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(ReviewMessageDB.ERROR_REMOVE_REVIEW_MESSAGE,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -60,7 +61,7 @@ public class ReviewController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(ReviewMessageDB.ERROR_ADD_LIKE_REVIEW_MESSAGE,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -71,7 +72,7 @@ public class ReviewController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(ReviewMessageDB.ERROR_REMOVE_LIKE_REVIEW_MESSAGE,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -84,7 +85,7 @@ public class ReviewController {
             return new ResponseEntity<>(HttpStatus.CREATED);
         }
         catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(ReviewMessageDB.ERROR_ADD_REPORT_REVIEW_MESSAGE,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -95,10 +96,10 @@ public class ReviewController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(ReviewMessageDB.ERROR_REMOVE_REPORT_REVIEW_MESSAGE,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    //Mancano quelle chiamate dove serve prendere l'utente devo ancora capirei il modo migliore per farlo
+    //Mancano quelle chiamate dove serve prendere l'utente devo ancora capire il modo migliore per farlo
 
 }

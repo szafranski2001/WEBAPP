@@ -10,6 +10,7 @@ import java.util.List;
 import it.unical.studenti.strambackend.persistence.Model.Videogioco;
 import it.unical.studenti.strambackend.persistence.DBSource;
 import it.unical.studenti.strambackend.persistence.dao.VideogiocoDAO;
+import it.unical.studenti.strambackend.persistence.exceptions.DatabaseException;
 
 public class VideogiocoDAOJDBC implements VideogiocoDAO {
 	DBSource dbSource;
@@ -19,7 +20,7 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 	}
 
 	@Override
-	public void save(Videogioco videogioco) { //salvo nel DB un nuovo videogiocoo
+	public void save(Videogioco videogioco) throws DatabaseException { //salvo nel DB un nuovo videogiocoo
 		Connection conn;
 		try {
 			conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db ed eseguo la query sottostante
@@ -40,12 +41,13 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
+			throw new DatabaseException();
 		}
 		
 	}
 
 	@Override
-	public Videogioco findByPrimaryKey(int idVideogioco) { //restituisco l'oggetto videogiocoo con tutti i dati utilizzando il suo id
+	public Videogioco findByPrimaryKey(int idVideogioco) throws DatabaseException{ //restituisco l'oggetto videogiocoo con tutti i dati utilizzando il suo id
 		try {
 			Connection conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db ed eseguo la query sottostante
 			String query = "select * from videogiochi where id=?";
@@ -64,13 +66,12 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 			return videogioco; //restituisco l'oggetto videogiocoo
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new DatabaseException();
 		}
-		return null; // in caso di errore restutuisco null
-
 	}
 
 	@Override
-	public List<Videogioco> findAll() { //cerco tutti i videogiocoo presenti nel DB e li inserisco in una lista di oggetti "videogiocoo"
+	public List<Videogioco> findAll() throws DatabaseException { //cerco tutti i videogiocoo presenti nel DB e li inserisco in una lista di oggetti "videogiocoo"
 		List<Videogioco> videogiochi = new ArrayList<Videogioco>();
 		try {
 			Connection con = dbSource.getConnection();//utilizzo la connessione singleton con il db ed eseguo la query sottostante
@@ -78,16 +79,20 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 			PreparedStatement st = con.prepareStatement(query);
 			ResultSet rs = st.executeQuery(); //eseguo query
 			while (rs.next()) {
-				Videogioco videogiocoo = new Videogioco (rs.getInt("id"),rs.getString("titolo"),rs.getString("descrizione"),rs.getString("genere"),
+				Videogioco videogioco = new Videogioco (rs.getInt("id"),rs.getString("titolo"),rs.getString("descrizione"),rs.getString("genere"),
 				rs.getInt("durata"),rs.getInt("anno"),rs.getInt("valutazione"),rs.getString("trailer"),rs.getString("casamadre")); //creo l'oggetto videogiocoo
-				videogiochi.add(videogiocoo);				// inserisco il videogiocoo nella lista di oggetti videogiocoo
+				videogiochi.add(videogioco);				// inserisco il videogiocoo nella lista di oggetti videogiocoo
 			}
 			//chiudo tutte le varie connessioni
 			rs.close();
 			st.close();
 			con.close();
+			for( Videogioco v : videogiochi){
+				System.out.println(v.getId());
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new DatabaseException();
 		}
 		return videogiochi; //restituisco la lista
 	}
@@ -111,7 +116,7 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 	}
 
 	 @Override
-	    public void delete(int videogiocoId) { //elimino un videogiocoo dal catalogo dei videogiocoo
+	    public void delete(int videogiocoId) throws DatabaseException { //elimino un videogiocoo dal catalogo dei videogiocoo
 
 	        try {
 	            Connection con = dbSource.getConnection();//utilizzo la connessione singleton con il db ed eseguo la query sottostante
@@ -154,11 +159,12 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 
 	        } catch (SQLException e) {
 	            e.printStackTrace();
+				throw new DatabaseException();
 	        }
 	}
 
 	@Override
-	public List<Videogioco> findByName(Videogioco videogioco) { //??
+	public List<Videogioco> findByName(Videogioco videogioco) throws DatabaseException { //??
 		List<Videogioco> videogiochi = new ArrayList <Videogioco>();
 		try {
 			Connection con = dbSource.getConnection();//utilizzo la connessione singleton con il db ed eseguo la query sottostante
@@ -174,8 +180,9 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 			rs.close();
 			st.close();
 			con.close();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+			throw new DatabaseException();
 		}
 		return videogiochi;
 	}
@@ -241,7 +248,7 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 
 	}
 	@Override
-	public boolean updateVideogioco(Videogioco videogioco, int videogiocoId) { //aggiorno i dati di un videogiocoo esistente e resituisco true se la modifica è avvenuta con successo
+	public void updateVideogioco(Videogioco videogioco, int videogiocoId) throws DatabaseException { //aggiorno i dati di un videogiocoo esistente e resituisco true se la modifica è avvenuta con successo
 		Connection conn = null;
 		try {
 			conn = this.dbSource.getConnection();//utilizzo la connessione singleton con il db ed eseguo la query sottostante
@@ -258,11 +265,10 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 			//chiudo tutte le varie connessioni
 			st.close();
 			conn.close();
-			return true;
 			
 		} catch (SQLException e) {
-			return false;		 // In caso di eccezione, ritorno false 	
-		} 
+			throw new DatabaseException();		 // In caso di eccezione, ritorno false
+		}
 	}
 	
 	@Override

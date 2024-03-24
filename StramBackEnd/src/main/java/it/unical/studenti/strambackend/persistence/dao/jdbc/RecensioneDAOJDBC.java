@@ -8,6 +8,7 @@ import it.unical.studenti.strambackend.persistence.DBSource;
 import it.unical.studenti.strambackend.persistence.dao.RecensioneDAO;
 import it.unical.studenti.strambackend.persistence.exceptions.DatabaseException;
 
+import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,13 +43,13 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DatabaseException("Errore durante il salvataggio della recensione.");
+			throw new DatabaseException();
 		}
 
 	}
 
 	@Override
-	public Recensione findByPrimaryKey(User user, Videogioco videogioco) { //cerco nel db una recensione scritta da un utente in uno specifico videogioco
+	public Recensione findByPrimaryKey(User user, Videogioco videogioco) throws DatabaseException { //cerco nel db una recensione scritta da un utente in uno specifico videogioco
 		Recensione recensione = null;
 		try {
 			Connection conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db
@@ -68,12 +69,13 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new DatabaseException();
 		}	
 		return recensione;	
 	}
 
 	@Override
-	public List<Recensione> findAll() { //cerco tutte le recensioni scritte in un determinato videogioco e restituisco una lista di oggetti "recensione"
+	public List<Recensione> findAll() throws DatabaseException{ //cerco tutte le recensioni scritte in un determinato videogioco e restituisco una lista di oggetti "recensione"
 		List<Recensione> recensioni = new ArrayList<Recensione>();
 		try {
 			Connection con = dbSource.getConnection(); //utilizzo la connessione singleton con il db
@@ -89,8 +91,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 			st.close();
 			con.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
-
+			throw new DatabaseException();
 		}
 		//ordino la lista di oggetti recensioni in modo da avere prima quelle con più likes
 		Collections.sort(recensioni, (r1, r2) -> Integer.compare(r2.getLikes(), r1.getLikes()));
@@ -98,7 +99,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 	}
 	
 	// Metodo per trovare una recensione specifica
-	private Recensione trovaRecensioneSpecificata(List<Recensione> recensioni, String username) {
+	private Recensione trovaRecensioneSpecificata(List<Recensione> recensioni, String username){
 	    for (int i = recensioni.size() - 1; i >= 0; i--) {
 	        Recensione recensione = recensioni.get(i);
 	        if (recensione.getUsername().equals(username)) {
@@ -140,7 +141,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 	        st.close();
 	        con.close();
 	    } catch (SQLException e) {
-			throw new DatabaseException("Errore durante la cancellazione della recensione.");
+			throw new DatabaseException();
 	    }
 	}
 
@@ -180,7 +181,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 	}
 
 	@Override
-	public Integer mediaVoti(int videogioco) { //calcolo la media  di valutazione delle varie recensioni
+	public Integer mediaVoti(int videogioco) throws DatabaseException { //calcolo la media  di valutazione delle varie recensioni
 		int media = 0;
 		try {
 			Connection conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db
@@ -198,6 +199,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new DatabaseException();
 		}	
 
 		return media;
@@ -223,7 +225,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DatabaseException("Errore durante il caricamento delle recensioni");
+			throw new DatabaseException();
 		}
 		//ordino la lista di oggetti recensioni in modo da avere prima quelle con più likes
 		Collections.sort(recensioni, (r1, r2) -> Integer.compare(r2.getLikes(), r1.getLikes())); //
@@ -273,7 +275,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DatabaseException("Errore durante l'aggiunta/rimozione del like.");
+			throw new DatabaseException();
 		}
 	}
 

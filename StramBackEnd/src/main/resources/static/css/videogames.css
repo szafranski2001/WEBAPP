@@ -17,7 +17,6 @@
     background-color: var(--background-header-color);
     margin: 0;
     width: 100%;
-    text-align: center;
     height: 100%;
 }
 .videogame-figure:hover{
@@ -25,10 +24,14 @@
 }
 
 .videogame-figure img{
+    display: flex;
     border: 2px solid var(--systemGray3);
     width: 98%;
     height: 100%;
+    overflow-wrap: break-word;
+    text-align: center;
 }
+
 
 .material-symbols-outlined.mdsize{
     font-size: 2vw;

@@ -1,8 +1,8 @@
 import { Component,EventEmitter, OnInit, Output,Input } from '@angular/core';
-import { tipologiaUser } from '../model/TipologiaUtente';
+import { tipologiaUser } from '../../model/TipologiaUtente';
 import { VideogameDataService } from '../../services/videogame-data.service';
 import { Router } from '@angular/router';
-import { ConfirmVideogameDeleteMessage, RedirectToHomeMessage, SuccessfulVideogameDeleteMessage } from '../model/Message';
+import { ConfirmVideogameDeleteMessage, RedirectToHomeMessage, SuccessfulVideogameDeleteMessage } from '../../model/Message';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -54,9 +54,15 @@ export class VideogameToolbarComponent implements OnInit {
 
   RemoveVideogame(){
     if(confirm(ConfirmVideogameDeleteMessage)){
-      this.VideogameManagerService.RemoveVideogameData(this.videogameId);
-      alert(SuccessfulVideogameDeleteMessage+RedirectToHomeMessage)
-      this.router.navigate(['/']);
+      this.VideogameManagerService.RemoveVideogameData(this.videogameId).subscribe({
+        next: () => {
+          alert(SuccessfulVideogameDeleteMessage+RedirectToHomeMessage)
+          this.router.navigate(['/']);
+        },
+        error: (error : HttpErrorResponse) => {
+          alert(error.error)
+        }
+      });
     }
   }
 

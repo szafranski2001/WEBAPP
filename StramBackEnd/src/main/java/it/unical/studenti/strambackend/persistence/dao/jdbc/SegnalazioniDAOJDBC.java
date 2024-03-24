@@ -40,7 +40,7 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DatabaseException("Errore durante la creazione della segnalazione");
+			throw new DatabaseException();
 		}
 		
 	}
@@ -62,7 +62,7 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DatabaseException("Errore durante la rimozione della segnalazione");
+			throw new DatabaseException();
 		}
 	}
 
@@ -177,7 +177,7 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
         } 
 		catch (SQLException e) {
             e.printStackTrace();
-			throw new DatabaseException("Errore durante l'aggiornamento segnalazioni");
+			throw new DatabaseException();
         }
 	}
 
@@ -202,7 +202,7 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
 
 			} catch (SQLException e) {
 				e.printStackTrace();
-				throw new DatabaseException("Errore durante ricerca segnalazioni utente");
+				throw new DatabaseException();
 			}
 			return segnalazioni; //ritorno la lista segnalazioni
 		}

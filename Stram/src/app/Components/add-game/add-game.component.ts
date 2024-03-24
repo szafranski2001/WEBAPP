@@ -1,5 +1,5 @@
 import {Component, NgIterable, OnInit} from '@angular/core';
-import {videogame} from "../model/Videogame";
+import {videogame} from "../../model/Videogame";
 import {core} from "@angular/compiler";
 import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvider";
 import {Observable, Subject, tap} from "rxjs";
