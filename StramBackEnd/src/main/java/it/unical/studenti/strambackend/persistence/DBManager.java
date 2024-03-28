@@ -19,7 +19,7 @@ public class DBManager {
 	static {
 		try {
 			Class.forName("org.postgresql.Driver");
-			dataSource = new DBSource("jdbc:postgresql://localhost:5432/WebApp","postgres","postgres");
+			dataSource = new DBSource("jdbc:postgresql://localhost:5432/postgres","postgres","postgres");
 		} 
 		catch (Exception e) {
 			System.err.println("PostgresDAOFactory.class: failed to load MySQL JDBC driver\n"+e);
