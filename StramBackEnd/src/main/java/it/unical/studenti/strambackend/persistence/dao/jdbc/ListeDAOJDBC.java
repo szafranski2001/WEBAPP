@@ -22,7 +22,7 @@ public class ListeDAOJDBC implements ListeDAO{
 	}
 	
 	@Override
-    public void insertList(Liste lista, Videogioco videogioco)// inserisco un nuovo videogioco nella lista (le liste possono essere: preferiti / watchlist
+    public void insertList(Liste lista, Videogioco videogioco)// inserisco un nuovo videogioco nella lista (le liste possono essere: preferiti / wishlist)
     {
         Connection conn;
         try {
@@ -42,7 +42,7 @@ public class ListeDAOJDBC implements ListeDAO{
         }
     }
 	@Override
-    public List <Videogioco> OpenList(Liste lista) // apro una lista di un utente contenente vari videogioco
+    public List <Videogioco> OpenList(Liste lista) // apro una lista di un utente contenente vari videogiochi
     {
 		List<Videogioco> videogiochi= new ArrayList<Videogioco>(); //creo una lista di oggetti videogioco
         try {
@@ -56,7 +56,7 @@ public class ListeDAOJDBC implements ListeDAO{
             while (rs.next()) {
 				Videogioco videogioco = new Videogioco (rs.getInt("id"),rs.getString("titolo"),rs.getString("descrizione"),rs.getString("genere"),
 						rs.getInt("durata"),rs.getInt("anno"),rs.getInt("valutazione"),rs.getString("trailer"),rs.getString("casamadre"));
-                videogiochi.add(videogioco); //aggiungo i singoli videogioco alla lista
+                videogiochi.add(videogioco); //aggiungo i singoli videogiochi alla lista
             }
           
           //chiudo tutte le varie connessioni
@@ -67,7 +67,7 @@ public class ListeDAOJDBC implements ListeDAO{
             e.printStackTrace();
         }
         
-        return videogiochi; //ritorno la lista di oggetti popolata con i videogioco.
+        return videogiochi; //ritorno la lista di oggetti popolata con i videogiochi.
     }
  
    	
