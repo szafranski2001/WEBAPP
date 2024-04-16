@@ -11,34 +11,37 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-@RequestMapping("/authenticate")
+
 public class AuthenticationController {
-    @PostMapping("/signUp")
+    @PostMapping("/authenticate/signUp")
     public boolean completeRegistration(@RequestBody User user) {
+        System.out.println(user.getNome());
         if (!DBManager.getInstance().userDAO().existsUser(user.getUsername()))
-        {
+        { System.out.println(user.getNome());
             if (!DBManager.getInstance().userDAO().bannedEmail(user.getEmail()))
-            {
+            { System.out.println(user.getNome());
                 if(!DBManager.getInstance().userDAO().existsUserEmail(user.getEmail()))
-                {
+                { System.out.println(user.getNome());
                     DBManager.getInstance().userDAO().save(user);
                 }
             }
         }
         return true;
     }
-    @PostMapping("/login")
+    @PostMapping("/authenticate/login")
     public ResponseEntity login (@RequestBody UserCredenziali user)
-    {
+    { System.out.println(user.getUsername());
         if (DBManager.getInstance().userDAO().existsUser(user.getUsername()))
-        {
+        { System.out.println(user.getUsername());
             if (DBManager.getInstance().userDAO().checkPassword(user.getUsername(), user.getPassword()))
-            {
+            { System.out.println(user.getUsername());
                 UserDTO userDTO= new UserDTO();
                 String authenticationToken = TokenManager.creaToken(user.getUsername(), 100*60*60*24*30*6);
                 userDTO.setUser(user);
                 userDTO.setToken(authenticationToken);
+                System.out.println(userDTO.getUser());
                 return ResponseEntity.ok().body(userDTO);
+
             }
         }
         return ResponseEntity.badRequest().body("Username o Password errati");

@@ -2,10 +2,10 @@
 <div class = "main-container">
   <h1 class="login">LOGIN</h1> <br>
   <h1 class="label">Nome Utente</h1>
-  <input type="text" id="username" name="username" placeholder="Username">
+  <input type="text" id="username" name="username" class="input" placeholder="Username" ngModel required>
   <br>
   <h1 class="label">Password</h1>
-  <input type="password" id="password" name="password" placeholder="Password">
+  <input type="password" id="password" name="password" class="input" placeholder="Password" ngModel required>
   <button type="submit" [disabled]="homeForm.invalid">login</button>
 </div>
 </form>

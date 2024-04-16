@@ -13,7 +13,8 @@ export class LoginService {
   constructor(private http : HttpClient) { }
   doLogin(user:  UserCredentials )
   {
-    return this.http.post<UserDTO>(this.url+"/authenticate/login",user).subscribe(Response=>{
+    console.log(user.password, user.username)
+    this.http.post<UserDTO>(this.url+"/authenticate/login",user).subscribe(Response=>{
       this.tokenM.setToken(Response.token);
       Response.user.password=""; //nice remove
       localStorage.setItem("user", JSON.stringify(Response.user));

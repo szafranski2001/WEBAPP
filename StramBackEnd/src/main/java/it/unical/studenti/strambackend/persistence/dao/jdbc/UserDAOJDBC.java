@@ -74,7 +74,8 @@ public class UserDAOJDBC implements UserDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}
+
 		return BCrypt.checkpw(password, password_hash); //restituisco true se la password inserita combacia con quella salvata
 	}
 	

@@ -19,11 +19,12 @@ export class LoginComponent implements OnInit{
   }
   onSubmit(form: NgForm)
   {
-    const username= form.value.username
+    const username= form.value['username']
     const password = form.value.password
 
     this.user = {password: password, username: username}
     //controllare input utente se valido
+    console.log(username, password)
     this.service.doLogin(this.user)
     form.reset()
   }
