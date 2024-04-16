@@ -9,7 +9,7 @@ import it.unical.studenti.strambackend.persistence.exceptions.DatabaseException;
 public interface VideogiocoDAO {
 	public void save(Videogioco videogioco) throws DatabaseException; // inserisco nel DB un nuovo VIDEOGIOCO
 	public Videogioco findByPrimaryKey(int idVideogioco) throws DatabaseException;	// RESTITUISCO L'OGGETTO VIDEOGIOCO IN BASE ALL'ID
-	public List<Videogioco> findAll() throws DatabaseException;       // CERCO TUTTI I VIDEOGIOCO PRESENTI NEL DB
+	public List<Videogioco> findAll() throws DatabaseException;       // CERCO TUTTI I VIDEOGIOCHI PRESENTI NEL DB
 	public void update(Videogioco videogioco);	
 	public void delete(int videogiocoId) throws DatabaseException;	//ELIMINO UN VIDEOGIOCO
 	public List<Videogioco> findByName(Videogioco videogioco) throws DatabaseException;

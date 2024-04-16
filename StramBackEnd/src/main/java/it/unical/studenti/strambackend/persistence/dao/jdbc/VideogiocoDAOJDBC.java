@@ -47,7 +47,7 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 	}
 
 	@Override
-	public Videogioco findByPrimaryKey(int idVideogioco) throws DatabaseException{ //restituisco l'oggetto videogiocoo con tutti i dati utilizzando il suo id
+	public Videogioco findByPrimaryKey(int idVideogioco) throws DatabaseException{ //restituisco l'oggetto videogioco con tutti i dati utilizzando il suo id
 		try {
 			Connection conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db ed eseguo la query sottostante
 			String query = "select * from videogiochi where id=?";
@@ -141,14 +141,14 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 	            st.executeUpdate();
 	            st.close();
 
-	            //ELIMINO I FILM NELLE LISTE
+	            //ELIMINO I VIDEOGIOCHI NELLE LISTE
 	            query = "delete from videogiocooinliste WHERE videogiocoo = ? ";
 	            st = con.prepareStatement(query);
 	            st.setInt(1, videogiocoId);
 	            st.executeUpdate();
 	            st.close();
 
-	            //ELIMINO IL FILM
+	            //ELIMINO IL VIDEOGIOCO
 	            query = "delete from videogiochi WHERE id = ?";
 	            st = con.prepareStatement(query);
 	            st.setInt(1, videogiocoId);
@@ -188,7 +188,7 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 	}
 	
 	@Override
-	public List<Videogioco> risultati(String input) { //cerco i videogiocoo nei quali il titolo/anno/genere rispecchia la stringa input e restituisco la lista di oggetti videogiocoo
+	public List<Videogioco> risultati(String input) { //cerco i videogiocoo nei quali il titolo/anno/genere rispecchia la stringa input e restituisco la lista di oggetti videogioco
 		List<Videogioco> videogiochi = new ArrayList <Videogioco>();
 		try {
 			Connection con = dbSource.getConnection();//utilizzo la connessione singleton con il db ed eseguo la query sottostante
@@ -213,7 +213,7 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 		return videogiochi; //restituisco la lista
 	}
 	@Override
-	public boolean existsVideogioco(Videogioco videogioco) { //controllo se un videogiocoo esiste nel DB
+	public boolean existsVideogioco(Videogioco videogioco) { //controllo se un videogioco esiste nel DB
 		Connection con=null;
 		PreparedStatement st=null;
 		ResultSet rs=null;
