@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../../model/User';
+import {UserCredentials} from "../../model/User";
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +9,7 @@ import { User } from '../../model/User';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-  user: User;
+  user: UserCredentials;
 
   constructor(private http: HttpClient) { }
 
@@ -26,11 +26,12 @@ export class ProfileComponent {
       cognome: cognome,
       email: email,
       password: password,
-      confirmPassword: confirmPassword
+      confirmPassword: confirmPassword,
+      username: this.user.username
     };
 
     // Invio i dati al backend
-    this.http.post<any>('/api/profile/update', userData).subscribe(
+    this.http.post<any>('/api/profile/update', JSON.stringify(userData)).subscribe(
       response => {
         console.log('Dati aggiornati con successo:', response);
       },
