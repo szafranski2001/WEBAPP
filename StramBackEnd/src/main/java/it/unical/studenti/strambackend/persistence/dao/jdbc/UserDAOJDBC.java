@@ -1,16 +1,16 @@
 package it.unical.studenti.strambackend.persistence.dao.jdbc;
 
+import it.unical.studenti.strambackend.persistence.DBSource;
+import it.unical.studenti.strambackend.persistence.Model.User;
+import it.unical.studenti.strambackend.persistence.dao.UserDAO;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import it.unical.studenti.strambackend.persistence.Model.User;
-import it.unical.studenti.strambackend.persistence.DBSource;
-import it.unical.studenti.strambackend.persistence.dao.UserDAO;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 
 
 public class UserDAOJDBC implements UserDAO {
@@ -145,8 +145,8 @@ public class UserDAOJDBC implements UserDAO {
 			String update = "update users SET password = ?, nome = ?, cognome = ?, email = ? WHERE username=?";
 			PreparedStatement st = conn.prepareStatement(update);
 			st.setString(1, BCrypt.hashpw(newu.getPassword(), BCrypt.gensalt(12)));
-			st.setString(2, newu.getNome());				
-			st.setString(3, newu.getCognome());					
+			st.setString(2, newu.getNome());
+			st.setString(3, newu.getCognome());
 			st.setString(4, newu.getEmail());
 			st.setString(5, old.getUsername());
 			st.executeUpdate(); // aggiorno i vari paramentri
