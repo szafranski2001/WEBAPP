@@ -1,23 +1,23 @@
 export class TokenManager {
- private token : String | null
+ private token : string | null | undefined
   getToken()
   {
     if (this.token== null)
     {
-      this.token= localStorage.getItem("user-token")
+      this.token= localStorage.getItem("user-token");
     }
     return this.token
   }
 
-  setToken(token: String)
+  setToken(token: string)
   {
-    this.token = token
-    localStorage.setItem("user-token",this.token.toString())
+    this.token = token.toString();
+    localStorage.setItem("user-token",this.token.toString());
   }
   removeToken()
   {
-    localStorage.removeItem("user")
-    localStorage.removeItem("user-token")
-    this.token= null
+    localStorage.removeItem("user");
+    localStorage.removeItem("user-token");
+    this.token= null;
   }
 }

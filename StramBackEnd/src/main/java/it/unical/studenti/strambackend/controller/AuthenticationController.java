@@ -29,22 +29,21 @@ public class AuthenticationController {
         return true;
     }
     @PostMapping("/authenticate/login")
-    public ResponseEntity login (@RequestBody UserCredenziali user)
-    { System.out.println(user.getUsername());
+    public ResponseEntity <UserDTO> login (@RequestBody UserCredenziali user)
+    { System.out.println(user.getUsername()+ "1");
         if (DBManager.getInstance().userDAO().existsUser(user.getUsername()))
-        { System.out.println(user.getUsername());
+        { System.out.println(user.getUsername() + "2");
             if (DBManager.getInstance().userDAO().checkPassword(user.getUsername(), user.getPassword()))
-            { System.out.println(user.getUsername());
+            { System.out.println(user.getUsername() + "3");
                 UserDTO userDTO= new UserDTO();
                 String authenticationToken = TokenManager.creaToken(user.getUsername(), 100*60*60*24*30*6);
                 userDTO.setUser(user);
                 userDTO.setToken(authenticationToken);
-                System.out.println(userDTO.getUser());
                 return ResponseEntity.ok().body(userDTO);
 
             }
         }
-        return ResponseEntity.badRequest().body("Username o Password errati");
+        return ResponseEntity.badRequest().body(null);
 
     }
 
