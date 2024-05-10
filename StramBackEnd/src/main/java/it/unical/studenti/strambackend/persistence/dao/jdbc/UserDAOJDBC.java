@@ -387,6 +387,40 @@ public class UserDAOJDBC implements UserDAO {
 		return BCrypt.checkpw(risposta, risposta_hash); //controllo se la risposta data è corretta
 		
 	}
-	
+	public int getTypeUser(String user) {
+		Connection conn = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			conn = dbSource.getConnection();
+			String query = "SELECT * FROM users WHERE username=?";
+			st = conn.prepareStatement(query);
+			st.setString(1, user);
+			rs = st.executeQuery();
+			if (rs.next()) {
+				System.out.println("ciao");
+				return rs.getInt("tipo");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (st != null) {
+					st.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return 0;
+	}
+
 	
 }

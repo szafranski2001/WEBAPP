@@ -30,15 +30,16 @@ public class AuthenticationController {
     }
     @PostMapping("/authenticate/login")
     public ResponseEntity <UserDTO> login (@RequestBody UserCredenziali user)
-    { System.out.println(user.getUsername()+ "1");
+    {
         if (DBManager.getInstance().userDAO().existsUser(user.getUsername()))
-        { System.out.println(user.getUsername() + "2");
+        {
             if (DBManager.getInstance().userDAO().checkPassword(user.getUsername(), user.getPassword()))
-            { System.out.println(user.getUsername() + "3");
+            {
                 UserDTO userDTO= new UserDTO();
                 String authenticationToken = TokenManager.creaToken(user.getUsername(), 100*60*60*24*30*6);
                 userDTO.setUser(user);
                 userDTO.setToken(authenticationToken);
+                userDTO.setType(DBManager.getInstance().userDAO().getTypeUser(user.getUsername()));
                 return ResponseEntity.ok().body(userDTO);
 
             }

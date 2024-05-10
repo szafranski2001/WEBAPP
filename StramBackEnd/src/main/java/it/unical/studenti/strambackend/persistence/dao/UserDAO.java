@@ -17,4 +17,5 @@ public interface UserDAO {
 	public boolean bannedEmail(String email); //CONTROLLO SE L'EMAIL INSERITA È STATA BANNATA
 	public String existsDomanda(String email); //CONTROLLO SE LA DOMANDA DI SICUREZZA ESISTE
 	public boolean checkRisposta(String email, String risposta); // CONTROLLO SE LA RISPOSTA ALLA DOMANDA DI SICUREZZA È ESATTA
+	public int getTypeUser(String user);
 }

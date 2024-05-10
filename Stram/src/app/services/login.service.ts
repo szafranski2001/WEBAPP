@@ -19,6 +19,7 @@ export class LoginService {
       console.log(Response.token);
       Response.user.password=""; //nice remove
       localStorage.setItem("user", JSON.stringify(Response.user));
+      localStorage.setItem("type", JSON.stringify(Response.type))
       //DA AGGIUNGERE IL PASSAGGIO ALL:A HOMEPAGE es.this.router.navigate(["/homepage"])
 
     })
