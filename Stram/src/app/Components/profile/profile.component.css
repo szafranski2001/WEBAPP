@@ -2,19 +2,29 @@
   display: flex;
   margin-top: 50px;
   margin-bottom: 50px;
+  width: auto;
+}
+
+.logout-btn{
+  width: 80px;
+  margin-left: auto;
+  margin-right: 50px;
 }
 
 .sections{
   display: flex;
   margin-top: 40px;
   margin-left: 250px;
+  width: auto;
   height: 30px;
 }
 
 .changeFields{
-  position: absolute;
-  right: 250px;
-  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+  margin-right: 200px;
+  flex-grow: 1;
 }
 
 .submit-btn{
@@ -27,7 +37,11 @@ img{
   margin-left: 100px;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="email"],
+input[type="password"]
+{
+  height: 20px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -36,40 +50,17 @@ input[type="text"] {
   color: black;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus
+{
   border-color: #007BFF;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-input[type="email"] {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  outline: none;
-  font-size: 16px;
-  color: black;
-}
-
-input[type="email"]:focus {
-  border-color: #007BFF;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-input[type="password"] {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  outline: none;
-  font-size: 16px;
-  color: black;
-}
-
-input[type="password"]:focus {
-  border-color: #007BFF;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
 
 input[type="submit"] {
+  text-align: center;
   padding: 10px 20px;
   height: 50px;
   margin-top: 25px;

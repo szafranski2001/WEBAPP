@@ -2,7 +2,7 @@
   <div class="propicImage">
     <img src="/assets/images/user.png" height="100" width="100">
     <h1 style="margin-left: 50px; margin-top: 30px">Il tuo account</h1>
-    <input type="submit" id="logout" name="logout" value="logout" style="margin-left: 850px">
+    <input class="logout-btn" type="submit" id="logout" name="logout" value="logout">
   </div>
   <form #homeForm="ngForm" (ngSubmit)="onSubmit(homeForm)">
   <div class="sections">
@@ -15,7 +15,7 @@
   <div class="sections">
     <h2>Email: </h2>
     <div class="changeFields">
-      <input type="email" id="changeEmailBar" name="changeEmailBar" placeholder="Cambia Email...">
+      <input type="email" id="changeEmailBar" name="changeEmailBar" placeholder="Cambia Email..." style="margin-left: 350px">
     </div>
   </div>
   <div class="sections">
