@@ -87,9 +87,6 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 			rs.close();
 			st.close();
 			con.close();
-			for( Videogioco v : videogiochi){
-				System.out.println(v.getId());
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DatabaseException();

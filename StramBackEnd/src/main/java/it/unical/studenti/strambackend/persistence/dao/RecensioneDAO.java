@@ -18,5 +18,7 @@ public interface RecensioneDAO {
 	public void addOrRemoveLike(Likeato likeato, int change) throws DatabaseException;//AGGIUNGO O RIMUOVO UN LIKE DA UNA RECENSIONE
 
 	public List<Likeato> findLikes(User user); //RESTITUISCO LA LISTA DI LIKE FATTI ALLE RECENSIONI DA UN UTENTE
-	
+
+	public List<Likeato> findLikesVideogame(User user, int idVideogioco) throws DatabaseException;
+
 }

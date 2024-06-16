@@ -8,7 +8,6 @@ import it.unical.studenti.strambackend.persistence.DBSource;
 import it.unical.studenti.strambackend.persistence.dao.RecensioneDAO;
 import it.unical.studenti.strambackend.persistence.exceptions.DatabaseException;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -303,5 +302,30 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 		return likeati; //ritorno la lista likeati
 	}
 
-	
+	@Override
+	public List<Likeato> findLikesVideogame(User user, int idVideogioco) throws DatabaseException {
+		List<Likeato> likeati = new ArrayList<>();
+		try{
+			Connection con = dbSource.getConnection();
+			String query = "select * from recensioni_likes where usernameMittente=? and videogioco=?";
+			PreparedStatement st = con.prepareStatement(query);
+			st.setString(1,user.getUsername());
+			st.setInt(2,idVideogioco);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()){
+				Likeato like = new Likeato(rs.getString("usernameMittente"),rs.getInt("videogioco"),rs.getString("usernameDestinatario"));
+				likeati.add(like);
+			}
+
+			rs.close();
+			st.close();
+			con.close();
+		}
+		catch (SQLException e){
+			e.printStackTrace();
+			throw new DatabaseException();
+		}
+		return likeati;
+	}
+
 }

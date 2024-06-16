@@ -49,9 +49,15 @@ public class ReviewController {
 
     //Fixare post User
     @GetMapping("/api/GetLikes/{videogameId}")
-    public ResponseEntity<List<Likeato>> GetLikes(@PathVariable int videogameId){
-        List<Likeato> UserLikes=DBManager.getInstance().recensioneDAO().findLikes(null); //capire come prendere l'utente
-        return new ResponseEntity<>(UserLikes,HttpStatus.OK);
+    public ResponseEntity<List<Likeato>> GetLikes(@PathVariable int videogameId, @RequestBody String user){
+        try {
+            List<Likeato> UserLikes = DBManager.getInstance().recensioneDAO().findLikesVideogame(null,videogameId); //capire come prendere l'utente
+            return new ResponseEntity<>(UserLikes, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @PostMapping("/api/AddLike")
