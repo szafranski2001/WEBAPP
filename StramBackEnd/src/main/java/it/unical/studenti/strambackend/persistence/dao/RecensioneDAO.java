@@ -19,6 +19,6 @@ public interface RecensioneDAO {
 
 	public List<Likeato> findLikes(User user); //RESTITUISCO LA LISTA DI LIKE FATTI ALLE RECENSIONI DA UN UTENTE
 
-	public List<Likeato> findLikesVideogame(User user, int idVideogioco) throws DatabaseException;
+	public List<Likeato> findLikesVideogame(String user, int idVideogioco);
 
 }

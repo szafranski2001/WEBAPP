@@ -17,6 +17,6 @@
         <app-rating [valutazione]="review.voto"></app-rating>
         <p class="description">{{review.commento}}</p>
     </div>
-    <app-review-toolbar class="toolbar" [reviewInfo]="getSingleReviewInfo(review)" [review]="review"></app-review-toolbar>
+    <app-review-toolbar *ngIf="User" class="toolbar" [reviewInfo]="getSingleReviewInfo(review)" [review]="review"></app-review-toolbar>
  </section>
 </div>

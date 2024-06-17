@@ -303,13 +303,13 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 	}
 
 	@Override
-	public List<Likeato> findLikesVideogame(User user, int idVideogioco) throws DatabaseException {
+	public List<Likeato> findLikesVideogame(String userName, int idVideogioco) {
 		List<Likeato> likeati = new ArrayList<>();
 		try{
 			Connection con = dbSource.getConnection();
 			String query = "select * from recensioni_likes where usernameMittente=? and videogioco=?";
 			PreparedStatement st = con.prepareStatement(query);
-			st.setString(1,user.getUsername());
+			st.setString(1,userName);
 			st.setInt(2,idVideogioco);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()){
@@ -323,7 +323,6 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 		}
 		catch (SQLException e){
 			e.printStackTrace();
-			throw new DatabaseException();
 		}
 		return likeati;
 	}

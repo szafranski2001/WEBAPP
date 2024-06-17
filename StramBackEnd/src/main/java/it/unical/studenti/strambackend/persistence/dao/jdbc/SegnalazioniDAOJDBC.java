@@ -182,13 +182,13 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
 	}
 
 		@Override
-		public List<Segnalazioni> findSegnalazioniUser(User user,int id) throws DatabaseException { //controllo tutte le segnalazioni da uno specifico utente e restituisco una lista di oggetti "sengalazioni"
+		public List<Segnalazioni> findSegnalazioniUser(String user,int id) { //controllo tutte le segnalazioni da uno specifico utente e restituisco una lista di oggetti "sengalazioni"
 			List<Segnalazioni> segnalazioni = new ArrayList<>();
 			try {
 				Connection con = dbSource.getConnection(); //utilizzo la connessione singleton con il db
 				String query = "select * from segnalazioni where mittente=? and videogioco=?";
 				PreparedStatement st = con.prepareStatement(query);
-				st.setString(1,user.getUsername());
+				st.setString(1,user);
 				st.setInt(2,id);
 				ResultSet rs = st.executeQuery();
 				while (rs.next()) {
@@ -202,7 +202,6 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
 
 			} catch (SQLException e) {
 				e.printStackTrace();
-				throw new DatabaseException();
 			}
 			return segnalazioni; //ritorno la lista segnalazioni
 		}
