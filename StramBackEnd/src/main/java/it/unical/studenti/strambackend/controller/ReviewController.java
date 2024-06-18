@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -47,11 +48,16 @@ public class ReviewController {
         }
     }
 
-    //Fixare post User
-    @GetMapping("/api/GetLikes/{videogameId}")
-    public ResponseEntity<List<Likeato>> GetLikes(@PathVariable int videogameId){
-        List<Likeato> UserLikes=DBManager.getInstance().recensioneDAO().findLikes(null); //capire come prendere l'utente
-        return new ResponseEntity<>(UserLikes,HttpStatus.OK);
+    @PostMapping("/api/GetLikes/{videogameId}")
+    public ResponseEntity<List<Likeato>> GetLikes(@PathVariable int videogameId, @RequestBody String user){
+        List<Likeato> UserLikes = DBManager.getInstance().recensioneDAO().findLikesVideogame(user,videogameId); //capire come prendere l'utente
+        return new ResponseEntity<>(UserLikes, HttpStatus.OK);
+    }
+
+    @PostMapping("/api/GetReports/{videogameId}")
+    public ResponseEntity<List<Segnalazioni>> GetReports(@PathVariable int videogameId, @RequestBody String user){
+        List<Segnalazioni> UserReports = DBManager.getInstance().segnalazioniDAO().findSegnalazioniUser(user,videogameId); //capire come prendere l'utente
+        return new ResponseEntity<>(UserReports, HttpStatus.OK);
     }
 
     @PostMapping("/api/AddLike")

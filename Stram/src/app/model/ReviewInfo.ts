@@ -4,7 +4,7 @@ export enum TypeInfo{
 }
 
 export interface reviewInfo{
-    mittente: string,
+    mittente: string | null,
     destinatario: string,
     idVideogioco : number
 }

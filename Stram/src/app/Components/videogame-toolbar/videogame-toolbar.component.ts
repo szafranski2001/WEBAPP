@@ -4,6 +4,7 @@ import { VideogameDataService } from '../../services/videogame-data.service';
 import { Router } from '@angular/router';
 import { ConfirmVideogameDeleteMessage, RedirectToHomeMessage, SuccessfulVideogameDeleteMessage } from '../../model/Message';
 import { HttpErrorResponse } from '@angular/common/http';
+import { UserListsService } from '../../services/user-lists.service';
 
 @Component({
   selector: 'app-videogame-toolbar',
@@ -23,33 +24,65 @@ export class VideogameToolbarComponent implements OnInit {
   //da modificare quando avremo il service per il currentUser
   tipologiaUser = tipologiaUser;
   CurrentUserTipologia = tipologiaUser.Admin;
+  User = localStorage.getItem("user");
 
-  constructor(private VideogameManagerService : VideogameDataService,private router : Router){ }
+  constructor(private VideogameManagerService : VideogameDataService,private router : Router, private UserListService : UserListsService){ }
 
   ngOnInit(): void {
-    //getCurrentUser
-    this.GetVideogameListDetails();
+    if(this.User != undefined)
+      this.GetVideogameListDetails();
   }
 
   GetVideogameListDetails(){
-    //this.isFavorite=getCurrentUser.list.find() ? true : false;
-    //this.isWished=getCurrentUser.list.find() ? true : false;
+    this.UserListService.getUserFavoriteList(this.videogameId).subscribe(response => {
+      this.isFavorite = response;
+    })
+
+    this.UserListService.getUserWishList(this.videogameId).subscribe(response => {
+      this.isWished = response;
+    })
   }
 
   AddFavoriteListPressed(){
-    this.isFavorite=!this.isFavorite;
-    if(this.isFavorite){}
-      //AddVideogameToList
-    else{}
-      //RemoveVideogameFromList
+    this.isFavorite ? 
+      this.UserListService.removeVideogameFromFavoriteList(this.videogameId).subscribe({
+        next: () => {
+          this.isFavorite = !this.isFavorite;
+        },
+        error: (error : HttpErrorResponse) => {
+          alert(error.error);
+        }
+      })
+      : 
+      this.UserListService.addVideoGameToFavoriteList(this.videogameId).subscribe({
+        next: () => {
+          this.isFavorite=!this.isFavorite;
+        },
+        error: (error : HttpErrorResponse) => {
+          alert(error.error);
+        }
+      });
   }
   
   AddWishListPressed(){
-    this.isWished=!this.isWished;
-    if(this.isWished){}
-      //AddVideogameToList
-    else{}
-      //RemoveVideogameFromList
+    this.isWished ? 
+    this.UserListService.removeVideogameFromWishList(this.videogameId).subscribe({
+      next: () => {
+        this.isWished = !this.isWished;
+      },
+      error: (error : HttpErrorResponse) => {
+        alert(error.error);
+      }
+    })
+    : 
+    this.UserListService.addVideoGameToWishList(this.videogameId).subscribe({
+      next: () => {
+        this.isWished=!this.isWished;
+      },
+      error: (error : HttpErrorResponse) => {
+        alert(error.error);
+      }
+    });
   }
 
   RemoveVideogame(){

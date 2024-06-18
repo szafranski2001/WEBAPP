@@ -1,4 +1,4 @@
-<aside class="videogame-toolbar" *ngIf="CurrentUserTipologia != tipologiaUser.null">
+<aside class="videogame-toolbar" *ngIf="User">
   <div class="tlb-itms">
     <button class="round default-btn btn-gray px50 " title="Aggiungi/Rimuovi dalla lista dei preferiti" (click)="AddFavoriteListPressed()">
       <mat-icon class="icon-centered red-icon" [ngClass]="isFavorite ? 'icon-fill' : 'icon-outline'" >favorite</mat-icon>
