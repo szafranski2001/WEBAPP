@@ -10,10 +10,9 @@ import { tap } from 'rxjs';
 export class VideogameReviewsService {
 
   private BackEndURL="http://localhost:8080/api";
-  //faccio una variabile user ma dovremmo prendere quello dal service UtenteManager
-  User="stocazzo";
+  
+  User=localStorage.getItem("user"); 
 
-  //questa lista poi andrà rimossa e si dovrà ritornare il contenuto del backend
   private reviewsList: review[];
 
   constructor(private http : HttpClient) {}
@@ -55,9 +54,7 @@ export class VideogameReviewsService {
 
   getReviewInfo( videogameId : number, type : TypeInfo){
     //effettua chiamata al back-end per prendere tutte i riferimenti cui il nostro utente ha segnalato
-    /*return*/ this.http.get(this.BackEndURL+type+videogameId);
-    return [{mittente:"stocazzo",destinatario:"CR4",idVideogioco: 0},
-            {mittente:"stocazzo",destinatario:"CR3",idVideogioco: 0}];
+    return this.http.post<reviewInfo[]>(this.BackEndURL+type+videogameId,this.User);
   }
 
   /////
@@ -70,7 +67,7 @@ export class VideogameReviewsService {
   }
   
   ManageLikeToReview(review : review, state : boolean){
-    let reviewInfo : reviewInfo = { mittente:this.User, destinatario:review.username, idVideogioco: review.videogioco };
+    let reviewInfo : reviewInfo = { mittente : this.User, destinatario:review.username, idVideogioco: review.videogioco };
     const options={ body : reviewInfo};
 
     return state ? this.http.post(this.BackEndURL+"/AddLike",reviewInfo) : this.http.delete(this.BackEndURL+"/RemoveLike",options);

@@ -16,7 +16,7 @@ export class AddReviewComponent implements OnInit {
   numberOfStars=5;
   currentRating = {value : 1, stars : Array.from({length : this.numberOfStars}, (_,i) => i < 1 ? 'starFull' : 'starEmpty')};
   UserImage : number;
-  User="izaxiu";
+  User=localStorage.getItem("user");
   @Input() videogameId : number;
 
   constructor(private generalTasks : GeneralTasksService, private ReviewService : VideogameReviewsService, private VideogameManagerService : VideogameDataService) {}
@@ -31,14 +31,22 @@ export class AddReviewComponent implements OnInit {
   }
 
   SearchForReview(){
-    return this.ReviewService.SearchUserReview(this.User) > -1 ? true : false;
+    if(this.User != undefined)
+      return this.ReviewService.SearchUserReview(this.User) > -1 ? true : false;
+    return false;
   }
 
   SubmitReview(form : NgForm){
     //Prendi dati, crei review e invia a ReviewList e poi backEnd
+    let user;
+    if(this.User != undefined)
+      user = this.User;
+    else
+      user = "";
+
     let review : review = 
     { videogioco : this.videogameId, 
-      username : this.User,//da cambiare con il valore del currentUser
+      username :  user,//da cambiare con il valore del currentUser
       voto : this.currentRating.value,
       commento : form.value['description'],
       likes : 0,

@@ -14,7 +14,7 @@ export class VideogameReviewsComponent implements OnInit {
 
   //Da cambiare con il getCurrentUser non appena abbiamo il service dell'utente corrente
   //Cerca tutti i suoi riferimenti
-  User="stocazzo";
+  User = localStorage.getItem("user");
   
   ReviewList : review[];
   ReviewLikeInfos : reviewInfo[];
@@ -27,15 +27,27 @@ export class VideogameReviewsComponent implements OnInit {
       this.ReviewList=response;
       this.ReviewService.setReviewList(response);
     });
-    
-    this.ReviewLikeInfos=this.ReviewService.getReviewInfo(this.videogameId,TypeInfo.like);
-    this.ReviewReportInfos=this.ReviewService.getReviewInfo(this.videogameId,TypeInfo.report);
+
+    if(this.User != undefined){
+      this.ReviewService.getReviewInfo(this.videogameId,TypeInfo.like).subscribe( response => {
+        this.ReviewLikeInfos = response;
+      })
+
+      this.ReviewService.getReviewInfo(this.videogameId,TypeInfo.report).subscribe( response => {
+        this.ReviewReportInfos = response;
+      })
+    }
+    //TODO: da controllare una volta visto il login
+    //controlla anche getSingleReviewInfo
   }
 
   getSingleReviewInfo(review : review){
-    let likeInfo=this.ReviewLikeInfos.find( info => info.mittente == this.User && info.destinatario == review.username) ? true : false;
-    let reportInfo=this.ReviewReportInfos.find( info => info.mittente == this.User && info.destinatario == review.username) ? true : false;
-    return [likeInfo,reportInfo];
+    if(this.User != undefined){
+        let likeInfo=this.ReviewLikeInfos.find( info => info.mittente == this.User && info.destinatario == review.username) ? true : false;
+        let reportInfo=this.ReviewReportInfos.find( info => info.mittente == this.User && info.destinatario == review.username) ? true : false;
+        return [likeInfo,reportInfo];
+    }
+    return [false,false];
   }
 
 }

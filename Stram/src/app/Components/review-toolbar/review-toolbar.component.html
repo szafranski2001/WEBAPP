@@ -1,4 +1,4 @@
-<aside class="review-toolbar" *ngIf="CurrentUserTipologia != tipologiaUser.null">
+<aside class="review-toolbar">
     <div class="tlb-itms" *ngIf="User != review.username">
       <button class="round default-btn btn-gray px50" title="Mi piace" (click)="LikeReview()">
         <mat-icon class="like-blue-icon" [ngClass]="isLiked ? 'icon-fill' : 'icon-outline' ">thumb_up</mat-icon>
@@ -12,5 +12,5 @@
         <mat-icon>delete</mat-icon>
       </button>
     </div> 
-  </aside>
+</aside>
   
