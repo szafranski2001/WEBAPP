@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {SingleGameInfo} from "../../model/SingleGameInfo";
 
 @Component({
   selector: 'app-slider',
@@ -6,5 +7,29 @@ import { Component } from '@angular/core';
   styleUrl: './slider.component.css'
 })
 export class SliderComponent {
+
+  @Input() title!: String;
+  @Input() games!: SingleGameInfo[];
+  constructor() {}
+
+  @ViewChild('cardsContainer', { static: false }) cardsContainer!: ElementRef;
+
+
+
+  clickBtnArrowSX() {
+    this.cardsContainer.nativeElement.scrollLeft -= this.calcWidth();
+  }
+
+  clickBtnArrowDX() {
+    this.cardsContainer.nativeElement.scrollLeft += this.calcWidth();
+  }
+
+
+  private calcWidth(): number {
+    let calc = this.cardsContainer ? this.cardsContainer.nativeElement.clientWidth : 600;
+    console.log("------------" + calc);
+    return calc;
+  }
+
 
 }

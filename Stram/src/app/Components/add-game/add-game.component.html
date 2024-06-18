@@ -1,55 +1,65 @@
 <div class="main-container">
+  <div class="input-container">
+    <div class="input-container-wrapper">
+      <br>
+      <h1>Aggiungi Videogioco</h1>
+      <br>
+
+      <form (submit)="onSubmit($event)" enctype="multipart/form-data" >
+          <div class="row">
+            <p>Nome Videogioco: *</p>
+            <input name="title" type="text" [value]="newVideogame.titolo">
+          </div>
+
+        <br>
+          <div class="row" >
+            <p>Immagine: *</p>
+            <input type="file" id="imageInput" accept="image/png">
+          </div>
 
 
-    <div class="input-container">
-        <div class="input-container-wrapper">
-            <br>
-            <h1>Aggiungi Videogioco</h1>
-            <br>
-            <label style="display: none">
-              <p>ID: *</p>
-              <input name="id" type="text" [valueAsNumber]="newVideogame.id">
-            </label>
-            <label>
-              <p>Nome Videogioco: *</p>
-              <input name="title" type="text" [value]="newVideogame.titolo">
-            </label>
-            <label>
+        <br>
+          <div class="row">
               <p>Genere: *</p>
               <select id="genere" [(ngModel)]="newVideogame.genere">
-                  <option *ngFor="let genere of genereOptions" [value]="genere">{{ genere }}</option>
+                <option *ngFor="let genere of genereOptions" [value]="genere">{{ genere }}</option>
               </select>
               <input [(ngModel)]="newVideogame.genere" *ngIf="false" name="genere" type="text">
-            </label>
-            <label>
+            </div>
+          <br>
+            <div class="row">
               <p>Durata: *</p>
               <input name="mm" type="text" maxlength="3" [maxLength]="3" [valueAsNumber]="newVideogame.durata"> minute(s)
-            </label>
-            <label>
+            </div>
+          <br>
+            <div class="row">
               <p>Anno di uscita: *</p>
               <select id="anno" [(ngModel)]="newVideogame.anno">
                 <option *ngFor="let anno of annoOptions" [value]="anno">{{ anno }}</option>
               </select>
-            </label>
-            <label>
+            </div>
+          <br>
+            <div class="row">
               <p>Azienda Produttrice: *</p>
-              <input name="casaP" type="text">
-            </label>
-            <label>
+              <select id="aziendaProduttrice" [(ngModel)]="newVideogame.casaP">
+                <option *ngFor="let casaP of caseProduttriciOptions" [value]="casaP">{{ casaP }}</option>
+              </select>
+            </div>
+          <br>
+            <div class="row">
               <p>Descrizione Gioco: *</p>
               <textarea name="descrizione"> </textarea>
-            </label>
-            <label>
-              <p> Trailer Gioco: *</p>
+            </div>
+          <br>
+            <div class="row">
+              <p>Trailer Gioco: *</p>
               <input name="trailer" type="text">
-            </label>
+            </div>
+          <br><br>
 
-        </div>
+            <button type="submit">Aggiungi</button>
+      </form>
+
     </div>
-
-
-
-
-
-
+  </div>
 </div>

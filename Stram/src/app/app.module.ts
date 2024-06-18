@@ -28,6 +28,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SignupComponent } from './Components/signup/signup.component';
 import { AddGameComponent } from './Components/add-game/add-game.component';
+import { CardComponent } from './Components/card/card.component';
+import {NgOptimizedImage} from "@angular/common";
+import { SliderComponent } from './Components/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,9 @@ import { AddGameComponent } from './Components/add-game/add-game.component';
     AddRatingComponent,
     AddReviewComponent,
     SignupComponent,
-    AddGameComponent
+    AddGameComponent,
+    CardComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,8 @@ import { AddGameComponent } from './Components/add-game/add-game.component';
     MatIconModule,
     FormsModule,
     MatProgressSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    NgOptimizedImage
   ],
   providers: [
     provideAnimationsAsync()

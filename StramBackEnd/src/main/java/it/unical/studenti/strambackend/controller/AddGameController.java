@@ -1,9 +1,7 @@
 package it.unical.studenti.strambackend.controller;
 
 import it.unical.studenti.strambackend.commands.CommandInvoker;
-import it.unical.studenti.strambackend.commands.concreteCommands.addGame.GetVideogameAziendeProduttriciOptions;
-import it.unical.studenti.strambackend.commands.concreteCommands.addGame.GetVideogameGenresOptions;
-import it.unical.studenti.strambackend.commands.concreteCommands.addGame.GetVideogameYearsOptions;
+import it.unical.studenti.strambackend.commands.concreteCommands.addGame.GetOptionsForAddNewVideogame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,22 +19,9 @@ public class AddGameController {
         this.commandInvoker = commandInvoker;
     }
 
-
-    @PostMapping("/getVideogameYearsOptions") @ResponseBody
-    public ResponseEntity<Object> getVideogameYearsOptions(@RequestBody Map<String,String> allParams) {
-        commandInvoker.setCommand(new GetVideogameYearsOptions(allParams));
-        return commandInvoker.executeCommand();
-    }
-
-    @PostMapping("/getVideogameAziendeProduttriciOptions") @ResponseBody
-    public ResponseEntity<Object> getVideogameAziendeProduttriciOptions(@RequestBody Map<String, String> allParams) {
-        commandInvoker.setCommand(new GetVideogameAziendeProduttriciOptions(allParams));
-        return commandInvoker.executeCommand();
-    }
-
-    @PostMapping("/getVideogameGenresOptions") @ResponseBody
-    public ResponseEntity<Object> getVideogameGenresOptions(@RequestBody Map<String, String> allParams) {
-        commandInvoker.setCommand(new GetVideogameGenresOptions(allParams));
+    @PostMapping("/getOptionsForAddNewVideogame") @ResponseBody
+    public ResponseEntity<Object> getOptionsForAddNewVideogame(@RequestBody Map<String, String> allParams) {
+        commandInvoker.setCommand(new GetOptionsForAddNewVideogame(allParams));
         return commandInvoker.executeCommand();
     }
 

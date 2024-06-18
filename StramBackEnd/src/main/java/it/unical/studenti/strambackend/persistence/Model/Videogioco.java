@@ -25,7 +25,6 @@ public class Videogioco {
 		this.valutazione = valutazione;
 		this.trailer = trailer;
 		this.casaP=casaP;
-		
 	}
 
 	public String getCasaP() {

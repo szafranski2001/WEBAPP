@@ -1,58 +1,15 @@
 <div class="main-container">
 
-  <br>
 
-  <h1>Top 3 Giochi</h1>
-  <div class="top-games round8">
-    <div class="game-list-slider">
-      <div class="game-item" *ngFor="let game of this.home.topGames">
-          <img class="pointer" [src]="game.imgUrl" alt="{{ game.name }}" routerLink="/videogame/{{game.id}}}">
-
-          <div class="game-item-rating top-games-ratings pointer">
-            <p><span class="material-symbols-rounded starYellow">star</span> {{ game.rate }}/5</p>
-          </div>
-
-          <div class="game-item-quick-favourite-button" (click)="clickBtnFavoriteGame(game)">
-            <span class="material-symbols-rounded btn-style pointer" [ngClass]="game.isFavourite && isLogged ? 'icon-fill' : 'icon-outline'">favorite</span>
-          </div>
-
+  <div class="main-poster-container">
+      <div class="WRAPPER-main-poster-container">
+          <img src="assets/images/videogames/0-1920x1080.jpg">
+          <button routerLink="/vg/minecraft">Vedi</button>
       </div>
-    </div>
   </div>
 
-  <br>
-  <br>
-
-  <h1>Giochi</h1>
-  <div class="container-games round8">
-
-      <div class="prev">
-        <span class="material-symbols-rounded btn-style pointer">arrow_back_ios</span>
-      </div>
-
-      <div class="game-list-slider">
-          <div class="game-item round8" *ngFor="let game of this.home.games">
-
-                  <div class="wrap-game-item--img-Rating-favouriteBtn">
-                      <img class="pointer" [src]="game.imgUrl" alt="{{ game.name }}">
-
-                      <div class="game-item-rating pointer">
-                        <p><span class="material-symbols-rounded starYellow">star</span> {{ game.rate }}/5</p>
-                      </div>
-
-                      <div class="game-item-quick-favourite-button" (click)="clickBtnFavoriteGame(game)">
-                        <span class="material-symbols-rounded pointer btn-style" [ngClass]="game.isFavourite && isLogged  ? 'icon-fill' : 'icon-outline'">favorite</span>
-                      </div>
-                  </div>
-
-          </div>
-      </div>
-
-    <div class="next">
-      <span class="material-symbols-rounded btn-style pointer">arrow_forward_ios</span>
-    </div>
-
-  </div>
+  <app-slider [title]="firstTitle" [games]="firstSlider"></app-slider>
+  <app-slider [title]="secondTitle" [games]="secondSlider"></app-slider>
 
 </div>
 

@@ -12,30 +12,40 @@ export class HomeService {
   constructor(private http: HttpClient) { }
 
 
-  topGames: SingleGameInfo[] = [
-    { id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true },
-    { id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 2, isFavourite: false },
-    { id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 3, isFavourite: true },
-  ];
+  topGame: SingleGameInfo = { rank: 1, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true };
 
-  games: SingleGameInfo[] = [
-    { id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true },
-    { id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 1, isFavourite: false  },
-    { id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true  },
-    { id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 3, isFavourite: false  },
-    { id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 5, isFavourite: true  },
-    { id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 3, isFavourite: false  },
-    { id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 2, isFavourite: true  },
-    { id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 2, isFavourite: false  },
-    { id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true  },
-    { id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 5, isFavourite: false  },
-    { id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 0, isFavourite: true  },
-    { id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 1, isFavourite: false  },
-    { id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 2, isFavourite: true  },
+  firstSlider: SingleGameInfo[] = [
+    { rank: 1, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true },
+    { rank: 2, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 1, isFavourite: false  },
+    { rank: 3, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true  },
+    { rank: 4, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 3, isFavourite: false  },
+    { rank: 5, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 5, isFavourite: true  },
+    { rank: 6, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 3, isFavourite: false  },
+    { rank: 7, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 2, isFavourite: true  },
+    { rank: 8, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 2, isFavourite: false  },
+    { rank: 9, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true  },
+    { rank: 10, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 5, isFavourite: false  },
+  ];
+  secondSlider: SingleGameInfo[] = [
+    { rank: 1, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true },
+    { rank: 2, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 1, isFavourite: false  },
+    { rank: 3, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true  },
+    { rank: 4, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 3, isFavourite: false  },
+    { rank: 5, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 5, isFavourite: true  },
+    { rank: 6, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 3, isFavourite: false  },
+    { rank: 7, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 2, isFavourite: true  },
+    { rank: 8, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 2, isFavourite: false  },
+    { rank: 9, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true  },
+    { rank: 10, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 5, isFavourite: false  },
   ];
 
   isLogged = true;
   backend: string = "http://localhost:8080/"
+
+
+  public getTopGame() { return this.topGame }
+  public getFirstSlider() { return this.firstSlider}
+  public getSecondSlider() { return this.secondSlider}
 
   changeFavoriteFlag(game: SingleGameInfo ) {
 

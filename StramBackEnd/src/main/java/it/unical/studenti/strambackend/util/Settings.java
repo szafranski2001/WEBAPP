@@ -8,6 +8,10 @@ public class Settings {
         USERTOKEN("userToken");
 
 
+        //add-game
+
+
+
         public final String label;
         params(String label) { this.label = label; }
     }

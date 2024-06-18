@@ -1,0 +1,107 @@
+
+
+.arrow-and-slider {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+
+.arrow-and-slider:hover {
+  .arrow-sx {
+    visibility: visible;
+  }
+
+  .arrow-dx {
+    visibility: visible;
+  }
+
+}
+
+
+
+
+.cards-wrapper {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+
+.cards-container {
+  padding: 0 50px 0 50px;
+  position: relative;
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  overflow-y: hidden;
+}
+
+
+.arrow-sx, .arrow-dx {
+  visibility: hidden;
+  display: flex;
+  cursor: pointer;
+  user-select: none;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+  color: white;
+  z-index: 5;
+}
+
+.arrow-sx:hover, .arrow-dx:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.arrow-sx {
+  border-radius: 0 8px 8px 0;
+  margin-right: 10px;
+  left: 0;
+}
+
+.arrow-dx {
+  border-radius: 8px 0 0 8px;
+  margin-left: 10px;
+  right: 0;
+}
+
+
+@keyframes scale-obj {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.03);
+  }
+}
+
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+
+h1 {
+  margin-top: 5vw;
+  position: relative;
+  padding: 0 0 0 60px;
+  font-size: 3rem;
+}
+
+h1:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  background-color: cornflowerblue;
+  border-radius: 0 8px 8px 0;
+}
+

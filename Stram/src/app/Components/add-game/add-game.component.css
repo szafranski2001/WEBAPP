@@ -30,7 +30,7 @@
 }
 
 
-input {
+input[type="text"] {
 
   height: clamp(35px, 40px, 40px);
   width: clamp(200px, 40vw, 500px);
@@ -56,6 +56,13 @@ input[name="anno"] {
 
 
 
+input[type="file"] {
+  width: 100%;
+  font-size: 15px;
+}
+
+
+
 textarea {
   min-height: 15vh;
   width: clamp(200px, 40vw, 500px);
@@ -70,5 +77,52 @@ textarea {
   padding: 10px 10px 10px 10px;
 
   resize: vertical;
-
 }
+
+
+
+
+
+button {
+  height: clamp(40px, 50px, 60px);
+  width: clamp(100px, 20vw, 300px);
+
+  margin: 15px 0 0 0;
+
+  background-color: var(--systemGray2);
+  border-color: var(--systemGray4);
+
+  border-radius: 10px;
+  border: 1px;
+
+  font-size: 20px;
+}
+
+button:hover {
+  background-color: var(--systemGray4);
+  border-color: var(--systemGray2);
+}
+
+button:active {
+  animation: btn-anim-active 0.4s linear 0.1s 1 forwards;
+}
+
+
+@keyframes btn-anim-hover {
+  0%,100% {
+    transform: scale(100%);
+  }
+  50% {
+    transform: scale(85%);
+  }
+}
+
+@keyframes btn-anim-active {
+  0%,100% {
+    transform: scale(100%);
+  }
+  50% {
+    transform: scale(135%);
+  }
+}
+
