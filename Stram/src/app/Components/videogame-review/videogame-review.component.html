@@ -1,4 +1,4 @@
-<div class="review-list" *ngIf="ReviewList">
+<div class="review-list" *ngIf="ReviewList && ReviewLikeInfos && ReviewReportInfos">
     <h1 class="highlighted-text">Recensioni</h1>
     <hr>
  <section class="review" *ngFor="let review of ReviewList; let i=index">

@@ -65,7 +65,7 @@
   </section>
   
   <!--Add review-->
-  <div *ngIf="UserLogged()">
+  <div *ngIf="User">
     <h1>Aggiungi una recensione </h1>
     <hr>
     <app-add-review [videogameId]="videogame.id"></app-add-review>

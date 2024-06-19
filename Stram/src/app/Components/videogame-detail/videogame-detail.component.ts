@@ -14,6 +14,7 @@ export class VideogameDetailComponent implements OnInit{
   
   videogame: videogame;
   Genre=Object.values(genere);
+  User = localStorage.getItem("user");
 
   constructor(private videogameData: VideogameDataService, private route : ActivatedRoute, private generalTasks : GeneralTasksService, private router : Router) {}
 
@@ -64,10 +65,4 @@ export class VideogameDetailComponent implements OnInit{
     let descrizione=String((dataElements[4] as HTMLElement).innerText);
     this.videogame.descrizione=this.generalTasks.formatData(descrizione,3000);
   }
-
-  UserLogged(){
-    //prendere il return del UserLogged dal service di login
-    return true;
-  }
-
 }

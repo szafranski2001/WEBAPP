@@ -42,12 +42,9 @@ export class VideogameReviewsComponent implements OnInit {
   }
 
   getSingleReviewInfo(review : review){
-    if(this.User != undefined){
-        let likeInfo=this.ReviewLikeInfos.find( info => info.mittente == this.User && info.destinatario == review.username) ? true : false;
-        let reportInfo=this.ReviewReportInfos.find( info => info.mittente == this.User && info.destinatario == review.username) ? true : false;
-        return [likeInfo,reportInfo];
-    }
-    return [false,false];
+    let likeInfo=this.ReviewLikeInfos.find( info => info.mittente == this.User && info.destinatario == review.username) ? true : false;
+    let reportInfo=this.ReviewReportInfos.find( info => info.mittente == this.User && info.destinatario == review.username) ? true : false;
+    return [likeInfo,reportInfo];
   }
 
 }

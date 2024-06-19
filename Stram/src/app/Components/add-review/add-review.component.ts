@@ -42,11 +42,11 @@ export class AddReviewComponent implements OnInit {
     if(this.User != undefined)
       user = this.User;
     else
-      user = "";
+      user = "NotLogged";
 
     let review : review = 
     { videogioco : this.videogameId, 
-      username :  user,//da cambiare con il valore del currentUser
+      username :  user,
       voto : this.currentRating.value,
       commento : form.value['description'],
       likes : 0,

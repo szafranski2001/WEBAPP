@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -15,4 +16,5 @@ export class GeneralTasksService {
     let string=value.trim();
     return string.length > maxlength ? value.slice(0,maxlength) : value;
   }
+  
 }
