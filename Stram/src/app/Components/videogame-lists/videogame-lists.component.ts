@@ -1,10 +1,30 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserListsService} from '../../services/user-lists.service';
+import {SingleGameInfo} from '../../model/SingleGameInfo';
 
 @Component({
   selector: 'app-videogame-lists',
   templateUrl: './videogame-lists.component.html',
   styleUrl: './videogame-lists.component.css'
 })
-export class VideogameListsComponent {
+
+export class VideogameListsComponent implements OnInit {
+  favoriteList: SingleGameInfo[] = [];
+  wishList: SingleGameInfo[] = [];
+
+  constructor(private userListsService: UserListsService) {}
+
+  ngOnInit(): void {
+    this.loadLists();
+  }
+
+  loadLists(): void{
+    this.userListsService.getUserFavoriteList().subscribe(response =>{
+      this.favoriteList = response;
+    });
+    this.userListsService.getUserWishList().subscribe(response =>{
+      this.wishList = response;
+    });
+  }
 
 }
