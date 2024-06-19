@@ -1,6 +1,7 @@
 package it.unical.studenti.strambackend.persistence.dao.jdbc;
 
 import it.unical.studenti.strambackend.persistence.DBSource;
+import it.unical.studenti.strambackend.persistence.Model.Lists;
 import it.unical.studenti.strambackend.persistence.Model.User;
 import it.unical.studenti.strambackend.persistence.dao.UserDAO;
 import org.springframework.security.crypto.bcrypt.BCrypt;

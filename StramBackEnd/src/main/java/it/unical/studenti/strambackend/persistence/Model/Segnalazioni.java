@@ -1,6 +1,9 @@
 package it.unical.studenti.strambackend.persistence.Model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 public class Segnalazioni {
+	@JsonManagedReference
 	private StateSegnalazioni stato;
 	private String mittente;
 	private String destinatario;

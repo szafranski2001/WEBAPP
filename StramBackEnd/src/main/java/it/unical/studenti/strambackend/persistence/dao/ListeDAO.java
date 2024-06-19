@@ -18,4 +18,7 @@ public interface ListeDAO {
 
     public void RemoveVideogameFromList(int idVideogioco, String User, String NomeLista) throws DatabaseException;
 
+    public List <Integer> OpenUserList(String NomeLista, String user);
+
+
 }

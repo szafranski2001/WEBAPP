@@ -82,8 +82,6 @@ public class ReviewController {
         }
     }
 
-    //@GetMapping("/api/GetReports")
-
     @PostMapping("/api/AddReport")
     public ResponseEntity<?> AddReportToReview(@RequestBody Segnalazioni segnalazione){
         try{

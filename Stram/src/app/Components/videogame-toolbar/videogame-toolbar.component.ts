@@ -23,7 +23,7 @@ export class VideogameToolbarComponent implements OnInit {
 
   //da modificare quando avremo il service per il currentUser
   tipologiaUser = tipologiaUser;
-  CurrentUserTipologia = tipologiaUser.Admin;
+  CurrentUserTipologia = Number(localStorage.getItem("type"));
   User = localStorage.getItem("user");
 
   constructor(private VideogameManagerService : VideogameDataService,private router : Router, private UserListService : UserListsService){ }

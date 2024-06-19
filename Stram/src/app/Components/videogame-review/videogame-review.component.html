@@ -1,4 +1,4 @@
-<div class="review-list" *ngIf="ReviewList && ReviewLikeInfos && ReviewReportInfos">
+<div class="review-list" *ngIf="ReviewList">
     <h1 class="highlighted-text">Recensioni</h1>
     <hr>
  <section class="review" *ngFor="let review of ReviewList; let i=index">
@@ -17,6 +17,6 @@
         <app-rating [valutazione]="review.voto"></app-rating>
         <p class="description">{{review.commento}}</p>
     </div>
-    <app-review-toolbar *ngIf="User" class="toolbar" [reviewInfo]="getSingleReviewInfo(review)" [review]="review"></app-review-toolbar>
+    <app-review-toolbar *ngIf="User && ReviewLikeInfos && ReviewReportInfos" class="toolbar" [reviewInfo]="getSingleReviewInfo(review)" [review]="review"></app-review-toolbar>
  </section>
 </div>
