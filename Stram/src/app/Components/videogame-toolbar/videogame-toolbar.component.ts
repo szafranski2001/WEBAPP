@@ -34,17 +34,17 @@ export class VideogameToolbarComponent implements OnInit {
   }
 
   GetVideogameListDetails(){
-    this.UserListService.getUserFavoriteList(this.videogameId).subscribe(response => {
+    this.UserListService.isVideogameInFavoriteList(this.videogameId).subscribe(response => {
       this.isFavorite = response;
     })
 
-    this.UserListService.getUserWishList(this.videogameId).subscribe(response => {
+    this.UserListService.isVideogameInWishList(this.videogameId).subscribe(response => {
       this.isWished = response;
     })
   }
 
   AddFavoriteListPressed(){
-    this.isFavorite ? 
+    this.isFavorite ?
       this.UserListService.removeVideogameFromFavoriteList(this.videogameId).subscribe({
         next: () => {
           this.isFavorite = !this.isFavorite;
@@ -53,7 +53,7 @@ export class VideogameToolbarComponent implements OnInit {
           alert(error.error);
         }
       })
-      : 
+      :
       this.UserListService.addVideoGameToFavoriteList(this.videogameId).subscribe({
         next: () => {
           this.isFavorite=!this.isFavorite;
@@ -63,9 +63,9 @@ export class VideogameToolbarComponent implements OnInit {
         }
       });
   }
-  
+
   AddWishListPressed(){
-    this.isWished ? 
+    this.isWished ?
     this.UserListService.removeVideogameFromWishList(this.videogameId).subscribe({
       next: () => {
         this.isWished = !this.isWished;
@@ -74,7 +74,7 @@ export class VideogameToolbarComponent implements OnInit {
         alert(error.error);
       }
     })
-    : 
+    :
     this.UserListService.addVideoGameToWishList(this.videogameId).subscribe({
       next: () => {
         this.isWished=!this.isWished;

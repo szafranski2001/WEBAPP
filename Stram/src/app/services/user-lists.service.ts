@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {SingleGameInfo} from '../model/SingleGameInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,21 @@ export class UserListsService {
 
   constructor(private http : HttpClient) { }
 
-  getUserFavoriteList(videogameId : number){
-    //prende la lista dei favoriti dell'utente corrente
+  getUserFavoriteList(){
+    return this.http.get<SingleGameInfo[]>(this.BackEndURL+"/GetVideogameInPreferredList/");
+  }
+
+  getUserWishList(){
+    return this.http.get<SingleGameInfo[]>(this.BackEndURL+"/GetVideogameInWishList/");
+  }
+
+  isVideogameInFavoriteList(videogameId : number){
+    //verifica che il videogioco si trovi nella lista dei favoriti dell'utente corrente
     return this.http.post<boolean>(this.BackEndURL+"/GetVideogameInPreferredList/"+videogameId,this.User);
   }
-  
-  getUserWishList(videogameId : number){
-    //prende lista dei desideri dell'utente corrente
+
+  isVideogameInWishList(videogameId : number){
+    //verifica che il videogioco si trovi nella lista dei desideri dell'utente corrente
     return this.http.post<boolean>(this.BackEndURL+"/GetVideogameInWishList/"+videogameId,this.User);
   }
 
