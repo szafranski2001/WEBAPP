@@ -3,13 +3,14 @@ import {HttpClient} from "@angular/common/http";
 import {UserCredentials} from "../model/User";
 import {UserDTO} from "../model/UserDTO";
 import {TokenManager} from "../model/TokenManager";
+import {videogame} from "../model/Videogame";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private url = "http://localhost:8080"
   tokenM : TokenManager = new TokenManager()
+  private url = "http://localhost:8080"
   constructor(private http : HttpClient) { }
   doLogin(user:  UserCredentials )
   {
@@ -20,7 +21,7 @@ export class LoginService {
       Response.user.password=""; //nice remove
       localStorage.setItem("user", JSON.stringify(Response.user));
       localStorage.setItem("type", JSON.stringify(Response.type))
-      //DA AGGIUNGERE IL PASSAGGIO ALL:A HOMEPAGE es.this.router.navigate(["/homepage"])
+      return this.http.get("/");
 
     })
   }
