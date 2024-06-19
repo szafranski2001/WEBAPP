@@ -19,8 +19,6 @@
 }
 
 
-
-
 .cards-wrapper {
   flex-grow: 1;
   overflow: hidden;
@@ -28,13 +26,14 @@
 
 
 .cards-container {
-  padding: 0 50px 0 50px;
+  padding: 0 15px;
   position: relative;
   display: flex;
   overflow-x: scroll;
   scroll-behavior: smooth;
   scroll-snap-type: x proximity;
   overflow-y: hidden;
+
 }
 
 
@@ -47,12 +46,13 @@
   align-items: center;
   justify-content: center;
   top: 0;
-  width: 50px;
-  height: 100%;
+  width: 40px;
+  height: 25%;
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(6px);
   color: white;
   z-index: 5;
+  transform: translateY(150%);
 }
 
 .arrow-sx:hover, .arrow-dx:hover {
@@ -63,6 +63,9 @@
   border-radius: 0 8px 8px 0;
   margin-right: 10px;
   left: 0;
+  span {
+    transform: translateX(25%);
+  }
 }
 
 .arrow-dx {
