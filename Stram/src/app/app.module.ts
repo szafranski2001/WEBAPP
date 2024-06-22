@@ -31,6 +31,10 @@ import { AddGameComponent } from './Components/add-game/add-game.component';
 import { CardComponent } from './Components/card/card.component';
 import {NgOptimizedImage} from "@angular/common";
 import { SliderComponent } from './Components/slider/slider.component';
+import { AdminReportsComponent } from './Components/admin-reports/admin-reports.component';
+import { ReportToolbarComponent } from './Components/report-toolbar/report-toolbar.component';
+import { ToTheTopButtonComponent } from './Components/to-the-top-button/to-the-top-button.component';
+import { LoadingSpinnerComponent } from './Components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +57,11 @@ import { SliderComponent } from './Components/slider/slider.component';
     SignupComponent,
     AddGameComponent,
     CardComponent,
-    SliderComponent
+    SliderComponent,
+    AdminReportsComponent,
+    ReportToolbarComponent,
+    ToTheTopButtonComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

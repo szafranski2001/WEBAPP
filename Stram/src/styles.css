@@ -25,6 +25,8 @@
   --red-color:rgb(220, 2, 2);
   --gold-color:rgb(255,215,0);
   --spacer-color: hsla(0,0%,100%,.15);
+  --blue-logo-color: rgb(96, 140, 250);
+  --blue-logo-darker-color:rgb(52, 107, 248);
 
   font-family: Roboto, "Helvetica Neue", sans-serif;
 
@@ -83,6 +85,7 @@
 
 .toolbar{
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .icon-fill{
@@ -99,6 +102,10 @@
 
 .red-icon{
   color:rgb(220, 2, 2);
+}
+
+.green-icon{
+  color: rgb(2,200,2);
 }
 
 .like-blue-icon{
@@ -192,24 +199,22 @@ img {
   color: var(--gold-color);
 }
 
-.loading-div{
-  margin-top: 250px; /*da provare a cambiare cercando di fargli prendere tutta la pagina*/
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  vertical-align:middle;
-}
-
 .loading-div .mat-mdc-progress-spinner circle {
   stroke: var(--systemGray2);
 }
-
 
 select {
   width: 200px;
   background-color: var(--systemGray4);
   border-color: var(--systemGray2);
 }
+
+.main-cont{
+  max-width: 80%;
+  margin:0 auto 20px auto;
+}
+
+
 
 
 

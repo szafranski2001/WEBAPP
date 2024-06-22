@@ -1,0 +1,31 @@
+
+<app-loading-spinner *ngIf="!reportList"></app-loading-spinner>
+
+<article *ngIf="reportList" class="main-cont grid-display">
+    <section class="Card-container" *ngFor="let report of reportList">
+        <div class="Card-bd">
+            <div class="highlighted-text Reported-user">{{report.destinatario}}</div>
+            <div class="body-data">
+                <p>
+                    <span class="text-color">Segnalato da: </span>
+                    <span class="highlighted-text">{{report.mittente}}</span>
+                </p>
+                <p (click)="GoToReportVideogame(report)" class="link">
+                    <span class="text-color">Nel videogioco id: </span>
+                    <span class="highlighted-text ">{{report.idVideogioco}}</span>
+                </p>
+                <p>
+                    <span class="text-color">Stato segnalazione: </span>
+                    <span class="highlighted-text"> {{report.stato}}</span>
+                </p>
+            </div>
+        </div>
+        <app-report-toolbar [report]="report" class="toolbar"></app-report-toolbar>
+    </section>
+    <p class="loading-div" *ngIf="reportList.length == 0">
+        <span class="text">Nessuna segnalazione presente</span>
+        <mat-icon class="icon icon-centered">sentiment_satisfied</mat-icon>
+    </p>
+</article>
+
+<app-to-the-top-button></app-to-the-top-button>

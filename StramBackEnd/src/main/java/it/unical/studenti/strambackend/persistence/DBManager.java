@@ -5,11 +5,7 @@ import it.unical.studenti.strambackend.persistence.dao.ListeDAO;
 import it.unical.studenti.strambackend.persistence.dao.RecensioneDAO;
 import it.unical.studenti.strambackend.persistence.dao.SegnalazioniDAO;
 import it.unical.studenti.strambackend.persistence.dao.UserDAO;
-import it.unical.studenti.strambackend.persistence.dao.jdbc.VideogiocoDAOJDBC;
-import it.unical.studenti.strambackend.persistence.dao.jdbc.ListeDAOJDBC;
-import it.unical.studenti.strambackend.persistence.dao.jdbc.RecensioneDAOJDBC;
-import it.unical.studenti.strambackend.persistence.dao.jdbc.SegnalazioniDAOJDBC;
-import it.unical.studenti.strambackend.persistence.dao.jdbc.UserDAOJDBC;
+import it.unical.studenti.strambackend.persistence.dao.jdbc.*;
 
 public class DBManager {
 
@@ -46,7 +42,7 @@ public class DBManager {
 	}
 	
 	public VideogiocoDAO VideogiocoDAO() {
-		return new VideogiocoDAOJDBC(dataSource);
+		return new VideogiocoProxy(dataSource);
 	}
 	
 	public RecensioneDAO recensioneDAO() {

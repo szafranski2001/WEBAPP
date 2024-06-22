@@ -9,6 +9,7 @@ import {LoginComponent} from "./Components/login/login.component";
 import { NotfoundComponent } from './Components/notfound/notfound.component';
 import {SignupComponent} from "./Components/signup/signup.component";
 import {AddGameComponent} from "./Components/add-game/add-game.component";
+import { AdminReportsComponent } from './Components/admin-reports/admin-reports.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'videogame/:id', component:VideogameDetailComponent},
   {path: 'videogame-lists', component: VideogameListsComponent},
   {path: '404', component: NotfoundComponent},
+  {path: 'reports-handling', component: AdminReportsComponent},
   {path: '**', redirectTo: '/404'}
 ];
 

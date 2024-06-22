@@ -4,6 +4,7 @@ import it.unical.studenti.strambackend.persistence.DBSource;
 import it.unical.studenti.strambackend.persistence.Model.Lists;
 import it.unical.studenti.strambackend.persistence.Model.User;
 import it.unical.studenti.strambackend.persistence.dao.UserDAO;
+import it.unical.studenti.strambackend.persistence.exceptions.DatabaseException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.sql.Connection;
@@ -238,7 +239,7 @@ public class UserDAOJDBC implements UserDAO {
 	}
 	
 	@Override
-	public void delete(String username) { //elimino un user
+	public void delete(String username) throws DatabaseException { //elimino un user
         Connection connection = null;
 
         try {
@@ -269,9 +270,7 @@ public class UserDAOJDBC implements UserDAO {
             st.executeUpdate();
             st.close();
 
-
-            //elimino i film nelle liste
-            query = "delete from filminliste WHERE username = ?";
+            query = "delete from videogiochiinliste WHERE username = ?";
             st = connection.prepareStatement(query);
             st.setString(1, user.getUsername());
             st.executeUpdate();
@@ -304,6 +303,7 @@ public class UserDAOJDBC implements UserDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+			throw new DatabaseException();
         }
     }
 

@@ -3,25 +3,19 @@ export enum TypeInfo{
     like="/GetLikes/",report="/GetReports/"
 }
 
-export interface StatoSegnalazione {
-    type: string;
-  }
-  
-  export class NuovaSegnalazione implements StatoSegnalazione {
-    type = 'Nuova';
-  }
-  
-  export class InCorsoSegnalazione implements StatoSegnalazione {
-    type = 'In corso';
-  }
-  
-  export class CompletataSegnalazione implements StatoSegnalazione {
-    type = 'Completata';
-  }
+export enum GiudizioSegnalazione{
+  Corretta,Errata
+}
+
+export enum StatoSegnalazione{
+  NuovaSegnalazione="NUOVA SEGNALAZIONE",
+  InLavorazioneSegnalazione="IN LAVORAZIONE",
+  CompletataSegnalazione="COMPLETETA"
+}
 
 export interface reviewInfo{
     mittente: string | null,
     destinatario: string,
     idVideogioco : number,
-    state?: StatoSegnalazione | null
+    stato?: string | null
 }

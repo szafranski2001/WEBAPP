@@ -25,7 +25,7 @@ public class VideogamesServlet extends HttpServlet {
 
         try {
             videogiochi = DBManager.getInstance().VideogiocoDAO().findAll();
-        } catch (DatabaseException e) {
+        } catch (Exception e) {
             videogiochi=null;
         }
 

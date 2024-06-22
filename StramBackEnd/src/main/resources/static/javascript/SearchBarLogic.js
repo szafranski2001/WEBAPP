@@ -37,3 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+function ToTheTopPressed(){
+    window.scrollTo({top:0,behavior:'smooth'})
+}

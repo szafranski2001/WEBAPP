@@ -1,8 +1,7 @@
-<div *ngIf="!videogame" class="loading-div"> 
-  <mat-spinner></mat-spinner>
-</div>
 
-<div *ngIf="videogame" class="main-container">
+<app-loading-spinner *ngIf="!videogame"></app-loading-spinner>
+
+<div *ngIf="videogame" class="main-cont">
   <article class="videogame-article" [ngStyle]="{'background-image':'linear-gradient(rgba(0, 0, 0, 0.5),rgba(28, 28, 30, 1)),url(http://localhost:8080/images/videogames/'+ videogame.id +'.png)'}">
     <!--Image videogame-->
     <figure class="videogame-detail-figure">
@@ -74,6 +73,4 @@
   <app-videogame-reviews [videogameId]="videogame.id"></app-videogame-reviews>
 </div>
 <!--Fixed button for scrolling up-->
-<button class="round default-btn btn-gray px50 fixed" title="Torna all'inizio" (click)="ToTheTopPressed()">
-  <mat-icon>keyboard_arrow_up</mat-icon>
-</button>
+<app-to-the-top-button></app-to-the-top-button>
