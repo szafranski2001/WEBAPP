@@ -1,6 +1,6 @@
 
 export enum TypeInfo{
-    like="/GetLikes/",report="/GetReports/"
+  like="/GetLikes/",report="/GetReports/"
 }
 
 export enum GiudizioSegnalazione{
@@ -10,12 +10,12 @@ export enum GiudizioSegnalazione{
 export enum StatoSegnalazione{
   NuovaSegnalazione="NUOVA SEGNALAZIONE",
   InLavorazioneSegnalazione="IN LAVORAZIONE",
-  CompletataSegnalazione="COMPLETETA"
+  CompletataSegnalazione="COMPLETATA"
 }
 
 export interface reviewInfo{
-    mittente: string | null,
-    destinatario: string,
-    idVideogioco : number,
-    stato?: string | null
+  mittente: string | null,
+  destinatario: string,
+  idVideogioco : number,
+  stato?: StatoSegnalazione | null
 }

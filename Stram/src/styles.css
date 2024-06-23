@@ -124,8 +124,11 @@
 .default-btn{
   margin-bottom: 8px;
   padding:0;
-  transition: background-color 0.3s ease;
   box-shadow: 0 4px 8px var(--background-header-color);
+}
+
+.default-btn:enabled{
+  transition: background-color 0.3s ease;
 }
 
 hr{
@@ -138,13 +141,18 @@ hr{
   border: 2px var(--systemGray2) solid;
 }
 
-.btn-gray:hover{
+.btn-gray:hover:enabled{
   background-color: rgba(132, 132, 135, 0.6);
 }
 
-.round.default-btn:hover{
+.btn-gray:disabled{
+  background-color: var(--systemGray6);
+}
+
+.round.default-btn:hover:enabled{
   transform: scale(1.1);
 }
+
 
 ::-webkit-scrollbar {
   width: 12px;
@@ -212,6 +220,13 @@ select {
 .main-cont{
   max-width: 80%;
   margin:0 auto 20px auto;
+}
+
+.placeholder-div{
+  padding-top: 30vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 

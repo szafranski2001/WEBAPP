@@ -32,4 +32,12 @@ export class AdminReportsComponent implements OnInit {
     this.router.navigate(["/videogame/"+report.idVideogioco])
   }
   
+  RemoveReportFromList(report : {reportId : number, r : reviewInfo}){
+    let reportElement =document.getElementsByName('report-'+report.reportId);
+    let reportIndex=this.reportList.indexOf(report.r);
+
+    reportElement[0].remove();
+    if(reportIndex != -1)
+      this.reportList.splice(reportIndex,1);
+  }
 }

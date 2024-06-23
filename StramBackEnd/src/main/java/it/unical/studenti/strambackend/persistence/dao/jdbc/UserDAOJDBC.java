@@ -399,7 +399,6 @@ public class UserDAOJDBC implements UserDAO {
 			st.setString(1, user);
 			rs = st.executeQuery();
 			if (rs.next()) {
-				System.out.println("ciao");
 				return rs.getInt("tipo");
 			}
 

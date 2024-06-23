@@ -19,7 +19,9 @@ export class AdminDataService {
     return this.http.put(this.BackEndURL+"/UpdateReports",null);
   }
 
-  ReportsJudgment(report : reviewInfo,judgment : GiudizioSegnalazione){
+  ReportsJudgment(reportData : reviewInfo,judgment : GiudizioSegnalazione){
+    let report : reviewInfo = { mittente : reportData.mittente, destinatario:reportData.destinatario, idVideogioco: reportData.idVideogioco };
+
     return judgment == GiudizioSegnalazione.Corretta ? this.http.put(this.BackEndURL+"/BlockUserReported",report) : this.http.put(this.BackEndURL+"/RemoveReportFromReview",report);
   }
 }

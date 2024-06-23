@@ -2,6 +2,7 @@ package it.unical.studenti.strambackend.controller;
 
 import it.unical.studenti.strambackend.persistence.DBManager;
 import it.unical.studenti.strambackend.persistence.ErrorMessage.ReportMessageDB;
+import it.unical.studenti.strambackend.persistence.Model.InLavorazioneSegnalazione;
 import it.unical.studenti.strambackend.persistence.Model.Segnalazioni;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +42,7 @@ public class AdminReportsController {
     @PutMapping("/api/BlockUserReported")
     public ResponseEntity<?> BlockUserReported(@RequestBody Segnalazioni segnalazione){
         try{
+            segnalazione.changeState(new InLavorazioneSegnalazione(segnalazione));
             DBManager.getInstance().segnalazioniDAO().updateSegnalazione(segnalazione);
             DBManager.getInstance().userDAO().delete(segnalazione.getDestinatario());
             return new ResponseEntity<>(HttpStatus.OK);
@@ -54,6 +56,7 @@ public class AdminReportsController {
     @PutMapping("/api/RemoveReportFromReview")
     public ResponseEntity<?> RemoveReportFromReview(@RequestBody Segnalazioni segnalazione){
         try{
+            segnalazione.changeState(new InLavorazioneSegnalazione(segnalazione));
             DBManager.getInstance().segnalazioniDAO().updateSegnalazione(segnalazione);
             return new ResponseEntity<>(HttpStatus.OK);
         }

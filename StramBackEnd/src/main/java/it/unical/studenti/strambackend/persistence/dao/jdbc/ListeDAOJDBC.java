@@ -49,7 +49,7 @@ public class ListeDAOJDBC implements ListeDAO{
         try {
 			Connection con = dbSource.getConnection(); //utilizzo la connessione singleton con il db ed eseguo la query sottostante
 			
-            String query = "SELECT f.* FROM public.videogiochi INNER JOIN public.videogiochiinliste fl ON f.id = fl.videogioco WHERE fl.username = ? AND fl.nome = ?";
+            String query = "SELECT f.* FROM public.videogiochi f INNER JOIN public.videogiochiinliste fl ON f.id = fl.videogioco WHERE fl.username = ? AND fl.nome = ?";
             PreparedStatement st = con.prepareStatement(query);
             st.setString(2,lista.getNome());
             st.setString(1, lista.getUsername());
