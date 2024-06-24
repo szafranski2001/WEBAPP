@@ -60,7 +60,7 @@ public class VideogiocoProxy implements VideogiocoDAO {
     }
 
     @Override
-    public List<Videogioco> findByName(Videogioco videogioco) throws Exception {
+    public List<Videogioco> findByName(String videogioco) throws Exception {
         return videogiocoDAOJDBC.findByName(videogioco);
     }
 

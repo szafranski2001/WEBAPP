@@ -12,7 +12,7 @@ public interface VideogiocoDAO {
 	public List<Videogioco> findAll() throws Exception;       // CERCO TUTTI I VIDEOGIOCHI PRESENTI NEL DB
 	public void update(Videogioco videogioco);	
 	public void delete(int videogiocoId) throws Exception;	//ELIMINO UN VIDEOGIOCO
-	public List<Videogioco> findByName(Videogioco videogioco) throws Exception;
+	public List<Videogioco> findByName(String videogioco) throws Exception;
 	public List<Videogioco> risultati(String input); // CERCO NEL DB VIDEOGIOCO CON CARATTERISTICHE SIMILI ALL'INPUT
 	public boolean existsVideogioco(Videogioco videogioco); // CONTROLLO SE UN VIDEOGIOCO ESISTE
 	public void updateVideogioco(Videogioco videogioco, int videogiocoId) throws Exception;//AGGIORNO I DATI DI UN VIDEOGIOCO
