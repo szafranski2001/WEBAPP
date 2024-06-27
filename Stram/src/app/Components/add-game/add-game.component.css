@@ -1,128 +1,76 @@
 
-
-.main-container {
+.main-add-game-container {
   display: flex;
-
   justify-content: center;
-  align-items: center;
-
   width: 100%;
-  height: 100%;
 }
 
 
 
-
-
-.input-container {
+form {
   display: flex;
-
-  justify-content: center;
-  align-items: center;
-
-  width: clamp(250px, 90vw, 1500px);
-
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px dotted #007BFF;
+  width: clamp(550px, 35vw, 2000px);
 }
 
-
-.input-container-wrapper {
-  position: relative;
-}
-
-
-input[type="text"] {
-
-  height: clamp(35px, 40px, 40px);
-  width: clamp(200px, 40vw, 500px);
-
-  font-size: 1rem;
-
-  border-radius: 10px;
-  border-color: var(--systemGray2);
-  border-style: solid;
-  background-color: var(--systemGray4);
-
-  padding: 0.5px 0.5px 0.5px 10px;
-
-}
-
-input[name="hh"], input[name="mm"] {
-  width: 50px;
-}
-
-input[name="anno"] {
-  width: 75px;
-}
-
-
-
-input[type="file"] {
+.campo {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  font-size: 15px;
+
+  padding: 5vh 0 0 0;
 }
 
 
+input {
+  justify-self: baseline;
+  width: fit-content;
+}
 
-textarea {
-  min-height: 15vh;
-  width: clamp(200px, 40vw, 500px);
 
-  font-size: 1rem;
+input:not(input[type="file"]) {
+  height: clamp(25px, 4vh, 30px);
+  font-size: clamp(16px, 2.5vw, 22px);
+}
 
-  border-radius: 8px;
-  border-color: var(--systemGray2);
-  border-style: solid;
+
+input[type="text"], input[type="number"] {
+  border: 1px solid whitesmoke;
+  border-radius: 2px;
+  padding: 0 0 0 0.5vw;
+
+  text-decoration-color: #f3f4f6;
   background-color: var(--systemGray4);
-
-  padding: 10px 10px 10px 10px;
-
-  resize: vertical;
 }
 
 
+select {
+  width: 25%;
+  justify-self: baseline;
+}
+
+select, input {
+  align-self: flex-start;!important;
+  margin: 5px 0 0 1px;
+}
 
 
+label {
+  font-weight: bold;
+  font-size: clamp(20px, 2.5vw, 40px);
+}
 
 button {
-  height: clamp(40px, 50px, 60px);
-  width: clamp(100px, 20vw, 300px);
-
-  margin: 15px 0 0 0;
-
-  background-color: var(--systemGray2);
-  border-color: var(--systemGray4);
-
-  border-radius: 10px;
-  border: 1px;
-
-  font-size: 20px;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  align-self: flex-end;
 }
 
 button:hover {
-  background-color: var(--systemGray4);
-  border-color: var(--systemGray2);
+  background-color: #0056b3;
 }
-
-button:active {
-  animation: btn-anim-active 0.4s linear 0.1s 1 forwards;
-}
-
-
-@keyframes btn-anim-hover {
-  0%,100% {
-    transform: scale(100%);
-  }
-  50% {
-    transform: scale(85%);
-  }
-}
-
-@keyframes btn-anim-active {
-  0%,100% {
-    transform: scale(100%);
-  }
-  50% {
-    transform: scale(135%);
-  }
-}
-

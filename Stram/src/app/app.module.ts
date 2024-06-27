@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
@@ -55,15 +55,16 @@ import { SliderComponent } from './Components/slider/slider.component';
     CardComponent,
     SliderComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatIconModule,
-    FormsModule,
-    MatProgressSpinnerModule,
-    HttpClientModule,
-    NgOptimizedImage
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        MatIconModule,
+        FormsModule,
+        MatProgressSpinnerModule,
+        HttpClientModule,
+        NgOptimizedImage,
+        ReactiveFormsModule
+    ],
   providers: [
     provideAnimationsAsync()
   ],

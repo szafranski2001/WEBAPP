@@ -139,6 +139,8 @@ hr{
   transform: scale(1.1);
 }
 
+
+
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -156,6 +158,8 @@ hr{
 ::-webkit-scrollbar-thumb:hover {
   background: var(--systemGray4);
 }
+
+
 
 html{
   height: 100%;
@@ -222,6 +226,13 @@ input[type="file"] {
   outline: none;
   padding: 4px;
   margin: -4px;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
 }
 
 input[type="file"]:focus-within::file-selector-button,
@@ -236,10 +247,6 @@ input[type="file"]::before {
 
 input[type="file"]::after {
   top: 14px;
-}
-
-input[type="file"] {
-  position: relative;
 }
 
 input[type="file"]::file-selector-button {
