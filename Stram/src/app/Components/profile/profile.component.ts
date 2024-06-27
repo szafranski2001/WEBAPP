@@ -11,7 +11,9 @@ import { GeneralTasksService } from '../../services/general-tasks.service';
 })
 export class ProfileComponent implements OnInit{
 
-  user: UserCredentials;
+  user= localStorage.getItem("user");
+
+  private BackEndUrl = "http://localhost:8080"
 
   userImage : number;
 
@@ -24,32 +26,34 @@ export class ProfileComponent implements OnInit{
 
 
   onSubmit(form: NgForm) {
-    const nome = form.value['changeNameBar'];
-    const cognome = form.value['changeSurnameBar'];
+    let nome = form.value['changeNameBar'];
+    let cognome = form.value['changeSurnameBar'];
     const email = form.value['changeEmailBar'];
     const password = form.value['changePasswordBar'];
     const confirmPassword = form.value['confirmPasswordBar'];
 
     // Costruisco un oggetto con i dati da inviare al backend
-    const userData= {
+    let userData= {
       nome: nome,
       cognome: cognome,
       email: email,
       password: password,
       confirmPassword: confirmPassword,
-      username: this.user.username
+      username: this.user
     };
 
+    if(this.user != null){
+      this.http.post<any>(this.BackEndUrl+'/api/profile/update', JSON.stringify(userData)).subscribe(
+        response => {
+          console.log('Dati aggiornati con successo:', response);
+        },
+        error => {
+          console.error('Si è verificato un errore', error);
+        }
+      );
+    }
     // Invio i dati al backend
-    this.http.post<any>('/api/profile/update', JSON.stringify(userData)).subscribe(
-      response => {
-        console.log('Dati aggiornati con successo:', response);
-      },
-      error => {
-        console.error('Si è verificato un errore', error);
-      }
-    );
   }
-
+  
 
 }
