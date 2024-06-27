@@ -57,3 +57,8 @@
 .like-centered{
     vertical-align: text-bottom;
 }
+
+.description{
+    overflow-x: hidden;
+    height: 120px;
+}

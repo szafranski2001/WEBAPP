@@ -1,0 +1,67 @@
+.text{
+    padding: 15px;
+    font-size:1.8vw;
+    color: var(--systemGray2);
+}
+
+.icon{
+    height: 8vw;
+    width: 8vw;
+    font-size: 8vw;
+    padding-right: 5px;
+    color: var(--systemGray2);
+}
+
+.body-data{
+    padding-left: 10px;
+}
+
+.Reported-user{
+    display: block;
+    font-size: 30px;
+    padding: 4px 10px;
+    margin-top:5px;
+    border-radius: 5px;
+    background-color: var(--systemGray5);
+    overflow-wrap: break-word;
+}
+
+.grid-display{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-content: center;
+}
+
+.Card-bd{
+    flex-grow:1;
+    margin-right: 20px;
+    border: 5px var(--systemGray5) double;
+    border-radius: 5px;
+    padding: 5px 5px 0 10px;
+    overflow:scroll;
+    height:175px;
+    overflow-x: hidden;
+}
+
+.Card-container{
+    background-color: var(--background-header-color);
+    margin: 20px 20px 0 0;
+    border-radius: 5px;
+    border: 5px var(--systemGray5) double;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    overflow-wrap:break-word;
+}
+
+.link {
+    display: inline;
+    border-bottom: 2px solid var(--systemGray5);
+    border-radius: 2px;
+    cursor: pointer;
+    padding-bottom: 1px;
+}
+
+.link:hover {
+    border-color: var(--systemGray2);
+}

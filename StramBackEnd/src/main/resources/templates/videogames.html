@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/videogames.css">
-    <script src="javascript/videogamesLogic.js"></script>
+    <script src="javascript/SearchBarLogic.js"></script>
     <title>Stram</title>
 </head>
 <body>
@@ -12,22 +12,24 @@
 
     <div class="main-container">
         <h1 class="title">Catalogo Videogiochi</h1>
-        <div class="grid-container ">
+        <div class="grid-container">
             <div class="videogame-data" th:each="videogame : ${videogames_list}">
                 <figure class="videogame-figure round8">
                     <a th:href="@{'http://localhost:4200/videogame/' + ${videogame.id}}">
                         <img th:src="@{/images/videogames/{id}.png(id=${videogame.id})}" th:alt="${videogame.titolo}">
                     </a>
-                    <button class="fv-btn default-btn round btn-gray px50" onclick="ButtonPressed(this)">
-                        <span class="material-symbols-outlined icon-outline mdsize red-icon" title="Aggiungi/Rimuovi videogioco dalla lista dei preferiti">favorite</span>
-                    </button>
-                    <button class="wl-btn default-btn round btn-gray px50" onclick="ButtonPressed(this)">
-                        <span class="material-symbols-outlined icon-outline mdsize wish-gold-icon" title="Aggiungi/Rimuovi videogioco dalla lista dei desideri">shopping_bag</span>
-                    </button>
                 </figure>
             </div>
         </div>
+        <div id="placeHolder">
+            <span class="text">Nessun Videogioco Trovato.</span>
+            <span style="font-size: 8vw;" class="material-symbols-outlined icon">sentiment_dissatisfied</span>
+        </div>
     </div>
+
+    <button class="round default-btn btn-gray px50 fixed" title="Torna all'inizio" onclick="ToTheTopPressed()">
+        <span class="material-symbols-outlined">keyboard_arrow_up</span>
+    </button>
 
     <div th:insert="~{footer}"></div>
 </body>

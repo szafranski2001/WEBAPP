@@ -161,13 +161,13 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 	}
 
 	@Override
-	public List<Videogioco> findByName(Videogioco videogioco) throws DatabaseException { //??
+	public List<Videogioco> findByName(String videogioco) throws DatabaseException { //??
 		List<Videogioco> videogiochi = new ArrayList <Videogioco>();
 		try {
 			Connection con = dbSource.getConnection();//utilizzo la connessione singleton con il db ed eseguo la query sottostante
 			String query = "select id from videogiochi where titolo=? group by id;";
 			PreparedStatement st = con.prepareStatement(query);
-			st.setString(1, videogioco.getTitolo());
+			st.setString(1, videogioco);
 			ResultSet rs = st.executeQuery(); //eseguo query
 			while (rs.next()) {
 				Videogioco videogiocoo = findByPrimaryKey(rs.getInt("id"));

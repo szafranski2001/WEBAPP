@@ -27,8 +27,8 @@ export class VideogameDetailComponent implements OnInit{
       this.videogameData.SetSelectedVideogame(response);
     },
     error: () => {
-      this.router.navigate(["/"]); 
       alert(NotFoundError);
+      this.router.navigate(["/"]); 
     }
 
     });
@@ -40,10 +40,6 @@ export class VideogameDetailComponent implements OnInit{
 
   getGenereColor(){
     return 'var(--'+this.videogame.genere.toLowerCase()+'-color)';
-  }
-
-  ToTheTopPressed(){
-    window.scrollTo({top:0,behavior:'smooth'});
   }
 
   HandleUpdateData(){

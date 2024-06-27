@@ -5,6 +5,7 @@ import {UserDTO} from "../model/UserDTO";
 import {TokenManager} from "../model/TokenManager";
 import {videogame} from "../model/Videogame";
 import { Router } from '@angular/router';
+import { LoginError } from '../model/Message';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +22,12 @@ export class LoginService {
         this.tokenM.setToken(response.token.toString());
         console.log(response.token);
         localStorage.setItem("user", response.user.username);
-        localStorage.setItem("type", JSON.stringify(response.type))
+        localStorage.setItem("type", JSON.stringify(response.type));
         this.router.navigate(["/"]);
+        console.log(this.tokenM);
       },
       error : () => {
-        alert("Login fallito")
+        alert(LoginError)
       }
 
     })

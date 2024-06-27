@@ -22,7 +22,7 @@ export class ReviewToolbarComponent implements OnInit{
 
   //DA CAMBIARE CON IL SERVICE NON VOGLIO STO SCHIFO DENTRO OGNI COMPONENT A CUI SERVE SAPERE LA TIPOLOGIA USER
   tipologiaUser = tipologiaUser;
-  CurrentUserTipologia = 1;
+  CurrentUserTipologia = Number(localStorage.getItem("type"));
   User = localStorage.getItem("user");
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

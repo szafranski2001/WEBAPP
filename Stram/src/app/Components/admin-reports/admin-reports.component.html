@@ -1,0 +1,32 @@
+
+<app-loading-spinner *ngIf="!reportList"></app-loading-spinner>
+
+<article *ngIf="reportList" class="main-cont grid-display">
+    <section class="Card-container" *ngFor="let report of reportList; let i=index" [attr.name]="'report-'+ i">
+        <div class="Card-bd">
+            <div class="highlighted-text Reported-user">{{report.destinatario}}</div>
+            <div class="body-data">
+                <p>
+                    <span>Segnalato da: </span>
+                    <span class="highlighted-text">{{report.mittente}}</span>
+                </p>
+                <p (click)="GoToReportVideogame(report)" class="link">
+                    <span>Nel videogioco id: </span>
+                    <span class="highlighted-text ">{{report.idVideogioco}}</span>
+                </p>
+                <p>
+                    <span>Stato segnalazione: </span>
+                    <span class="highlighted-text"> {{report.stato}}</span>
+                </p>
+            </div>
+        </div>
+        <app-report-toolbar [reportID]="i" [report]="report" class="toolbar" (updateReport)="RemoveReportFromList($event)"></app-report-toolbar>
+    </section>
+</article>
+
+<p class="placeholder-div" *ngIf="reportList && reportList.length == 0">
+    <span class="text">Nessuna segnalazione presente</span>
+    <mat-icon class="icon icon-centered">sentiment_satisfied</mat-icon>
+</p>
+
+<app-to-the-top-button></app-to-the-top-button>

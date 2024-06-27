@@ -6,6 +6,7 @@ import it.unical.studenti.strambackend.persistence.Model.User;
 import it.unical.studenti.strambackend.persistence.Model.UserCredenziali;
 import it.unical.studenti.strambackend.persistence.Model.UserDTO;
 import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,12 +41,18 @@ public class AuthenticationController {
                 userDTO.setUser(user);
                 userDTO.setToken(authenticationToken);
                 userDTO.setType(DBManager.getInstance().userDAO().getTypeUser(user.getUsername()));
+                DBManager.getInstance().userDAO().setToken(user.getUsername(),authenticationToken);
                 return ResponseEntity.ok().body(userDTO);
-
             }
         }
         return ResponseEntity.badRequest().body(null);
 
+    }
+    @PostMapping("/authenticate/logout")
+    public ResponseEntity<?> logout (@RequestBody String user)
+    {
+        DBManager.getInstance().userDAO().setToken(user,"");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

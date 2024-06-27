@@ -49,7 +49,7 @@ public class ListeDAOJDBC implements ListeDAO{
         try {
 			Connection con = dbSource.getConnection(); //utilizzo la connessione singleton con il db ed eseguo la query sottostante
 			
-            String query = "SELECT f.* FROM public.videogiochi INNER JOIN public.videogiochiinliste fl ON f.id = fl.videogioco WHERE fl.username = ? AND fl.nome = ?";
+            String query = "SELECT f.* FROM public.videogiochi f INNER JOIN public.videogiochiinliste fl ON f.id = fl.videogioco WHERE fl.username = ? AND fl.nome = ?";
             PreparedStatement st = con.prepareStatement(query);
             st.setString(2,lista.getNome());
             st.setString(1, lista.getUsername());
@@ -204,6 +204,36 @@ public class ListeDAOJDBC implements ListeDAO{
             throw new DatabaseException();
         }
     }
+
+    public List <Integer> OpenUserList(String NomeLista, String user) // apro una lista di un utente contenente vari videogiochi
+    {
+        List<Integer> videogiochi= new ArrayList<>(); //creo una lista di oggetti videogioco
+
+        if(user != null) {
+            try {
+                Connection con = dbSource.getConnection(); //utilizzo la connessione singleton con il db ed eseguo la query sottostante
+
+                String query = "SELECT f.id FROM public.videogiochi f INNER JOIN public.videogiochiinliste fl ON f.id = fl.videogioco WHERE fl.username = ? AND fl.nome = ?";
+                PreparedStatement st = con.prepareStatement(query);
+                st.setString(2, NomeLista);
+                st.setString(1, user);
+                ResultSet rs = st.executeQuery(); //eseguo query
+                while (rs.next()) {
+                    videogiochi.add(rs.getInt("id")); //aggiungo i singoli videogiochi alla lista
+                }
+
+                //chiudo tutte le varie connessioni
+                rs.close();
+                st.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return videogiochi; //ritorno la lista di oggetti popolata con i videogiochi.
+    }
+
 
 
 }

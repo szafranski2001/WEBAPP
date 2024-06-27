@@ -1,17 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {UserCredentials} from "../../model/User";
+import { GeneralTasksService } from '../../services/general-tasks.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit{
+
   user: UserCredentials;
 
-  constructor(private http: HttpClient) { }
+  userImage : number;
+
+  constructor(private http: HttpClient, private generalTasks : GeneralTasksService) { }
+
+
+  ngOnInit(): void {
+    this.userImage=this.generalTasks.getRandomValue(6);
+  }
+
 
   onSubmit(form: NgForm) {
     const nome = form.value['changeNameBar'];
@@ -40,4 +50,6 @@ export class ProfileComponent {
       }
     );
   }
+
+
 }

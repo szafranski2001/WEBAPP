@@ -1,0 +1,9 @@
+
+.loading-div{
+  margin-top: 35vh; /*da provare a cambiare cercando di fargli prendere tutta la pagina*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align:middle;
+  flex-direction: column;
+}

@@ -12,12 +12,15 @@ import {LogOutService} from "../../services/log-out.service";
 export class HeaderComponent {
 
     protected readonly localStorage = localStorage;
-  constructor( private service :LogOutService) {
 
-  }
+
+  constructor( private service :LogOutService) {}
 
   logout() {
     this.service.doLogOut();
+  }
 
+  isUserAdmin() : boolean{
+    return Number(this.localStorage.getItem("type")) == 1;
   }
 }

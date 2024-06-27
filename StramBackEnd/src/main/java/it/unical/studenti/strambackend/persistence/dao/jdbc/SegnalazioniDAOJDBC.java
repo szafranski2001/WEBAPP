@@ -124,12 +124,12 @@ public class SegnalazioniDAOJDBC implements SegnalazioniDAO{
 	            Segnalazioni segnalazione = null;
 	        	if (rs.getString("stato").equals(s.getState().statoSegnalazione())) //controllo se lo stato della segnalazione è in lavorazione  oppure se è una nuovaSegnalazione
 	        	{
-		             segnalazione = new Segnalazioni(rs.getString("mittente"), rs.getString("destinatario"), rs.getInt("film")); //creo una nuova segnalazione
+		             segnalazione = new Segnalazioni(rs.getString("mittente"), rs.getString("destinatario"), rs.getInt("videogioco")); //creo una nuova segnalazione
 		             segnalazione.changeState(new InLavorazioneSegnalazione (segnalazione)); //cambio lo stato in lavorazione,
 	        	}
 	        	else
 	        	{
-		             segnalazione = new Segnalazioni(rs.getString("mittente"), rs.getString("destinatario"), rs.getInt("film")); //creo una nuova segnalazione
+		             segnalazione = new Segnalazioni(rs.getString("mittente"), rs.getString("destinatario"), rs.getInt("videogioco")); //creo una nuova segnalazione
 	        	}
 				segnalazioni.add(segnalazione); //aggiungo la segnalazione nuova o in lavorazione alla lista di oggetti "sengalazioni"
 	        }

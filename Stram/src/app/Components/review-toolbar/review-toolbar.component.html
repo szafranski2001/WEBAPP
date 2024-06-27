@@ -3,7 +3,7 @@
       <button class="round default-btn btn-gray px50" title="Mi piace" (click)="LikeReview()">
         <mat-icon class="like-blue-icon" [ngClass]="isLiked ? 'icon-fill' : 'icon-outline' ">thumb_up</mat-icon>
       </button>
-      <button class="round default-btn btn-gray px50" title="segnala recensione" (click)="ReportReview()">
+      <button [disabled]="isReported" *ngIf="CurrentUserTipologia != tipologiaUser.Admin" class="round default-btn btn-gray px50" title="segnala recensione" (click)="ReportReview()">
         <mat-icon class="red-icon" [ngClass]="isReported ? 'icon-fill ' :'icon-outline' ">report</mat-icon>
     </button>
     </div>
@@ -13,4 +13,3 @@
       </button>
     </div> 
 </aside>
-  

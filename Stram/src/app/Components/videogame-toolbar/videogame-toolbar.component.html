@@ -3,8 +3,8 @@
     <button class="round default-btn btn-gray px50 " title="Aggiungi/Rimuovi dalla lista dei preferiti" (click)="AddFavoriteListPressed()">
       <mat-icon class="icon-centered red-icon" [ngClass]="isFavorite ? 'icon-fill' : 'icon-outline'" >favorite</mat-icon>
     </button>
-    <button class="round default-btn btn-gray px50" (click)="AddWishListPressed()">
-      <mat-icon class="wish-gold-icon" title="Aggiungi/Rimuovi dalla lista dei desideri" [ngClass]="isWished ? 'icon-fill' : 'icon-outline'" >shopping_bag</mat-icon>
+    <button class="round default-btn btn-gray px50"  title="Aggiungi/Rimuovi dalla lista dei desideri" (click)="AddWishListPressed()">
+      <mat-icon class="wish-gold-icon" [ngClass]="isWished ? 'icon-fill' : 'icon-outline'" >shopping_bag</mat-icon>
     </button>
   </div>
   <div class="tlb-itms" *ngIf="CurrentUserTipologia == tipologiaUser.Admin">
