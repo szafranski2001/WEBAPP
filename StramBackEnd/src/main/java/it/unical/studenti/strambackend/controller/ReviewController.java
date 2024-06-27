@@ -50,13 +50,13 @@ public class ReviewController {
 
     @PostMapping("/api/GetLikes/{videogameId}")
     public ResponseEntity<List<Likeato>> GetLikes(@PathVariable int videogameId, @RequestBody String user){
-        List<Likeato> UserLikes = DBManager.getInstance().recensioneDAO().findLikesVideogame(user,videogameId); //capire come prendere l'utente
+        List<Likeato> UserLikes = DBManager.getInstance().recensioneDAO().findLikesVideogame(user,videogameId);
         return new ResponseEntity<>(UserLikes, HttpStatus.OK);
     }
 
     @PostMapping("/api/GetReports/{videogameId}")
     public ResponseEntity<List<Segnalazioni>> GetReports(@PathVariable int videogameId, @RequestBody String user){
-        List<Segnalazioni> UserReports = DBManager.getInstance().segnalazioniDAO().findSegnalazioniUser(user,videogameId); //capire come prendere l'utente
+        List<Segnalazioni> UserReports = DBManager.getInstance().segnalazioniDAO().findSegnalazioniUser(user,videogameId);
         return new ResponseEntity<>(UserReports, HttpStatus.OK);
     }
 
@@ -103,7 +103,5 @@ public class ReviewController {
             return new ResponseEntity<>(ReviewMessageDB.ERROR_REMOVE_REPORT_REVIEW_MESSAGE,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    //Mancano quelle chiamate dove serve prendere l'utente devo ancora capire il modo migliore per farlo
 
 }

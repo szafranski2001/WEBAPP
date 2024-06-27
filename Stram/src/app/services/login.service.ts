@@ -24,6 +24,7 @@ export class LoginService {
         localStorage.setItem("user", response.user.username);
         localStorage.setItem("type", JSON.stringify(response.type));
         this.router.navigate(["/"]);
+        console.log(this.tokenM);
       },
       error : () => {
         alert(LoginError)

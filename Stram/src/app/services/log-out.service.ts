@@ -10,17 +10,20 @@ import {User} from "../model/User";
 })
 export class LogOutService {
 
-  private url = "http://localhost:4200/"
+  private url = "http://localhost:8080/"
   private tokenM: TokenManager;
 
   constructor(private http : HttpClient, private router : Router) {
     this.tokenM = new TokenManager(); // Inizializza TokenManager
   }
 
-  doLogOut(user : User)
+  doLogOut()
   {
-    this.tokenM.removeToken()
-    this.http.post(this.url+  "authenticate/logout", localStorage.getItem("user"))
+    this.http.post(this.url+"authenticate/logout", localStorage.getItem("user")).subscribe({
+      next : () => {
+        this.tokenM.removeToken();
+      }
+    });
     this.router.navigate(["/"]);
   }
 }

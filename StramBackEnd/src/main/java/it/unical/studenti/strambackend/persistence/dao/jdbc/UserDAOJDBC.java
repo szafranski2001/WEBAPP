@@ -423,22 +423,20 @@ public class UserDAOJDBC implements UserDAO {
 	public void setToken(String user, String token) {
 		Connection conn = null;
 		PreparedStatement st = null;
-		ResultSet rs = null;
 		try {
 			conn = dbSource.getConnection();
 			String query = "UPDATE users SET token = ? WHERE username = ?";
 			st = conn.prepareStatement(query);
 			st.setString(1, token);
 			st.setString(2, user);
-			rs = st.executeQuery();
+			st.executeUpdate();
 
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		}
+		finally {
 			try {
-				if (rs != null) {
-					rs.close();
-				}
 				if (st != null) {
 					st.close();
 				}

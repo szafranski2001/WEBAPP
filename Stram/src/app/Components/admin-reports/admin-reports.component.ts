@@ -24,6 +24,7 @@ export class AdminReportsComponent implements OnInit {
       },
       error : () => {
         alert(NotFoundError);
+        this.router.navigate(["/"]);
       }
     });
   }

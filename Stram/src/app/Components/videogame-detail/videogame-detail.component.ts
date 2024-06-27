@@ -27,8 +27,8 @@ export class VideogameDetailComponent implements OnInit{
       this.videogameData.SetSelectedVideogame(response);
     },
     error: () => {
-      this.router.navigate(["/"]); 
       alert(NotFoundError);
+      this.router.navigate(["/"]); 
     }
 
     });
