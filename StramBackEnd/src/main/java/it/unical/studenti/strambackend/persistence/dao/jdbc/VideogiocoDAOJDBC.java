@@ -94,24 +94,6 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 		return videogiochi; //restituisco la lista
 	}
 
-	@Override
-	public void update(Videogioco videogiocoo) { //aggiorno i dati di un videogiocoo
-		try {
-			Connection conn = dbSource.getConnection();//utilizzo la connessione singleton con il db ed eseguo la query sottostante
-			String update = "update videogiochi SET valutazione = ? WHERE id=?";
-			PreparedStatement st = conn.prepareStatement(update);
-			st.setInt(1, videogiocoo.getValutazione());
-			st.setInt(2, videogiocoo.getId());
-			st.executeUpdate(); //eseguo query
-			//chiudo tutte le varie connessioni
-			st.close();
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-	}
-
 	 @Override
 	    public void delete(int videogiocoId) throws DatabaseException { //elimino un videogiocoo dal catalogo dei videogiocoo
 

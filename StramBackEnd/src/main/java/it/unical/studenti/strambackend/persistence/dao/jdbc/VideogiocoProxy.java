@@ -11,14 +11,14 @@ import it.unical.studenti.strambackend.persistence.exceptions.DatabaseException;
 import it.unical.studenti.strambackend.persistence.exceptions.NoAuthException;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class VideogiocoProxy implements VideogiocoDAO {
 
     private final VideogiocoDAOJDBC videogiocoDAOJDBC;
 
-    private String CurrentToken;
-
-    private final String ERROR_NO_AUTH_MESSAGE = "Non si ha l'autorizzazione per compiere questa operazione";
+    private static final List<Videogioco> CachedVideogames = new CopyOnWriteArrayList<>();;
 
     public VideogiocoProxy(DBSource source) {
         this.videogiocoDAOJDBC = new VideogiocoDAOJDBC(source);
@@ -26,72 +26,85 @@ public class VideogiocoProxy implements VideogiocoDAO {
 
     @Override
     public void save(Videogioco videogioco) throws Exception {
-        //Manca da inserire un controllo per vedere se l'utente è loggato ed è un admin
-        if(true){
-            videogiocoDAOJDBC.save(videogioco);
+        if(!CachedVideogames.isEmpty()){
+            CachedVideogames.add(videogioco);
         }
-        else{
-            throw new NoAuthException(ERROR_NO_AUTH_MESSAGE);
-        }
+        videogiocoDAOJDBC.save(videogioco);
     }
 
     @Override
     public Videogioco findByPrimaryKey(int idVideogioco) throws Exception {
-        return videogiocoDAOJDBC.findByPrimaryKey(idVideogioco);
+        if(!CachedVideogames.isEmpty()){
+            return CachedVideogames.stream().filter( videogioco -> videogioco.getId() == idVideogioco).findFirst().get();
+        }
+        else{
+            return videogiocoDAOJDBC.findByPrimaryKey(idVideogioco);
+        }
+
     }
 
     @Override
     public List<Videogioco> findAll() throws Exception {
-        return videogiocoDAOJDBC.findAll();
-    }
-
-    @Override
-    public void update(Videogioco videogioco) {
-        videogiocoDAOJDBC.update(videogioco);
+        if(CachedVideogames.isEmpty()){
+            CachedVideogames.addAll(videogiocoDAOJDBC.findAll());
+        }
+        return CachedVideogames;
     }
 
     @Override
     public void delete(int videogiocoId) throws Exception {
-        if(true)
-            videogiocoDAOJDBC.delete(videogiocoId);
-        else {
-            throw new NoAuthException(ERROR_NO_AUTH_MESSAGE);
+        if(!CachedVideogames.isEmpty()){
+            Videogioco videogame = CachedVideogames.stream().filter(videogioco -> videogioco.getId() == videogiocoId).findFirst().get();
+            CachedVideogames.remove(videogame);
         }
+        videogiocoDAOJDBC.delete(videogiocoId);
     }
 
     @Override
-    public List<Videogioco> findByName(String videogioco) throws Exception {
-        return videogiocoDAOJDBC.findByName(videogioco);
-    }
-
-    @Override
-    public List<Videogioco> risultati(String input) {
-        return videogiocoDAOJDBC.risultati(input);
+    public List<Videogioco> findByName(String videogiocoName) throws Exception {
+        if(!CachedVideogames.isEmpty()){
+            return CachedVideogames.stream().filter( videogioco -> videogioco.getTitolo().equals(videogiocoName)).toList();
+        }
+        else{
+            return videogiocoDAOJDBC.findByName(videogiocoName);
+        }
     }
 
     @Override
     public boolean existsVideogioco(Videogioco videogioco) {
-        return videogiocoDAOJDBC.existsVideogioco(videogioco);
+        if(!CachedVideogames.isEmpty()){
+            return CachedVideogames.stream().anyMatch(videogioco1 -> videogioco1.getId() == videogioco.getId());
+        }
+        else{
+            return videogiocoDAOJDBC.existsVideogioco(videogioco);
+        }
     }
 
     @Override
     public void updateVideogioco(Videogioco videogioco, int videogiocoId) throws Exception {
-        if(true){
-            videogiocoDAOJDBC.updateVideogioco(videogioco,videogiocoId);
+        if(!CachedVideogames.isEmpty()){
+            Videogioco videogame = CachedVideogames.stream().filter(vd -> vd.getId() == videogiocoId).findFirst().get();
+            CachedVideogames.remove(videogame);
+            CachedVideogames.add(videogioco);
         }
-        else{
-            throw new NoAuthException(ERROR_NO_AUTH_MESSAGE);
-        }
+        videogiocoDAOJDBC.updateVideogioco(videogioco,videogiocoId);
     }
-
     @Override
     public String findTitoloById(int videogioco) {
+        if(!CachedVideogames.isEmpty()){
+            return CachedVideogames.stream().filter( vd -> vd.getId() == videogioco).findFirst().get().getTitolo();
+        }
         return videogiocoDAOJDBC.findTitoloById(videogioco);
     }
 
     @Override
     public int lastID() {
         return videogiocoDAOJDBC.lastID();
+    }
+
+    @Override
+    public List<Videogioco> risultati(String input) {
+        return videogiocoDAOJDBC.risultati(input);
     }
 
 }
