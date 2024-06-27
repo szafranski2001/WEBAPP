@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserListsService} from '../../services/user-lists.service';
 import {SingleGameInfo} from '../../model/SingleGameInfo';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-videogame-lists',
@@ -9,15 +10,19 @@ import {SingleGameInfo} from '../../model/SingleGameInfo';
 })
 
 export class VideogameListsComponent implements OnInit {
-  favoriteList: SingleGameInfo[] = [];
-  wishList: SingleGameInfo[] = [];
+  favoriteSlider = this.userListsService.getFavoriteSlider();
+  wishSlider = this.userListsService.getWishSlider();
+  favorite = "Lista dei preferiti"
+  wish = "Lista dei desideri"
+
+
 
   constructor(private userListsService: UserListsService) {}
 
   ngOnInit(): void {
-    this.loadLists();
+//    this.loadLists();
   }
-
+/*
   loadLists(): void{
     this.userListsService.getUserFavoriteList().subscribe(response =>{
       this.favoriteList = response;
@@ -26,5 +31,5 @@ export class VideogameListsComponent implements OnInit {
       this.wishList = response;
     });
   }
-
+*/
 }
