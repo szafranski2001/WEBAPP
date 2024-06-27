@@ -3,6 +3,7 @@ import {TokenManager} from "../model/TokenManager";
 import {videogame} from "../model/Videogame";
 import {HttpClient} from "@angular/common/http";
 import { Router } from '@angular/router';
+import {User} from "../model/User";
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,10 @@ export class LogOutService {
     this.tokenM = new TokenManager(); // Inizializza TokenManager
   }
 
-  doLogOut()
+  doLogOut(user : User)
   {
     this.tokenM.removeToken()
+    this.http.post(this.url+  "authenticate/logout", localStorage.getItem("user"))
     this.router.navigate(["/"]);
   }
 }

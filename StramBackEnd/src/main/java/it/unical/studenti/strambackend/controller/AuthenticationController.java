@@ -40,12 +40,17 @@ public class AuthenticationController {
                 userDTO.setUser(user);
                 userDTO.setToken(authenticationToken);
                 userDTO.setType(DBManager.getInstance().userDAO().getTypeUser(user.getUsername()));
+                DBManager.getInstance().userDAO().setToken(user.getUsername(),authenticationToken);
                 return ResponseEntity.ok().body(userDTO);
-
             }
         }
         return ResponseEntity.badRequest().body(null);
 
+    }
+    @PostMapping("/authenticate/logout")
+    public void logout (@RequestBody UserCredenziali user)
+    {
+                DBManager.getInstance().userDAO().setToken(user.getUsername(),"");
     }
 
 }

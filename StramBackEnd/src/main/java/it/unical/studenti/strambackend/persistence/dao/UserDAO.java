@@ -19,4 +19,6 @@ public interface UserDAO {
 	public String existsDomanda(String email); //CONTROLLO SE LA DOMANDA DI SICUREZZA ESISTE
 	public boolean checkRisposta(String email, String risposta); // CONTROLLO SE LA RISPOSTA ALLA DOMANDA DI SICUREZZA È ESATTA
 	public int getTypeUser(String user);
+	public void setToken(String user, String token);
+	public String getToken(String user);
 }
