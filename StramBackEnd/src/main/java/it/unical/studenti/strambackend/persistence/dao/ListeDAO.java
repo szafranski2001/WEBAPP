@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.unical.studenti.strambackend.persistence.Model.Videogioco;
 import it.unical.studenti.strambackend.persistence.Model.Liste;
+import it.unical.studenti.strambackend.persistence.dao.jdbc.ListeDAOJDBC;
 import it.unical.studenti.strambackend.persistence.exceptions.DatabaseException;
 
 public interface ListeDAO {
@@ -18,7 +19,7 @@ public interface ListeDAO {
 
     public void RemoveVideogameFromList(int idVideogioco, String User, String NomeLista) throws DatabaseException;
 
-    public List <Integer> OpenUserList(String NomeLista, String user);
+    public List <ListeDAOJDBC.Videogame> OpenUserList(String NomeLista, String user);
 
 
 }

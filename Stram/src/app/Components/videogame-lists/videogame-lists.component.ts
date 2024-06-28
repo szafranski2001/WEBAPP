@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserListsService} from '../../services/user-lists.service';
 import {SingleGameInfo} from '../../model/SingleGameInfo';
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-videogame-lists',
@@ -10,26 +9,36 @@ import {Observable} from "rxjs";
 })
 
 export class VideogameListsComponent implements OnInit {
-  favoriteSlider = this.userListsService.getFavoriteSlider();
-  wishSlider = this.userListsService.getWishSlider();
+  user = localStorage.getItem("user");
+  favoriteSlider : SingleGameInfo[];
+  wishSlider : SingleGameInfo[];
   favorite = "Lista dei preferiti"
   wish = "Lista dei desideri"
 
 
-
-  constructor(private userListsService: UserListsService) {}
+  constructor(private listsService: UserListsService) {}
 
   ngOnInit(): void {
-//    this.loadLists();
+    this.loadLists();
   }
-/*
+
+
   loadLists(): void{
-    this.userListsService.getUserFavoriteList().subscribe(response =>{
-      this.favoriteList = response;
-    });
-    this.userListsService.getUserWishList().subscribe(response =>{
-      this.wishList = response;
-    });
+    // @ts-ignore
+    this.listsService.getUserFavoriteList(this.user).subscribe(response =>{
+      this.favoriteSlider = response;
+    },
+      error => {
+        console.error('Error fetching preferred games', error);
+      }
+    );
+    // @ts-ignore
+    this.listsService.getUserWishList(this.user).subscribe(response =>{
+      this.wishSlider = response;
+    },
+      error => {
+        console.error('Error fetching wished games', error);
+      }
+    );
   }
-*/
 }
