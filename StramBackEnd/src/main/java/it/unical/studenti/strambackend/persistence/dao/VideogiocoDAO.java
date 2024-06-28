@@ -10,7 +10,6 @@ public interface VideogiocoDAO {
 	public void save(Videogioco videogioco) throws Exception; // inserisco nel DB un nuovo VIDEOGIOCO
 	public Videogioco findByPrimaryKey(int idVideogioco) throws Exception;	// RESTITUISCO L'OGGETTO VIDEOGIOCO IN BASE ALL'ID
 	public List<Videogioco> findAll() throws Exception;       // CERCO TUTTI I VIDEOGIOCHI PRESENTI NEL DB
-	public void update(Videogioco videogioco);	
 	public void delete(int videogiocoId) throws Exception;	//ELIMINO UN VIDEOGIOCO
 	public List<Videogioco> findByName(String videogioco) throws Exception;
 	public List<Videogioco> risultati(String input); // CERCO NEL DB VIDEOGIOCO CON CARATTERISTICHE SIMILI ALL'INPUT

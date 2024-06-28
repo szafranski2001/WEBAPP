@@ -17,8 +17,7 @@ export class LogOutService {
     this.tokenM = new TokenManager(); // Inizializza TokenManager
   }
 
-  doLogOut()
-  {
+  doLogOut(){
     this.http.post(this.url+"authenticate/logout", localStorage.getItem("user")).subscribe({
       next : () => {
         this.tokenM.removeToken();
