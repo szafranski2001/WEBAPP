@@ -61,7 +61,7 @@ import { LoadingSpinnerComponent } from './Components/loading-spinner/loading-sp
     AdminReportsComponent,
     ReportToolbarComponent,
     ToTheTopButtonComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
