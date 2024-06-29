@@ -20,27 +20,4 @@ export class HomeComponent {
   secondTitle: String = "Adventures"
 
 
-
-
-  clickBtnFavoriteGame(game: SingleGameInfo) {
-    let result: ResultStatusOnly;
-
-    let request = this.home.changeFavoriteFlag(game);
-
-    if (request == undefined) {
-      console.log("request undefined from clickBtnFavoriteGame in home.component.ts")
-      return;
-    }
-
-    request.subscribe((res) => {
-      result = res;
-      console.log('Richiesta favorite ok:');
-
-      if (result.getok() != 200) {
-        //errore nella prenotazione
-        alert("Non è stato possibile effettuare l'operazione");
-        return;
-      }
-    });
-  }
 }

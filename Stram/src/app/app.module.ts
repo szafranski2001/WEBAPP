@@ -35,6 +35,7 @@ import { AdminReportsComponent } from './Components/admin-reports/admin-reports.
 import { ReportToolbarComponent } from './Components/report-toolbar/report-toolbar.component';
 import { ToTheTopButtonComponent } from './Components/to-the-top-button/to-the-top-button.component';
 import { LoadingSpinnerComponent } from './Components/loading-spinner/loading-spinner.component';
+import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 
 @NgModule({
   declarations: [
@@ -63,16 +64,16 @@ import { LoadingSpinnerComponent } from './Components/loading-spinner/loading-sp
     ToTheTopButtonComponent,
     LoadingSpinnerComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        MatIconModule,
-        FormsModule,
-        MatProgressSpinnerModule,
-        HttpClientModule,
-        NgOptimizedImage,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatIconModule,
+    FormsModule,
+    MatProgressSpinnerModule,
+    HttpClientModule,
+    NgOptimizedImage,
+    ReactiveFormsModule
+  ],
   providers: [
     provideAnimationsAsync()
   ],
