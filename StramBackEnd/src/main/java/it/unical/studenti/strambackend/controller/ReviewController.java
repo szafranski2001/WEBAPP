@@ -32,7 +32,7 @@ public class ReviewController {
     public ResponseEntity<?> AddReview(@RequestBody Recensione review){
         try {
             DBManager.getInstance().recensioneDAO().save(review);
-            VideogiocoProxy.UpdateRatingAfterAddingReview(review.getVideogioco(),DBManager.getInstance().recensioneDAO().mediaVoti(review.getVideogioco()));
+            VideogiocoProxy.UpdateRatingAfterAddingReview(review.getVideogioco());
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(ReviewMessageDB.ERROR_ADD_REVIEW_MESSAGE, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -43,7 +43,7 @@ public class ReviewController {
     public ResponseEntity<?> DeleteReview(@RequestBody Recensione review){
         try{
             DBManager.getInstance().recensioneDAO().delete(review);
-            VideogiocoProxy.UpdateRatingAfterAddingReview(review.getVideogioco(),DBManager.getInstance().recensioneDAO().mediaVoti(review.getVideogioco()));
+            VideogiocoProxy.UpdateRatingAfterAddingReview(review.getVideogioco());
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception e){
