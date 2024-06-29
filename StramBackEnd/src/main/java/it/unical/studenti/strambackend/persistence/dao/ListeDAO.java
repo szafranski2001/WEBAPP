@@ -19,7 +19,7 @@ public interface ListeDAO {
 
     public void RemoveVideogameFromList(int idVideogioco, String User, String NomeLista) throws DatabaseException;
 
-    public List <ListeDAOJDBC.Videogame> OpenUserList(String NomeLista, String user);
+    public List <Videogioco> OpenUserList(String NomeLista, String user);
 
 
 }
