@@ -1,17 +1,12 @@
 
 package it.unical.studenti.strambackend.persistence.dao.jdbc;
 
-import it.unical.studenti.strambackend.persistence.DBManager;
 import it.unical.studenti.strambackend.persistence.DBSource;
-import it.unical.studenti.strambackend.persistence.ErrorMessage.VideogameMessageDB;
-import it.unical.studenti.strambackend.persistence.Model.TokenManager;
 import it.unical.studenti.strambackend.persistence.Model.Videogioco;
 import it.unical.studenti.strambackend.persistence.dao.VideogiocoDAO;
-import it.unical.studenti.strambackend.persistence.exceptions.DatabaseException;
-import it.unical.studenti.strambackend.persistence.exceptions.NoAuthException;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class VideogiocoProxy implements VideogiocoDAO {
@@ -107,4 +102,10 @@ public class VideogiocoProxy implements VideogiocoDAO {
         return videogiocoDAOJDBC.risultati(input);
     }
 
+    public static void UpdateRatingAfterAddingReview(int idVideogioco,int valutazione) {
+        CachedVideogames.stream().filter(videogioco -> videogioco.getId() == idVideogioco).peek(videogioco -> videogioco.setValutazione(valutazione));
+        for(Videogioco v : CachedVideogames){
+            System.out.println(v.getValutazione());
+        }
+    }
 }

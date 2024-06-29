@@ -184,7 +184,7 @@ public class RecensioneDAOJDBC implements RecensioneDAO{
 		int media = 0;
 		try {
 			Connection conn = dbSource.getConnection(); //utilizzo la connessione singleton con il db
-			String query = "SELECT AVG(voto) AS average_rating FROM recensioni WHERE videogioco=?";
+			String query = "SELECT COALESCE((AVG(voto)),0) AS average_rating FROM recensioni WHERE videogioco=?";
 			PreparedStatement st = conn.prepareStatement(query);
 			st.setInt(1, videogioco);
 			

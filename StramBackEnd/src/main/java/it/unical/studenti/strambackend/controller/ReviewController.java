@@ -5,6 +5,7 @@ import it.unical.studenti.strambackend.persistence.ErrorMessage.ReviewMessageDB;
 import it.unical.studenti.strambackend.persistence.Model.Likeato;
 import it.unical.studenti.strambackend.persistence.Model.Recensione;
 import it.unical.studenti.strambackend.persistence.Model.Segnalazioni;
+import it.unical.studenti.strambackend.persistence.dao.jdbc.VideogiocoProxy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +32,7 @@ public class ReviewController {
     public ResponseEntity<?> AddReview(@RequestBody Recensione review){
         try {
             DBManager.getInstance().recensioneDAO().save(review);
+            VideogiocoProxy.UpdateRatingAfterAddingReview(review.getVideogioco(),DBManager.getInstance().recensioneDAO().mediaVoti(review.getVideogioco()));
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(ReviewMessageDB.ERROR_ADD_REVIEW_MESSAGE, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -41,6 +43,7 @@ public class ReviewController {
     public ResponseEntity<?> DeleteReview(@RequestBody Recensione review){
         try{
             DBManager.getInstance().recensioneDAO().delete(review);
+            VideogiocoProxy.UpdateRatingAfterAddingReview(review.getVideogioco(),DBManager.getInstance().recensioneDAO().mediaVoti(review.getVideogioco()));
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception e){
