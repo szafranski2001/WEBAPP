@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {SingleGameInfo} from '../model/SingleGameInfo';
 
@@ -13,41 +13,15 @@ export class UserListsService {
 
   constructor(private http : HttpClient) { }
 
-  favoriteSlider: SingleGameInfo[] = [
-    { rank: 1, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true },
-    { rank: 2, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 1, isFavourite: false  },
-    { rank: 3, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true  },
-    { rank: 4, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 3, isFavourite: false  },
-    { rank: 5, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 5, isFavourite: true  },
-    { rank: 6, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 3, isFavourite: false  },
-    { rank: 7, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 2, isFavourite: true  },
-    { rank: 8, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 2, isFavourite: false  },
-    { rank: 9, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true  },
-    { rank: 10, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 5, isFavourite: false  },
-  ];
 
-  wishSlider: SingleGameInfo[] = [
-    { rank: 1, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true },
-    { rank: 2, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 1, isFavourite: false  },
-    { rank: 3, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true  },
-    { rank: 4, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 3, isFavourite: false  },
-    { rank: 5, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 5, isFavourite: true  },
-    { rank: 6, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 3, isFavourite: false  },
-    { rank: 7, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 2, isFavourite: true  },
-    { rank: 8, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 2, isFavourite: false  },
-    { rank: 9, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 4, isFavourite: true  },
-    { rank: 10, id: 1, name: 'Minecraft', imgUrl: 'assets/images/videogames/0.png', rate: 5, isFavourite: false  },
-  ];
-
-  public getFavoriteSlider() { return this.favoriteSlider}
-  public getWishSlider() { return this.wishSlider}
-
-  getUserFavoriteList(){
-    return this.http.get<SingleGameInfo[]>(this.BackEndURL+"/GetVideogameInPreferredList/");
+  getUserFavoriteList(user: string){
+    console.log('Request Params:', {User : user});
+    return this.http.get<SingleGameInfo[]>(this.BackEndURL+"/GetVideogameInPreferredList/", {params : {User : user}});
   }
 
-  getUserWishList(){
-    return this.http.get<SingleGameInfo[]>(this.BackEndURL+"/GetVideogameInWishList/");
+  getUserWishList(user: string){
+    console.log('Request Params:', {User : user});
+    return this.http.get<SingleGameInfo[]>(this.BackEndURL+"/GetVideogameInWishList/", {params : {User : user}});
   }
 
   isVideogameInFavoriteList(videogameId : number){
