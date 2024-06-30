@@ -12,7 +12,7 @@ public class CommandInvoker {
     }
 
     public <T> ResponseEntity<T> executeCommand() {
-        return (ResponseEntity<T>) command.execute();
+        return command.execute();
     }
 
 }
