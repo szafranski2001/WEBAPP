@@ -1,5 +1,5 @@
 export enum genere{
-    FPS="FPS",Sandbox="SandBox",MMORPG="MMORPG",MOBA="MOBA"
+    FPS="FPS",Sandbox="SandBox",MMORPG="MMORPG",MOBA="MOBA",ACTIONRPG="ActionRPG",Racing="Racing",Sport="Sport",PlatForm="Platform",Survival="Survival",Strategy="Strategy"
 }
 
 export interface videogame{
