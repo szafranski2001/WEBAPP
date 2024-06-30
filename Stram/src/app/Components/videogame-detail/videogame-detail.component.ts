@@ -59,6 +59,6 @@ export class VideogameDetailComponent implements OnInit{
     (Number.isNaN(anno) || anno > 9999 || anno <= 1950 ) ? this.videogame.anno= 9999 : this.videogame.anno=anno;
 
     let descrizione=String((dataElements[4] as HTMLElement).innerText);
-    this.videogame.descrizione=this.generalTasks.formatData(descrizione,3000);
+    this.videogame.descrizione=this.generalTasks.formatData(descrizione,1024);
   }
 }

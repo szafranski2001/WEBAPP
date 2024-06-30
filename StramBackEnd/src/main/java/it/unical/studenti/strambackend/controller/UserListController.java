@@ -3,6 +3,8 @@ package it.unical.studenti.strambackend.controller;
 import it.unical.studenti.strambackend.persistence.DBManager;
 import it.unical.studenti.strambackend.persistence.ErrorMessage.ListMessageDB;
 import it.unical.studenti.strambackend.persistence.Model.Lists;
+import it.unical.studenti.strambackend.persistence.Model.SingleGameInfo;
+import it.unical.studenti.strambackend.persistence.Model.Videogioco;
 import it.unical.studenti.strambackend.persistence.dao.jdbc.ListeDAOJDBC;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,31 +18,13 @@ import java.util.List;
 public class UserListController {
 
 
-    public static class SingleGameInfo {
-        public int rank;
-        public int id;
-        public String name;
-        public String imgUrl;
-        public int rate;
-        public boolean isFavourite;
-
-        public SingleGameInfo(int rank, int id, String name, String imgUrl, int rate, boolean isFavourite) {
-            this.rank = rank;
-            this.id = id;
-            this.name = name;
-            this.imgUrl = imgUrl;
-            this.rate = rate;
-            this.isFavourite = isFavourite;
-        }
-    }
-
     @GetMapping("/api/GetVideogameInPreferredList/")
     public ResponseEntity<SingleGameInfo[]> getUserPreferredList(@RequestParam String User) {
-        List<ListeDAOJDBC.Videogame> videogames = DBManager.getInstance().listeDAO().OpenUserList(Lists.preferiti.toString(), User);
+        List<Videogioco> videogames = DBManager.getInstance().listeDAO().OpenUserList(Lists.preferiti.toString(), User);
         SingleGameInfo[] gameInfos = new SingleGameInfo[videogames.size()];
         int i=0;
-        for (ListeDAOJDBC.Videogame game : videogames) {
-            SingleGameInfo gameInfo = new SingleGameInfo(0, game.id, game.name, game.imgUrl, game.rate, true);
+        for (Videogioco game : videogames) {
+            SingleGameInfo gameInfo = new SingleGameInfo(i+1, game.getId(), game.getTitolo(), "http://localhost:8080/images/videogames/"+game.getId()+".png", game.getValutazione(), true);
             gameInfos[i] =gameInfo;
             i++;
         }
@@ -49,11 +33,11 @@ public class UserListController {
 
     @GetMapping("/api/GetVideogameInWishList/")
     public ResponseEntity<SingleGameInfo[]> getUserWishList(@RequestParam String User) {
-        List<ListeDAOJDBC.Videogame> videogames = DBManager.getInstance().listeDAO().OpenUserList(Lists.wishlist.toString(), User);
+        List<Videogioco> videogames = DBManager.getInstance().listeDAO().OpenUserList(Lists.wishlist.toString(), User);
         SingleGameInfo[] gameInfos = new SingleGameInfo[videogames.size()];
         int i=0;
-        for (ListeDAOJDBC.Videogame game : videogames) {
-            SingleGameInfo gameInfo = new SingleGameInfo(0, game.id, game.name, game.imgUrl, game.rate, false);
+        for (Videogioco game : videogames) {
+            SingleGameInfo gameInfo = new SingleGameInfo(i+1, game.getId(), game.getTitolo(), "http://localhost:8080/images/videogames/"+game.getId()+".png", game.getValutazione(), false);
             gameInfos[i] =gameInfo;
             i++;
         }

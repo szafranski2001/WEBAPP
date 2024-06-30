@@ -27,7 +27,12 @@ export class VideogameReviewsService {
   getNewAverageVoto() : number{
     let sum=0;
     this.reviewsList.forEach((item) => {sum+=item.voto;});
-    return sum/this.reviewsList.length;
+
+    let average=sum/this.reviewsList.length;
+    let round= (sum/this.reviewsList.length) - Math.floor(sum/this.reviewsList.length);
+
+    return round >= 0.5 ? Math.ceil(average) : Math.floor(average);
+    
   }
 
   AddToReviewList(review : review){

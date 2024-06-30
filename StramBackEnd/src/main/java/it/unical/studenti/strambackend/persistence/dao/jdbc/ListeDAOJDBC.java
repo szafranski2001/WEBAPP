@@ -202,39 +202,31 @@ public class ListeDAOJDBC implements ListeDAO{
         }
     }
 
-    public static class Videogame {
-        public int id;
-        public String name;
-        public int rate;
-        public String imgUrl;
 
-        public Videogame(int id, String titolo, int valutazione, String img) {
-            this.id = id;
-            this.name = titolo;
-            this.rate = valutazione;
-            this.imgUrl = img;
-        }
-    }
-
-    public List <Videogame> OpenUserList(String NomeLista, String user) // apro una lista di un utente contenente vari videogiochi
+    public List<Videogioco> OpenUserList(String NomeLista, String user) // apro una lista di un utente contenente vari videogiochi
     {
-        List<Videogame> videogiochi= new ArrayList<>(); //creo una lista di oggetti videogioco
+        List<Videogioco> videogiochi= new ArrayList<>(); //creo una lista di oggetti videogioco
 
         if(user != null) {
             try {
                 Connection con = dbSource.getConnection(); //utilizzo la connessione singleton con il db ed eseguo la query sottostante
 
-                String query = "SELECT f.id, f.titolo, f.valutazione, f.img FROM public.videogiochi f INNER JOIN public.videogiochiinliste fl ON f.id = fl.videogioco WHERE fl.username = ? AND fl.nome = ?";
+                String query = "SELECT * FROM public.videogiochi f INNER JOIN public.videogiochiinliste fl ON f.id = fl.videogioco WHERE fl.username = ? AND fl.nome = ?";
                 PreparedStatement st = con.prepareStatement(query);
                 st.setString(2, NomeLista);
                 st.setString(1, user);
                 ResultSet rs = st.executeQuery(); //eseguo query
                 while (rs.next()) {
-                    Videogame game = new Videogame(
+                    Videogioco game = new Videogioco(
                             rs.getInt("id"),
                             rs.getString("titolo"),
+                            rs.getString("descrizione"),
+                            rs.getString("genere"),
+                            rs.getInt("durata"),
+                            rs.getInt("anno"),
                             rs.getInt("valutazione"),
-                            rs.getString("img")
+                            rs.getString("trailer"),
+                            rs.getString("casamadre")
                     );
                     videogiochi.add(game);
                 }

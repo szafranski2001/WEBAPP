@@ -20,6 +20,12 @@
   --fps-color: rgba(255,0,0,0.4);
   --moba-color: rgba(0,0,255,0.4);
   --mmorpg-color: rgba(250, 197, 5, 0.4);
+  --actionrpg-color:rgba(4, 150, 248, 0.4);
+  --racing-color:rgba(252, 146, 8, 0.4);
+  --sport-color:rgba(19, 179, 5, 0.4);
+  --platform-color:rgba(201, 68, 228, 0.4);
+  --survival-color:rgba(119, 56, 4, 0.4);
+  --strategy-color:rgba(85, 3, 179, 0.4);
 
   --blueLike-color:rgb(18, 126, 233);
   --red-color:rgb(220, 2, 2);

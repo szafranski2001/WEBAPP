@@ -1,12 +1,19 @@
 <form #homeForm="ngForm" (ngSubmit)="onSubmit(homeForm)">
+  <div class="background">
+
 <div class = "main-container">
+<div class="card">
   <h1 class="login">LOGIN</h1> <br>
   <h1 class="label">Nome Utente</h1>
   <input type="text" id="username" name="username" class="input" placeholder="Username" ngModel required>
   <br>
   <h1 class="label">Password</h1>
   <input type="password" id="password" name="password" class="input" placeholder="Password" ngModel required>
-  <button type="submit" [disabled]="homeForm.invalid">login</button>
+  <div class="submit-btn">
+  <input type="submit"  [disabled]="homeForm.invalid" value="Login">
+  </div>
   <h3 class="label">Non sei registrato? <a href="http://localhost:4200/signup">Clicca qui!</a></h3>
+</div>
+</div>
 </div>
 </form>

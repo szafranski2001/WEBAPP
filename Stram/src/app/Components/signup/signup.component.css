@@ -13,9 +13,45 @@
 }
 .label{
   color:#2f97ca;
+  text-align: center;
 }
-.login
+.registrazione
 {
-  color:#2f97ca;
+  color:white;
   font-size: 30px;
+  text-align: center;
+}
+.background
+{
+  padding-bottom: 10%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("../../../assets/images/loginBackground.png");
+}
+.card{
+  background-color: rgba(0, 0, 0, 0.8);
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  margin-top: 5%;
+  border-radius: 15px;
+}
+input[type="submit"] {
+  text-align: center;
+  padding: 10px 20px;
+  height: 50px;
+  margin-top: 25px;
+  font-size: 16px;
+  background-color: var(--blue-logo-darker-color);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+.submit-btn{
+  margin-top: 30px;
+  margin-bottom: 15px;
+  text-align: center;
 }
