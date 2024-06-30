@@ -200,7 +200,7 @@ body{
 
 .body-wrap-without-footer {
   padding-bottom: 15vh;
-  background-color: var(--systemGray6);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)),url(http://localhost:8080/images/background.png);
   min-height: 85vh;
 }
 
