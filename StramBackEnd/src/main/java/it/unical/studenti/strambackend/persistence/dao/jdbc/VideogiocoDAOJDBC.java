@@ -304,7 +304,6 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 			String query = "SELECT * FROM videogiochi ORDER BY valutazione DESC LIMIT 10;";
 			PreparedStatement st = conn.prepareStatement(query);
 			ResultSet rs = st.executeQuery(); //eseguo query
-			int id = 0;
 			while (rs.next()) {
 				res.add(
 						new Videogioco(rs.getInt("id"),
@@ -343,7 +342,6 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 
 			PreparedStatement st = conn.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
-			int id = 0;
 			while (rs.next()) {
 				res.add(
 						new Videogioco(rs.getInt("id"),
@@ -359,6 +357,38 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 				);
 			}
 
+			rs.close();
+			st.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public Videogioco getRandomVideogame() {
+
+		Videogioco res = null;
+
+		try {
+			Connection conn = dbSource.getConnection();
+			String query = "SELECT * FROM videogiochi ORDER BY RANDOM() LIMIT 1;";
+
+			PreparedStatement st = conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				res = new Videogioco(rs.getInt("id"),
+								rs.getString("titolo"),
+								rs.getString("descrizione"),
+								rs.getString("genere"),
+								rs.getInt("durata"),
+								rs.getInt("anno"),
+								rs.getInt("valutazione"),
+								rs.getString("trailer"),
+								rs.getString("casamadre")
+				);
+			}
 			rs.close();
 			st.close();
 			conn.close();

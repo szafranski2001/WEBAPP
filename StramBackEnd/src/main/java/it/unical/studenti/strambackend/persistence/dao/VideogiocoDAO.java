@@ -19,5 +19,6 @@ public interface VideogiocoDAO {
 	public int lastID(); //RESTITUISCO L'ULTIMO ID INSERITO
 	public List<Videogioco> top10();
 	public List<Videogioco> get10();
+	public Videogioco getRandomVideogame();
 	
 }

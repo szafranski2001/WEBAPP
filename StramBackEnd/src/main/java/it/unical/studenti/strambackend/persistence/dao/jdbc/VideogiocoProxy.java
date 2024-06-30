@@ -109,6 +109,11 @@ public class VideogiocoProxy implements VideogiocoDAO {
     }
 
     @Override
+    public Videogioco getRandomVideogame() {
+        return null;
+    }
+
+    @Override
     public List<Videogioco> risultati(String input) {
         return videogiocoDAOJDBC.risultati(input);
     }
