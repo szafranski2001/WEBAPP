@@ -11,7 +11,7 @@ import { NotFoundError } from '../../model/Message';
 })
 export class AdminReportsComponent implements OnInit {
 
-  reportList : reviewInfo[]
+  reportList : reviewInfo[];
 
   constructor(private adminService : AdminDataService, private router : Router) {}
 

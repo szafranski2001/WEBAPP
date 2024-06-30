@@ -7,8 +7,11 @@ import it.unical.studenti.strambackend.persistence.Model.Videogioco;
 import it.unical.studenti.strambackend.persistence.dao.VideogiocoDAO;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
 public class VideogiocoProxy implements VideogiocoDAO {
 
@@ -94,23 +97,30 @@ public class VideogiocoProxy implements VideogiocoDAO {
     }
 
     @Override
-    public int lastID() {
-        return videogiocoDAOJDBC.lastID();
-    }
-
-    @Override
-    public List<Videogioco> top10() {
-        return null;
+    public List<Videogioco> top10(){
+        if(!CachedVideogames.isEmpty()){
+            return CachedVideogames.stream().sorted(Comparator.comparingInt(Videogioco::getValutazione)).limit(10).toList();
+        }
+        return videogiocoDAOJDBC.top10();
     }
 
     @Override
     public List<Videogioco> get10() {
-        return null;
+        if(!CachedVideogames.isEmpty()){
+            return CachedVideogames.stream().collect(Collectors.groupingBy(Videogioco::getGenere)).values().stream()
+                    .flatMap(games -> games.stream().limit(10)).toList();
+        }
+        return videogiocoDAOJDBC.get10();
     }
 
     @Override
     public Videogioco getRandomVideogame() {
-        return null;
+        if(!CachedVideogames.isEmpty()){
+            Random random= new Random();
+            int randomId = random.nextInt(CachedVideogames.size());
+            return CachedVideogames.stream().filter(videogioco -> videogioco.getId() == randomId).findFirst().get();
+        }
+        return videogiocoDAOJDBC.getRandomVideogame();
     }
 
     @Override
@@ -128,4 +138,9 @@ public class VideogiocoProxy implements VideogiocoDAO {
                 }
         }
     }
+    @Override
+    public int lastID() {
+        return videogiocoDAOJDBC.lastID();
+    }
+
 }

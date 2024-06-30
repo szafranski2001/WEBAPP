@@ -2,7 +2,6 @@ import { Component, ElementRef, HostListener, ViewChild, OnInit, AfterViewInit, 
 import { SingleGameInfo } from "../../model/SingleGameInfo";
 import { ResultStatusOnly } from "../../model/ResultStatusOnly";
 import { HomeService } from "../../services/home.service";
-import { FileUploadModule } from 'primeng/fileupload';
 
 
 @Component({

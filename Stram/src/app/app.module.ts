@@ -35,7 +35,6 @@ import { AdminReportsComponent } from './Components/admin-reports/admin-reports.
 import { ReportToolbarComponent } from './Components/report-toolbar/report-toolbar.component';
 import { ToTheTopButtonComponent } from './Components/to-the-top-button/to-the-top-button.component';
 import { LoadingSpinnerComponent } from './Components/loading-spinner/loading-spinner.component';
-import {SkeletonModule} from "primeng/skeleton";
 
 @NgModule({
   declarations: [

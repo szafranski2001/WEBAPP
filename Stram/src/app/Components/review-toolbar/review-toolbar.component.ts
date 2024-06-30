@@ -20,11 +20,9 @@ export class ReviewToolbarComponent implements OnInit{
   isLiked:boolean;
   isReported:boolean;
 
-  //DA CAMBIARE CON IL SERVICE NON VOGLIO STO SCHIFO DENTRO OGNI COMPONENT A CUI SERVE SAPERE LA TIPOLOGIA USER
   tipologiaUser = tipologiaUser;
   CurrentUserTipologia = Number(localStorage.getItem("type"));
   User = localStorage.getItem("user");
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
   constructor(private ReviewService : VideogameReviewsService, private  VideogameManagerService : VideogameDataService){}
