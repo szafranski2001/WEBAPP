@@ -53,4 +53,8 @@ public class DBManager {
 		return new ListeDAOJDBC(dataSource);
 	}
 	public SegnalazioniDAO segnalazioniDAO() { return new SegnalazioniDAOJDBC(dataSource); }
+
+
+
+
 }

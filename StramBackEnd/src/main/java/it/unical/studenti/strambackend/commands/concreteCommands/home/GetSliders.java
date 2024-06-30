@@ -18,7 +18,7 @@ public class GetSliders extends Command {
         Map<String, List<Videogioco>> res = new HashMap<>();
 
         res.put("big-poster", null);
-        res.put("Top 10", DBManager.getInstance().VideogiocoDAO());
+        res.put("Top 10", DBManager.getInstance().VideogiocoDAO().top10());
         res.put("Adventure", DBManager.getInstance().VideogiocoDAO().risultati(""));
 
         //DBManager.getInstance().VideogiocoDAO().risultati("")

@@ -4,8 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import it.unical.studenti.strambackend.persistence.Model.Videogioco;
 import it.unical.studenti.strambackend.persistence.DBSource;
@@ -296,5 +295,77 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
         return 0; //altrimenti restituisco 0
 	}
 
+
+	@Override
+	public List<Videogioco> top10() {
+		List<Videogioco> res = new LinkedList<>();
+		try {
+			Connection conn = dbSource.getConnection();
+			String query = "SELECT * FROM videogiochi ORDER BY valutazione DESC LIMIT 10;";
+			PreparedStatement st = conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery(); //eseguo query
+			int id = 0;
+			while (rs.next()) {
+				res.add(
+						new Videogioco(rs.getInt("id"),
+								rs.getString("titolo"),
+								rs.getString("descrizione"),
+								rs.getString("genere"),
+								rs.getInt("durata"),
+								rs.getInt("anno"),
+								rs.getInt("valutazione"),
+								rs.getString("trailer"),
+								rs.getString("casamadre")
+						)
+				);
+			}
+			//chiudo tutte le varie connessioni
+			rs.close();
+			st.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	//titolo, descrizione, genere, durata, anno, valutazione, trailer, casamadre
+
+	@Override
+	public List<Videogioco> get10() {
+		List<Videogioco> res = new LinkedList<>();
+
+		try {
+			Connection conn = dbSource.getConnection();
+			String query =
+					"WITH RankedGames AS (select *, ROW_NUMBER() OVER (PARTITION BY genere ORDER BY valutazione DESC) AS rn\n" +
+					"    from videogiochi ) select * from RankedGames where rn <= 10 ORDER by genere, rn;";
+
+			PreparedStatement st = conn.prepareStatement(query);
+			ResultSet rs = st.executeQuery();
+			int id = 0;
+			while (rs.next()) {
+				res.add(
+						new Videogioco(rs.getInt("id"),
+								rs.getString("titolo"),
+								rs.getString("descrizione"),
+								rs.getString("genere"),
+								rs.getInt("durata"),
+								rs.getInt("anno"),
+								rs.getInt("valutazione"),
+								rs.getString("trailer"),
+								rs.getString("casamadre")
+						)
+				);
+			}
+
+			rs.close();
+			st.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 
 }

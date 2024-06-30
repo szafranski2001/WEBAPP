@@ -17,5 +17,7 @@ public interface VideogiocoDAO {
 	public void updateVideogioco(Videogioco videogioco, int videogiocoId) throws Exception;//AGGIORNO I DATI DI UN VIDEOGIOCO
 	public String findTitoloById(int videogioco); //PRENDO IL TITOLO DI UN VIDEOGIOCO UTILIZZANDO IL SUO ID
 	public int lastID(); //RESTITUISCO L'ULTIMO ID INSERITO
+	public List<Videogioco> top10();
+	public List<Videogioco> get10();
 	
 }

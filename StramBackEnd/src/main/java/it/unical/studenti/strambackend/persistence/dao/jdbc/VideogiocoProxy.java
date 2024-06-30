@@ -99,6 +99,16 @@ public class VideogiocoProxy implements VideogiocoDAO {
     }
 
     @Override
+    public List<Videogioco> top10() {
+        return null;
+    }
+
+    @Override
+    public List<Videogioco> get10() {
+        return null;
+    }
+
+    @Override
     public List<Videogioco> risultati(String input) {
         return videogiocoDAOJDBC.risultati(input);
     }

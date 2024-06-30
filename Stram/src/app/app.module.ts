@@ -35,7 +35,7 @@ import { AdminReportsComponent } from './Components/admin-reports/admin-reports.
 import { ReportToolbarComponent } from './Components/report-toolbar/report-toolbar.component';
 import { ToTheTopButtonComponent } from './Components/to-the-top-button/to-the-top-button.component';
 import { LoadingSpinnerComponent } from './Components/loading-spinner/loading-spinner.component';
-import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
+import {SkeletonModule} from "primeng/skeleton";
 
 @NgModule({
   declarations: [
@@ -72,7 +72,7 @@ import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
     MatProgressSpinnerModule,
     HttpClientModule,
     NgOptimizedImage,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     provideAnimationsAsync()
