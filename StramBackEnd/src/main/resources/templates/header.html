@@ -14,8 +14,13 @@
             <nav>
                 <ul>
                     <li><a href="http://localhost:4200">Home</a></li>
-                    <li><a href="http://localhost:8080/videogames">Videogiochi</a></li>
+                    <li th:if="${user == null}"><a href="http://localhost:4200/login">Login</a></li>
+                    <li th:if="${user == null}"><a href="http://localhost:4200/signup">Registrati</a></li>
+                    <li th:if="${user != null}"><a href="http://localhost:4200/profile">Profilo</a></li>
+                    <li><a href="#">Videogiochi</a></li>
+                    <li th:if="${user != null}"><a href="http://localhost:4200/videogame-lists">Liste</a></li>
                     <li><a href="http://localhost:4200/guidelines">Linee Guida</a></li>
+                    <li th:if="${user != null && admin == true}"><a href="http://localhost:4200/reports-handling">Gestione Segnalazioni</a></li>
                 </ul>
             </nav>
         </div>

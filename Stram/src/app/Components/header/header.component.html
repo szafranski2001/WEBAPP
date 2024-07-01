@@ -6,24 +6,27 @@
     <nav>
       <ul>
         <li><a routerLink="/">Home</a></li>
-        @if (localStorage.getItem("user")== null)
+        @if (localStorage.getItem("user")== null && !OperationLoading())
         {
           <li><a routerLink="/login">Login</a></li>
           <li><a routerLink="/signup">Registrati</a></li>
-        } @else {
+        } @else if(!OperationLoading()) {
           <li><a routerLink="/profile">Profilo</a></li>
         }
-        <li><a href="http://localhost:8080/videogames">Videogiochi</a></li>
-        @if (localStorage.getItem("user")!= null)
+        @if(!OperationLoading())
+          {
+          <li><a href="http://localhost:8080/videogames?token={{getToken()}}">Videogiochi</a></li>
+        }
+        @if (localStorage.getItem("user")!= null && !OperationLoading())
           {
             <li><a routerLink="/videogame-lists">Liste</a></li>
           }
         <li><a routerLink="/guidelines">Linee Guida</a></li>
-        @if (localStorage.getItem("user")!= null)
+        @if (localStorage.getItem("user")!= null && !OperationLoading())
         {
           <li><a routerLink="/logout" (click)="logout()">Logout</a></li>
         }
-        @if (localStorage.getItem("user") && isUserAdmin()){
+        @if (localStorage.getItem("user") && isUserAdmin() && !OperationLoading()){
           <li><a routerLink="/reports-handling">Gestione Segnalazioni</a></li>
         }
       </ul>

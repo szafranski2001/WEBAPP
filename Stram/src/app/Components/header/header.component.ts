@@ -14,7 +14,7 @@ export class HeaderComponent {
     protected readonly localStorage = localStorage;
 
 
-  constructor( private service :LogOutService) {}
+  constructor( private service :LogOutService, private loginService : LoginService) {}
 
   logout() {
     this.service.doLogOut();
@@ -22,5 +22,13 @@ export class HeaderComponent {
 
   isUserAdmin() : boolean{
     return Number(this.localStorage.getItem("type")) == 1;
+  }
+
+  getToken(){
+    return localStorage.getItem("user-token");
+  }
+
+  OperationLoading(){   
+    return this.loginService.loggingIn || this.service.loggingOut;
   }
 }

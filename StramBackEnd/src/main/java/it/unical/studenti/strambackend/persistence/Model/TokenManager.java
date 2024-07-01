@@ -42,9 +42,9 @@ public class TokenManager {
             return claims.getSubject();
 
         } catch (ExpiredJwtException e) {
-            return "scaduto";
+            return "";
         } catch (Exception e) {
-            return "errore";
+            return "";
         }
     }
 }
