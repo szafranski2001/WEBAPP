@@ -20,7 +20,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'guidelines', component:GuidelinesComponent},
   {path: 'videogame/:id', component:VideogameDetailComponent},
-  {path: 'videogame-lists', component: VideogameListsComponent},//inserire guard quando si completa la pagina
+  {path: 'videogame-lists', component: VideogameListsComponent,canActivate:[authGuard]},
   {path: 'reports-handling', component: AdminReportsComponent,canActivate:[authGuard,adminGuard]},
   {path: '404', component: NotfoundComponent},
   {path: '**', redirectTo: '/404'}
