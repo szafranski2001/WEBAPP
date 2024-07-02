@@ -99,7 +99,7 @@ public class VideogiocoProxy implements VideogiocoDAO {
     @Override
     public List<Videogioco> top10(){
         if(!CachedVideogames.isEmpty()){
-            return CachedVideogames.stream().sorted(Comparator.comparingInt(Videogioco::getValutazione)).limit(10).toList();
+            return CachedVideogames.stream().sorted(Comparator.comparingInt(Videogioco::getValutazione).reversed()).limit(10).toList();
         }
         return videogiocoDAOJDBC.top10();
     }
@@ -128,6 +128,14 @@ public class VideogiocoProxy implements VideogiocoDAO {
         return videogiocoDAOJDBC.risultati(input);
     }
 
+    @Override
+    public int lastID() {
+        if(!CachedVideogames.isEmpty()){
+            return CachedVideogames.stream().max(Comparator.comparingInt(Videogioco::getId)).get().getId();
+        }
+        return videogiocoDAOJDBC.lastID();
+    }
+
     public static void UpdateRatingAfterAddingReview(int idVideogioco) throws Exception{
         if(!CachedVideogames.isEmpty()){
             int valutazione = DBManager.getInstance().recensioneDAO().mediaVoti(idVideogioco);
@@ -137,10 +145,6 @@ public class VideogiocoProxy implements VideogiocoDAO {
                     break;
                 }
         }
-    }
-    @Override
-    public int lastID() {
-        return videogiocoDAOJDBC.lastID();
     }
 
 }
