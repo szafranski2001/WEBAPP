@@ -45,11 +45,6 @@ export class VideogameDataService {
     //alert backEnd to remove videogame
   }
 
-  AddVideogameData(videogame : videogame){
-    return this.http.post(this.BackEndURL+"/AddVideogame",videogame);
-    //send videogame to backEnd
-  }
-
   EditVideogameDetails(id : number){
     return this.http.put(this.BackEndURL+"/EditVideogame/"+id,this.selectedVideogame);
     //send data edited to backEnd

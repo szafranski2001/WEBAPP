@@ -24,17 +24,6 @@ public class VideogameController {
         }
     }
 
-    @PostMapping("/api/AddVideogame")
-    public ResponseEntity<?> AddVideogame(@RequestBody Videogioco videogame){
-        try{
-            DBManager.getInstance().VideogiocoDAO().save(videogame);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }
-        catch (Exception e){
-            return new ResponseEntity<>(VideogameMessageDB.ERROR_ADD_VIDEOGAME_MESSAGE, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     @DeleteMapping("/api/DeleteVideogame/{videogameId}")
     public ResponseEntity<?> DeleteVideogame(@PathVariable int videogameId){
         try {
