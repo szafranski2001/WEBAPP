@@ -3,14 +3,11 @@ package it.unical.studenti.strambackend.controller;
 import it.unical.studenti.strambackend.persistence.DBManager;
 import it.unical.studenti.strambackend.persistence.ErrorMessage.ListMessageDB;
 import it.unical.studenti.strambackend.persistence.Model.Lists;
-import it.unical.studenti.strambackend.persistence.Model.SingleGameInfo;
 import it.unical.studenti.strambackend.persistence.Model.Videogioco;
-import it.unical.studenti.strambackend.persistence.dao.jdbc.ListeDAOJDBC;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
