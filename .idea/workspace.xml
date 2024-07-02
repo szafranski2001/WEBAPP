@@ -19,6 +19,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -28,6 +29,7 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2fuiqpEnmAjKj9zsxxLLQLaBkJ0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -48,13 +50,21 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "/Users/mario/Documents/GitHub/WEBAPP/Stram/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="npm.Angular CLI Server (Stram)">
+  <component name="RunManager" selected="Spring Boot.StramBackEndApplication">
     <configuration name="Angular Application (Stram)" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
+    </configuration>
+    <configuration name="StramBackEndApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="StramBackEnd" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="it.unical.studenti.strambackend.StramBackEndApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="Angular CLI Server (Stram)" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/Stram/package.json" />

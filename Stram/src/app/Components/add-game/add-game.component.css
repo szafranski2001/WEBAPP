@@ -20,13 +20,13 @@ form {
   flex-direction: column;
   width: 100%;
 
-  padding: 5vh 0 0 0;
+  padding: 15px 0 0 0;
 }
 
 
 input {
   justify-self: baseline;
-  width: fit-content;
+  width: 500px;
 }
 
 
@@ -73,4 +73,18 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+
+.help-block p {
+  color: red;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.help-block p::before {
+  content: "❗";
+  margin-right: 5px;
+  color: red;
 }

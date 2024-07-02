@@ -27,7 +27,7 @@ export class AddGameComponent implements OnInit {
     this.gameForm = new FormGroup({
       title: new FormControl('',
         [ Validators.required,
-                        Validators.minLength(4)]),
+                        Validators.minLength(2)]),
       descrizione: new FormControl('',
         [ Validators.required]),
       genere: new FormControl('',
@@ -51,12 +51,29 @@ export class AddGameComponent implements OnInit {
       horizontalposter: new FormControl('',
             [ Validators.required])
     });
-
-
   }
 
+  validateNumberInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[^0-9]/g, '');
+    this.gameForm.get(input.id)?.setValue(input.value); // Update the form control value
+  }
+
+  preventNonNumericalInput(event: KeyboardEvent) {
+    if (!/[0-9]/.test(event.key)) {
+      event.preventDefault();
+    }
+  }
 
   onFileChange(event: any) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length) {
+      const file = input.files[0];
+      this.gameForm.patchValue({
+        verticalposter: file
+      });
+    }
+
     const files = event.target.files;
     if (files.length > 0) {
       for (let i = 0; i < files.length; i++) {
@@ -82,6 +99,14 @@ export class AddGameComponent implements OnInit {
   }
 
   onFileChange2(event: any) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length) {
+      const file = input.files[0];
+      this.gameForm.patchValue({
+        horizontalposter: file
+      });
+    }
+
     const files = event.target.files;
     if (files.length > 0) {
       for (let i = 0; i < files.length; i++) {

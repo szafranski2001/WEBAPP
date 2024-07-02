@@ -239,6 +239,14 @@ select {
   flex-direction: column;
 }
 
+textArea {
+  background-color: var(--systemGray4);
+  border-color: var(--systemGray2);
+  height: clamp(30px, 15vw, 31px);
+  font-size: 14px;
+  resize: vertical;
+}
+
 
 
 
