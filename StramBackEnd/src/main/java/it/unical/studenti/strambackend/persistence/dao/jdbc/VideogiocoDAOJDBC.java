@@ -99,28 +99,28 @@ public class VideogiocoDAOJDBC implements VideogiocoDAO {
 	        try {
 	            Connection con = dbSource.getConnection();//utilizzo la connessione singleton con il db ed eseguo la query sottostante
 	            // ELIMINO TUTTI I LIKES
-	            String query = "DELETE FROM recensioni_likes WHERE  videogiocoo = ?";
+	            String query = "DELETE FROM recensioni_likes WHERE  videogioco = ?";
 	            PreparedStatement st = con.prepareStatement(query);
 	            st.setInt(1, videogiocoId);
 	            st.executeUpdate();
 	            st.close();
 
 	            // ELIMINO TUTTE LE SEGNALAZIONI
-	            query = "DELETE FROM segnalazioni WHERE videogiocoo = ?";
+	            query = "DELETE FROM segnalazioni WHERE videogioco = ?";
 	            st = con.prepareStatement(query);
 	            st.setInt(1, videogiocoId);
 	            st.executeUpdate();
 	            st.close();
 
 	            // ELIMINO LE RECENSIONI
-	            query = "DELETE FROM recensioni WHERE videogiocoo = ?";
+	            query = "DELETE FROM recensioni WHERE videogioco = ?";
 	            st = con.prepareStatement(query);
 	            st.setInt(1, videogiocoId);
 	            st.executeUpdate();
 	            st.close();
 
 	            //ELIMINO I VIDEOGIOCHI NELLE LISTE
-	            query = "delete from videogiocooinliste WHERE videogiocoo = ? ";
+	            query = "delete from videogiochiinliste WHERE videogioco = ? ";
 	            st = con.prepareStatement(query);
 	            st.setInt(1, videogiocoId);
 	            st.executeUpdate();

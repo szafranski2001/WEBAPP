@@ -33,7 +33,7 @@ public class AddGameController {
 
         // Nome del file immagine da salvare
         int id = DBManager.getInstance().VideogiocoDAO().lastID()+1;
-        String extensions = ".jpg";
+        String extensions = ".png";
         String fileVertical = id + extensions;
         String fileHorizontal = id + extensions;
 
@@ -50,7 +50,7 @@ public class AddGameController {
                 System.out.println("VG Saved on DB");
             } catch (Exception e) { throw new RuntimeException(e); }
 
-            return new ResponseEntity<>("VG e Immagini salvate", HttpStatus.CREATED);
+            return new ResponseEntity<>(HttpStatus.CREATED);
         }
 
 

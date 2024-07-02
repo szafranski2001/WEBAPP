@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+
 @RestController
 @CrossOrigin("http://localhost:4200")
 public class VideogameController {
@@ -37,6 +39,12 @@ public class VideogameController {
     public ResponseEntity<?> DeleteVideogame(@PathVariable int videogameId){
         try {
             DBManager.getInstance().VideogiocoDAO().delete(videogameId);
+            String folderPath = "src/main/resources/static/images/videogames";
+            String fileName=videogameId+".png";
+            String filePath = folderPath + File.separator + fileName;
+            File imageFile = new File(filePath);
+            imageFile.delete();
+
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception e){
