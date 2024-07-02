@@ -8,10 +8,10 @@
           <button routerLink="/videogame/0">Vedi</button>
       </div>
   </div>
-
-
-  <app-slider [title]="firstTitle" [games]="firstSlider"></app-slider>
-  <app-slider [title]="secondTitle" [games]="secondSlider"></app-slider>
+  <div>
+    <app-slider [title]="firstTitle" [games]="sliders[0]"></app-slider>
+    <app-slider *ngFor="let slider of sliders.slice(1); let i = index" [title]="slider[0].genere" [games]="slider"></app-slider>
+  </div>
 
 </div>
 

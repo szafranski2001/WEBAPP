@@ -7,7 +7,11 @@
 
   <div class="cards-wrapper">
     <div class="cards-container" #cardsContainer>
-      <app-card *ngFor="let game of games" [game]="game"></app-card>
+      <app-card *ngFor="let game of games; let i = index"
+                [game]="game"
+                [rank]="i+1"
+                [link]="'http://localhost:8080/images/videogames/' + game.id + '.png'">
+      </app-card>
     </div>
   </div>
 

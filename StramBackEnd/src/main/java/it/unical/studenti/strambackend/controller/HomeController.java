@@ -1,8 +1,5 @@
 package it.unical.studenti.strambackend.controller;
 
-import it.unical.studenti.strambackend.commands.CommandInvoker;
-import it.unical.studenti.strambackend.commands.concreteCommands.addGame.GetOptionsForAddNewVideogame;
-import it.unical.studenti.strambackend.commands.concreteCommands.home.GetSliders;
 import it.unical.studenti.strambackend.persistence.DBManager;
 import it.unical.studenti.strambackend.persistence.Model.Videogioco;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @RestController
@@ -23,14 +18,26 @@ public class HomeController {
     public HomeController() {}
 
     @PostMapping("/getSliders") @ResponseBody
-    public ResponseEntity<Map<String, List<Videogioco>>> getSliders(@RequestBody Map<String, String> allParams) {
-        Map<String, List<Videogioco>> res = new HashMap<>();
+    public List<List<Videogioco>> getSliders() {
+        List<List<Videogioco>> res = new LinkedList<>();
 
-        res.put("big-poster", null);
-        res.put("Top 10", DBManager.getInstance().VideogiocoDAO().top10());
+        res.add(DBManager.getInstance().VideogiocoDAO().top10());
+        List<Videogioco> get10 = DBManager.getInstance().VideogiocoDAO().get10();
 
-        return new ResponseEntity<>(res, HttpStatus.OK);
+        Map<String, List<Videogioco>> genereMap = new HashMap<>();
+
+        // Raggruppiamo i videogiochi per genere
+        for (Videogioco v : get10) {
+            genereMap.computeIfAbsent(v.getGenere(), k -> new LinkedList<>()).add(v);
+        }
+
+        // Aggiungiamo tutte le liste raggruppate a res
+        res.addAll(genereMap.values());
+
+        return res;
     }
+
+
 
 
 }
