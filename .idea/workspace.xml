@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3fc06282-c153-43cd-b045-7fa750d5abe5" name="Changes" comment="authGuard added to list page" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2fuiqpEnmAjKj9zsxxLLQLaBkJ0" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Davide/Desktop/WEBAPP",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="npm.Angular CLI Server (Stram)">
+    <configuration name="Angular Application (Stram)" type="JavascriptDebugType" uri="http://localhost:4200">
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular CLI Server (Stram)" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/Stram/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3fc06282-c153-43cd-b045-7fa750d5abe5" name="Changes" comment="" />
+      <created>1714657561977</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1714657561977</updated>
+      <workItem from="1714657572743" duration="15852000" />
+      <workItem from="1714998520551" duration="853000" />
+      <workItem from="1714999496252" duration="265000" />
+      <workItem from="1717665400383" duration="3252000" />
+      <workItem from="1718548394830" duration="6589000" />
+      <workItem from="1718789416801" duration="8144000" />
+      <workItem from="1719495735416" duration="11246000" />
+      <workItem from="1719570876024" duration="1148000" />
+      <workItem from="1719584908567" duration="15105000" />
+      <workItem from="1719669939190" duration="2537000" />
+      <workItem from="1719768303545" duration="386000" />
+      <workItem from="1719843187928" duration="973000" />
+      <workItem from="1719929461131" duration="287000" />
+      <workItem from="1719929760708" duration="322000" />
+      <workItem from="1719930464310" duration="105000" />
+      <workItem from="1719930583161" duration="391000" />
+    </task>
+    <task id="LOCAL-00001" summary="profile.component.ts updated">
+      <option name="closed" value="true" />
+      <created>1714671254052</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1714671254053</updated>
+    </task>
+    <task id="LOCAL-00002" summary="profile page form fixed">
+      <option name="closed" value="true" />
+      <created>1714999371799</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714999371799</updated>
+    </task>
+    <task id="LOCAL-00003" summary=".">
+      <option name="closed" value="true" />
+      <created>1714999751834</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1714999751834</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Positions of Profile page elements fixed">
+      <option name="closed" value="true" />
+      <created>1717668690591</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717668690592</updated>
+    </task>
+    <task id="LOCAL-00005" summary="some updates for list page">
+      <option name="closed" value="true" />
+      <created>1718808421265</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718808421266</updated>
+    </task>
+    <task id="LOCAL-00006" summary="logout button removed from profile page">
+      <option name="closed" value="true" />
+      <created>1719504945898</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1719504945898</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Lists page works">
+      <option name="closed" value="true" />
+      <created>1719601446384</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1719601446384</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Lists page fixed with actual db">
+      <option name="closed" value="true" />
+      <created>1719673391029</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1719673391029</updated>
+    </task>
+    <task id="LOCAL-00009" summary="authGuard added to list page">
+      <option name="closed" value="true" />
+      <created>1719844149292</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1719844149292</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="profile.component.ts updated" />
+    <MESSAGE value="profile page form fixed" />
+    <MESSAGE value="." />
+    <MESSAGE value="Positions of Profile page elements fixed" />
+    <MESSAGE value="some updates for list page" />
+    <MESSAGE value="logout button removed from profile page" />
+    <MESSAGE value="Lists page works" />
+    <MESSAGE value="Lists page fixed with actual db" />
+    <MESSAGE value="authGuard added to list page" />
+    <option name="LAST_COMMIT_MESSAGE" value="authGuard added to list page" />
+  </component>
+</project>

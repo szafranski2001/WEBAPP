@@ -19,26 +19,24 @@ public class UserListController {
 
 
     @GetMapping("/api/GetVideogameInPreferredList/")
-    public ResponseEntity<SingleGameInfo[]> getUserPreferredList(@RequestParam String User) {
+    public ResponseEntity<Videogioco[]> getUserPreferredList(@RequestParam String User) {
         List<Videogioco> videogames = DBManager.getInstance().listeDAO().OpenUserList(Lists.preferiti.toString(), User);
-        SingleGameInfo[] gameInfos = new SingleGameInfo[videogames.size()];
+        Videogioco[] gameInfos = new Videogioco[videogames.size()];
         int i=0;
         for (Videogioco game : videogames) {
-            SingleGameInfo gameInfo = new SingleGameInfo(i+1, game.getId(), game.getTitolo(), "http://localhost:8080/images/videogames/"+game.getId()+".png", game.getValutazione(), true);
-            gameInfos[i] =gameInfo;
+            gameInfos[i] =game;
             i++;
         }
         return new ResponseEntity<>(gameInfos, HttpStatus.OK);
     }
 
     @GetMapping("/api/GetVideogameInWishList/")
-    public ResponseEntity<SingleGameInfo[]> getUserWishList(@RequestParam String User) {
+    public ResponseEntity<Videogioco[]> getUserWishList(@RequestParam String User) {
         List<Videogioco> videogames = DBManager.getInstance().listeDAO().OpenUserList(Lists.wishlist.toString(), User);
-        SingleGameInfo[] gameInfos = new SingleGameInfo[videogames.size()];
+        Videogioco[] gameInfos = new Videogioco[videogames.size()];
         int i=0;
         for (Videogioco game : videogames) {
-            SingleGameInfo gameInfo = new SingleGameInfo(i+1, game.getId(), game.getTitolo(), "http://localhost:8080/images/videogames/"+game.getId()+".png", game.getValutazione(), false);
-            gameInfos[i] =gameInfo;
+            gameInfos[i] =game;
             i++;
         }
         return new ResponseEntity<>(gameInfos, HttpStatus.OK);

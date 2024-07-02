@@ -16,13 +16,11 @@ export class UserListsService {
 
 
   getUserFavoriteList(user: string){
-    console.log('Request Params:', {User : user});
-    return this.http.get<videogame[]>(this.BackEndURL+"/GetVideogameInPreferredList/", {params : {User : user}});
+    return this.http.get<SingleGameInfo[]>(this.BackEndURL+"/GetVideogameInPreferredList/", {params : {User : user}});
   }
 
   getUserWishList(user: string){
-    console.log('Request Params:', {User : user});
-    return this.http.get<videogame[]>(this.BackEndURL+"/GetVideogameInWishList/", {params : {User : user}});
+    return this.http.get<SingleGameInfo[]>(this.BackEndURL+"/GetVideogameInWishList/", {params : {User : user}});
   }
 
   isVideogameInFavoriteList(videogameId : number){
