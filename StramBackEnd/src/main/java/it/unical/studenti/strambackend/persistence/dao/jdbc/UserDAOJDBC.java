@@ -142,15 +142,28 @@ public class UserDAOJDBC implements UserDAO {
 	public boolean update(User old, User newu) { //aggiorno i dati relativi ad un user
 		try {
 			Connection conn = this.dbSource.getConnection(); //utilizzo la connessione singleton con il db ed eseguo la query sottostante
-			String update = "update users SET password = ?, nome = ?, cognome = ?, email = ? WHERE username=?";
-			PreparedStatement st = conn.prepareStatement(update);
-			st.setString(1, BCrypt.hashpw(newu.getPassword(), BCrypt.gensalt(12)));
-			st.setString(2, newu.getNome());
-			st.setString(3, newu.getCognome());
-			st.setString(4, newu.getEmail());
-			st.setString(5, old.getUsername());
-			st.executeUpdate(); // aggiorno i vari paramentri
-			//chiudo tutte le varie connessioni
+			PreparedStatement st;
+			if(newu.getPassword().isEmpty()) {
+				String update = "update users SET nome = ?, cognome = ?, email = ? WHERE username=?";
+				st = conn.prepareStatement(update);
+				st.setString(1, newu.getNome());
+				st.setString(2, newu.getCognome());
+				st.setString(3, newu.getEmail());
+				st.setString(4, old.getUsername());
+				st.executeUpdate(); // aggiorno i vari paramentri
+				//chiudo tutte le varie connessioni
+			}
+			else {
+				String update = "update users SET password = ?, nome = ?, cognome = ?, email = ? WHERE username=?";
+				st = conn.prepareStatement(update);
+				st.setString(1, BCrypt.hashpw(newu.getPassword(), BCrypt.gensalt(12)));
+				st.setString(2, newu.getNome());
+				st.setString(3, newu.getCognome());
+				st.setString(4, newu.getEmail());
+				st.setString(5, old.getUsername());
+				st.executeUpdate(); // aggiorno i vari paramentri
+				//chiudo tutte le varie connessioni
+			}
 			st.close();
 			conn.close();
 

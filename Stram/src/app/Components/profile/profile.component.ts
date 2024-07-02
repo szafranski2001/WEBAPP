@@ -56,6 +56,10 @@ export class ProfileComponent implements OnInit{
     }
     // Invio i dati al backend
   }
+
+  isSomethingNotEmpty(form : NgForm){
+    return form.value['changeNameBar'] != "" || form.value['changeSurnameBar'] != "" || form.value['changeEmailBar'] != "" || (form.value['changePasswordBar'] != "" &&  form.value['confirmPasswordBar']);
+  }
   
 
 }
