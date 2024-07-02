@@ -88,3 +88,11 @@ button:hover {
   margin-right: 5px;
   color: red;
 }
+
+textArea {
+  background-color: var(--systemGray4);
+  border-color: var(--systemGray2);
+  height: clamp(75px, 15vw, 120px);
+  font-size: 14px;
+  resize: none;
+}

@@ -13,7 +13,7 @@
 
     <div class="campo">
       <label for="descrizione">Descrizione</label>
-      <textarea class="form-control" id="descrizione" formControlName="descrizione" minlength="3" maxlength="500" placeholder="Inserisci testo"></textarea>
+      <textarea class="form-control" id="descrizione" formControlName="descrizione" minlength="3" maxlength="1024" placeholder="Inserisci testo"></textarea>
       <div class="help-block" *ngIf="gameForm.controls['descrizione'].touched && gameForm.controls['descrizione'].errors">
         <p *ngIf="gameForm.controls['descrizione'].errors?.['minlength']">La descrizione è troppo corta.</p>
         <p *ngIf="gameForm.controls['descrizione'].errors?.['maxlength']">La descrizione è troppo lunga.</p>
@@ -24,6 +24,7 @@
     <div class="campo">
       <label for="genere">Genere</label>
       <select class="form-control" id="genere" formControlName="genere">
+        <option value="" selected disabled>-- select --</option>
         <option *ngFor="let genere of generi" [value]="genere">{{ genere }}</option>
       </select>
       <div class="help-block" *ngIf="gameForm.controls['genere'].touched && gameForm.controls['genere'].errors">
@@ -33,7 +34,7 @@
 
     <div class="campo">
       <label for="duration">Durata</label>
-      <input class="form-control" id="duration" formControlName="duration" type="number" min="1" max="1000" placeholder="es 5" (keypress)="preventNonNumericalInput($event)"/>
+      <input class="form-control" id="duration" formControlName="duration" type="number" min="0" max="9999" placeholder="es 5" (keypress)="preventNonNumericalInput($event)"/>
       <div class="help-block" *ngIf="gameForm.controls['duration'].touched && gameForm.controls['duration'].errors">
         <p *ngIf="gameForm.controls['duration'].errors?.['min']">La durata è troppo corta.</p>
         <p *ngIf="gameForm.controls['duration'].errors?.['max']">La durata è troppo lunga.</p>
@@ -44,7 +45,7 @@
 
     <div class="campo">
       <label for="anno">Anno Uscita</label>
-      <input class="form-control" id="anno" formControlName="anno" type="number" min="1900" max="2030" placeholder="1900..2030" (keypress)="preventNonNumericalInput($event)"/>
+      <input class="form-control" id="anno" formControlName="anno" type="number" min="1950" max="2030" placeholder="1950..9999" (keypress)="preventNonNumericalInput($event)"/>
       <div class="help-block" *ngIf="gameForm.controls['anno'].touched && gameForm.controls['anno'].errors">
         <p *ngIf="gameForm.controls['anno'].errors?.['min']">L'anno di uscita è troppo antico.</p>
         <p *ngIf="gameForm.controls['anno'].errors?.['max']">L'anno di uscita è troppo futuristico.</p>
@@ -53,20 +54,10 @@
       </div>
     </div>
 
-    <div class="campo">
-      <label for="valutazione">Valutazione</label>
-      <input class="form-control" id="valutazione" formControlName="valutazione" type="number" min="1" max="5" placeholder="1..5" (keypress)="preventNonNumericalInput($event)"/>
-      <div class="help-block" *ngIf="gameForm.controls['valutazione'].touched && gameForm.controls['valutazione'].errors">
-        <p *ngIf="gameForm.controls['valutazione'].errors?.['min']">La valutazione è troppo bassa.</p>
-        <p *ngIf="gameForm.controls['valutazione'].errors?.['max']">La valutazione è troppo alta.</p>
-        <p *ngIf="gameForm.controls['valutazione'].errors?.['required']">La valutazione è obbligatoria.</p>
-        <p *ngIf="gameForm.controls['valutazione'].errors?.['pattern']">Inserisci solo numeri.</p>
-      </div>
-    </div>
 
     <div class="campo">
       <label for="trailer">Trailer</label>
-      <input class="form-control" id="trailer" formControlName="trailer" type="text" minlength="4" maxlength="500" placeholder="https://trailer.url"/>
+      <input class="form-control" id="trailer" formControlName="trailer" type="text" minlength="4" maxlength="120" placeholder="https://trailer.url"/>
       <div class="help-block" *ngIf="gameForm.controls['trailer'].touched && gameForm.controls['trailer'].errors">
         <p *ngIf="gameForm.controls['trailer'].errors?.['minlength']">Il trailer è troppo corto.</p>
         <p *ngIf="gameForm.controls['trailer'].errors?.['maxlength']">Il trailer è troppo lungo.</p>
@@ -76,11 +67,11 @@
 
     <div class="campo">
       <label for="casa">Casa Madre</label>
-      <select class="form-control" id="casa" formControlName="casa">
-        <option *ngFor="let casa of generi" [value]="casa">{{ casa }}</option>
-      </select>
-      <div class="help-block" *ngIf="gameForm.controls['casa'].touched && gameForm.controls['casa'].errors">
-        <p *ngIf="gameForm.controls['casa'].errors?.['required']">La casa madre è obbligatoria.</p>
+      <input class="form-control" id="casa" formControlName="title" type="text" minlength="2" maxlength="64" placeholder="Minecraft"/>
+      <div class="help-block" *ngIf="gameForm.controls['title'].touched && gameForm.controls['title'].errors">
+        <p *ngIf="gameForm.controls['title'].errors?.['minlength']">Il titolo è troppo corto.</p>
+        <p *ngIf="gameForm.controls['title'].errors?.['maxlength']">Il titolo è troppo lungo.</p>
+        <p *ngIf="gameForm.controls['title'].errors?.['required']">Il titolo è obbligatorio.</p>
       </div>
     </div>
 

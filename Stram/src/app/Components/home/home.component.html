@@ -2,10 +2,10 @@
 
 
   <!-- todo make it dynamic -->
-  <div class="main-poster-container">
+  <div class="main-poster-container" *ngIf="sliders != null">
       <div class="WRAPPER-main-poster-container">
-          <img src="assets/images/videogames/0-1920x1080.jpg">
-          <button routerLink="/videogame/0">Vedi</button>
+          <img src="http://localhost:8080/images/videogames/{{sliders[0][0].id}}-Copertina.png">
+          <button routerLink="/videogame/{{sliders[0][0].id}}">{{sliders[0][0].titolo}}</button>
       </div>
   </div>
   <div *ngIf="sliders != null">

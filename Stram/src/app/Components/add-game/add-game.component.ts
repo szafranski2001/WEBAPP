@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {genere} from "../../model/Videogame";
 
-import {AddGameService} from "../../services/add-game.service";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {FormBuilder, FormControl, FormGroup, FormsModule, Validators} from '@angular/forms';
 import { NgxImageCompressService } from 'ngx-image-compress';
@@ -14,7 +13,7 @@ import { NgxImageCompressService } from 'ngx-image-compress';
 export class AddGameComponent implements OnInit {
 
   gameForm: FormGroup;
-  generi: string[] = ['Azione', 'Avventura', 'Puzzle', 'Sport'];
+  generi = Object.values(genere);
   verticalImg: String;
   horizontalImg: String;
 
@@ -23,7 +22,7 @@ export class AddGameComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private http: HttpClient, protected addGameService: AddGameService, private imageCompress: NgxImageCompressService) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private imageCompress: NgxImageCompressService) {
     this.gameForm = new FormGroup({
       title: new FormControl('',
         [ Validators.required,
@@ -140,15 +139,10 @@ export class AddGameComponent implements OnInit {
     formData.append('genere', this.gameForm.value.genere);
     formData.append('duration', this.gameForm.value.duration);
     formData.append('anno', this.gameForm.value.anno);
-    formData.append('valutazione', this.gameForm.value.valutazione);
+    formData.append('valutazione', "0");
     formData.append('trailer', this.gameForm.value.trailer);
     formData.append('casa', this.gameForm.value.casa);
 
-    console.log(this.gameForm.controls["title"].value,
-      this.gameForm.controls["descrizione"].value,
-      this.gameForm.controls["genere"].value,
-      this.gameForm.controls["duration"].value,
-      this.gameForm.controls["anno"].value);
 
     if (this.verticalImg) {
       formData.append('verticalposter', this.verticalImg.toString());

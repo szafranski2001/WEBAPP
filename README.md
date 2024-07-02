@@ -6,6 +6,7 @@ Per fare ciò basta andare da terminale nella cartella Stram e fare :
 
  -> "npm install @angular/material"
  -> "npm install ngx-image-compress"
+ -> "npm install angular-messages"
 
 Oltre ciò sono necessari Angular v17 o superiori AngularCli, JNode, PostGreSQL.
 
