@@ -52,7 +52,7 @@ input[type="text"]:focus {
 a {
   color: #fff;
   font-weight: bold;
-  font-size: clamp(0.7em, 1vw, 1.1em);
+  font-size: clamp(0.7em, 1.2vw, 1.1em);
   text-decoration: none;
   transition: color 0.3s ease-in-out;
 }
