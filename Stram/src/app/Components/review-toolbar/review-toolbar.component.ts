@@ -49,6 +49,7 @@ export class ReviewToolbarComponent implements OnInit{
   }
 
   ReportReview(){
+    //In caso si voglia rendere elimininabile la segnalazione basta rimuovere il disabled con il property binding
     !this.isReported ? 
       this.ReviewService.ManageReportToReview(this.review,true).subscribe({
         next: () => {

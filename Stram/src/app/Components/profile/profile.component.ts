@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {UserCredentials} from "../../model/User";
 import { GeneralTasksService } from '../../services/general-tasks.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,7 @@ export class ProfileComponent implements OnInit{
 
   userImage : number;
 
-  constructor(private http: HttpClient, private generalTasks : GeneralTasksService) { }
+  constructor(private http: HttpClient, private generalTasks : GeneralTasksService, private router : Router) { }
 
 
   ngOnInit(): void {
@@ -45,10 +46,11 @@ export class ProfileComponent implements OnInit{
     if(this.user != null){
       this.http.post<any>(this.BackEndUrl+'/api/profile/update', JSON.stringify(userData)).subscribe(
         response => {
-          console.log('Dati aggiornati con successo:', response);
+          alert('Dati aggiornati con successo');
+          this.router.navigate(["/"])
         },
         error => {
-          console.error('Si è verificato un errore', error);
+          alert("Si è verificato un errore durante l' aggiornamento \n(Password non corrisponde o Email non valida)");
         }
       );
     }

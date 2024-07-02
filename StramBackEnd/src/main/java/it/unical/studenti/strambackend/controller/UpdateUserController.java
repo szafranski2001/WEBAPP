@@ -17,7 +17,7 @@ import java.util.List;
 public class UpdateUserController {
 
     @PostMapping("/api/profile/update")
-    public void updateUser(@RequestBody String userData){
+    public ResponseEntity<?> updateUser(@RequestBody String userData){
         JSONObject data = new JSONObject(userData);
         String name = data.getString("nome");
         String surname = data.getString("cognome");
@@ -27,8 +27,8 @@ public class UpdateUserController {
         String username = data.getString("username");
 
         // la conferma della password non corrisponde
-        if(!password.equals(confirmPassword)){
-            return;
+        if(!password.equals(confirmPassword) || DBManager.getInstance().userDAO().bannedEmail(email)){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         // creo un nuovo user con le modifiche
@@ -40,6 +40,8 @@ public class UpdateUserController {
 
         // update user
         DBManager.getInstance().userDAO().update(DBManager.getInstance().userDAO().findByPrimaryKey(username), newUser);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
