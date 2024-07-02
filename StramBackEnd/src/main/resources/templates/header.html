@@ -21,6 +21,7 @@
                     <li th:if="${user != null}"><a href="http://localhost:4200/videogame-lists">Liste</a></li>
                     <li><a href="http://localhost:4200/guidelines">Linee Guida</a></li>
                     <li th:if="${user != null && admin == true}"><a href="http://localhost:4200/reports-handling">Gestione Segnalazioni</a></li>
+                    <li th:if="${user != null && admin == true}"><a href="http://localhost:4200/addGame">Aggiungi Videogioco</a></li>
                 </ul>
             </nav>
         </div>
