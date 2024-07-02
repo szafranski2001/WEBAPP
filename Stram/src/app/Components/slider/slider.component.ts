@@ -1,5 +1,6 @@
 import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {SingleGameInfo} from "../../model/SingleGameInfo";
+import {videogame} from "../../model/Videogame";
 
 @Component({
   selector: 'app-slider',
@@ -10,6 +11,9 @@ export class SliderComponent {
 
   @Input() title!: String;
   @Input() games!: SingleGameInfo[];
+
+  protected i = 0;
+
   constructor() {}
 
   @ViewChild('cardsContainer', { static: false }) cardsContainer!: ElementRef;
@@ -30,6 +34,5 @@ export class SliderComponent {
     console.log("------------" + calc);
     return calc;
   }
-
 
 }
