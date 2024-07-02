@@ -10,17 +10,17 @@ import { NotfoundComponent } from './Components/notfound/notfound.component';
 import {SignupComponent} from "./Components/signup/signup.component";
 import {AddGameComponent} from "./Components/add-game/add-game.component";
 import { AdminReportsComponent } from './Components/admin-reports/admin-reports.component';
-import { adminGuard, authGuard } from './services/auth.guard';
+import {adminGuard, authGuard, NoAuthGuard} from './services/auth.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'addGame', component: AddGameComponent},//inserire guard quando si completa la pagina
   {path: 'profile', component:ProfileComponent,canActivate:[authGuard]},
-  {path: 'signup', component: SignupComponent},
-  {path: 'login', component: LoginComponent},
+  {path: 'signup', component: SignupComponent, canActivate:[NoAuthGuard]},
+  {path: 'login', component: LoginComponent, canActivate:[NoAuthGuard]},
   {path: 'guidelines', component:GuidelinesComponent},
   {path: 'videogame/:id', component:VideogameDetailComponent},
-  {path: 'videogame-lists', component: VideogameListsComponent},//inserire guard quando si completa la pagina
+  {path: 'videogame-lists', component: VideogameListsComponent,canActivate:[authGuard]},
   {path: 'reports-handling', component: AdminReportsComponent,canActivate:[authGuard,adminGuard]},
   {path: '404', component: NotfoundComponent},
   {path: '**', redirectTo: '/404'}
