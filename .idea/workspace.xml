@@ -36,8 +36,13 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.StramBackEndApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
@@ -174,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719844149292</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="validation form">
+      <option name="closed" value="true" />
+      <created>1719945410213</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1719945410213</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +203,7 @@
     <MESSAGE value="Lists page works" />
     <MESSAGE value="Lists page fixed with actual db" />
     <MESSAGE value="authGuard added to list page" />
-    <option name="LAST_COMMIT_MESSAGE" value="authGuard added to list page" />
+    <MESSAGE value="validation form" />
+    <option name="LAST_COMMIT_MESSAGE" value="validation form" />
   </component>
 </project>
