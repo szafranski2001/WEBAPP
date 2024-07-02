@@ -5,6 +5,11 @@ e aggiungere le dipendenze richieste(in particolare facciamo uso di @angular/mat
 Per fare ciò basta andare da terminale nella cartella Stram e fare :
 
  -> "npm install @angular/material"
- -> "npm i ngx-image-compress"
+ -> "npm install ngx-image-compress"
 
-Oltre ciò sono necessari Angular v17 o superiori AngularCli, JNode, PostGresSQL.
+Oltre ciò sono necessari Angular v17 o superiori AngularCli, JNode, PostGreSQL.
+
+Per accedere come amministratore :
+
+Nome utente : Admin
+Password : admin1
