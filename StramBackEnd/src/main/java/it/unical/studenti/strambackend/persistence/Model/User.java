@@ -1,10 +1,5 @@
 package it.unical.studenti.strambackend.persistence.Model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import it.unical.studenti.strambackend.persistence.DBManager;
-
 public class User {
 	private String username;
 	private String password;
@@ -14,9 +9,7 @@ public class User {
 	private String cognome;
 	private String domanda;
 	private String risposta;
-	private Liste preferiti = null;
-    private Liste watchlist = null;
-    private List  <Likeato> likes = new ArrayList <Likeato>();
+
 	public User() {}
 	
 	
@@ -29,18 +22,8 @@ public class User {
 		this.cognome = cognome;
 		this.domanda = domanda;
 		this.risposta = risposta;
-		this.preferiti = new Liste("preferiti", this.username);
-	    this.watchlist = new Liste("watchlist", this.username);
-		this.preferiti.setList(DBManager.getInstance().listeDAO().OpenList(this.preferiti));
-		this.watchlist.setList(DBManager.getInstance().listeDAO().OpenList(this.watchlist));
-		this.likes= DBManager.getInstance().recensioneDAO().findLikes(this);
-		
-	}
-	public List <Likeato> getLikes()
-	{
-		return likes;
-	}
 
+	}
 
 	public String getUsername() {
 		return username;
@@ -53,16 +36,6 @@ public class User {
 	public String getTipo() {
 		return tipo;
 	}
-
-	public Liste getPreferiti() {
-		return preferiti;
-	}
-
-
-	public Liste getWatchlist() {
-		return watchlist;
-	}
-
 
 	public String getEmail() {
 		return email;
@@ -155,30 +128,4 @@ public class User {
         }
 		
 	}
-
-	
-	public void addOrRemoveLikes(Likeato like)
-    {
-        if (this.likes.contains(like))
-        {
-            this.likes.add(like);
-        }
-        else
-        {
-            this.likes.remove(like);
-        }
-    }
-	
-	public boolean checkLiked(Likeato like)
-    {
-        if (this.likes.contains(like))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
 }
