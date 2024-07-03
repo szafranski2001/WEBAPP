@@ -14,7 +14,7 @@ import {adminGuard, authGuard, NoAuthGuard} from './services/auth.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'addGame', component: AddGameComponent},//inserire guard quando si completa la pagina
+  {path: 'addGame', component: AddGameComponent, canActivate:[authGuard,adminGuard]},
   {path: 'profile', component:ProfileComponent,canActivate:[authGuard]},
   {path: 'signup', component: SignupComponent, canActivate:[NoAuthGuard]},
   {path: 'login', component: LoginComponent, canActivate:[NoAuthGuard]},

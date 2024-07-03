@@ -12,8 +12,6 @@ export class VideogameReviewsComponent implements OnInit {
   
   @Input() videogameId : number;
 
-  //Da cambiare con il getCurrentUser non appena abbiamo il service dell'utente corrente
-  //Cerca tutti i suoi riferimenti
   User = localStorage.getItem("user");
   
   ReviewList : review[];
@@ -37,8 +35,6 @@ export class VideogameReviewsComponent implements OnInit {
         this.ReviewReportInfos = response;
       })
     }
-    //TODO: da controllare una volta visto il login
-    //controlla anche getSingleReviewInfo
   }
 
   getSingleReviewInfo(review : review){

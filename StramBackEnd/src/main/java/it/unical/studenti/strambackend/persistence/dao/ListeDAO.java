@@ -3,8 +3,6 @@ package it.unical.studenti.strambackend.persistence.dao;
 import java.util.List;
 
 import it.unical.studenti.strambackend.persistence.Model.Videogioco;
-import it.unical.studenti.strambackend.persistence.Model.Liste;
-import it.unical.studenti.strambackend.persistence.dao.jdbc.ListeDAOJDBC;
 import it.unical.studenti.strambackend.persistence.exceptions.DatabaseException;
 
 public interface ListeDAO {

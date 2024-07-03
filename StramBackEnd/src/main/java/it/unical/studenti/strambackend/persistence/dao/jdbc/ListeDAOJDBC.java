@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unical.studenti.strambackend.persistence.Model.Videogioco;
-import it.unical.studenti.strambackend.persistence.Model.Liste;
 import it.unical.studenti.strambackend.persistence.dao.ListeDAO;
 import it.unical.studenti.strambackend.persistence.DBSource;
 import it.unical.studenti.strambackend.persistence.exceptions.DatabaseException;

@@ -17,11 +17,9 @@ export class VideogameToolbarComponent implements OnInit {
   @Input() videogameId : number;
   @Output() UpdateData = new EventEmitter<void>();
 
-  //Da prendere dal DB tramite il service all'init
   isFavorite=false;
   isWished=false;
 
-  //da modificare quando avremo il service per il currentUser
   tipologiaUser = tipologiaUser;
   CurrentUserTipologia = Number(localStorage.getItem("type"));
   User = localStorage.getItem("user");
