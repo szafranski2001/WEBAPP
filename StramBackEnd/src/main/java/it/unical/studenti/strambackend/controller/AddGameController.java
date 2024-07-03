@@ -35,7 +35,7 @@ public class AddGameController {
         int id = DBManager.getInstance().VideogiocoDAO().lastID()+1;
         String extensions = ".png";
         String fileVertical = id + extensions;
-        String fileHorizontal = id + extensions;
+        String fileHorizontal = id + "-Copertina" + extensions;
 
         // Decodifica e salva l'immagine
         boolean decodeVertical = decodeBase64AndSaveImage(v.getVerticalposter(), fileVertical);

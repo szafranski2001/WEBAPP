@@ -13,6 +13,7 @@ import { SingleGameInfo } from "../../model/SingleGameInfo";
 import { ResultStatusOnly } from "../../model/ResultStatusOnly";
 import { HomeService } from "../../services/home.service";
 import { videogame } from "../../model/Videogame";
+import {GeneralTasksService} from "../../services/general-tasks.service";
 
 @Component({
   selector: 'app-home',
@@ -28,6 +29,8 @@ export class HomeComponent implements OnInit {
   protected sliders: SingleGameInfo[][];
   firstTitle: String = "Top Games"
   get10: (NgIterable<unknown> & NgIterable<any>) | undefined | null;
+  rand = this.gts.getRandomValue(9);
+
 
   ngOnInit() {
     this.home.getSliders().subscribe(
@@ -42,7 +45,7 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-  constructor(protected home: HomeService) {
+  constructor(protected home: HomeService, protected gts: GeneralTasksService) {
   }
 
 

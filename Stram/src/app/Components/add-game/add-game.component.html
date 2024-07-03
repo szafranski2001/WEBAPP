@@ -45,7 +45,7 @@
 
     <div class="campo">
       <label for="anno">Anno Uscita</label>
-      <input class="form-control" id="anno" formControlName="anno" type="number" min="1950" max="2030" placeholder="1950..9999" (keypress)="preventNonNumericalInput($event)"/>
+      <input class="form-control" id="anno" formControlName="anno" type="number" min="1950" max="2050" placeholder="1950..2050" (keypress)="preventNonNumericalInput($event)"/>
       <div class="help-block" *ngIf="gameForm.controls['anno'].touched && gameForm.controls['anno'].errors">
         <p *ngIf="gameForm.controls['anno'].errors?.['min']">L'anno di uscita è troppo antico.</p>
         <p *ngIf="gameForm.controls['anno'].errors?.['max']">L'anno di uscita è troppo futuristico.</p>
@@ -67,8 +67,8 @@
 
     <div class="campo">
       <label for="casa">Casa Madre</label>
-      <input class="form-control" id="casa" formControlName="title" type="text" minlength="2" maxlength="64" placeholder="Minecraft"/>
-      <div class="help-block" *ngIf="gameForm.controls['title'].touched && gameForm.controls['title'].errors">
+      <input class="form-control" id="casa" formControlName="casa" type="text" minlength="2" maxlength="64" placeholder="Ubisoft"/>
+      <div class="help-block" *ngIf="gameForm.controls['casa'].touched && gameForm.controls['title'].errors">
         <p *ngIf="gameForm.controls['title'].errors?.['minlength']">Il titolo è troppo corto.</p>
         <p *ngIf="gameForm.controls['title'].errors?.['maxlength']">Il titolo è troppo lungo.</p>
         <p *ngIf="gameForm.controls['title'].errors?.['required']">Il titolo è obbligatorio.</p>
@@ -77,7 +77,7 @@
 
     <div class="campo">
       <label for="verticalposter">Poster verticale</label>
-      <input class="form-control" id="verticalposter" formControlName="poster" type="file" accept="image/png" (change)="onFileChange($event)" />
+      <input class="form-control" id="verticalposter" type="file" accept="image/png" (change)="onFileChange($event)" />
       <div class="help-block" *ngIf="gameForm.controls['verticalposter'].touched && gameForm.controls['verticalposter'].errors">
         <p *ngIf="gameForm.controls['verticalposter'].errors?.['required']">Il poster verticale è obbligatorio.</p>
       </div>
@@ -85,7 +85,7 @@
 
     <div class="campo">
       <label for="horizontalposter">Poster orizzontale</label>
-      <input class="form-control" id="horizontalposter" formControlName="poster" type="file" accept="image/png" (change)="onFileChange2($event)" />
+      <input class="form-control" id="horizontalposter"  type="file" accept="image/png" (change)="onFileChange2($event)" />
       <div class="help-block" *ngIf="gameForm.controls['horizontalposter'].touched && gameForm.controls['horizontalposter'].errors">
         <p *ngIf="gameForm.controls['horizontalposter'].errors?.['required']">Il poster orizzontale è obbligatorio.</p>
       </div>

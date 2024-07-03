@@ -4,6 +4,7 @@ import {genere} from "../../model/Videogame";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {FormBuilder, FormControl, FormGroup, FormsModule, Validators} from '@angular/forms';
 import { NgxImageCompressService } from 'ngx-image-compress';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-game',
@@ -22,7 +23,7 @@ export class AddGameComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private imageCompress: NgxImageCompressService) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private imageCompress: NgxImageCompressService, protected route: Router) {
     this.gameForm = new FormGroup({
       title: new FormControl('',
         [ Validators.required,
@@ -35,11 +36,11 @@ export class AddGameComponent implements OnInit {
         [ Validators.required]),
       anno: new FormControl('',
             [Validators.required,
-                          Validators.min(1900),
-                          Validators.max(2030)]),
+                          Validators.min(1950),
+                          Validators.max(2050)]),
       valutazione: new FormControl('',
             [Validators.required,
-                           Validators.min(1),
+                           Validators.min(0),
                            Validators.max(5)]),
       trailer: new FormControl('',
             [Validators.required]),
@@ -85,7 +86,7 @@ export class AddGameComponent implements OnInit {
             .compressFile(image, -1, 50, 50) // 50% ratio, 50% quality
             .then((compressedImage: any) => {
               this.verticalImg = compressedImage;
-              console.log("Base64: " + this.verticalImg)
+              console.log("Base64 " )
             })
             .catch((error: any) => {
               console.log("image compress " + error);
@@ -118,7 +119,7 @@ export class AddGameComponent implements OnInit {
             .compressFile(image, -1, 50, 50) // 50% ratio, 50% quality
             .then((compressedImage: any) => {
               this.horizontalImg = compressedImage;
-              console.log("Base64: " + this.horizontalImg)
+              console.log("Base64 ")
             })
             .catch((error: any) => {
               console.log("image compress " + error);
@@ -138,16 +139,19 @@ export class AddGameComponent implements OnInit {
     formData.append('descrizione', this.gameForm.value.descrizione);
     formData.append('genere', this.gameForm.value.genere);
     formData.append('duration', this.gameForm.value.duration);
-    formData.append('anno', this.gameForm.value.anno);
+    formData.append('anno', this.gameForm.value.anno == 2050 ? "9999" : this.gameForm.value.anno);
     formData.append('valutazione', "0");
     formData.append('trailer', this.gameForm.value.trailer);
     formData.append('casa', this.gameForm.value.casa);
+
+    console.log(formData.get("anno"));
 
 
     if (this.verticalImg) {
       formData.append('verticalposter', this.verticalImg.toString());
     } else {
       console.log("vertical photo not present")
+      alert("Compila tutti i campi");
       return;
     }
 
@@ -155,14 +159,18 @@ export class AddGameComponent implements OnInit {
       formData.append('horizontalposter', this.horizontalImg.toString());
     } else {
       console.log("horizontal photo not present")
+      alert("Compila tutti i campi");
       return;
     }
 
 
     this.http.post('http://localhost:8080/addGame', formData, {...headers}).subscribe(response => {
       console.log('Risposta del server', response);
+      alert("Videogioco aggiunto!")
+      this.route.navigate(["/"]);
     }, (error: any) => {
       console.error('Errore durante l\'invio', error);
+      alert("Errore caricamento videogioco!")
     });
   }
 
