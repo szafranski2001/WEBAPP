@@ -28,11 +28,15 @@ public class VideogameController {
     public ResponseEntity<?> DeleteVideogame(@PathVariable int videogameId){
         try {
             DBManager.getInstance().VideogiocoDAO().delete(videogameId);
+
             String folderPath = "src/main/resources/static/images/videogames";
             String fileName=videogameId+".png";
-            String filePath = folderPath + File.separator + fileName;
-            File imageFile = new File(filePath);
+            String filaNameCopertina=videogameId+"-Copertina.png";
+            String filePath = folderPath + File.separator;
+            File imageFile = new File(filePath + fileName);
+            File imageFileCopertina = new File(filePath + filaNameCopertina);
             imageFile.delete();
+            imageFileCopertina.delete();
 
             return new ResponseEntity<>(HttpStatus.OK);
         }

@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   protected sliders: SingleGameInfo[][];
   firstTitle: String = "Top Games"
   get10: (NgIterable<unknown> & NgIterable<any>) | undefined | null;
-  rand = this.gts.getRandomValue(9);
+  rand = this.gts.getRandomValue(10);
 
 
   ngOnInit() {

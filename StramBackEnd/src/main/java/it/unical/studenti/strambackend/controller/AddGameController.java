@@ -39,11 +39,10 @@ public class AddGameController {
 
         // Decodifica e salva l'immagine
         boolean decodeVertical = decodeBase64AndSaveImage(v.getVerticalposter(), fileVertical);
-        boolean decodeHorizontal = decodeBase64AndSaveImage(v.getVerticalposter(), fileHorizontal);
+        boolean decodeHorizontal = decodeBase64AndSaveImage(v.getHorizontalposter(), fileHorizontal);
 
         //check and save in database
         if (decodeVertical && decodeHorizontal) {
-            System.out.println("Videogioco: " + v);
 
             try {
                  DBManager.getInstance().VideogiocoDAO().save(v.convert(id));
